@@ -1,0 +1,69 @@
+---
+title: "Extracción prueba Google Scholar"
+author: "José Antonio Rodríguez Moreno"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+libs <- c(
+  'dplyr',
+  'ggplot2',
+  'scholar',
+  'easyPubMed')
+
+invisible(lapply(libs, library, character.only = T))
+library(tidyr)
+```
+
+```{r}
+scholar.id = "b7GkqwQAAAAJ&hl" 
+pub = get_publications(scholar.id)
+pub
+```
+
+```{r}
+write.csv(pub, "datos_prueba_JM_Google_Scholar.csv", row.names = FALSE)
+```
+
+```{r}
+affiliations = data.frame(matrix(NA, ncol = 2, nrow = 1))
+colnames(affiliations) = c('title', 'affiliation')
+
+for(j in 1 : length(pub$title)){
+  skip_to_next <- FALSE
+  tryCatch( # I use tryCatch to catch the papers not found on PubMed
+    {
+      my_entrez_id <- get_pubmed_ids_by_fulltitle(pub$title[j], field = "[Title]")
+      my_xml <- fetch_pubmed_data(my_entrez_id)
+
+      affiliations = bind_rows(
+        affiliations, 
+        data.frame(
+          title = pub$title[j],
+          affiliation = custom_grep(my_xml, tag = "Affiliation") %>% unlist
+          )
+        )
+    }, error = function(e){ 
+      skip_to_next <<- TRUE
+    }
+    )
+  
+  if(skip_to_next) { 
+    affiliations = bind_rows(
+      affiliations,
+      data.frame(
+        title = pub$title[j], 
+        affiliation = "NOT FOUND")
+      )
+  next }  # To continue the script in the next occurrence
+}
+
+affiliations
+```
+
+
