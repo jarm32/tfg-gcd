@@ -1,0 +1,55 @@
+Nombre;Identificador;Correos;Acronimo;Tipo de empleado;Acortacion
+Carmen Alegre Gil;1;calegre@mat.upv.es;MC Alegre Gil, C Alegre;Investigador;AlegreGC
+Andrés Roger Arnau Notari;2;ararnnot@posgrado.upv.es;R Arnau, AR Arnau Notari, AR Arnau-Notari;Investigador;ArnauNAR
+Milagros Arroyo Jordá;3;marroyo@mat.upv.es;M Arroyo Jorda, Milagros Arroyo Jorda;Investigador;ArroyoJM
+Paz Arroyo Jordá;4;parroyo@mat.upv.es;P Arroyo Jorda, Paz Arroyo Jorda;Investigador;ArroyoJP
+Vicent Asensio López;5;viaslo@doctor.upv.es;;Investigador;
+Minerva Báguena Añó;6;mbaguena@upv.es;;Becario;
+Carles Bivià Ausina;7;carbivia@mat.upv.es;C Bivia Ausina, C Bivia-Ausina;Investigador;BiviaC
+José Bonet Solves;8;jbonet@mat.upv.es;J Bonet, JA Bonet Solves;Investigador;BonetSJ
+Jose Manuel Calabuig Rodríguez;9;jmcalabu@mat.upv.es;JM Calabuig, JMC Rodriguez;Investigador;CalabuigRJM
+Christian Cobollo Gómez;10;chcogo@upv.es;C Cobollo, C Cobollos, C Cobollo Gomez, CC Gomez;Becario de investigacion;CobolloGC
+J Alberto Conejero;11;aconejero@upv.es;JA Conejero, JA Conejero Casares, JA Conejero-Casares, AJ Conejero;Investigador;ConejeroJA
+María Jose Felipe Román;12;mfelipe@mat.uv.es;MJ Felipe;Investigador;FelipeRMJ
+Pedro José Fernández de Córdoba Castellá;13;pfernandez@mat.upv.es;P Fernandez, P Fernandez de Cordoba, PF de Cordoba Castella, PF de Cordoba;Investigador;FernandezCCPJ
+Antonia Ferrer Sapena;14;anfersa@upv.es;A Ferrer Sapena, A Ferrer-Sapena, AF Sapena, A Sapena;Investigador;FerrerSA
+Lluís Miquel Garcia Raffi;15;lmgarcia@mat.upv.es;LM Garcia Raffi, L Garcia-Raffi, LM Garcia, LMG Raffi, L Garcia-Raffi;Investigador;GarciaRLM
+Iris Gilabert Manzanares;16;igilman@posgrado.upv.es;;Becario de investigacion;
+Francisco Guijarro Martínez;17;fraguima@upvnet.upv.es;F Guijarro Martinez, F Guijarro, FJM Guijarro;Investigador;GuijarroMF
+Antonio José Guirao Sánchez;18;anguisa2@mat.upv.es;AJ Guirao, AJ Guirao Sanchez;Investigador;GuiraoSAJ
+Sergio Hoyas Calvo;19;serhocal@mot.upv.es;S Hoyas,  S Hoyas Calvo;Investigador;HoyasCS
+José María Isidro San Juan;20;joissan@mat.upv.es;JM Isidro, J Isidro;Investigador;IsidroSJJM
+Enrique Jordá Mora;21;ejorda@mat.upv.es;E Jorda, E Jorda Mora;Investigador;JordaME
+David Jornet Casanova;22;djornet@mat.upv.es;D Jornet;Investigador;JornetCD
+Mario Lázaro Navarro;23;malana@upv.es;M Lazaro;Investigador;LazaroNM
+Manuel López Pellicer;24;mlopezpe@mat.upv.es;ML Pellicer, M Lopez Pellicer;Investigador;LopezPM
+Antoni López Martínez;25;anlom15a@upv.es;A Lopez Martinez;Investigador;LopezMA
+Félix Martínez Jiménez;27;fmartinez@mat.upv.es;F Martinez Gimenez;Investigador;MartinezJF
+Ana Martínez Pastor;28;anamarti@mat.upv.es;A Martinez Pastor;Investigador;MartinezPA
+María José Martínez Usó;29;mjmartin@mat.upv.es;MJ Martinez Uso, MJ Martinez;Investigador;MartinezUMJ
+Carlos Mas Arabi;30;cmasara@mat.upv.es;;Becario de investigacion;
+Carles Milián Enrique;31;carmien@upvnet.upv.es;C Milian;Investigador;MilianEC
+Francisco José Monserrat Delpalillo;32;framonde@mat.upv.es;F Monserrat;Investigador;MonserratDFJ
+Vicente Montesinos Santalucía;33;vmontesinos@mat.upv.es;V Montesinos Santalucia, VM Santalucia;Investigador;MontesinosSV
+Samuel Morillas Gómez;35;vsotomayor@mat.upv.es;S Morillas;Investigador;MorillasGS
+Nuria Ortigosa Araque;36;nuorar@upv.es;;Investigador;
+Víctor Manuel Ortiz Sotomayor;37;vsotomayor@mat.upv.es;VM Ortiz Sotomayor, V Sotomayor, VMO Sotomayor;Investigador;OrtizSVM
+Mari Carmen Pedraza Aguilera;38;mpedraza@mat.upv.es;MC Pedraza Aguilera;Investigador;PedrazaAMC
+Tatiana Pedraza Aguilera;39;tapedraz@mat.upv.es;;Investigador;
+Alfred Peris Manguillot;40;aperis@upv.es;A Peris, A Peris Manguillot;Investigador;PerisMA
+Fernanda Peset Mancebo;41;mpesetm@upv.es;F Peset, MF Peset Mancebo, F Peset Mancebo;Investigador;PesetMF
+Luiza Petrosyan;42;luipet@inf.upv.es;L Petrosyan;Becario de investigacion;PetrosyanL
+Andrés Quilis Sandemetrio;43;anquisan@posgrado.upv.es;A Quilis Sandemetrio;Investigador;QuilisSA
+Francisco Rodenas Escribá;44;frodenas@mat.upv.es;F Rodenas;Investigador;RodenasEF
+Jesús Rodríguez López;45;jrlopez@mat.upv.es;J Rodriguez Lopez;Investigador;RodriguezLJ
+Jose Antonio Rodríguez Moreno;46;rodriguezmoreno.josea@gmail.com;;Becario;
+Salvador Romaguera Bonilla;47;sromague@mat.upv.es;;Investigador;
+Vicent Romero García;48;virogar1@upvnet.upv.es;V Romero Garcia;Investigador;RomeroGV
+Sergi San Juan Silvestre;49;ssansil@posgrado.upv.es;;Becario de investigacion;
+Isabel Sánchez del Toro;50;masande7@upvnet.upv.es;;Becario;
+Enrique A. Sánchez Pérez;51;easancpe@mat.upv.es;EAS Perez, EA Sanchez-Perez, EA Sanchez Perez, E Sanchez-Perez, PEA Sanchez;Investigador;SanchezPEA
+José María Sanchis Llopis;52;jmsanchis@mat.upv.es;JM Sanchis;Investigador;SanchisLJM
+Eduardo Sena Galera;54;edsega@posgrado.upv.es;;Becario de investigacion;
+Pablo Sevilla Peris;55;psevilla@mat.upv.es;P Sevilla Peris;Investigador;SevillaPP
+Pedro Tirado Peláez;56;pedtipe@mat.upv.es;P Tirado;Investigador;TiradoPP
+Álvaro Vargas Moreno;57;alvarmo1@alumni.upv.es;;Becario de investigacion;
