@@ -1,50 +1,46 @@
-# =========================
-# 0) Paquetes
-# =========================
-libs <- c("readxl", "dplyr", "proxy", "cluster", "factoextra", "kohonen", "ggplot2")
-to_install <- libs[!libs %in% installed.packages()[, "Package"]]
-if (length(to_install)) install.packages(to_install, dependencies = TRUE)
-invisible(lapply(libs, library, character.only = TRUE))
+library("readxl")
+library("dplyr")
+library("proxy")
+library("cluster")
+library("factoextra")
+library("kohonen")
+library("ggplot2")
 
-# =========================
-# 1) Parámetros (ajústalos)
-# =========================
-ruta_excel <- "Matriz_Investigadores_Keywords.xlsx"  # nombre del archivo
-hoja <- 1                                            # o el nombre de la hoja
+#################
+# Parámetros
+#################
 
-# ¿Datos binarios (0/1) o conteos? (sirve para decisiones de distancia)
 datos_binarios <- TRUE
 
-# Distancias disponibles: "euclidean","manhattan","jaccard","hamming",
-#                         "cosine","correlation","mahalanobis"
 metrica_distancia <- "jaccard"
 
-# Clustering: "hclust", "kmeans", "pam"
 metodo_clustering <- "hclust"
-linkage_hclust <- "ward.D2"   # "single","complete","average","ward.D2", etc.
 
-# Rango de k a evaluar
-k_min <- 2; k_max <- 12
+linkage_hclust <- "ward.D2"
 
-# PCA previo (TRUE/FALSE) y porcentaje varianza a retener
+k_min <- 2
+k_max <- 12
+
 usar_pca <- FALSE
-varianza_objetivo <- 0.9  # 90%
-
-# SOM (opcional)
+varianza_objetivo <- 0.9
 usar_som <- FALSE
-som_grid_x <- 10; som_grid_y <- 10   # tamaño del mapa
-som_rlen <- 100                      # iteraciones de entrenamiento
-som_k_clusters <- 6                  # nº de clusters sobre codebooks SOM
 
-# =========================
-# 2) Carga y preparación
-# =========================
-# Se asume que cada fila es un investigador y cada columna una keyword (0/1 o conteos)
-raw <- readxl::read_excel(ruta_excel, sheet = hoja)
+som_grid_x <- 10
+som_grid_y <- 10   
+som_rlen <- 100                      
+som_k_clusters <- 6  
+
+#################
+# Cargar archivo y modificarlo
+#################
+
+setwd("C:/Code/tfg-gcd/_Clusterization/Investigadores y keywords")
+
+ruta_excel <- "Matriz_Investigadores_Keywords.xlsx"
+raw <- readxl::read_excel(ruta_excel)
 df <- as.data.frame(raw)
 
-# Detectar columna de identificadores si existe (ej. nombre del investigador)
-# Si tu excel tiene una primera columna con nombres/IDs, sepárala aquí:
+# Primera fila a ID
 tiene_id <- !is.numeric(df[[1]])
 if (tiene_id) {
   ids <- df[[1]]
@@ -54,13 +50,14 @@ if (tiene_id) {
   X <- df
 }
 
-# Aseguramos numérico
+# Aseguramos que las columnas sean int y no str
 X[] <- lapply(X, function(x) as.numeric(as.character(x)))
 X[is.na(X)] <- 0
 
-# =========================
-# 3) (Opcional) PCA previo
-# =========================
+#################
+# PCA
+#################
+
 if (usar_pca) {
   # Para PCA conviene estandarizar si las escalas difieren
   X_scale <- scale(X)
@@ -74,31 +71,30 @@ if (usar_pca) {
   X_for_dist <- X
 }
 
-# =========================
-# 4) Funciones de distancia
-# =========================
+#################
+# Distancia
+#################
+
 distancia_custom <- function(M, metodo = "jaccard", binario = TRUE) {
   metodo <- tolower(metodo)
   if (metodo %in% c("euclidean", "manhattan")) {
     return(dist(M, method = metodo))
   } else if (metodo == "jaccard") {
-    # proxy::dist maneja Jaccard; para binario suele ser lo correcto
+    
     return(proxy::dist(M, method = "Jaccard", diag = FALSE, upper = FALSE, by_rows = TRUE, 
-                       # para binario estricto:
-                       # Nota: proxy::dist(Jaccard) asume binarización internamente
+                       
     ))
   } else if (metodo == "hamming") {
     return(proxy::dist(M, method = "Hamming"))
   } else if (metodo == "cosine") {
     return(proxy::dist(M, method = "cosine"))
   } else if (metodo == "correlation") {
-    # Distancia = 1 - correlación de Pearson entre filas
-    # cor espera variables en columnas → correlación entre filas => transponer
+    
     C <- stats::cor(t(M), method = "pearson")
     D <- as.dist(1 - C)
     return(D)
   } else if (metodo == "mahalanobis") {
-    # Mahalanobis por pares: blanqueo + distancia euclídea
+    
     S <- cov(M)
     S_inv <- tryCatch(solve(S), error = function(e) MASS::ginv(S))
     M_whiten <- as.matrix(scale(M, center = TRUE, scale = FALSE)) %*% chol(S_inv)
@@ -110,9 +106,10 @@ distancia_custom <- function(M, metodo = "jaccard", binario = TRUE) {
 
 D <- distancia_custom(X_for_dist, metodo = metrica_distancia, binario = datos_binarios)
 
-# =========================
-# 5) Clustering + evaluación
-# =========================
+#################
+# Modelo
+#################
+
 evaluar_k_por_silhouette <- function(D, metodo = "hclust", linkage = "ward.D2", k_min = 2, k_max = 10, X_input = NULL) {
   res <- data.frame(k = integer(), silhouette = numeric(), stringsAsFactors = FALSE)
   for (k in k_min:k_max) {
@@ -139,7 +136,8 @@ evaluar_k_por_silhouette <- function(D, metodo = "hclust", linkage = "ward.D2", 
   return(res)
 }
 
-# Para k-means necesitamos X_for_dist (coordenadas); para hclust/pam basta con D
+# Para k-means necesitamos X_for_dist; para hclust/pam basta con D
+
 eval <- evaluar_k_por_silhouette(D,
                                  metodo = metodo_clustering,
                                  linkage = linkage_hclust,
@@ -147,14 +145,17 @@ eval <- evaluar_k_por_silhouette(D,
                                  X_input = if (metodo_clustering == "kmeans") X_for_dist else NULL)
 
 print(eval)
-k_opt <- eval$k[which.max(eval$silhouette)]
-message(sprintf("k óptimo por silhouette ≈ %d (valor=%.3f)", k_opt, max(eval$silhouette)))
 
-# Ajustar modelo final con k_opt
+k_opt <- eval$k[which.max(eval$silhouette)]
+
+#################
+# Visualizaciones
+#################
+
+# Ajustar con k_opt y dendograma
 if (metodo_clustering == "hclust") {
   fit <- hclust(D, method = linkage_hclust)
   grupos <- cutree(fit, k = k_opt)
-  # Dendrograma
   plot(fit, cex = 0.6, main = sprintf("Dendrograma - %s (%s)", metrica_distancia, linkage_hclust))
   rect.hclust(fit, k = k_opt, border = 2:6)
 } else if (metodo_clustering == "kmeans") {
@@ -166,17 +167,16 @@ if (metodo_clustering == "hclust") {
   grupos <- pam_fit$clustering
 }
 
+resultado <- data.frame(Objeto = rownames(X_for_dist), Cluster = grupos, row.names = NULL)
+head(resultado)
+
 # Silhouette plot
 sil <- silhouette(grupos, D)
 fviz_silhouette(sil) + ggtitle(sprintf("Silhouette (%s, %s)", metodo_clustering, metrica_distancia))
 
-# Resultados
 resultado <- data.frame(Objeto = rownames(X_for_dist), Cluster = grupos, row.names = NULL)
 head(resultado)
 
-# =========================
-# 6) Visualizaciones 2D
-# =========================
 # MDS clásico sobre D para dibujar en 2D (independiente de PCA)
 mds <- cmdscale(D, k = 2, eig = TRUE)
 plot(mds$points, col = grupos, pch = 19,
@@ -184,11 +184,7 @@ plot(mds$points, col = grupos, pch = 19,
      xlab = "Dim 1", ylab = "Dim 2")
 legend("topright", legend = sort(unique(grupos)), col = sort(unique(grupos)), pch = 19, title = "Cluster")
 
-# =========================
-# 7) (Opcional) SOM
-# =========================
 if (usar_som) {
-  # Escalado recomendado para SOM
   X_som <- scale(X)
   grid <- somgrid(xdim = som_grid_x, ydim = som_grid_y, topo = "hexagonal")
   set.seed(123)
@@ -197,7 +193,6 @@ if (usar_som) {
   plot(som_fit, type = "dist.neighbours", main = "SOM - U-Matrix")
   plot(som_fit, type = "count", main = "SOM - densidad por nodo")
   
-  # Clusterizar los codebooks del SOM
   codebooks <- som_fit$codes[[1]]
   set.seed(123)
   km_cb <- kmeans(codebooks, centers = som_k_clusters, nstart = 25)
@@ -212,8 +207,4 @@ if (usar_som) {
        main = "SOM - mapping (clusters de nodos)")
 }
 
-# =========================
-# 8) Guardar resultados
-# =========================
-write.csv(resultado, "clusters_resultado.csv", row.names = FALSE)
-message("Resultados guardados en clusters_resultado.csv")
+write.csv(resultado, "Clusters_resultado.csv", row.names = FALSE)
