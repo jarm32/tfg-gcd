@@ -12,7 +12,7 @@ library("ggplot2")
 
 datos_binarios <- TRUE
 
-metrica_distancia <- "jaccard"
+metrica_distancia <- "euclidean"
 
 metodo_clustering <- "hclust"
 
