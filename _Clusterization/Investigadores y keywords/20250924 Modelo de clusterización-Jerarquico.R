@@ -12,19 +12,19 @@ library("ggplot2")
 
 datos_binarios <- TRUE
 
-metrica_distancia <- "euclidean"
+metrica_distancia <- "manhattan"
 
 metodo_clustering <- "hclust"
 
-linkage_hclust <- "ward.D2"
+linkage_hclust <- "average"
 
-k_min <- 2
+k_min <- 3
 k_max <- 12
 
 usar_pca <- FALSE
 varianza_objetivo <- 0.9
-usar_som <- FALSE
 
+usar_som <- FALSE
 som_grid_x <- 10
 som_grid_y <- 10   
 som_rlen <- 100                      
@@ -55,21 +55,39 @@ X[] <- lapply(X, function(x) as.numeric(as.character(x)))
 X[is.na(X)] <- 0
 
 #################
-# PCA
+# PCA (robusto)
 #################
-
 if (usar_pca) {
-  # Para PCA conviene estandarizar si las escalas difieren
-  X_scale <- scale(X)
-  pca <- prcomp(X_scale, center = TRUE, scale. = TRUE)
-  var_exp <- cumsum(pca$sdev^2) / sum(pca$sdev^2)
-  k_comp <- which(var_exp >= varianza_objetivo)[1]
-  message(sprintf("PCA: reteniendo %d componentes (%.1f%% varianza)", k_comp, 100*var_exp[k_comp]))
-  X_pca <- pca$x[, 1:k_comp, drop = FALSE]
-  X_for_dist <- X_pca
+  # 1) Quitar columnas con varianza 0 (imprescindible en binario)
+  var_ok <- apply(X, 2, sd, na.rm = TRUE) > 0
+  if (!all(var_ok)) {
+    message(sprintf("PCA: eliminadas %d columnas de varianza cero.", sum(!var_ok)))
+  }
+  X_pca_input <- X[, var_ok, drop = FALSE]
+  
+  # 2) Si tras filtrar no queda ninguna columna, aborta el PCA con gracia
+  if (ncol(X_pca_input) == 0) {
+    warning("PCA: no hay columnas con varianza > 0. Se continúa sin PCA.")
+    X_for_dist <- X
+  } else {
+    # 3) PCA sin doble escalado: NO hagas scale(X) + scale.=TRUE a la vez
+    pca <- prcomp(X_pca_input, center = TRUE, scale. = TRUE)
+    
+    # 4) Elegir nº de componentes por varianza acumulada
+    var_exp <- cumsum(pca$sdev^2) / sum(pca$sdev^2)
+    k_comp <- which(var_exp >= varianza_objetivo)[1]
+    if (is.na(k_comp)) k_comp <- length(var_exp)
+    
+    message(sprintf("PCA: reteniendo %d componentes (%.1f%% varianza)",
+                    k_comp, 100 * var_exp[k_comp]))
+    
+    # 5) Coordenadas en espacio PCA
+    X_for_dist <- pca$x[, 1:k_comp, drop = FALSE]
+  }
 } else {
   X_for_dist <- X
 }
+
 
 #################
 # Distancia
@@ -85,7 +103,9 @@ distancia_custom <- function(M, metodo = "jaccard", binario = TRUE) {
                        
     ))
   } else if (metodo == "hamming") {
-    return(proxy::dist(M, method = "Hamming"))
+    # Hamming normalizada: proporción de posiciones distintas (0..1)
+    ham_fun <- function(x, y) mean(x != y)
+    return(proxy::dist(M, method = ham_fun))
   } else if (metodo == "cosine") {
     return(proxy::dist(M, method = "cosine"))
   } else if (metodo == "correlation") {
@@ -110,7 +130,7 @@ D <- distancia_custom(X_for_dist, metodo = metrica_distancia, binario = datos_bi
 # Modelo
 #################
 
-evaluar_k_por_silhouette <- function(D, metodo = "hclust", linkage = "ward.D2", k_min = 2, k_max = 10, X_input = NULL) {
+evaluar_k_por_silhouette <- function(D, metodo = "hclust", linkage = "ward.D2", k_min = 3, k_max = 10, X_input = NULL) {
   res <- data.frame(k = integer(), silhouette = numeric(), stringsAsFactors = FALSE)
   for (k in k_min:k_max) {
     if (metodo == "hclust") {
@@ -147,6 +167,7 @@ eval <- evaluar_k_por_silhouette(D,
 print(eval)
 
 k_opt <- eval$k[which.max(eval$silhouette)]
+(k_opt)
 
 #################
 # Visualizaciones
@@ -208,3 +229,4 @@ if (usar_som) {
 }
 
 write.csv(resultado, "Clusters_resultado.csv", row.names = FALSE)
+
