@@ -1,7 +1,9 @@
 library("readxl")
 library("dplyr")
+library("proxy")
 library("cluster")
 library("factoextra")
+library("kohonen")
 library("ggplot2")
 
 #################
@@ -10,13 +12,20 @@ library("ggplot2")
 
 datos_binarios <- TRUE
 
-metrica_distancia <- "euclidean"   # Usaremos euclídea
-metodo_clustering <- "kmeans"      # K-means
-k_min <- 3
-k_max <- 12
+metrica_distancia <- "euclidean"   # K-means usa euclídea
+metodo_clustering <- "kmeans"
+
+k_min <- 15
+k_max <- 25
 
 usar_pca <- TRUE
 varianza_objetivo <- 0.9
+
+usar_som <- FALSE
+som_grid_x <- 10
+som_grid_y <- 10   
+som_rlen <- 100                      
+som_k_clusters <- 6  
 
 #################
 # Cargar archivo y modificarlo
@@ -38,78 +47,106 @@ if (tiene_id) {
   X <- df
 }
 
-# Aseguramos que las columnas sean numéricas
+# Aseguramos que todas las columnas sean numéricas
 X[] <- lapply(X, function(x) as.numeric(as.character(x)))
 X[is.na(X)] <- 0
 
 #################
-# PCA (opcional)
+# Limpieza robusta antes del clustering
+#################
+
+# Eliminar columnas con varianza 0
+var_ok <- apply(X, 2, sd, na.rm = TRUE) > 0
+if (!all(var_ok)) {
+  message(sprintf("Eliminadas %d columnas con varianza cero.", sum(!var_ok)))
+  X <- X[, var_ok, drop = FALSE]
+}
+
+# Sustituir posibles NA, NaN o Inf por 0
+X[!is.finite(as.matrix(X))] <- 0
+
+#################
+# PCA (opcional y robusto)
 #################
 
 if (usar_pca) {
-  X_scale <- scale(X)
-  pca <- prcomp(X_scale, center = TRUE, scale. = TRUE)
+  pca <- prcomp(X, center = TRUE, scale. = TRUE)
   var_exp <- cumsum(pca$sdev^2) / sum(pca$sdev^2)
   k_comp <- which(var_exp >= varianza_objetivo)[1]
-  message(sprintf("PCA: reteniendo %d componentes (%.1f%% varianza)", 
+  if (is.na(k_comp)) k_comp <- length(var_exp)
+  message(sprintf("PCA: reteniendo %d componentes (%.1f%% varianza explicada)", 
                   k_comp, 100 * var_exp[k_comp]))
-  X_for_dist <- pca$x[, 1:k_comp, drop = FALSE]
+  X_for_clust <- pca$x[, 1:k_comp, drop = FALSE]
 } else {
-  X_for_dist <- X
+  X_for_clust <- scale(X)
 }
 
-#################
-# Distancia euclídea
-#################
-
-D <- dist(X_for_dist, method = "euclidean")
+# Reemplazar cualquier NA/NaN/Inf resultante de PCA o scale
+X_for_clust[!is.finite(as.matrix(X_for_clust))] <- 0
 
 #################
-# Evaluación de k (Silhouette)
+# Distancia (para silhouette)
+#################
+
+D <- dist(X_for_clust, method = metrica_distancia)
+
+#################
+# Evaluación de k (por silhouette)
 #################
 
 evaluar_k_por_silhouette <- function(X_input, D, k_min = 3, k_max = 10) {
   res <- data.frame(k = integer(), silhouette = numeric(), stringsAsFactors = FALSE)
   for (k in k_min:k_max) {
     set.seed(123)
-    km <- kmeans(X_input, centers = k, nstart = 50, iter.max = 100)
-    sil <- silhouette(km$cluster, D)
+    km <- kmeans(X_input, centers = k, nstart = 25)
+    sil <- cluster::silhouette(km$cluster, D)
     mean_s <- mean(sil[, "sil_width"])
     res <- rbind(res, data.frame(k = k, silhouette = mean_s))
   }
   return(res)
 }
 
-eval <- evaluar_k_por_silhouette(X_for_dist, D, k_min, k_max)
+eval <- evaluar_k_por_silhouette(X_for_clust, D, k_min, k_max)
 print(eval)
 
 k_opt <- eval$k[which.max(eval$silhouette)]
-cat("Mejor número de clusters:", k_opt, "\n")
+k_opt
 
 #################
-# Modelo final K-means
+# Modelo final
 #################
 
 set.seed(123)
-km <- km <- kmeans(X_for_dist, centers = k_opt, nstart = 50, iter.max = 100)
-grupos <- km$cluster
-
-resultado <- data.frame(Objeto = rownames(X_for_dist), Cluster = grupos)
-write.csv(resultado, "Clusters_resultado.csv", row.names = FALSE)
+km_final <- kmeans(X_for_clust, centers = k_opt, nstart = 25)
+grupos <- km_final$cluster
 
 #################
 # Visualizaciones
 #################
 
-# Gráfico silhouette
+# Silhouette plot
 sil <- silhouette(grupos, D)
-fviz_silhouette(sil) + 
-  ggtitle(sprintf("Silhouette (K-means, %s)", metrica_distancia))
+fviz_silhouette(sil) + ggtitle(sprintf("Silhouette - K-means (k = %d)", k_opt))
 
-# Visualización MDS
-mds <- cmdscale(D, k = 2, eig = TRUE)
-plot(mds$points, col = grupos, pch = 19,
-     main = sprintf("MDS 2D - K-means (%s)", metrica_distancia),
-     xlab = "Dim 1", ylab = "Dim 2")
-legend("topright", legend = sort(unique(grupos)), col = sort(unique(grupos)), 
-       pch = 19, title = "Cluster")
+# Visualización PCA o MDS
+if (usar_pca) {
+  fviz_cluster(km_final, data = X_for_clust,
+               geom = "point", ellipse.type = "norm") +
+    ggtitle(sprintf("K-means (k = %d) sobre PCA", k_opt))
+} else {
+  mds <- cmdscale(D, k = 2)
+  plot(mds, col = grupos, pch = 19,
+       main = sprintf("K-means (k = %d) - MDS 2D", k_opt),
+       xlab = "Dim 1", ylab = "Dim 2")
+  legend("topright", legend = sort(unique(grupos)), 
+         col = sort(unique(grupos)), pch = 19, title = "Cluster")
+}
+
+#################
+# Guardar resultados
+#################
+
+resultado <- data.frame(Objeto = rownames(X_for_clust), Cluster = grupos, row.names = NULL)
+write.csv(resultado, "Clusters_resultado_kmeans.csv", row.names = FALSE)
+
+head(resultado)
