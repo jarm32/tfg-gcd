@@ -1,19 +1,19 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_excel("One_Hot_Palabras_Revistas.xlsx")
+df = pd.read_excel("C:/Code/tfg-gcd/_Clusterization/OHE/One_Hot_Palabras_Revistas.xlsx")
 
 col_revista = df.columns[0] 
 cols_numericas = df.select_dtypes(include=["number"]).columns 
 
-min_val = 10
+min_val = 0
 suma_columnas = df[cols_numericas].sum()
 cols_palabras_filtradas = suma_columnas[suma_columnas > min_val].index.tolist()
 
 cols_a_mantener = [col_revista] + cols_palabras_filtradas
 df_filtrado = df[cols_a_mantener]
 
-output_file = "One_Hot_Palabras_Revistas_filtrado.xlsx"
+output_file = "C:/Code/tfg-gcd/_Clusterization/OHE/One_Hot_Palabras_Revistas_filtrado.xlsx"
 df_filtrado.to_excel(output_file, index=False)
 print(f"Archivo '{output_file}' generado con suma > {min_val}.")
 
