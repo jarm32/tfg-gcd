@@ -2,11 +2,11 @@ import pandas as pd
 import glob
 import os
 
-df_revistas = pd.read_excel("One_Hot_Palabras_Revistas_filtrado.xlsx")
+df_revistas = pd.read_excel("C:/Code/tfg-gcd/_Clusterization/Investigadores y keywords/One_Hot_Palabras_Revistas_filtrado.xlsx")
 df_revistas.set_index(df_revistas.columns[0], inplace=True) # Se accede con df_revistas.index
 
 path = "." 
-files = glob.glob(os.path.join(path, "1ha_publicado_en_*_editoriales.csv")) # Busca todos aquellos archivos con mismo nombre variando la parte de *
+files = glob.glob(os.path.join(path, "C:/Code/tfg-gcd/_Clusterization/Investigadores y keywords/1ha_publicado_en_*_editoriales.csv")) # Busca todos aquellos archivos con mismo nombre variando la parte de *
 
 investigadores_keywords = {}
 relacional = []
@@ -29,9 +29,9 @@ for file in files:
 
 df_investigadores = pd.DataFrame.from_dict(investigadores_keywords, orient="index")
 df_investigadores.index.name = "Investigador"
-df_investigadores.to_excel("Matriz_Investigadores_Keywords.xlsx")
+df_investigadores.to_excel("C:/Code/tfg-gcd/_Clusterization/Investigadores y keywords/Matriz_Investigadores_Keywords.xlsx")
 
 df_relacional = pd.DataFrame(relacional, columns=["Investigador", "Revista", "Keyword"])
-df_relacional.to_excel("Trazabilidad_Keywords_Revistas.xlsx", index=False)
+df_relacional.to_excel("C:/Code/tfg-gcd/_Clusterization/Investigadores y keywords/Trazabilidad_Keywords_Revistas.xlsx", index=False)
 
 print("Matrices guardadas")
