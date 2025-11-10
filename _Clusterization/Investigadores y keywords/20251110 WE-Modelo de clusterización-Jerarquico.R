@@ -12,7 +12,7 @@ library("ggplot2")
 
 datos_binarios <- FALSE
 
-metrica_distancia <- "correlation"
+metrica_distancia <- "manhattan"
 
 metodo_clustering <- "hclust"
 
@@ -21,7 +21,7 @@ linkage_hclust <- "average"
 k_min <- 5
 k_max <- 12
 
-usar_pca <- FALSE
+usar_pca <- TRUE
 varianza_objetivo <- 0.9
 
 usar_som <- FALSE
@@ -229,3 +229,4 @@ if (usar_som) {
 }
 
 write.csv(resultado, "Clusters_resultado.csv", row.names = FALSE)
+
