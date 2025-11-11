@@ -6,6 +6,7 @@ library("umap")
 library("cluster")
 library("factoextra")
 library("ggplot2")
+library("dplyr")
 
 set.seed(123)
 
@@ -155,12 +156,16 @@ emb <- read.csv("C:/Code/tfg-gcd/_Clusterization/Investigadores y keywords/Matri
 
 # Crear una lista numerada con los nombres de los investigadores
 investigadores_lista <- data.frame(
-  Numero = seq_len(nrow(emb)),
-  Investigador = rownames(emb)
+  Investigador = seq_len(nrow(emb)),
+  Nombre = rownames(emb)
 )
 
 # Mostrar la lista en consola
 print(investigadores_lista, row.names = FALSE)
+
+tabla_final$Investigador = as.numeric(as.character(tabla_final$Investigador))
+
+n = left_join(tabla_final, investigadores_lista, by="Investigador")
 
 #################
 # Probar manualmente k
@@ -190,4 +195,8 @@ resultado_k5 <- data.frame(
 
 # Mostrar y guardar resultados
 print(resultado_k5[order(resultado_k5$Cluster, -resultado_k5$Silhouette), ], row.names = FALSE)
+
+resultado_k5$Investigador = as.numeric(as.character(resultado_k5$Investigador))
+
+n = left_join(resultado_k5, investigadores_lista, by="Investigador")
 
