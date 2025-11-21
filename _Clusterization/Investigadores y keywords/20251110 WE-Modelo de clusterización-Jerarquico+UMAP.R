@@ -167,6 +167,50 @@ tabla_final$Investigador = as.numeric(as.character(tabla_final$Investigador))
 
 n = left_join(tabla_final, investigadores_lista, by="Investigador")
 
+
+###############################################
+# GUARDAR MODELO UMAP Y RESULTADOS
+###############################################
+
+# Crear carpeta si no existe
+dir.create("UMAP_Resultados", showWarnings = FALSE)
+
+# 1. Guardar la tabla final completa (investigadores + cluster + UMAP + silhouette)
+write.csv(
+  tabla_final,
+  "UMAP_Resultados/UMAP_Clusters_Investigadores.csv",
+  row.names = FALSE
+)
+
+# 2. Guardar coordenadas UMAP
+write.csv(
+  umap_df,
+  "UMAP_Resultados/UMAP_Coordenadas.csv",
+  row.names = TRUE
+)
+
+# 3. Guardar configuración del UMAP
+umap_config_list <- list(
+  n_neighbors = umap_config$n_neighbors,
+  min_dist = umap_config$min_dist,
+  metric = umap_config$metric,
+  k_opt = k_opt,
+  metodo_clustering = metodo_clustering,
+  linkage = linkage_hclust,
+  silhouette = mean_sil
+)
+
+saveRDS(
+  umap_config_list,
+  file = "UMAP_Resultados/UMAP_Parametrizacion.rds"
+)
+
+# 4. Guardar el objeto del modelo UMAP completo
+saveRDS(
+  umap_res,
+  file = "UMAP_Resultados/UMAP_Modelo.rds"
+)
+
 #################
 # Probar manualmente k
 #################
