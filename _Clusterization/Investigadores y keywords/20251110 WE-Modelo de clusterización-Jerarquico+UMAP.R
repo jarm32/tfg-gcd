@@ -1,232 +1,246 @@
-library("readxl")
-library("dplyr")
-library("proxy")
+#########################################
+# REDUCCIÓN NO LINEAL CON UMAP + CLUSTERING
+#########################################
+
+library("umap")
 library("cluster")
 library("factoextra")
-library("kohonen")
 library("ggplot2")
+library("dplyr")
+
+set.seed(123)
 
 #################
 # Parámetros
 #################
 
-datos_binarios <- FALSE
-
-metrica_distancia <- "manhattan"
-
-metodo_clustering <- "hclust"
-
-linkage_hclust <- "average"
-
-k_min <- 5
-k_max <- 12
-
 usar_pca <- TRUE
 varianza_objetivo <- 0.9
-
-usar_som <- FALSE
-som_grid_x <- 10
-som_grid_y <- 10   
-som_rlen <- 100                      
-som_k_clusters <- 6  
+metodo_clustering <- "hclust"
+linkage_hclust <- "average"
+k_min <- 3
+k_max <- 10
 
 #################
-# Cargar archivo y modificarlo
+# Cargar datos
 #################
 
 setwd("C:/Code/tfg-gcd/_Clusterization/Investigadores y keywords")
 
 ruta_excel <- "Matriz_Investigadores_Embeddings.csv"
 raw <- read.csv(ruta_excel, row.names = 1)
-df <- as.data.frame(raw)
-
-# Primera fila a ID
-tiene_id <- !is.numeric(df[[1]])
-if (tiene_id) {
-  ids <- df[[1]]
-  X <- df[, -1, drop = FALSE]
-  rownames(X) <- make.names(ids, unique = TRUE)
-} else {
-  X <- df
-}
-
-# Aseguramos que las columnas sean int y no str
-X[] <- lapply(X, function(x) as.numeric(as.character(x)))
+X <- as.data.frame(lapply(raw, as.numeric))
 X[is.na(X)] <- 0
 
 #################
-# PCA (robusto)
+# PCA previa (opcional)
 #################
 if (usar_pca) {
-  # 1) Quitar columnas con varianza 0 (imprescindible en binario)
   var_ok <- apply(X, 2, sd, na.rm = TRUE) > 0
-  if (!all(var_ok)) {
-    message(sprintf("PCA: eliminadas %d columnas de varianza cero.", sum(!var_ok)))
-  }
   X_pca_input <- X[, var_ok, drop = FALSE]
-  
-  # 2) Si tras filtrar no queda ninguna columna, aborta el PCA con gracia
-  if (ncol(X_pca_input) == 0) {
-    warning("PCA: no hay columnas con varianza > 0. Se continúa sin PCA.")
-    X_for_dist <- X
-  } else {
-    # 3) PCA sin doble escalado: NO hagas scale(X) + scale.=TRUE a la vez
-    pca <- prcomp(X_pca_input, center = TRUE, scale. = TRUE)
-    
-    # 4) Elegir nº de componentes por varianza acumulada
-    var_exp <- cumsum(pca$sdev^2) / sum(pca$sdev^2)
-    k_comp <- which(var_exp >= varianza_objetivo)[1]
-    if (is.na(k_comp)) k_comp <- length(var_exp)
-    
-    message(sprintf("PCA: reteniendo %d componentes (%.1f%% varianza)",
-                    k_comp, 100 * var_exp[k_comp]))
-    
-    # 5) Coordenadas en espacio PCA
-    X_for_dist <- pca$x[, 1:k_comp, drop = FALSE]
-  }
+  pca <- prcomp(X_pca_input, center = TRUE, scale. = TRUE)
+  var_exp <- cumsum(pca$sdev^2) / sum(pca$sdev^2)
+  k_comp <- which(var_exp >= varianza_objetivo)[1]
+  message(sprintf("PCA: reteniendo %d componentes (%.1f%% varianza)",
+                  k_comp, 100 * var_exp[k_comp]))
+  X_for_umap <- pca$x[, 1:k_comp, drop = FALSE]
 } else {
-  X_for_dist <- X
+  X_for_umap <- X
 }
 
-
 #################
-# Distancia
-#################
-
-distancia_custom <- function(M, metodo = "jaccard", binario = TRUE) {
-  metodo <- tolower(metodo)
-  if (metodo %in% c("euclidean", "manhattan")) {
-    return(dist(M, method = metodo))
-  } else if (metodo == "jaccard") {
-    
-    return(proxy::dist(M, method = "Jaccard", diag = FALSE, upper = FALSE, by_rows = TRUE, 
-                       
-    ))
-  } else if (metodo == "hamming") {
-    # Hamming normalizada: proporción de posiciones distintas (0..1)
-    ham_fun <- function(x, y) mean(x != y)
-    return(proxy::dist(M, method = ham_fun))
-  } else if (metodo == "cosine") {
-    return(proxy::dist(M, method = "cosine"))
-  } else if (metodo == "correlation") {
-    
-    C <- stats::cor(t(M), method = "pearson")
-    D <- as.dist(1 - C)
-    return(D)
-  } else if (metodo == "mahalanobis") {
-    
-    S <- cov(M)
-    S_inv <- tryCatch(solve(S), error = function(e) MASS::ginv(S))
-    M_whiten <- as.matrix(scale(M, center = TRUE, scale = FALSE)) %*% chol(S_inv)
-    return(dist(M_whiten, method = "euclidean"))
-  } else {
-    stop("Métrica de distancia no reconocida.")
-  }
-}
-
-D <- distancia_custom(X_for_dist, metodo = metrica_distancia, binario = datos_binarios)
-
-#################
-# Modelo
+# UMAP
 #################
 
-evaluar_k_por_silhouette <- function(D, metodo = "hclust", linkage = "ward.D2", k_min = 3, k_max = 10, X_input = NULL) {
-  res <- data.frame(k = integer(), silhouette = numeric(), stringsAsFactors = FALSE)
-  for (k in k_min:k_max) {
-    if (metodo == "hclust") {
-      fit <- hclust(D, method = linkage)
-      grupos <- cutree(fit, k = k)
-      sil <- cluster::silhouette(grupos, D)
-      mean_s <- mean(sil[, "sil_width"])
-    } else if (metodo == "kmeans") {
-      if (is.null(X_input)) stop("Para kmeans, necesitas X_input (no D).")
-      set.seed(123)
-      km <- kmeans(X_input, centers = k, nstart = 25)
-      sil <- cluster::silhouette(km$cluster, D)
-      mean_s <- mean(sil[, "sil_width"])
-    } else if (metodo == "pam") {
-      pam_fit <- cluster::pam(D, k = k, diss = TRUE)
-      sil <- cluster::silhouette(pam_fit$clustering, D)
-      mean_s <- mean(sil[, "sil_width"])
-    } else {
-      stop("Método de clustering no reconocido.")
-    }
-    res <- rbind(res, data.frame(k = k, silhouette = mean_s))
-  }
-  return(res)
-}
+umap_config <- umap.defaults
+umap_config$n_neighbors <- 10
+umap_config$min_dist <- 0.2
+umap_config$metric <- "cosine"
 
-# Para k-means necesitamos X_for_dist; para hclust/pam basta con D
+umap_res <- umap(X_for_umap, config = umap_config)
 
-eval <- evaluar_k_por_silhouette(D,
-                                 metodo = metodo_clustering,
-                                 linkage = linkage_hclust,
-                                 k_min = k_min, k_max = k_max,
-                                 X_input = if (metodo_clustering == "kmeans") X_for_dist else NULL)
-
-print(eval)
-
-k_opt <- eval$k[which.max(eval$silhouette)]
-(k_opt)
+umap_df <- as.data.frame(umap_res$layout)
+colnames(umap_df) <- c("UMAP1", "UMAP2")
+rownames(umap_df) <- rownames(X_for_umap)
 
 #################
-# Visualizaciones
+# Clustering sobre UMAP
 #################
 
-# Ajustar con k_opt y dendograma
 if (metodo_clustering == "hclust") {
-  fit <- hclust(D, method = linkage_hclust)
+  D_umap <- dist(umap_df, method = "euclidean")
+  fit <- hclust(D_umap, method = linkage_hclust)
+  
+  sil_scores <- sapply(k_min:k_max, function(k) {
+    gr <- cutree(fit, k = k)
+    sil <- silhouette(gr, D_umap)
+    mean(sil[, "sil_width"])
+  })
+  k_opt <- which.max(sil_scores) + (k_min - 1)
+  message(sprintf("Mejor número de clusters (Silhouette): %d", k_opt))
+  
   grupos <- cutree(fit, k = k_opt)
-  plot(fit, cex = 0.6, main = sprintf("Dendrograma - %s (%s)", metrica_distancia, linkage_hclust))
-  rect.hclust(fit, k = k_opt, border = 2:6)
+  
 } else if (metodo_clustering == "kmeans") {
   set.seed(123)
-  km <- kmeans(X_for_dist, centers = k_opt, nstart = 25)
-  grupos <- km$cluster
-} else if (metodo_clustering == "pam") {
-  pam_fit <- cluster::pam(D, k = k_opt, diss = TRUE)
-  grupos <- pam_fit$clustering
+  sil_scores <- c()
+  for (k in k_min:k_max) {
+    km <- kmeans(umap_df, centers = k, nstart = 25)
+    sil <- silhouette(km$cluster, dist(umap_df))
+    sil_scores[k - k_min + 1] <- mean(sil[, "sil_width"])
+  }
+  k_opt <- which.max(sil_scores) + (k_min - 1)
+  message(sprintf("Mejor número de clusters (Silhouette): %d", k_opt))
+  km_final <- kmeans(umap_df, centers = k_opt, nstart = 25)
+  grupos <- km_final$cluster
 }
 
-resultado <- data.frame(Objeto = rownames(X_for_dist), Cluster = grupos, row.names = NULL)
-head(resultado)
+#################
+# Visualización
+#################
 
-# Silhouette plot
-sil <- silhouette(grupos, D)
-fviz_silhouette(sil) + ggtitle(sprintf("Silhouette (%s, %s)", metodo_clustering, metrica_distancia))
+ggplot(umap_df, aes(x = UMAP1, y = UMAP2, color = as.factor(grupos))) +
+  geom_point(size = 3) +
+  theme_minimal(base_size = 14) +
+  labs(title = sprintf("UMAP + %s clustering (k=%d)", metodo_clustering, k_opt),
+       color = "Cluster") +
+  theme(plot.title = element_text(hjust = 0.5))
 
-resultado <- data.frame(Objeto = rownames(X_for_dist), Cluster = grupos, row.names = NULL)
-head(resultado)
+#################
+# Silhouette
+#################
 
-# MDS clásico sobre D para dibujar en 2D (independiente de PCA)
-mds <- cmdscale(D, k = 2, eig = TRUE)
-plot(mds$points, col = grupos, pch = 19,
-     main = sprintf("MDS 2D sobre %s + %s", metrica_distancia, metodo_clustering),
-     xlab = "Dim 1", ylab = "Dim 2")
-legend("topright", legend = sort(unique(grupos)), col = sort(unique(grupos)), pch = 19, title = "Cluster")
+D_umap <- dist(umap_df, method = "euclidean")
+sil <- silhouette(grupos, D_umap)
+mean_sil <- mean(sil[, "sil_width"])
+cat(sprintf("Silhouette medio (UMAP + hclust, k=%d): %.3f\n", k_opt, mean_sil))
+fviz_silhouette(sil)
 
-if (usar_som) {
-  X_som <- scale(X)
-  grid <- somgrid(xdim = som_grid_x, ydim = som_grid_y, topo = "hexagonal")
-  set.seed(123)
-  som_fit <- som(as.matrix(X_som), grid = grid, rlen = som_rlen, keep.data = TRUE)
-  plot(som_fit, type = "changes", main = "SOM - cambios de entrenamiento")
-  plot(som_fit, type = "dist.neighbours", main = "SOM - U-Matrix")
-  plot(som_fit, type = "count", main = "SOM - densidad por nodo")
-  
-  codebooks <- som_fit$codes[[1]]
-  set.seed(123)
-  km_cb <- kmeans(codebooks, centers = som_k_clusters, nstart = 25)
-  clusters_nodos <- km_cb$cluster
-  clusters_som <- clusters_nodos[som_fit$unit.classif]  # cluster por individuo
-  # Comparar con clustering previo si quieres
-  tabla_comp <- table(Previo = grupos, SOM = clusters_som)
-  print(tabla_comp)
-  
-  # Mapa con clusters de nodos
-  plot(som_fit, type = "mapping", bgcol = clusters_nodos[som_fit$unit.classif],
-       main = "SOM - mapping (clusters de nodos)")
-}
+#################
+# Tabla final completa
+#################
 
-write.csv(resultado, "Clusters_resultado.csv", row.names = FALSE)
+# Crear tabla base
+resultado <- data.frame(
+  Investigador = rownames(umap_df),
+  Cluster = grupos,
+  UMAP1 = umap_df$UMAP1,
+  UMAP2 = umap_df$UMAP2,
+  stringsAsFactors = FALSE
+)
+
+# Añadir silhouette individual
+sil_df <- data.frame(
+  Investigador = rownames(umap_df),
+  Silhouette = sil[, "sil_width"]
+)
+
+# Combinar todo
+tabla_final <- merge(resultado, sil_df, by = "Investigador", all.x = TRUE)
+
+# Ordenar por cluster (y silhouette dentro de cada grupo)
+tabla_final <- tabla_final[order(tabla_final$Cluster, -tabla_final$Silhouette), ]
+
+#################
+# Mostrar y guardar resultados
+#################
+
+cat(sprintf("\nSilhouette medio: %.3f\n", mean_sil))
+cat("Listado completo de investigadores con cluster y silhouette:\n")
+
+print(tabla_final[, c("Investigador", "Cluster", "Silhouette", "UMAP1", "UMAP2")],
+      row.names = FALSE)
+
+emb <- read.csv("C:/Code/tfg-gcd/_Clusterization/Investigadores y keywords/Matriz_Investigadores_Embeddings.csv",
+                row.names = 1)
+
+# Crear una lista numerada con los nombres de los investigadores
+investigadores_lista <- data.frame(
+  Investigador = seq_len(nrow(emb)),
+  Nombre = rownames(emb)
+)
+
+# Mostrar la lista en consola
+print(investigadores_lista, row.names = FALSE)
+
+tabla_final$Investigador = as.numeric(as.character(tabla_final$Investigador))
+
+n = left_join(tabla_final, investigadores_lista, by="Investigador")
+
+
+###############################################
+# GUARDAR MODELO UMAP Y RESULTADOS
+###############################################
+
+# Crear carpeta si no existe
+dir.create("UMAP_Resultados", showWarnings = FALSE)
+
+# 1. Guardar la tabla final completa (investigadores + cluster + UMAP + silhouette)
+write.csv(
+  tabla_final,
+  "UMAP_Resultados/UMAP_Clusters_Investigadores.csv",
+  row.names = FALSE
+)
+
+# 2. Guardar coordenadas UMAP
+write.csv(
+  umap_df,
+  "UMAP_Resultados/UMAP_Coordenadas.csv",
+  row.names = TRUE
+)
+
+# 3. Guardar configuración del UMAP
+umap_config_list <- list(
+  n_neighbors = umap_config$n_neighbors,
+  min_dist = umap_config$min_dist,
+  metric = umap_config$metric,
+  k_opt = k_opt,
+  metodo_clustering = metodo_clustering,
+  linkage = linkage_hclust,
+  silhouette = mean_sil
+)
+
+saveRDS(
+  umap_config_list,
+  file = "UMAP_Resultados/UMAP_Parametrizacion.rds"
+)
+
+# 4. Guardar el objeto del modelo UMAP completo
+saveRDS(
+  umap_res,
+  file = "UMAP_Resultados/UMAP_Modelo.rds"
+)
+
+#################
+# Probar manualmente k
+#################
+
+k_test <- 4   # número de clusters a probar
+grupos_k5 <- cutree(fit, k = k_test)
+
+# Calcular Silhouette para k = 5
+D_umap <- dist(umap_df, method = "euclidean")
+sil_k5 <- silhouette(grupos_k5, D_umap)
+mean_sil_k5 <- mean(sil_k5[, "sil_width"])
+
+cat(sprintf("Silhouette medio para k = %d: %.3f\n", k_test, mean_sil_k5))
+
+# Visualizar Silhouette
+fviz_silhouette(sil_k5)
+
+# Crear tabla con investigadores y nuevo clustering
+resultado_k5 <- data.frame(
+  Investigador = rownames(umap_df),
+  Cluster = grupos_k5,
+  UMAP1 = umap_df$UMAP1,
+  UMAP2 = umap_df$UMAP2,
+  Silhouette = sil_k5[, "sil_width"]
+)
+
+# Mostrar y guardar resultados
+print(resultado_k5[order(resultado_k5$Cluster, -resultado_k5$Silhouette), ], row.names = FALSE)
+
+resultado_k5$Investigador = as.numeric(as.character(resultado_k5$Investigador))
+
+n = left_join(resultado_k5, investigadores_lista, by="Investigador")
 
