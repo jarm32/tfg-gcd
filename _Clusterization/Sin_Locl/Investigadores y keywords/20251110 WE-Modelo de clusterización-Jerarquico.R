@@ -12,7 +12,7 @@ library("ggplot2")
 
 datos_binarios <- FALSE
 
-metrica_distancia <- "manhattan"
+metrica_distancia <- "cosine"
 
 metodo_clustering <- "hclust"
 
@@ -34,9 +34,9 @@ som_k_clusters <- 6
 # Cargar archivo y modificarlo
 #################
 
-setwd("C:/Code/tfg-gcd/_Clusterization/Investigadores y keywords")
+setwd("C:/Code/tfg-gcd/_Clusterization/Sin_Locl/Investigadores y keywords")
 
-ruta_excel <- "Matriz_Investigadores_Embeddings.csv"
+ruta_excel <- "Matriz_Investigadores_Embeddings_sinlocl.csv"
 raw <- read.csv(ruta_excel, row.names = 1)
 df <- as.data.frame(raw)
 

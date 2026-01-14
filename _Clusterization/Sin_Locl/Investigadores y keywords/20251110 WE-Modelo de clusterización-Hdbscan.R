@@ -11,7 +11,7 @@ library("ggplot2")
 #################
 
 minPts <- 3                 # mínimo de puntos por cluster
-usar_pca <- TRUE             # recomendable para embeddings
+usar_pca <- FALSE             # recomendable para embeddings
 varianza_objetivo <- 0.9
 metrica_distancia <- "cosine"
 
@@ -19,9 +19,9 @@ metrica_distancia <- "cosine"
 # Cargar archivo
 #################
 
-setwd("C:/Code/tfg-gcd/_Clusterization/Investigadores y keywords")
+setwd("C:/Code/tfg-gcd/_Clusterization/Sin_Locl/Investigadores y keywords")
 
-ruta_excel <- "Matriz_Investigadores_Embeddings.csv"
+ruta_excel <- "Matriz_Investigadores_Embeddings_sinlocl.csv"
 raw <- read.csv(ruta_excel, row.names = 1)
 df <- as.data.frame(raw)
 
@@ -87,7 +87,7 @@ plot(mds$points,
      pch = 19,
      main = sprintf("HDBSCAN (minPts=%d)", minPts),
      xlab = "Dim 1", ylab = "Dim 2")
-legend("topright",
+("topright",
        legend = c("ruido", paste("Cluster", sort(unique(hdb$cluster[hdb$cluster != 0])))),
        col = c("grey", 2:(length(unique(hdb$cluster)) + 1)),
        pch = 19)
