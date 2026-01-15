@@ -27,9 +27,9 @@ k_final <- 4   # <-- CLUSTERING FINAL A USAR
 # Cargar datos
 #################
 
-setwd("C:/Code/tfg-gcd/_Clusterization/Investigadores y keywords")
+setwd("C:/Code/tfg-gcd/_Clusterization/Sin_Locl/Investigadores y keywords")
 
-emb <- read.csv("Matriz_Investigadores_Embeddings.csv", row.names = 1)
+emb <- read.csv("Matriz_Investigadores_Embeddings_sinlocl.csv", row.names = 1)
 
 # Asegurar nombres válidos
 rownames(emb) <- make.names(rownames(emb), unique = TRUE)

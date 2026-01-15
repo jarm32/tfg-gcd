@@ -55,7 +55,7 @@ if (usar_pca) {
 umap_config <- umap.defaults
 umap_config$n_neighbors <- 10
 umap_config$min_dist <- 0.2
-umap_config$metric <- "cosine"
+umap_config$metric <- "euclidean"
 
 umap_res <- umap(X_for_umap, config = umap_config)
 
@@ -151,7 +151,7 @@ cat("Listado completo de investigadores con cluster y silhouette:\n")
 print(tabla_final[, c("Investigador", "Cluster", "Silhouette", "UMAP1", "UMAP2")],
       row.names = FALSE)
 
-emb <- read.csv("C:/Code/tfg-gcd/_Clusterization/Investigadores y keywords/Matriz_Investigadores_Embeddings.csv",
+emb <- read.csv("C:/Code/tfg-gcd/_Clusterization/Sin_Locl/Investigadores y keywords/Matriz_Investigadores_Embeddings_sinlocl.csv",
                 row.names = 1)
 
 # Crear una lista numerada con los nombres de los investigadores
