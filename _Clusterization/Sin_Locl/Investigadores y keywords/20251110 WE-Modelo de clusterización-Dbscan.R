@@ -20,7 +20,7 @@ eps <- 0.45    # distancia máxima de vecindad
 minPts <- 3   # número mínimo de puntos por cluster
 eps_values <- seq(0.25, 0.5, by = 0.05)
 
-usar_pca <- TRUE
+usar_pca <- FALSE
 varianza_objetivo <- 0.9
 
 usar_som <- FALSE
@@ -33,9 +33,9 @@ som_k_clusters <- 6
 # Cargar archivo y modificarlo
 #################
 
-setwd("C:/Code/tfg-gcd/_Clusterization/Investigadores y keywords")
+setwd("C:/Code/tfg-gcd/_Clusterization/Sin_Locl/Investigadores y keywords")
 
-ruta_excel <- "Matriz_Investigadores_Embeddings.csv"
+ruta_excel <- "Matriz_Investigadores_Embeddings_sinlocl.csv"
 raw <- read.csv(ruta_excel, row.names = 1)
 df <- as.data.frame(raw)
 

@@ -25,9 +25,9 @@ k_max <- 10
 # Cargar datos
 #################
 
-setwd("C:/Code/tfg-gcd/_Clusterization/Investigadores y keywords")
+setwd("C:/Code/tfg-gcd/_Clusterization/Sin_Locl/Investigadores y keywords")
 
-ruta_excel <- "Matriz_Investigadores_Embeddings.csv"
+ruta_excel <- "Matriz_Investigadores_Embeddings_sinlocl.csv"
 raw <- read.csv(ruta_excel, row.names = 1)
 X <- as.data.frame(lapply(raw, as.numeric))
 X[is.na(X)] <- 0
