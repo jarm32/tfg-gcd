@@ -12,6 +12,7 @@ library("ggplot2")
 
 minPts <- 3                 # mínimo de puntos por cluster
 usar_pca <- FALSE             # recomendable para embeddings
+
 varianza_objetivo <- 0.9
 metrica_distancia <- "cosine"
 
