@@ -58,7 +58,7 @@ def cargar_clusters_investigadores(path):
 # ---------------------------------------------
 # Leer tus archivos
 # ---------------------------------------------
-path_jerMan = "C:/Code/tfg-gcd/_Clusterization/Sin_Locl/Concs/Clusters_resultado_JerCor.xlsx"
+path_jerMan = "C:/Code/tfg-gcd/_Clusterization/Sin_Locl/Concs/Clusters_resultado_JerCos8.xlsx"
 path_umap   = "C:/Code/tfg-gcd/_Clusterization/Sin_Locl/Concs/Clusters_resultado_JerCosUMAP.xlsx"
 
 clusters_jerMan = cargar_clusters_investigadores(path_jerMan)
@@ -92,6 +92,6 @@ plt.xticks(range(len(columns)), columns, rotation=45)
 plt.yticks(range(len(index)), index)
 
 plt.colorbar(label="Investigadores en común")
-plt.title("Solapamiento entre Clusters (JerMan vs UMAP)")
+plt.title("Solapamiento entre Clusters (JerCos8 vs JerCosUMAP)")
 plt.tight_layout()
 plt.show()
