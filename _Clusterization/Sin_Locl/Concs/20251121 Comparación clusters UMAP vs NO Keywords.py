@@ -26,8 +26,8 @@ def cargar_clusters_keywords(path):
 # 2. Cargar ficheros
 # ------------------------------------------------------------
 
-path_jerMan = "C:/Code/tfg-gcd/_Clusterization/Conclusiones/Clusters_resultado_JerMan.xlsx"
-path_umap   = "C:/Code/tfg-gcd/_Clusterization/Conclusiones/Clusters_resultado_JerCosUMAP.xlsx"
+path_jerMan = "C:/Code/tfg-gcd/_Clusterization/Sin_Locl/Concs/Clusters_resultado_JerCos8.xlsx"
+path_umap   = "C:/Code/tfg-gcd/_Clusterization/Sin_Locl/Concs/Clusters_resultado_JerCosUMAP.xlsx"
 
 keywords_jerMan = cargar_clusters_keywords(path_jerMan)
 keywords_umap   = cargar_clusters_keywords(path_umap)
@@ -62,7 +62,7 @@ plt.xticks(range(len(clusters_umap_names)), clusters_umap_names, rotation=45)
 plt.yticks(range(len(clusters_jerMan_names)), clusters_jerMan_names)
 
 plt.colorbar(label="Número de keywords compartidas")
-plt.title("Solapamiento de Keywords entre Clusters (JerMan vs UMAP)")
+plt.title("Solapamiento de Keywords entre Clusters (JerCos8 vs JerCosUMAP)")
 plt.tight_layout()
 plt.show()
 
