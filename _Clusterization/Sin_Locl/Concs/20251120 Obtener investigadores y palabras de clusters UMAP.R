@@ -6,7 +6,7 @@ library(dplyr)
 # 1. Cargar clusters UMAP k = 4
 ###############################################
 
-setwd("C:/Code/tfg-gcd/_Clusterization/Conclusiones")
+setwd("C:/Code/tfg-gcd/_Clusterization/Sin_Locl/Concs")
 
 clusters <- read.csv(
   "UMAP_Resultados_k4/UMAP_Clusters_k4.csv",
@@ -17,7 +17,7 @@ clusters <- read.csv(
 # 2. Cargar matriz OHE
 ###############################################
 
-ohe <- read_excel("Matriz_Investigadores_Keywords.xlsx")
+ohe <- read_excel("Matriz_Investigadores_Keywords_sinlocl.xlsx")
 ohe <- as.data.frame(ohe)
 
 rownames(ohe) <- ohe[[1]]

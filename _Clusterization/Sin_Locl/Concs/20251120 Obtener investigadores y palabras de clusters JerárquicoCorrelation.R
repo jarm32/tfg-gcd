@@ -1,13 +1,13 @@
-library(openxlsx)
+library("openxlsx")
 
 ###############################################
 # Cargar datos
 ###############################################
 
-setwd("C:/Code/tfg-gcd/_Clusterization/Conclusiones")
+setwd("C:/Code/tfg-gcd/_Clusterization/Sin_Locl/Concs")
 
 # Matriz OHE Investigadores × Keywords
-ohe <- readxl::read_excel("Matriz_Investigadores_Keywords.xlsx")
+ohe <- readxl::read_excel("Matriz_Investigadores_Keywords_sinlocl.xlsx")
 ohe <- as.data.frame(ohe)
 
 # Convertir primera columna en rownames
@@ -19,7 +19,7 @@ ohe[] <- lapply(ohe, function(x) as.numeric(as.character(x)))
 ohe[is.na(ohe)] <- 0
 
 # Cargar la asignación de clusters del modelo sin UMAP
-resultado <- read.csv("Clusters_resultado_JerMan.csv")
+resultado <- read.csv("Clusters_resultado_JerCor.csv")
 colnames(resultado) <- c("Investigador", "Cluster")
 
 ###############################################

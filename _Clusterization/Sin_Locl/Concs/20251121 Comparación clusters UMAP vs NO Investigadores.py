@@ -58,8 +58,8 @@ def cargar_clusters_investigadores(path):
 # ---------------------------------------------
 # Leer tus archivos
 # ---------------------------------------------
-path_jerMan = "C:/Code/tfg-gcd/_Clusterization/Conclusiones/Clusters_resultado_JerMan.xlsx"
-path_umap   = "C:/Code/tfg-gcd/_Clusterization/Conclusiones/Clusters_resultado_JerCosUMAP.xlsx"
+path_jerMan = "C:/Code/tfg-gcd/_Clusterization/Sin_Locl/Concs/Clusters_resultado_JerCor.xlsx"
+path_umap   = "C:/Code/tfg-gcd/_Clusterization/Sin_Locl/Concs/Clusters_resultado_JerCosUMAP.xlsx"
 
 clusters_jerMan = cargar_clusters_investigadores(path_jerMan)
 clusters_umap   = cargar_clusters_investigadores(path_umap)
