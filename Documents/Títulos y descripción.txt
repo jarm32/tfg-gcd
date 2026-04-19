@@ -1,14 +1,8 @@
 Títulos:
 
-- Representación, visualización y agrupación semántica de los investigadores del Instituto Universitario de Matemática Pura y Aplicada
-
-- Representación de la actividad investigadora del Instituto Universitario de Matemática Pura y Aplicada mediante modelos de datos
+- Diseño de una base de datos para la visualización y agrupación semántica de los investigadores del Instituto Universitario de Matemática Pura y Aplicada
 
 
 Descripción:
 
-El objetivo de este Trabajo Fin de Grado es diseñar una representación estructurada de la actividad investigadora del Instituto Universitario de Matemática Pura y Aplicada (IUMPA). Para ello, se recopilará información procedente de diferentes fuentes, buscando organizarlas en un modelo que permita describir de forma coherente a los investigadores, sus publicaciones y sus relaciones académicas.
-
-A partir de estos datos, se estudiarán distintas formas de representarlos, con especial atención a métodos que faciliten la visualización de conexiones y patrones dentro del instituto. La intención es construir una base que permita explorar cómo se relacionan los investigadores entre sí y con los distintos elementos de su producción científica.
-
-Además, se evaluará la posibilidad de aplicar técnicas de análisis sobre dicha representación con el fin de identificar agrupaciones, tendencias temáticas u otras características relevantes. El proyecto buscará ofrecer un marco general para comprender mejor la estructura investigadora del IUMPA y sentar las bases para posibles ampliaciones futuras.
+El objetivo de este Trabajo Fin de Grado es diseñar una base de datos estructurada de la actividad investigadora del Instituto Universitario de Matemática Pura y Aplicada (IUMPA). Para ello, se utiliza información procedente de diferentes fuentes, buscando organizarlas de forma que permita describir de forma coherente la actividad de los investigadores, sus publicaciones y sus relaciones científicas. A partir de la base de datos se ha creado una plataforma interactiva, utilizando la librería Shiny del software R, que permite visualizar mediante grafos las relaciones entre investigadores a partir de sus publicaciones. Finalmente se han apolicado técnicas de agrupamiento sobre la base de datos con el fin de identificar agrupaciones, tendencias temáticas u otras características relevantes. El resultado final del proyecto busca ofrecer un marco general para comprender mejor la estructura investigadora del IUMPA y sentar las bases para posibles ampliaciones futuras.
