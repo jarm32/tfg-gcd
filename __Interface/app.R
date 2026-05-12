@@ -85,6 +85,16 @@ nodos_proy_completo <- bind_rows(nodos_invest_proy, nodos_proyectos) %>% mutate(
 edges_proy_completo <- relaciones_proy %>% rename(source = investigador, target = Proyecto)
 nombres_ordenados_proy <- investigadores_proy %>% arrange(Nombre) %>% pull(Nombre)
 todas_las_areas_proy <- sort(unique(unlist(areas_proy$Lista_areas)))
+normalizar_ip <- function(x) {
+  if (is.logical(x)) {
+    return(ifelse(is.na(x), FALSE, x))
+  }
+  
+  x <- tolower(trimws(as.character(x)))
+  x %in% c("true", "verdadero", "sí", "si", "1")
+}
+
+proyectos_df$Es_IP_Principal <- normalizar_ip(proyectos_df$Es_IP_Principal)
 
 # --- GRAFO 3: Colaboración entre Investigadores (script 20250831) ---
 # REVISTAS
@@ -327,7 +337,7 @@ server <- function(input, output, session) {
       if (is.null(node_data)) return("Seleccione o clique un nodo para ver su información.")
       
       node_to_show <- node_data$name
-      tipo_nodo <- node_data$category
+      tipo_nodo <- tolower(node_data$category)
       
       if (tipo_nodo != "revista") {
         articulos <- publicaciones_df %>% filter(investigador == node_to_show) %>% pull(title)
@@ -399,22 +409,113 @@ server <- function(input, output, session) {
     
     output$info_nodo_proy <- renderText({
       node_data <- input$clicked_node_proy_main
+      
       if (is.null(node_data) && input$investigador_filtro_proy != "-") {
         node_data <- list(name = input$investigador_filtro_proy, category = "investigador")
       }
-      if (is.null(node_data)) return("Seleccione o clique un nodo para ver su información.")
+      
+      if (is.null(node_data)) {
+        return("Seleccione o clique un nodo para ver su información.")
+      }
       
       node_to_show <- node_data$name
-      tipo_nodo <- node_data$category
+      tipo_nodo <- tolower(node_data$category)
       
       if (tipo_nodo != "proyecto") {
-        proyectos <- proyectos_df %>% filter(investigador == node_to_show) %>% pull(TÍTULO)
-        if (length(proyectos) == 0) return(paste0("Investigador/a: ", node_to_show, "\n\nNo se han encontrado proyectos registrados."))
-        return(paste0("Investigador/a: ", node_to_show, "\n\nProyectos en los que participa:\n", paste0("- ", proyectos, collapse = "\n")))
+        
+        proyectos_investigador <- proyectos_df %>%
+          filter(investigador == node_to_show) %>%
+          select(Titulo = `TÍTULO`, Es_IP_Principal) %>%
+          filter(!is.na(Titulo), Titulo != "") %>%
+          group_by(Titulo) %>%
+          summarise(Es_IP_Principal = any(Es_IP_Principal), .groups = "drop")
+        
+        if (nrow(proyectos_investigador) == 0) {
+          return(paste0(
+            "Investigador/a: ", node_to_show,
+            "\n\nNo se han encontrado proyectos registrados."
+          ))
+        }
+        
+        proyectos_principal <- proyectos_investigador %>%
+          filter(Es_IP_Principal) %>%
+          pull(Titulo)
+        
+        proyectos_no_principal <- proyectos_investigador %>%
+          filter(!Es_IP_Principal) %>%
+          pull(Titulo)
+        
+        texto_principal <- if (length(proyectos_principal) > 0) {
+          paste0(
+            "Proyectos en los que participa como investigador/a principal:\n",
+            paste0("- ", proyectos_principal, collapse = "\n")
+          )
+        } else {
+          "Proyectos en los que participa como investigador/a principal:\nNo figura como investigador/a principal en ningún proyecto."
+        }
+        
+        texto_no_principal <- if (length(proyectos_no_principal) > 0) {
+          paste0(
+            "Proyectos en los que participa como investigador/a no principal:\n",
+            paste0("- ", proyectos_no_principal, collapse = "\n")
+          )
+        } else {
+          "Proyectos en los que participa como investigador/a no principal:\nNo figura como investigador/a no principal en ningún proyecto."
+        }
+        
+        return(paste0(
+          "Investigador/a: ", node_to_show,
+          "\n\n", texto_principal,
+          "\n\n", texto_no_principal
+        ))
+        
       } else {
-        investigadores_en_proyecto <- proyectos_df %>% filter(TÍTULO == node_to_show) %>% pull(investigador)
-        if (length(investigadores_en_proyecto) == 0) return(paste0("Proyecto: ", node_to_show, "\n\nNo se han encontrado investigadores en este proyecto."))
-        return(paste0("Proyecto: ", node_to_show, "\n\nInvestigadores que participan:\n", paste0("- ", investigadores_en_proyecto, collapse = "\n")))
+        
+        investigadores_proyecto <- proyectos_df %>%
+          filter(`TÍTULO` == node_to_show) %>%
+          select(investigador, Es_IP_Principal) %>%
+          filter(!is.na(investigador), investigador != "") %>%
+          group_by(investigador) %>%
+          summarise(Es_IP_Principal = any(Es_IP_Principal), .groups = "drop")
+        
+        if (nrow(investigadores_proyecto) == 0) {
+          return(paste0(
+            "Proyecto: ", node_to_show,
+            "\n\nNo se han encontrado investigadores en este proyecto."
+          ))
+        }
+        
+        investigadores_principales <- investigadores_proyecto %>%
+          filter(Es_IP_Principal) %>%
+          pull(investigador)
+        
+        investigadores_no_principales <- investigadores_proyecto %>%
+          filter(!Es_IP_Principal) %>%
+          pull(investigador)
+        
+        texto_principales <- if (length(investigadores_principales) > 0) {
+          paste0(
+            "Investigadores/as principales:\n",
+            paste0("- ", investigadores_principales, collapse = "\n")
+          )
+        } else {
+          "Investigadores/as principales:\nNo se ha identificado ningún investigador/a del IUMPA como principal en este proyecto."
+        }
+        
+        texto_no_principales <- if (length(investigadores_no_principales) > 0) {
+          paste0(
+            "Investigadores/as no principales:\n",
+            paste0("- ", investigadores_no_principales, collapse = "\n")
+          )
+        } else {
+          "Investigadores/as no principales:\nNo se han identificado investigadores/as no principales en este proyecto."
+        }
+        
+        return(paste0(
+          "Proyecto: ", node_to_show,
+          "\n\n", texto_principales,
+          "\n\n", texto_no_principales
+        ))
       }
     })
     
