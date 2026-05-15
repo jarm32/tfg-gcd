@@ -239,9 +239,9 @@ ui <- navbarPage(
                       fluidRow(
                         column(
                           width = 4,
-                          selectInput("selected_node_rev", "Selecciona un nodo para filtrar:",
+                          selectInput("selected_node_rev", "Selecciona un investigador:",
                                       choices = c("-" = "-", sort(nodes_inv_rev$name)), selected = "-"),
-                          selectInput("selected_area_rev", "Selecciona un área para filtrar:",
+                          selectInput("selected_area_rev", "Selecciona un área:",
                                       choices = c("-" = "-", sort(unique(unlist(areas_rev$Lista_areas)))), selected = "-")
                         ),
                         column(width = 8, echarts4rOutput("graph_inv_rev", height = "800px")),
@@ -254,9 +254,9 @@ ui <- navbarPage(
                       fluidRow(
                         column(
                           width = 4,
-                          selectInput("selected_node_proy", "Selecciona un nodo para filtrar:",
+                          selectInput("selected_node_proy", "Selecciona un investigador:",
                                       choices = c("-" = "-", sort(nodes_inv_proy$name)), selected = "-"),
-                          selectInput("selected_area_proy", "Selecciona un área para filtrar:",
+                          selectInput("selected_area_proy", "Selecciona un área:",
                                       choices = c("-" = "-", sort(unique(unlist(areas_proy$Lista_areas)))), selected = "-")
                         ),
                         column(width = 8, echarts4rOutput("graph_inv_proy", height = "800px")),
