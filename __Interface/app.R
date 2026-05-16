@@ -158,6 +158,43 @@ nodos_rev_completo <- bind_rows(nodos_invest_rev, nodos_revistas) %>%
   mutate(value = 10, size = 20)
 
 edges_rev_completo <- relaciones_revistas %>% rename(source = investigador, target = journal)
+
+metricas_investigadores_rev <- publicaciones_df %>%
+  filter(!is.na(journal), journal != "") %>%
+  group_by(investigador) %>%
+  summarise(
+    n_publicaciones = n(),
+    n_revistas = n_distinct(journal),
+    .groups = "drop"
+  )
+
+metricas_revistas <- publicaciones_df %>%
+  filter(!is.na(journal), journal != "") %>%
+  group_by(journal) %>%
+  summarise(
+    n_investigadores = n_distinct(investigador),
+    .groups = "drop"
+  )
+
+stats_investigadores_rev <- setNames(
+  lapply(seq_len(nrow(metricas_investigadores_rev)), function(i) {
+    list(
+      n_publicaciones = metricas_investigadores_rev$n_publicaciones[i],
+      n_revistas = metricas_investigadores_rev$n_revistas[i]
+    )
+  }),
+  metricas_investigadores_rev$investigador
+)
+
+stats_revistas <- setNames(
+  lapply(seq_len(nrow(metricas_revistas)), function(i) {
+    list(
+      n_investigadores = metricas_revistas$n_investigadores[i]
+    )
+  }),
+  metricas_revistas$journal
+)
+
 nombres_ordenados_rev <- investigadores_rev %>% arrange(Nombre) %>% pull(Nombre)
 todas_las_areas_rev <- sort(unique(unlist(areas_rev$Lista_areas)))
 
@@ -195,8 +232,42 @@ nodos_proy_completo <- bind_rows(nodos_invest_proy, nodos_proyectos) %>%
   mutate(value = 10, size = 20)
 
 edges_proy_completo <- relaciones_proy %>% rename(source = investigador, target = Proyecto)
+
+metricas_investigadores_proy <- relaciones_proy %>%
+  group_by(investigador) %>%
+  summarise(
+    n_proyectos = n_distinct(Proyecto),
+    .groups = "drop"
+  )
+
+metricas_proyectos <- relaciones_proy %>%
+  group_by(Proyecto) %>%
+  summarise(
+    n_investigadores = n_distinct(investigador),
+    .groups = "drop"
+  )
+
+stats_investigadores_proy <- setNames(
+  lapply(seq_len(nrow(metricas_investigadores_proy)), function(i) {
+    list(
+      n_proyectos = metricas_investigadores_proy$n_proyectos[i]
+    )
+  }),
+  metricas_investigadores_proy$investigador
+)
+
+stats_proyectos <- setNames(
+  lapply(seq_len(nrow(metricas_proyectos)), function(i) {
+    list(
+      n_investigadores = metricas_proyectos$n_investigadores[i]
+    )
+  }),
+  metricas_proyectos$Proyecto
+)
+
 nombres_ordenados_proy <- investigadores_proy %>% arrange(Nombre) %>% pull(Nombre)
 todas_las_areas_proy <- sort(unique(unlist(areas_proy$Lista_areas)))
+
 normalizar_ip <- function(x) {
   if (is.logical(x)) {
     return(ifelse(is.na(x), FALSE, x))
@@ -433,7 +504,32 @@ server <- function(input, output, session) {
         e_graph(layout = "force") %>%
         e_graph_nodes(nodos_mostrar, name, value, size, category) %>%
         e_graph_edges(edges_mostrar, source, target) %>%
-        e_tooltip(formatter = htmlwidgets::JS("function(params) { return '<strong>' + params.name + '</strong>'; }")) %>%
+        e_tooltip(formatter = htmlwidgets::JS(
+          paste0(
+            "function(params) {
+          if (params.dataType === 'edge') {
+            return '<strong>' + params.data.source + ' > ' + params.data.target + '</strong>';
+          }
+    
+          var statsInvestigadores = ", jsonlite::toJSON(stats_investigadores_rev, auto_unbox = TRUE), ";
+          var statsRevistas = ", jsonlite::toJSON(stats_revistas, auto_unbox = TRUE), ";
+    
+          var nombre = params.name;
+          var categoria = params.data.category;
+    
+          if (categoria === 'Revista') {
+            var sRev = statsRevistas[nombre] || {};
+            return '<strong>Revista: ' + nombre + '</strong><br/>' +
+                   'Investigadores asociados: ' + (sRev.n_investigadores || 0);
+          } else {
+            var sInv = statsInvestigadores[nombre] || {};
+            return '<strong>Investigador/a: ' + nombre + '</strong><br/>' +
+                   'Revistas asociadas: ' + (sInv.n_revistas || 0) + '<br/>' +
+                   'Artículos publicados: ' + (sInv.n_publicaciones || 0);
+          }
+        }"
+              )
+            )) %>%
         e_legend(top = "20") %>%
         e_on(query = list(dataType = "node"),
              handler = htmlwidgets::JS("function(params) {
@@ -457,10 +553,39 @@ server <- function(input, output, session) {
         if (length(articulos) == 0) return(paste0("Investigador/a: ", node_to_show, "\n\nNo se han encontrado publicaciones registradas."))
         return(paste0("Investigador/a: ", node_to_show, "\n\nArtículos publicados:\n", paste0("- ", articulos, collapse = "\n")))
       } else {
-        articulos <- publicaciones_df %>% filter(journal == node_to_show) %>% select(title, investigador)
-        if (nrow(articulos) == 0) return(paste0("Revista: ", node_to_show, "\n\nNo se han encontrado artículos publicados en esta revista."))
+        articulos <- publicaciones_df %>%
+          filter(journal == node_to_show) %>%
+          select(title, investigador)
+        
+        editorial <- revistas %>%
+          filter(Revista == node_to_show) %>%
+          pull(Editorial) %>%
+          unique()
+        
+        editorial <- editorial[!is.na(editorial) & editorial != "" & editorial != "None"]
+        
+        texto_editorial <- if (length(editorial) > 0) {
+          paste(editorial, collapse = ", ")
+        } else {
+          "No disponible"
+        }
+        
+        if (nrow(articulos) == 0) {
+          return(paste0(
+            "Revista: ", node_to_show,
+            "\nEditorial: ", texto_editorial,
+            "\n\nNo se han encontrado artículos publicados en esta revista."
+          ))
+        }
+        
         textos <- paste0("- ", articulos$title, " (", articulos$investigador, ")")
-        return(paste0("Revista: ", node_to_show, "\n\nArtículos publicados:\n", paste(textos, collapse = "\n")))
+        
+        return(paste0(
+          "Revista: ", node_to_show,
+          "\nEditorial: ", texto_editorial,
+          "\n\nArtículos publicados por algún investigador del instituto:\n",
+          paste(textos, collapse = "\n")
+        ))
       }
     })
     
@@ -512,7 +637,31 @@ server <- function(input, output, session) {
         e_graph(layout = "force") %>%
         e_graph_nodes(nodos_mostrar, name, value, size, category) %>%
         e_graph_edges(edges_mostrar, source, target) %>%
-        e_tooltip(formatter = htmlwidgets::JS("function(params) { return '<strong>' + params.name + '</strong>'; }")) %>%
+        e_tooltip(formatter = htmlwidgets::JS(
+          paste0(
+            "function(params) {
+          if (params.dataType === 'edge') {
+            return '<strong>' + params.data.source + ' > ' + params.data.target + '</strong>';
+          }
+    
+          var statsInvestigadores = ", jsonlite::toJSON(stats_investigadores_proy, auto_unbox = TRUE), ";
+          var statsProyectos = ", jsonlite::toJSON(stats_proyectos, auto_unbox = TRUE), ";
+    
+          var nombre = params.name;
+          var categoria = params.data.category;
+    
+          if (categoria === 'Proyecto') {
+            var sProy = statsProyectos[nombre] || {};
+            return '<strong>Proyecto: ' + nombre + '</strong><br/>' +
+                   'Investigadores asociados: ' + (sProy.n_investigadores || 0);
+          } else {
+            var sInv = statsInvestigadores[nombre] || {};
+            return '<strong>Investigador/a: ' + nombre + '</strong><br/>' +
+                   'Proyectos asociados: ' + (sInv.n_proyectos || 0);
+          }
+        }"
+              )
+            )) %>%
         e_legend(top = "20") %>%
         e_on(query = list(dataType = "node"),
              handler = htmlwidgets::JS("function(params) {
@@ -609,20 +758,20 @@ server <- function(input, output, session) {
         
         texto_principales <- if (length(investigadores_principales) > 0) {
           paste0(
-            "Investigadores/as principales:\n",
+            "Investigadores/as principales del instituto:\n",
             paste0("- ", investigadores_principales, collapse = "\n")
           )
         } else {
-          "Investigadores/as principales:\nNo se ha identificado ningún investigador/a del IUMPA como principal en este proyecto."
+          "Investigadores/as principales del instituto:\nNo se ha identificado ningún investigador/a del IUMPA como principal en este proyecto."
         }
         
         texto_no_principales <- if (length(investigadores_no_principales) > 0) {
           paste0(
-            "Investigadores/as no principales:\n",
+            "Investigadores/as no principales del instituto:\n",
             paste0("- ", investigadores_no_principales, collapse = "\n")
           )
         } else {
-          "Investigadores/as no principales:\nNo se han identificado investigadores/as no principales en este proyecto."
+          "Investigadores/as no principales del instituto:\nNo se han identificado investigadores/as no principales en este proyecto."
         }
         
         return(paste0(
@@ -649,7 +798,16 @@ server <- function(input, output, session) {
         e_graph(layout = "circular") |>
         e_graph_nodes(selected_nodes, name, value = connections, size, category = category) |>
         e_graph_edges(selected_edges, source, target) |>
-        e_tooltip(formatter = htmlwidgets::JS("function(params){ return('<strong>'+params.name+'<br/></strong>'+'Número colaboradores totales: ' + params.value) }")) |>
+        e_tooltip(formatter = htmlwidgets::JS("
+      function(params) {
+        if (params.dataType === 'edge') {
+          return '<strong>' + params.data.source + ' > ' + params.data.target + '</strong>';
+        }
+    
+        return '<strong>' + params.name + '</strong><br/>' +
+               'Número de colaboradores: ' + params.value;
+      }
+    ")) |>
         e_on(query = list(dataType = "node"),
              handler = htmlwidgets::JS("function(params) { Shiny.setInputValue('clicked_node_inv_rev', params.data.name, {priority: 'event'}); }")) %>%
       htmlwidgets::onRender(aplicar_colores_nodos)
@@ -679,7 +837,16 @@ server <- function(input, output, session) {
         e_graph(layout = "circular") |>
         e_graph_nodes(selected_nodes, name, value = connections, size, category = category) |>
         e_graph_edges(selected_edges, source, target) |>
-        e_tooltip(formatter = htmlwidgets::JS("function(params){ return('<strong>'+params.name+'<br/></strong>'+'Número colaboradores totales: ' + params.value) }")) |>
+        e_tooltip(formatter = htmlwidgets::JS("
+      function(params) {
+        if (params.dataType === 'edge') {
+          return '<strong>' + params.data.source + ' > ' + params.data.target + '</strong>';
+        }
+    
+        return '<strong>' + params.name + '</strong><br/>' +
+               'Número de colaboradores: ' + params.value;
+      }
+    ")) |>
         e_on(query = list(dataType = "node"),
              handler = htmlwidgets::JS("function(params) { Shiny.setInputValue('clicked_node_inv_proy', params.data.name, {priority: 'event'}); }")) %>%
       htmlwidgets::onRender(aplicar_colores_nodos)
