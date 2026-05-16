@@ -9,6 +9,51 @@ library(echarts4r)
 # 2. Carga y procesamiento de datos (consolidado de los 3 scripts)
 #setwd("C:/Code/tfg-gcd/__Interface")
 
+# --- Formato de los nodos ---
+
+normalizar_categoria <- function(x) {
+  x <- trimws(as.character(x))
+  x_simple <- tolower(iconv(x, to = "ASCII//TRANSLIT"))
+  
+  dplyr::case_when(
+    is.na(x) | x == "" ~ "Desconocido",
+    x_simple == "investigador" ~ "Investigador",
+    x_simple == "becario" ~ "Becario",
+    x_simple == "becario de investigacion" ~ "Becario de investigación",
+    x_simple == "revista" ~ "Revista",
+    x_simple == "proyecto" ~ "Proyecto",
+    TRUE ~ x
+  )
+}
+
+aplicar_colores_nodos <- "
+function(el, x) {
+  var chart = echarts.getInstanceByDom(el);
+  if (!chart) return;
+
+  var option = chart.getOption();
+  if (!option.series || !option.series[0] || !option.series[0].data) return;
+
+  option.series[0].data.forEach(function(node) {
+    var cat = node.category;
+
+    if (cat === 'Investigador') {
+      node.itemStyle = { color: '#5470C6' };
+    } else if (cat === 'Revista' || cat === 'Proyecto') {
+      node.itemStyle = { color: '#EE6666' };
+    } else if (cat === 'Becario de investigación') {
+      node.itemStyle = { color: '#FAC858' };
+    } else if (cat === 'Becario') {
+      node.itemStyle = { color: '#91CC75' };
+    } else {
+      node.itemStyle = { color: '#AAAAAA' };
+    }
+  });
+
+  chart.setOption(option);
+}
+"
+
 # --- Datos compartidos ---
 n_invest_rev <- read.csv2("Investigadores_internos.csv", sep = ";", fileEncoding = "latin1")
 n_invest_proy <- n_invest_rev
@@ -55,9 +100,20 @@ for (i in 1:nrow(investigadores_con_csv)) {
 publicaciones_df <- bind_rows(publicaciones_list)
 relaciones_revistas <- publicaciones_df %>% select(journal, investigador) %>% filter(!is.na(journal), journal != "")
 investigadores_rev <- n_invest_rev %>% left_join(areas_rev[, c("Nombre", "Lista_areas")], by = "Nombre")
-nodos_invest_rev <- investigadores_rev %>% select(name = Nombre, Lista_areas, category = Tipo.de.empleado) %>% mutate(category = ifelse(is.na(category), "Desconocido", category))
-nodos_revistas <- revistas %>% filter(!is.na(Revista), Revista != "") %>% filter(Revista %in% relaciones_revistas$journal) %>% select(name = Revista) %>% mutate(category = "Revista", Lista_areas = NA)
-nodos_rev_completo <- bind_rows(nodos_invest_rev, nodos_revistas) %>% mutate(value = 10, size = 20)
+
+nodos_invest_rev <- investigadores_rev %>%
+  select(name = Nombre, Lista_areas, category = Tipo.de.empleado) %>%
+  mutate(category = normalizar_categoria(category))
+
+nodos_revistas <- revistas %>%
+  filter(!is.na(Revista), Revista != "") %>%
+  filter(Revista %in% relaciones_revistas$journal) %>%
+  select(name = Revista) %>%
+  mutate(category = "Revista", Lista_areas = NA)
+
+nodos_rev_completo <- bind_rows(nodos_invest_rev, nodos_revistas) %>%
+  mutate(value = 10, size = 20)
+
 edges_rev_completo <- relaciones_revistas %>% rename(source = investigador, target = journal)
 nombres_ordenados_rev <- investigadores_rev %>% arrange(Nombre) %>% pull(Nombre)
 todas_las_areas_rev <- sort(unique(unlist(areas_rev$Lista_areas)))
@@ -78,10 +134,23 @@ for (i in 1:nrow(investigadores_con_proyectos)) {
 proyectos_df <- bind_rows(proyectos_list)
 relaciones_proy <- proyectos_df %>% select(Proyecto = TÍTULO, investigador) %>% filter(!is.na(Proyecto), Proyecto != "")
 investigadores_proy <- n_invest_proy %>% left_join(areas_proy[, c("Nombre", "Lista_areas")], by = "Nombre")
-nodos_invest_proy <- investigadores_proy %>% select(name = Nombre, Lista_areas, category = Tipo.de.empleado) %>% mutate(category = ifelse(is.na(category), "Desconocido", category))
+
+nodos_invest_proy <- investigadores_proy %>%
+  select(name = Nombre, Lista_areas, category = Tipo.de.empleado) %>%
+  mutate(category = normalizar_categoria(category))
+
 proyectos_unicos <- unique(relaciones_proy$Proyecto)
-nodos_proyectos <- data.frame(name = proyectos_unicos, category = "Proyecto", Lista_areas = NA, stringsAsFactors = FALSE)
-nodos_proy_completo <- bind_rows(nodos_invest_proy, nodos_proyectos) %>% mutate(value = 10, size = 20)
+
+nodos_proyectos <- data.frame(
+  name = proyectos_unicos,
+  category = "Proyecto",
+  Lista_areas = NA,
+  stringsAsFactors = FALSE
+)
+
+nodos_proy_completo <- bind_rows(nodos_invest_proy, nodos_proyectos) %>%
+  mutate(value = 10, size = 20)
+
 edges_proy_completo <- relaciones_proy %>% rename(source = investigador, target = Proyecto)
 nombres_ordenados_proy <- investigadores_proy %>% arrange(Nombre) %>% pull(Nombre)
 todas_las_areas_proy <- sort(unique(unlist(areas_proy$Lista_areas)))
@@ -135,7 +204,7 @@ nodes_inv_rev$size <- 10 + nodes_inv_rev$connections * 2
 nodes_inv_rev$value <- nodes_inv_rev$connections
 nodes_inv_rev <- merge(nodes_inv_rev, areas_rev[, c("Nombre", "Lista_areas")], by.x = "name", by.y = "Nombre", all.x = TRUE)
 nodes_inv_rev <- merge(nodes_inv_rev, n_invest_rev[, c("Nombre", "Tipo.de.empleado")], by.x = "name", by.y = "Nombre", all.x = TRUE)
-nodes_inv_rev$category <- nodes_inv_rev$Tipo.de.empleado
+nodes_inv_rev$category <- normalizar_categoria(nodes_inv_rev$Tipo.de.empleado)
 
 # PROYECTOS
 dic_acron_proy <- setNames(n_invest_proy$Girado, n_invest_proy$Nombre)
@@ -175,7 +244,7 @@ nodes_inv_proy$size <- 10 + nodes_inv_proy$connections * 2
 nodes_inv_proy$value <- nodes_inv_proy$connections
 nodes_inv_proy <- merge(nodes_inv_proy, areas_proy[, c("Nombre", "Lista_areas")], by.x = "name", by.y = "Nombre", all.x = TRUE)
 nodes_inv_proy <- merge(nodes_inv_proy, n_invest_proy[, c("Nombre", "Tipo.de.empleado")], by.x = "name", by.y = "Nombre", all.x = TRUE)
-nodes_inv_proy$category <- nodes_inv_proy$Tipo.de.empleado
+nodes_inv_proy$category <- normalizar_categoria(nodes_inv_proy$Tipo.de.empleado)
 
   
 # 3. Interfaz de usuario (UI) con pestañas
@@ -286,7 +355,7 @@ server <- function(input, output, session) {
         
         if (input$area_filtro_rev != "-") {
           nodos_filtrados <- nodos_rev_completo %>%
-            filter(category != "revista") %>%
+            filter(category != "Revista") %>%
             filter(sapply(split(., 1:nrow(.)), filtrar_por_area))
           
           edges_mostrar <- edges_rev_completo %>%
@@ -326,7 +395,8 @@ server <- function(input, output, session) {
         e_on(query = list(dataType = "node"),
              handler = htmlwidgets::JS("function(params) {
               Shiny.setInputValue('clicked_node_rev_main', { name: params.data.name, category: params.data.category }, {priority: 'event'});
-           }"))
+           }")) %>%
+      htmlwidgets::onRender(aplicar_colores_nodos)
     })
     
     output$info_nodo_rev <- renderText({
@@ -364,7 +434,7 @@ server <- function(input, output, session) {
       if (input$investigador_filtro_proy != "-" || input$area_filtro_proy != "-") {
         if (input$area_filtro_proy != "-") {
           nodos_filtrados <- nodos_proy_completo %>%
-            filter(category != "proyecto") %>%
+            filter(category != "Proyecto") %>%
             filter(sapply(split(., 1:nrow(.)), filtrar_por_area))
           
           edges_mostrar <- edges_proy_completo %>%
@@ -404,7 +474,8 @@ server <- function(input, output, session) {
         e_on(query = list(dataType = "node"),
              handler = htmlwidgets::JS("function(params) {
               Shiny.setInputValue('clicked_node_proy_main', { name: params.data.name, category: params.data.category }, {priority: 'event'});
-           }"))
+           }")) %>%
+      htmlwidgets::onRender(aplicar_colores_nodos)
     })
     
     output$info_nodo_proy <- renderText({
@@ -537,7 +608,8 @@ server <- function(input, output, session) {
         e_graph_edges(selected_edges, source, target) |>
         e_tooltip(formatter = htmlwidgets::JS("function(params){ return('<strong>'+params.name+'<br/></strong>'+'Número colaboradores totales: ' + params.value) }")) |>
         e_on(query = list(dataType = "node"),
-             handler = htmlwidgets::JS("function(params) { Shiny.setInputValue('clicked_node_inv_rev', params.data.name, {priority: 'event'}); }"))
+             handler = htmlwidgets::JS("function(params) { Shiny.setInputValue('clicked_node_inv_rev', params.data.name, {priority: 'event'}); }")) %>%
+      htmlwidgets::onRender(aplicar_colores_nodos)
     })
     
     output$node_info_inv_rev <- renderText({
@@ -566,7 +638,8 @@ server <- function(input, output, session) {
         e_graph_edges(selected_edges, source, target) |>
         e_tooltip(formatter = htmlwidgets::JS("function(params){ return('<strong>'+params.name+'<br/></strong>'+'Número colaboradores totales: ' + params.value) }")) |>
         e_on(query = list(dataType = "node"),
-             handler = htmlwidgets::JS("function(params) { Shiny.setInputValue('clicked_node_inv_proy', params.data.name, {priority: 'event'}); }"))
+             handler = htmlwidgets::JS("function(params) { Shiny.setInputValue('clicked_node_inv_proy', params.data.name, {priority: 'event'}); }")) %>%
+      htmlwidgets::onRender(aplicar_colores_nodos)
     })
     
     output$node_info_inv_proy <- renderText({
