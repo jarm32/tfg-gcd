@@ -34,21 +34,64 @@ function(el, x) {
   var option = chart.getOption();
   if (!option.series || !option.series[0] || !option.series[0].data) return;
 
-  option.series[0].data.forEach(function(node) {
-    var cat = node.category;
+  var ordenCategorias = [
+    'Investigador',
+    'Becario',
+    'Becario de investigación',
+    'Revista',
+    'Proyecto'
+  ];
 
+  function normalizarCategoria(cat) {
+    if (cat === null || cat === undefined) return 'Desconocido';
+
+    cat = String(cat).trim();
+    var simple = cat.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase();
+
+    if (simple === 'investigador') return 'Investigador';
+    if (simple === 'becario') return 'Becario';
+    if (simple === 'becario de investigacion') return 'Becario de investigación';
+    if (simple === 'revista') return 'Revista';
+    if (simple === 'proyecto') return 'Proyecto';
+
+    return cat;
+  }
+
+  function estiloCategoria(cat) {
     if (cat === 'Investigador') {
-      node.itemStyle = { color: '#5470C6' };
-    } else if (cat === 'Revista' || cat === 'Proyecto') {
-      node.itemStyle = { color: '#EE6666' };
-    } else if (cat === 'Becario de investigación') {
-      node.itemStyle = { color: '#FAC858' };
-    } else if (cat === 'Becario') {
-      node.itemStyle = { color: '#91CC75' };
-    } else {
-      node.itemStyle = { color: '#AAAAAA' };
+      return { color: '#5470C6' };
     }
+    if (cat === 'Revista' || cat === 'Proyecto') {
+      return { color: '#EE6666' };
+    }
+    if (cat === 'Becario de investigación') {
+      return { color: '#FAC858' };
+    }
+    if (cat === 'Becario') {
+      return { color: '#91CC75' };
+    }
+    return { color: '#AAAAAA' };
+  }
+
+  var categoriasPresentes = {};
+
+  option.series[0].data.forEach(function(node) {
+    var cat = normalizarCategoria(node.category);
+    node.category = cat;
+    node.itemStyle = estiloCategoria(cat);
+    categoriasPresentes[cat] = true;
   });
+
+  option.series[0].categories = ordenCategorias
+    .filter(function(cat) {
+      return categoriasPresentes[cat];
+    })
+    .map(function(cat) {
+      return {
+        name: cat,
+        itemStyle: estiloCategoria(cat)
+      };
+    });
 
   chart.setOption(option);
 }
