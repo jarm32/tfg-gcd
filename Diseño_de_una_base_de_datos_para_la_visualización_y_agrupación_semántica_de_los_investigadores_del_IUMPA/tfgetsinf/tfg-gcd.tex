@@ -387,8 +387,6 @@ Tras completar la parte principal de visualización, se planteó una ampliación
 
 Finalmente, la última fase del trabajo se dedicó a la interpretación y valoración de los resultados. En ella se revisó la coherencia de la base de datos construida, la utilidad de los grafos desarrollados y la capacidad del análisis semántico para complementar la información relacional.
 
-% Podría valorarse añadir un gantt aquí
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                        BLOQUE II: desarrollo técnico                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -611,6 +609,8 @@ Antes de utilizar la base de datos para el desarrollo del resto del proyecto, re
 
 El objetivo de este apartado no es evaluar individualmente a los investigadores ni establecer comparaciones de productividad, sino describir de forma agregada la estructura de la base de datos resultante. Por ello, el análisis se centra en conteos generales, distribuciones y medidas descriptivas que permiten entender el alcance de la información almacenada.
 
+\subsection{Cobertura general de la base de datos}
+
 En primer lugar, la Tabla~\ref{tab:resumen_base_datos} recoge un resumen general de las principales entidades, relaciones y estructuras auxiliares generadas. La base final contiene 54 investigadores internos, 8 áreas de trabajo, 650 revistas y 281 proyectos únicos. Además, se recopilaron 4318 artículos y se generaron distintas relaciones entre investigadores, revistas, proyectos y áreas, que sirvieron posteriormente como base para la construcción de los grafos interactivos.
 
 \begin{table}[H]
@@ -648,25 +648,7 @@ La diferencia entre el número total de revistas registradas, las revistas prese
 
 Estos valores muestran que la base de datos no se limita a recopilar entidades aisladas, sino que contiene una estructura relacional amplia. En particular, las relaciones investigador-artículo, investigador-proyecto, coautoría y colaboración en proyectos permiten representar distintas dimensiones de la actividad investigadora del instituto. En este contexto, las relaciones investigador-artículo recogen los artículos recopilados para cada investigador e incluyen, entre sus atributos, la revista en la que aparece cada publicación. Asimismo, la existencia de estructuras basadas en palabras clave proporciona el punto de partida para el análisis semántico desarrollado posteriormente.
 
-Respecto a los investigadores internos, la Figura~\ref{fig:eda_tipo_empleado} muestra la distribución por tipo de empleado. La mayor parte de los registros corresponden a investigadores, mientras que los becarios y becarios de investigación representan una proporción menor dentro del conjunto. Esta información resulta relevante porque esta misma clasificación se utilizó posteriormente en la aplicación interactiva para diferenciar visualmente los nodos de los grafos.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.75\textwidth]{imgs/eda_tipo_empleado.png}
-\caption{Distribución de investigadores por tipo de empleado.}
-\label{fig:eda_tipo_empleado}
-\end{figure}
-
-La distribución por áreas de trabajo se presenta en la Figura~\ref{fig:eda_areas_trabajo}. En este caso, el gráfico representa asociaciones investigador-área, no una partición estricta de los investigadores, ya que una misma persona puede aparecer vinculada a más de un área. Las áreas con mayor número de asociaciones son Matemática aplicada y Análisis, seguidas por Ciencia de Datos y Becarios.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.85\textwidth]{imgs/eda_areas_trabajo.png}
-\caption{Distribución de asociaciones investigador-área por área de trabajo.}
-\label{fig:eda_areas_trabajo}
-\end{figure}
-
-La Tabla~\ref{tab:estadisticas_base_datos} recoge estadísticas descriptivas calculadas sobre los investigadores para los que existe información disponible en cada dimensión analizada. Estas medidas permiten complementar los conteos generales y observar la variabilidad existente entre investigadores y proyectos sin recurrir a listados individuales.
+La Tabla~\ref{tab:estadisticas_base_datos}, por su parte, recoge estadísticas descriptivas calculadas sobre los investigadores para los que existe información disponible en cada dimensión analizada. Estas medidas permiten complementar los conteos generales y observar la variabilidad existente entre investigadores y proyectos sin recurrir a listados individuales.
 
 \begin{table}[H]
 \centering
@@ -686,20 +668,55 @@ Investigadores internos por proyecto & 1.86 & 1.0 & 1 & 15 \\
 \label{tab:estadisticas_base_datos}
 \end{table}
 
+\subsection{Distribución de investigadores y áreas de trabajo}
+
+Respecto a los investigadores internos, la Figura~\ref{fig:eda_tipo_empleado} muestra la distribución por tipo de empleado. La mayor parte de los registros corresponden a investigadores, mientras que los becarios y becarios de investigación representan una proporción menor dentro del conjunto. Esta información resulta relevante porque esta misma clasificación se utilizó posteriormente en la aplicación interactiva para diferenciar visualmente los nodos de los grafos.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{imgs/eda_tipo_empleado.png}
+\caption{Distribución de investigadores por tipo de empleado.}
+\label{fig:eda_tipo_empleado}
+\end{figure}
+
+La distribución por áreas de trabajo se presenta en la Figura~\ref{fig:eda_areas_trabajo}. En este caso, el gráfico representa asociaciones investigador-área, no una partición estricta de los investigadores, ya que una misma persona puede aparecer vinculada a más de un área. Las áreas con mayor número de asociaciones son Matemática aplicada y Análisis, seguidas por Ciencia de Datos y Becarios.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{imgs/eda_areas_trabajo.png}
+\caption{Distribución de asociaciones investigador-área por área de trabajo.}
+\label{fig:eda_areas_trabajo}
+\end{figure}
+
+\subsection{Artículos y revistas}
+
 En relación con la producción académica recopilada, la Figura~\ref{fig:eda_articulos_revistas} muestra la relación entre el número de artículos asociados a cada investigador y el número de revistas distintas en las que aparecen dichos artículos. En términos generales, se observa una relación creciente entre ambas variables: los investigadores con mayor número de artículos tienden también a estar asociados a un mayor número de revistas. No obstante, la dispersión de los puntos muestra que esta relación no es completamente uniforme, ya que existen diferencias en la concentración de revistas asociadas a cada investigador.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{imgs/eda_articulos_vs_revistas.png}
+\includegraphics[width=0.6\textwidth]{imgs/eda_articulos_vs_revistas.png}
 \caption{Relación entre artículos recopilados y revistas distintas asociadas por investigador.}
 \label{fig:eda_articulos_revistas}
 \end{figure}
 
-Para complementar esta visión, la Figura~\ref{fig:eda_distribuciones_investigador} resume la variabilidad de la información asociada a cada investigador. Los diagramas de caja muestran que el número de artículos y revistas recopilados presenta una dispersión elevada: la mayoría de investigadores se concentra en valores moderados, mientras que algunos casos alcanzan valores considerablemente superiores. En cambio, los proyectos asociados presentan una distribución más compacta. Esta diferencia refleja que la cobertura de publicaciones y revistas es más variable entre investigadores que la información relativa a proyectos, por lo que los resultados derivados de la base deben interpretarse teniendo en cuenta esta heterogeneidad.
+Además de analizar la relación entre artículos y revistas, se revisó la distribución de las revistas según su editorial. La Figura~\ref{fig:eda_top_editoriales} muestra las quince editoriales con mayor número de revistas dentro de la base de datos. Se observa que Elsevier y Springer concentran una parte destacada de las revistas recopiladas, seguidas a mayor distancia por editoriales como MDPI y Taylor \& Francis.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{imgs/eda_distribuciones_por_investigador.png}
+\includegraphics[width=0.9\textwidth]{imgs/eda_top_editoriales.png}
+\caption{Principales editoriales asociadas a las revistas recopiladas.}
+\label{fig:eda_top_editoriales}
+\end{figure}
+
+Esta distribución permite describir la composición de la entidad revista y comprobar que la base recoge publicaciones procedentes de editoriales científicas diversas. No obstante, el gráfico debe interpretarse únicamente como una descripción agregada de la base de datos, no como una valoración de la calidad de las revistas ni de la producción de los investigadores.
+
+\subsection{Actividad en proyectos de investigación}
+
+Para comparar las principales dimensiones de información asociadas a cada investigador, la Figura~\ref{fig:eda_distribuciones_investigador} resume la variabilidad de la información asociada a cada investigador. Los diagramas de caja muestran que el número de artículos y revistas recopilados presenta una dispersión elevada: la mayoría de investigadores se concentra en valores moderados, mientras que algunos casos alcanzan valores considerablemente superiores. En cambio, los proyectos asociados presentan una distribución más compacta. Esta diferencia refleja que la cobertura de publicaciones y revistas es más variable entre investigadores que la información relativa a proyectos, por lo que los resultados derivados de la base deben interpretarse teniendo en cuenta esta heterogeneidad.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{imgs/eda_distribuciones_por_investigador.png}
 \caption{Distribución de artículos, revistas distintas y proyectos asociados por investigador.}
 \label{fig:eda_distribuciones_investigador}
 \end{figure}
@@ -708,10 +725,23 @@ En los proyectos, se analizó cuántos investigadores internos del IUMPA estaban
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{imgs/eda_investigadores_por_proyecto_agrupado.png}
+\includegraphics[width=0.6\textwidth]{imgs/eda_investigadores_por_proyecto_agrupado.png}
 \caption{Distribución agrupada del número de investigadores internos del IUMPA asociados a cada proyecto.}
 \label{fig:eda_investigadores_proyecto}
 \end{figure}
+
+Además de analizar cuántos investigadores internos aparecen asociados a cada proyecto, se revisó la distribución temporal de los proyectos recopilados. La Figura~\ref{fig:eda_proyectos_anio} muestra el número de proyectos únicos registrados por año, lo que permite observar cómo se distribuye esta información a lo largo del periodo cubierto por la base de datos.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{imgs/distr_temporal_proyectos.png}
+\caption{Distribución temporal de los proyectos asociados a investigadores del IUMPA.}
+\label{fig:eda_proyectos_anio}
+\end{figure}
+
+La distribución muestra una mayor concentración de proyectos en determinados periodos, especialmente alrededor de los años 2009, 2010 y 2012, así como un nuevo incremento en los años más recientes. Esta visualización complementa el análisis anterior, ya que permite describir no solo cuántos proyectos se han recopilado y cuántos investigadores internos aparecen vinculados a ellos, sino también cómo se reparte temporalmente la información disponible.
+
+\subsection{Cobertura de la información temática}
 
 Finalmente, la parte semántica de la base de datos también presenta una cobertura suficiente para servir como punto de partida al análisis posterior. A partir de las revistas recopiladas se construyeron estructuras auxiliares basadas en palabras clave, cuyos principales valores se resumen en la Tabla~\ref{tab:cobertura_semantica}.
 
@@ -733,7 +763,7 @@ Relaciones revista-palabra clave activas & 4410 \\
 \label{tab:cobertura_semantica}
 \end{table}
 
-Estos valores muestran que la base de datos final contiene un volumen suficiente de entidades y relaciones para sostener las fases posteriores del trabajo, incorporando además una capa temática derivada de las palabras clave asociadas a las revistas. No obstante, las distribuciones observadas reflejan que la información recopilada no es completamente uniforme entre todos los investigadores, por lo que esta heterogeneidad debe tenerse en cuenta al interpretar los grafos y los resultados de agrupación semántica.
+Estos valores indican que las estructuras semánticas generadas ofrecen cobertura suficiente para construir las representaciones temáticas utilizadas en el análisis posterior.
 
 \section{Valoración de la base de datos construida}
 
@@ -934,15 +964,33 @@ No obstante, la aplicación debe entenderse como una herramienta exploratoria co
 
 \textit{BORRAR Este capítulo describirá la ampliación analítica del proyecto, orientada a estudiar afinidades temáticas entre investigadores a partir de las revistas en las que han publicado. Para ello, se explicará el proceso de obtención de palabras clave representativas, la construcción de representaciones temáticas de los investigadores y la aplicación de distintos modelos de clustering y reducción de dimensionalidad. El objetivo será mostrar el proceso metodológico seguido hasta obtener una agrupación semántica interpretable.}
 
+Tras la construcción de la base de datos y el desarrollo de los grafos interactivos, el proyecto ya permitía explorar la actividad investigadora del IUMPA desde una perspectiva relacional. Sobre esta base, se planteó estudiar si los datos recopilados podían revelar afinidades temáticas entre investigadores más allá de las colaboraciones y publicaciones observables. Para ello, se propuso una ampliación analítica basada en las revistas en las que publica cada investigador, partiendo de la idea de que dichas revistas pueden aportar información sobre sus áreas de interés al estar asociadas a diferentes campos.
 
+A partir de esta hipótesis, se utilizaron palabras clave representativas de las revistas para construir perfiles temáticos de los investigadores y aplicar distintos métodos de agrupamiento orientados a identificar posibles grupos con intereses próximos.
 
-\section{Construcción de palabras clave}
+El propósito de este análisis no fue obtener una clasificación cerrada de los miembros del instituto, sino explorar hasta qué punto la información disponible permitía detectar agrupaciones interpretables desde un punto de vista semántico. Por ello, el proceso combinó varias representaciones de los datos, distintos modelos de clustering y técnicas de reducción de dimensionalidad, valorando los resultados tanto mediante métricas cuantitativas como mediante su coherencia temática.
 
-\textit{Este apartado explicará el proceso seguido para obtener palabras clave representativas de las revistas en las que han publicado los investigadores del IUMPA. Se describirá cómo se recopilaron, revisaron y filtraron dichos términos, así como los criterios utilizados para conservar aquellos que resultaban útiles para caracterizar temáticamente las revistas. Esta sección permitirá justificar la base textual sobre la que se construye posteriormente la representación temática de cada investigador.}
+\section{Preparación del vocabulario temático}
+
+Hasta este punto, las revistas habían servido principalmente para describir la actividad bibliográfica de los investigadores y construir relaciones dentro de la base de datos. En esta fase, esas mismas revistas comenzaron a tener la función adicional de actuar como indicadores temáticos. Para ello, se utilizaron las palabras clave asociadas a cada revista como forma de aproximar los campos con los que estaban relacionadas.
+
+El objetivo no era describir cada revista exhaustivamente, sino disponer de un vocabulario suficientemente representativo para caracterizar su orientación temática. Esta decisión permitía trabajar con la revista como unidad intermedia entre el artículo individual y el investigador. De este modo, las palabras clave no se utilizaron para analizar el contenido detallado de cada publicación, sino para construir una aproximación general al tipo de temas presentes en los medios donde habían publicado los investigadores.
+
+Una vez recopiladas las palabras clave, fue necesario revisar el conjunto global de términos antes de utilizarlo en los modelos de agrupamiento. Algunas palabras aparecían asociadas a un gran número de revistas y, por tanto, aportaban poca capacidad diferenciadora. Otras, en cambio, eran demasiado específicas, lo que dificultaba la identificación de patrones compartidos entre investigadores. Por ello, la selección final buscó un equilibrio entre representatividad y utilidad para comparar perfiles temáticos.
+
+Además de esta depuración, se revisó manualmente la coherencia del vocabulario para reducir duplicidades y unificar variantes muy próximas. Con ello se buscó que términos muy relacionados quedaran representados de forma consistente, evitando una fragmentación innecesaria del vocabulario. En consecuencia, las palabras clave no se emplearon como una recopilación directa de términos aislados, sino como un conjunto revisado y preparado para servir de base al análisis semántico.
+
+Durante la revisión posterior de los primeros resultados se observó que no todos los términos del vocabulario contribuían del mismo modo a caracterizar intereses científicos. En particular, algunas palabras hacían referencia a localizaciones geográficas u otros elementos contextuales que podían aparecer vinculados a determinadas revistas, pero que no describían propiamente una línea de investigación. Aunque estos términos formaban parte de la información recopilada, su presencia podía desplazar la agrupación hacia coincidencias poco relevantes desde el punto de vista temático.
+
+Por este motivo, se realizó una depuración adicional del vocabulario antes de consolidar la base final utilizada en el análisis. Esta revisión permitió eliminar términos que podían introducir ruido en la comparación entre investigadores y centrar la representación en palabras con mayor capacidad para describir ámbitos científicos. De esta forma, la selección final no solo buscó reducir términos poco informativos, sino también asegurar que el vocabulario empleado reflejara afinidades temáticas reales y no relaciones espurias derivadas de elementos accesorios.
+
+Con este proceso quedó definida una base temática de revistas y palabras clave depuradas, preparada para trasladar posteriormente la información desde las revistas hacia los perfiles de los investigadores.
 
 \section{Representación temática de los investigadores}
 
-\textit{Este apartado describirá cómo se transformaron las palabras clave asociadas a las revistas en representaciones analizables de los investigadores. Se explicará la construcción de matrices que relacionan investigadores, revistas y términos temáticos, así como los primeros enfoques basados en coincidencias literales de palabras clave. También se introducirá el cambio hacia representaciones semánticas mediante embeddings, justificando su utilidad para capturar similitudes conceptuales entre perfiles aunque no compartan exactamente los mismos términos.}
+\textit{BORRAR Este apartado describirá cómo se transformaron las palabras clave asociadas a las revistas en representaciones analizables de los investigadores. Se explicará la construcción de matrices que relacionan investigadores, revistas y términos temáticos, así como los primeros enfoques basados en coincidencias literales de palabras clave. También se introducirá el cambio hacia representaciones semánticas mediante embeddings, justificando su utilidad para capturar similitudes conceptuales entre perfiles aunque no compartan exactamente los mismos términos.}
+
+
 
 \section{Modelos de clustering}
 
@@ -1049,7 +1097,6 @@ Universitat Politècnica de València.
 Directory of Open Access Journals.
 \newblock \textit{Directory of Open Access Journals (DOAJ)}.
 \newblock Disponible en: \url{https://doaj.org/}
-\newblock Consultado el 13 de mayo de 2026.
 
 \bibitem{scimago}
 SCImago.
@@ -1083,10 +1130,10 @@ Apache Software Foundation.
 \newblock \textit{Apache ECharts}.
 \newblock Disponible en: \url{https://echarts.apache.org/}
 
-%\bibitem{umap}
-%McInnes, L., Healy, J. y Melville, J.
-%\newblock UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction.
-%\newblock \textit{arXiv preprint arXiv:1802.03426}, 2018.
+\bibitem{umap}
+McInnes, L., Healy, J. y Melville, J.
+\newblock UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction.
+\newblock \textit{arXiv preprint arXiv:1802.03426}, 2018.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % MODEL D'ARTICLE                                                             %
