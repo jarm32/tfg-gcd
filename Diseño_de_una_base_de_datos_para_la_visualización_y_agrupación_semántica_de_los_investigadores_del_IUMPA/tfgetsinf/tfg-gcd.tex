@@ -1057,7 +1057,9 @@ El principal problema de este enfoque era que la similitud entre investigadores 
 
 Para tratar de mejorar esta situación, y antes de pasar al enfoque semántico, se introdujo una ponderación sobre la matriz inicial. El objetivo era evitar que todas las palabras clave tuvieran el mismo peso dentro de la comparación entre investigadores. En particular, se buscaba reducir la influencia de términos excesivamente comunes, que podían aparecer en muchos perfiles y aportar poca capacidad diferenciadora, así como de palabras demasiado raras, cuya aparición aislada podía condicionar de forma desproporcionada los resultados.
 
-La ponderación aplicada consistió en una penalización simétrica basada en una función gaussiana. En este enfoque, el peso de cada palabra clave dependía de su frecuencia respecto a la frecuencia media del vocabulario. Las palabras con frecuencias intermedias recibían mayor peso, al considerarse potencialmente más representativas para comparar perfiles, mientras que los términos demasiado frecuentes o demasiado aislados quedaban penalizados. El peso de una palabra clave \(j\) se definió como:
+La ponderación aplicada consistió en una adaptación propia basada en una penalización simétrica con forma gaussiana. Esta decisión toma como referencia la ponderación de términos en representaciones vectoriales de texto~\cite{salton} y el uso de funciones gaussianas para asignar pesos decrecientes conforme un valor se aleja de un centro~\cite{gaussian_function}. En este caso no se utiliza el factor de normalización de la distribución normal, ya que no se pretende definir una densidad de probabilidad, sino asignar un peso relativo a cada palabra clave según la distancia de su frecuencia respecto a la media del vocabulario.
+
+Con este enfoque, las palabras con frecuencias intermedias recibían mayor peso, al considerarse potencialmente más representativas para comparar perfiles, mientras que los términos demasiado frecuentes o demasiado aislados quedaban penalizados. El peso de una palabra clave \(j\) se definió como:
 
 \[
 w_j = e^{-\frac{(f_j - \mu)^2}{2\sigma^2}}
@@ -1085,49 +1087,59 @@ Esta transformación permitió trabajar con una representación más flexible de
 
 \textit{BORRAR Este apartado presentará los distintos modelos de agrupación aplicados sobre las representaciones temáticas construidas. Se describirán las pruebas realizadas con diferentes medidas de distancia, métodos de clustering y técnicas de reducción de dimensionalidad, así como los criterios utilizados para comparar sus resultados. El apartado también recogerá las dificultades encontradas durante el proceso experimental y las decisiones metodológicas adoptadas para seleccionar las configuraciones más adecuadas.}
 
-Una vez que cada investigador quedó descrito mediante un perfil temático, el análisis podía avanzar desde la representación individual hacia la búsqueda de patrones compartidos. La cuestión, por tanto, se convirtió en revisar si esos perfiles permitían reconocer grupos con intereses próximos.
+Una vez que cada investigador quedó descrito mediante un perfil temático, el análisis podía avanzar desde la representación individual hacia la búsqueda de patrones compartidos. La cuestión, por tanto, se convirtió en estudiar si esos perfiles permitían reconocer grupos con intereses próximos, no definidos únicamente por las áreas institucionales del IUMPA.
 
-Este planteamiento se abordó como una tarea de aprendizaje no supervisado, ya que no se buscaba entrenar un modelo para reproducir una clasificación conocida, sino explorar la estructura interna de los perfiles construidos. 
+Este planteamiento se abordó como una tarea de aprendizaje no supervisado. No se buscaba entrenar un modelo para reproducir una clasificación conocida, sino explorar la estructura interna de los perfiles construidos a partir de revistas y palabras clave. Aunque el instituto cuenta con áreas de trabajo asignadas a los investigadores, estas no se mantuvieron como variable de entrada en el modelo de clustering. En las pruebas realizadas, su inclusión hacía que la agrupación quedara fuertemente condicionada por dicha clasificación previa, reuniendo a los investigadores principalmente según el área a la que pertenecían. Por este motivo, se decidió excluirlas del análisis y trabajar únicamente con la información derivada de las revistas y del vocabulario temático, permitiendo al agrupamiento explorar posibles afinidades complementarias a las áreas institucionales, en lugar de limitarse a reproducirlas.
 
-Aunque el IUMPA cuenta con áreas de trabajo asignadas a los investigadores, estas no se mantuvieron como variable de entrada en el modelo de clustering. En las pruebas realizadas, su inclusión hacía que la agrupación quedara fuertemente condicionada por dicha clasificación previa, reuniendo a los investigadores principalmente según el área a la que pertenecían. Por este motivo, se decidió excluir las áreas del análisis y trabajar únicamente con la información derivada de las revistas y de sus palabras clave. De esta forma, el agrupamiento podía explorar posibles afinidades temáticas complementarias a las áreas institucionales, en lugar de limitarse a reproducirlas.
+El proceso de agrupamiento se desarrolló de forma experimental, comparando distintas configuraciones a partir de las representaciones descritas en el apartado anterior. Esta fase no consistió en aplicar un único modelo, sino en probar varias formas de representar los perfiles, medir la proximidad entre ellos y construir agrupaciones. Para ello se trabajó de manera progresiva, comenzando con representaciones basadas en palabras clave explícitas y avanzando posteriormente hacia representaciones semánticas mediante \textit{word embeddings}.
 
+En una primera fase se utilizó la matriz binaria de presencia y ausencia de palabras clave. Esta representación permitía comparar a los investigadores según los términos asociados a las revistas en las que habían publicado, por lo que constituía una aproximación sencilla e interpretable al problema. Sobre esta matriz se probaron medidas de proximidad adecuadas para datos binarios, como Jaccard y Hamming, con el objetivo de comprobar si la coincidencia directa entre palabras clave era suficiente para formar grupos temáticamente coherentes.
 
+Estas primeras pruebas sirvieron como punto de referencia, pero también mostraron las limitaciones de trabajar únicamente con presencia o ausencia de términos. En particular, dos perfiles conceptualmente próximos podían quedar separados si estaban descritos mediante vocabularios distintos. Por ello, se incorporó una segunda representación basada en una versión ponderada de la matriz inicial.
 
+La matriz ponderada mantenía la misma estructura de investigador y palabra clave, pero los valores dejaban de ser únicamente binarios, ya que cada término incorporaba un peso dependiente de su frecuencia. Esta ponderación, basada en la penalización gaussiana, buscaba dar mayor importancia a los términos de frecuencia intermedia y reducir la influencia de palabras excesivamente comunes o demasiado aisladas. Sobre esta representación se probaron medidas aplicables a vectores numéricos, como la distancia euclídea, Manhattan, coseno y correlación. De este modo, se evaluaba si una representación más equilibrada del vocabulario mejoraba la formación de grupos sin abandonar todavía el enfoque basado en palabras clave explícitas.
 
-El proceso de agrupamiento se abordó de forma experimental. Para ello, se probaron distintas configuraciones a partir de las representaciones descritas anteriormente. En primer lugar, se trabajó con la matriz binaria de presencia y ausencia de palabras clave, así como con su versión ponderada mediante la penalización gaussiana. Posteriormente, el análisis se trasladó a las representaciones semánticas obtenidas mediante \textit{word embeddings}, con el objetivo de comparar perfiles no solo por las palabras exactas que compartían, sino también por la proximidad conceptual entre los términos que los caracterizaban.
+No obstante, tanto la matriz binaria como la matriz ponderada seguían dependiendo de coincidencias literales entre términos, lo que daba lugar a resultados poco acertados. Por este motivo, el análisis se trasladó posteriormente a las representaciones semánticas obtenidas mediante \textit{word embeddings}. En este caso, cada investigador quedaba representado mediante un vector continuo que resumía el contenido semántico de sus palabras clave. A partir de estos vectores se probaron nuevas configuraciones de clustering, variando tanto la medida de proximidad utilizada como el número de grupos considerado.
 
-En esta fase se evitó incorporar directamente las áreas de trabajo de los investigadores como variables del modelo. Aunque esta información podía resultar útil para interpretar los grupos obtenidos, incluirla en la construcción de los perfiles habría condicionado el agrupamiento hacia una clasificación ya existente. Por ello, los modelos se basaron únicamente en la información derivada de las revistas y de sus palabras clave, permitiendo comprobar si las afinidades temáticas emergían a partir de los datos bibliográficos recopilados.
+Durante esta fase también se valoraron distintas alternativas para generar los agrupamientos. Una posibilidad contemplada fue utilizar mapas autoorganizados o \textit{Self-Organizing Maps} (SOM), que combinan reducción de dimensionalidad y agrupamiento visual de perfiles similares. Esta opción resultaba interesante como vía exploratoria, pero finalmente el análisis se centró en el clustering jerárquico, al ofrecer una estructura más directa para comparar distancias entre investigadores y estudiar distintas particiones del mismo árbol de agrupamiento.
 
-Cada configuración quedaba determinada por varios elementos: la representación de entrada, la medida de distancia o similitud utilizada, el método de agrupamiento y, en algunos casos, la aplicación previa de una técnica de reducción de dimensionalidad. La Tabla~\ref{tab:elementos_clustering} resume los principales componentes considerados durante el proceso experimental.
+El método de agrupamiento utilizado fue, por tanto, principalmente el clustering jerárquico. Este enfoque resultaba adecuado para el carácter exploratorio del análisis, ya que permite construir una estructura progresiva de agrupación y estudiar distintas particiones del árbol resultante. De esta forma, no era necesario fijar un único número de grupos desde el inicio, sino que podían compararse distintos cortes del dendrograma y valorar qué particiones ofrecían una separación más clara y una interpretación temática más coherente.
+
+Además de dicho método de agrupamiento, también se estudiaron distintas formas de representar los perfiles antes de aplicar el clustering. En particular, se valoraron técnicas de reducción y proyección de dimensionalidad con el objetivo de simplificar la estructura de los embeddings y facilitar la detección de patrones. Entre las alternativas consideradas se encontraban métodos lineales como PCA y enfoques no lineales orientados a preservar relaciones de proximidad entre observaciones.
+
+Dentro de estas alternativas, la técnica que terminó adquiriendo mayor relevancia fue UMAP~\cite{umap}. Este método permite proyectar datos de alta dimensión en espacios de menor dimensión preservando, en la medida de lo posible, la estructura de vecindades entre observaciones. Su uso permitía comparar agrupamientos obtenidos directamente sobre los embeddings con otros generados tras una representación más compacta de los perfiles, comprobando si esta proyección facilitaba la aparición de estructuras temáticas más claras o si, por el contrario, alteraba en exceso la organización original de los datos.
+
+También se tuvo en cuenta la versión del vocabulario empleada. En una primera fase se trabajó con el vocabulario completo, pero durante la revisión de los resultados se detectó que determinadas palabras clave hacían referencia a localizaciones geográficas u otros elementos contextuales. Estos términos podían introducir similitudes poco relevantes para el objetivo del análisis, ya que relacionaban perfiles por elementos externos al contenido científico de las revistas. Por ello, se repitieron las pruebas principales sobre una versión depurada del vocabulario, eliminando las referencias de localización. Esta comparación permitía estudiar si las agrupaciones respondían realmente a afinidades temáticas o si estaban parcialmente influidas por coincidencias contextuales.
+
+Cada configuración del proceso dependía, por tanto, de varios elementos: la representación de entrada, la versión del vocabulario, la medida de proximidad, el método de agrupamiento, el número de grupos considerado y la posible aplicación de reducción de dimensionalidad. La Tabla~\ref{tab:elementos_clustering} resume los componentes principales considerados durante esta fase experimental.
 
 \begin{table}[H]
 \centering
 \small
-\begin{tabular}{p{0.25\textwidth} p{0.34\textwidth} p{0.31\textwidth}}
+\begin{tabular}{p{0.24\textwidth} p{0.36\textwidth} p{0.30\textwidth}}
 \hline
 \textbf{Elemento} & \textbf{Opciones consideradas} & \textbf{Función dentro del análisis} \\
 \hline
 Representación de entrada & Matriz binaria, matriz ponderada y embeddings semánticos & Definir cómo se describe temáticamente cada investigador \\
 \hline
-Medidas de proximidad & Distancias o similitudes adecuadas al tipo de representación, como Jaccard, Hamming, correlación, coseno, euclídea o Manhattan & Cuantificar la proximidad entre perfiles de investigadores \\
-Medidas de proximidad & Distancias o similitudes seleccionadas según el tipo de representación utilizada & Cuantificar la proximidad entre perfiles de investigadores \\
+Versión del vocabulario & Vocabulario completo y vocabulario depurado sin términos de localización & Comprobar si las agrupaciones respondían a afinidades temáticas o a factores contextuales \\
 \hline
-Método de agrupamiento & Clustering jerárquico con diferentes particiones del árbol de agrupamiento & Formar grupos de investigadores con perfiles temáticos próximos \\
+Medidas de proximidad & Jaccard, Hamming, coseno, correlación, euclídea y Manhattan & Cuantificar la cercanía o diferencia entre perfiles de investigadores \\
 \hline
-Reducción de dimensionalidad & UMAP aplicado sobre las representaciones semánticas & Proyectar los perfiles en un espacio de menor dimensión y comparar la estructura obtenida \\
+Método de agrupamiento & Clustering jerárquico & Construir grupos de investigadores a partir de la proximidad entre perfiles \\
 \hline
-Evaluación & Índice de Silhouette y revisión temática de los grupos & Comparar configuraciones y valorar la coherencia de las agrupaciones \\
+Número de grupos & Distintas particiones del árbol jerárquico & Comparar cortes alternativos del dendrograma y valorar su coherencia \\
+\hline
+Reducción de dimensionalidad & Configuraciones sin reducción y configuraciones con UMAP & Comparar los agrupamientos obtenidos en el espacio original y en una proyección de menor dimensión \\
+\hline
+Evaluación & Índice de Silhouette, revisión temática y comparación de solapamientos & Comparar configuraciones y valorar la coherencia de las agrupaciones \\
 \hline
 \end{tabular}
 \caption{Elementos considerados en el proceso de agrupamiento temático.}
 \label{tab:elementos_clustering}
 \end{table}
 
-La elección de la medida de proximidad dependía del tipo de representación utilizada. En las matrices binarias o ponderadas, la comparación se basaba en el grado de coincidencia o diferencia entre los términos asociados a cada investigador. En las representaciones mediante embeddings, las distancias se calculaban sobre vectores continuos que resumían el perfil semántico de cada persona. Esta diferencia era importante, ya que no todas las medidas resultaban igual de adecuadas para todos los tipos de datos.
-
-El método de agrupamiento se centró principalmente en el clustering jerárquico. Este enfoque resultaba adecuado para el carácter exploratorio del análisis, ya que permite observar cómo los investigadores se van agrupando progresivamente en función de su proximidad. Además, no obliga a asumir desde el principio una estructura rígida de los datos, sino que permite estudiar distintas particiones a partir del mismo proceso de agrupamiento. De este modo, se podían comparar soluciones con diferente número de grupos y valorar cuáles ofrecían una separación más clara y una interpretación temática más coherente.
-
-Junto a los modelos aplicados directamente sobre las representaciones originales, se incorporó también una fase de reducción de dimensionalidad. En particular, se utilizó UMAP, una técnica diseñada para proyectar datos de alta dimensión en espacios de menor dimensión preservando, en la medida de lo posible, relaciones de proximidad entre observaciones~\cite{umap}. Su uso permitía estudiar si una representación más compacta de los perfiles semánticos facilitaba la formación de grupos más diferenciados y comparables.
+La elección de la medida de proximidad dependía del tipo de representación utilizada. En las matrices binarias, medidas como Jaccard o Hamming permitían comparar perfiles según la coincidencia o diferencia en la presencia de palabras clave. En las representaciones ponderadas y en los embeddings, en cambio, resultaban más adecuadas medidas aplicadas sobre vectores numéricos, como el coseno, la correlación, la distancia euclídea o la distancia Manhattan. Esta variedad de medidas permitía comprobar si la estructura de los grupos dependía de una única definición de cercanía o si aparecían patrones similares bajo distintas formas de medir la proximidad temática.
 
 La evaluación de las configuraciones no se basó únicamente en la inspección visual de los grupos. Para disponer de una medida cuantitativa se utilizó el índice de Silhouette~\cite{rousseeuw}, que permite valorar hasta qué punto cada observación está mejor asignada a su propio grupo que a grupos alternativos. Para un investigador \(i\), este índice puede expresarse como:
 
@@ -1139,7 +1151,11 @@ donde \(a(i)\) representa la distancia media entre el investigador \(i\) y el re
 
 No obstante, la selección de configuraciones no se realizó de forma automática a partir de una única métrica. Dado que el objetivo era obtener agrupaciones interpretables desde el punto de vista temático, los valores del índice de Silhouette se complementaron con una revisión cualitativa de los grupos generados. Esta revisión consideraba aspectos como el tamaño de los grupos, la coherencia de las palabras clave asociadas a cada uno y la plausibilidad temática de las agrupaciones resultantes.
 
-El proceso experimental mostró que la representación de entrada tenía un papel determinante en la calidad de los agrupamientos. Las configuraciones basadas en coincidencias literales permitieron establecer una primera referencia, pero también evidenciaron las limitaciones de trabajar únicamente con presencia o ponderación de palabras clave. Por ello, las configuraciones basadas en embeddings y aquellas combinadas con reducción de dimensionalidad adquirieron un papel central en la búsqueda de agrupaciones más coherentes e interpretables.
+Además de comparar el rendimiento individual de cada configuración, se revisó la estabilidad de las particiones obtenidas. Para ello, se analizaron solapamientos entre modelos seleccionados, comparando tanto los investigadores asignados a cada grupo como las palabras clave características de los clusters. Esta revisión permitía valorar si distintos modelos estaban capturando una estructura común en los datos o si, por el contrario, producían segmentaciones muy dependientes de la métrica, de la reducción dimensional o del número de grupos elegido.
+
+Dentro de esta comparación adquirieron especial importancia las configuraciones jerárquicas basadas en distancia de correlación, distancia coseno y distancia coseno tras aplicar UMAP. Estas configuraciones permitían estudiar si los agrupamientos obtenidos eran relativamente estables o si la estructura temática cambiaba de forma notable al modificar la medida de proximidad o al proyectar los datos a un espacio de menor dimensión. De este modo, la evaluación combinó criterios cuantitativos, revisión temática y análisis de estabilidad entre modelos.
+
+El proceso experimental mostró que la representación de entrada tenía un papel determinante en la calidad de los agrupamientos. Las configuraciones basadas en coincidencias literales permitieron establecer una primera referencia, pero también evidenciaron las limitaciones de trabajar únicamente con presencia o ponderación de palabras clave. Por ello, las configuraciones basadas en embeddings, especialmente al compararlas con y sin reducción de dimensionalidad, adquirieron un papel central en la búsqueda de agrupaciones más coherentes e interpretables.
 
 \section{Evaluación y discusión de los resultados}
 
@@ -1172,6 +1188,8 @@ El proceso experimental mostró que la representación de entrada tenía un pape
 \textit{Este apartado planteará posibles ampliaciones y mejoras del proyecto. Se incluirán líneas como la incorporación de nuevas fuentes de datos, la actualización periódica de la base, la mejora de la aplicación interactiva, la ampliación de las funcionalidades de visualización y el perfeccionamiento de la parte analítica. También se podrán mencionar posibles extensiones metodológicas, como nuevas formas de representación semántica, métricas adicionales o procedimientos más automatizados de validación y actualización de datos.}
 
 \textit{Una idea: Contar cuántas veces aparece una palabra para cada investigador en las asociaciones temáticas, en lugar de solo si aparece o no, para saber cuánto de importante es un término/concepto para cada investigador.}
+
+\textit{Una idea: SOM}
 
 \section{Legado}
 
@@ -1275,6 +1293,16 @@ Apache Software Foundation.
 \newblock \textit{Apache ECharts}.
 \newblock Disponible en: \url{https://echarts.apache.org/}
 
+\bibitem{salton}
+Salton, G. y Buckley, C.
+\newblock Term-weighting approaches in automatic text retrieval.
+\newblock \textit{Information Processing \& Management}, 24(5), 513--523, 1988.
+
+\bibitem{gaussian_function}
+Mathwords.
+\newblock \textit{Gaussian Function}.
+\newblock Disponible en: \url{https://www.mathwords.com/g/gaussian_function.htm}.
+
 \bibitem{sentencebert}
 Reimers, N. y Gurevych, I.
 \newblock Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks.
@@ -1285,15 +1313,15 @@ Sentence Transformers.
 \newblock \textit{paraphrase-multilingual-MiniLM-L12-v2}.
 \newblock Disponible en: \url{https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2}.
 
-\bibitem{rousseeuw}
-Rousseeuw, P. J.
-\newblock Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
-\newblock \textit{Journal of Computational and Applied Mathematics}, 20, 53--65, 1987.
-
 \bibitem{umap}
 McInnes, L., Healy, J. y Melville, J.
 \newblock UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction.
 \newblock \textit{arXiv preprint arXiv:1802.03426}, 2018.
+
+\bibitem{rousseeuw}
+Rousseeuw, P. J.
+\newblock Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
+\newblock \textit{Journal of Computational and Applied Mathematics}, 20, 53--65, 1987.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % MODEL D'ARTICLE                                                             %
