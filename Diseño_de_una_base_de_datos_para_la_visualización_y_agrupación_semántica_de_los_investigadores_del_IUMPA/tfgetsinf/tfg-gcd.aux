@@ -139,26 +139,58 @@
 \@writefile{loq}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {6.1}Preparación del vocabulario temático}{39}{section.6.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {6.2}Representación temática de los investigadores}{40}{section.6.2}\protected@file@percent }
+\citation{salton}
+\citation{gaussian_function}
 \@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Proceso de construcción de perfiles temáticos a partir de las revistas publicadas por los investigadores.}}{41}{figure.caption.24}\protected@file@percent }
 \newlabel{fig:flujo_representacion_tematica}{{6.1}{41}{Proceso de construcción de perfiles temáticos a partir de las revistas publicadas por los investigadores}{figure.caption.24}{}}
 \citation{sentencebert}
 \citation{minilm_multilingual}
-\@writefile{toc}{\contentsline {section}{\numberline {6.3}Modelos de clustering}{43}{section.6.3}\protected@file@percent }
-\citation{umap}
-\citation{rousseeuw}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Clustering y evaluación}{43}{section.6.3}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Elementos considerados en el proceso de agrupamiento temático.}}{44}{table.caption.25}\protected@file@percent }
 \newlabel{tab:elementos_clustering}{{6.1}{44}{Elementos considerados en el proceso de agrupamiento temático}{table.caption.25}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.4}Evaluación y discusión de los resultados}{45}{section.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusiones y trabajo futuro}{47}{chapter.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}Primeras pruebas con palabras clave explícitas}{44}{subsection.6.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Resumen de las primeras pruebas realizadas con palabras clave explícitas.}}{45}{table.caption.26}\protected@file@percent }
+\newlabel{tab:primeras_pruebas_keywords}{{6.2}{45}{Resumen de las primeras pruebas realizadas con palabras clave explícitas}{table.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Visualización representativa de una de las primeras pruebas basadas en palabras clave explícitas.}}{46}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:primeras_pruebas_keywords}{{6.2}{46}{Visualización representativa de una de las primeras pruebas basadas en palabras clave explícitas}{figure.caption.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}Ponderación gaussiana del vocabulario}{46}{subsection.6.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Resumen de pruebas realizadas con la matriz ponderada de palabras clave.}}{47}{table.caption.28}\protected@file@percent }
+\newlabel{tab:pruebas_matriz_ponderada}{{6.3}{47}{Resumen de pruebas realizadas con la matriz ponderada de palabras clave}{table.caption.28}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Visualización representativa de una prueba con matriz ponderada.}}{48}{figure.caption.29}\protected@file@percent }
+\newlabel{fig:ponderada_manhattan_sigma05}{{6.3}{48}{Visualización representativa de una prueba con matriz ponderada}{figure.caption.29}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.3}Representaciones semánticas, métodos de agrupamiento y reducción de dimensionalidad}{48}{subsection.6.3.3}\protected@file@percent }
+\citation{dbscan}
+\citation{hdbscan}
+\citation{jolliffe}
+\citation{umap}
+\@writefile{lot}{\contentsline {table}{\numberline {6.4}{\ignorespaces Resumen de pruebas iniciales realizadas sobre representaciones semánticas mediante embeddings.}}{50}{table.caption.30}\protected@file@percent }
+\newlabel{tab:pruebas_embeddings_iniciales}{{6.4}{50}{Resumen de pruebas iniciales realizadas sobre representaciones semánticas mediante embeddings}{table.caption.30}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Configuración inicial basada en embeddings, UMAP y clustering jerárquico con distancia coseno.}}{50}{figure.caption.31}\protected@file@percent }
+\newlabel{fig:umap_embeddings_inicial}{{6.4}{50}{Configuración inicial basada en embeddings, UMAP y clustering jerárquico con distancia coseno}{figure.caption.31}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.4}Depuración del vocabulario y repetición del análisis}{51}{subsection.6.3.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6.5}{\ignorespaces Resumen de pruebas realizadas tras la depuración del vocabulario.}}{52}{table.caption.32}\protected@file@percent }
+\newlabel{tab:pruebas_embeddings_sin_localizacion}{{6.5}{52}{Resumen de pruebas realizadas tras la depuración del vocabulario}{table.caption.32}{}}
+\citation{rousseeuw}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.5}Comparación final de configuraciones}{53}{subsection.6.3.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6.6}{\ignorespaces Comparación final de configuraciones tras la depuración del vocabulario.}}{54}{table.caption.33}\protected@file@percent }
+\newlabel{tab:comparacion_final_configuraciones}{{6.6}{54}{Comparación final de configuraciones tras la depuración del vocabulario}{table.caption.33}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces Configuración basada en embeddings depurados, UMAP y clustering jerárquico con distancia coseno.}}{54}{figure.caption.34}\protected@file@percent }
+\newlabel{fig:umap_embeddings_depurado}{{6.5}{54}{Configuración basada en embeddings depurados, UMAP y clustering jerárquico con distancia coseno}{figure.caption.34}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.7}{\ignorespaces Resumen cualitativo del solapamiento entre configuraciones seleccionadas.}}{56}{table.caption.35}\protected@file@percent }
+\newlabel{tab:solapamiento_configuraciones}{{6.7}{56}{Resumen cualitativo del solapamiento entre configuraciones seleccionadas}{table.caption.35}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces Solapamiento entre clustering jerárquico con distancia coseno y clustering jerárquico tras reducción mediante UMAP.}}{56}{figure.caption.36}\protected@file@percent }
+\newlabel{fig:solapamiento_umap_coseno}{{6.6}{56}{Solapamiento entre clustering jerárquico con distancia coseno y clustering jerárquico tras reducción mediante UMAP}{figure.caption.36}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}Valoración del análisis semántico}{57}{section.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusiones y trabajo futuro}{59}{chapter.7}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
 \@writefile{loq}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {7.1}Conclusiones generales}{47}{section.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7.2}Cumplimiento de los objetivos}{47}{section.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7.3}Líneas de trabajo futuro}{47}{section.7.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7.4}Legado}{48}{section.7.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7.5}Relación del TFG con GCD}{48}{section.7.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Conclusiones generales}{59}{section.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}Cumplimiento de los objetivos}{59}{section.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7.3}Líneas de trabajo futuro}{59}{section.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7.4}Legado}{60}{section.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7.5}Relación del TFG con GCD}{60}{section.7.5}\protected@file@percent }
 \bibcite{newmannetworks}{1}
 \bibcite{manning}{2}
 \bibcite{hastie}{3}
@@ -175,86 +207,91 @@
 \bibcite{research_com}{14}
 \bibcite{r_scholar}{15}
 \bibcite{beugnon_scholar}{16}
-\@writefile{toc}{\contentsline {chapter}{Bibliograf\'{\i }a}{49}{chapter*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{Bibliograf\'{\i }a}{61}{chapter*.37}\protected@file@percent }
 \bibcite{shiny}{17}
 \bibcite{echarts}{18}
-\bibcite{sentencebert}{19}
-\bibcite{minilm_multilingual}{20}
-\bibcite{rousseeuw}{21}
-\bibcite{umap}{22}
+\bibcite{salton}{19}
+\bibcite{gaussian_function}{20}
+\bibcite{sentencebert}{21}
+\bibcite{minilm_multilingual}{22}
+\bibcite{umap}{23}
+\bibcite{dbscan}{24}
+\bibcite{hdbscan}{25}
+\bibcite{jolliffe}{26}
+\bibcite{rousseeuw}{27}
 \@writefile{toc}{\noindent \hrulefill \par }
 \@writefile{toc}{\appendicesname \par }
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Relación del trabajo con los Objetivos de Desarrollo Sostenible}{51}{chapter.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Relación del trabajo con los Objetivos de Desarrollo Sostenible}{63}{chapter.A}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
 \@writefile{loq}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{\numberline {B}Diccionario de datos y estructura de ficheros}{53}{chapter.B}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {B}Diccionario de datos y estructura de ficheros}{65}{chapter.B}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
 \@writefile{loq}{\addvspace {10\p@ }}
-\newlabel{ap:diccionario_datos}{{B}{53}{Diccionario de datos y estructura de ficheros}{chapter.B}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.1}Ficheros de entidades}{53}{section.B.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.1.1}Investigadores internos}{53}{subsection.B.1.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.1}{\ignorespaces Atributos principales del fichero de investigadores internos.}}{53}{table.caption.28}\protected@file@percent }
-\newlabel{tab:atributos_investigadores}{{B.1}{53}{Atributos principales del fichero de investigadores internos}{table.caption.28}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {B.1}{\ignorespaces Ejemplo visual de la estructura parcial de \texttt  {Investigadores\_internos.csv}.}}{54}{figure.caption.29}\protected@file@percent }
-\newlabel{fig:ejemplo_investigadores_internos}{{B.1}{54}{Ejemplo visual de la estructura parcial de \texttt {Investigadores\_internos.csv}}{figure.caption.29}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.1.2}Áreas de trabajo}{54}{subsection.B.1.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.2}{\ignorespaces Atributos principales del fichero de áreas de trabajo.}}{54}{table.caption.30}\protected@file@percent }
-\newlabel{tab:atributos_areas}{{B.2}{54}{Atributos principales del fichero de áreas de trabajo}{table.caption.30}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {B.2}{\ignorespaces Ejemplo visual de la estructura del fichero \texttt  {Areas.csv}.}}{54}{figure.caption.31}\protected@file@percent }
-\newlabel{fig:ejemplo_areas}{{B.2}{54}{Ejemplo visual de la estructura del fichero \texttt {Areas.csv}}{figure.caption.31}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.1.3}Revistas}{54}{subsection.B.1.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.3}{\ignorespaces Atributos principales del fichero de revistas.}}{54}{table.caption.32}\protected@file@percent }
-\newlabel{tab:atributos_revistas}{{B.3}{54}{Atributos principales del fichero de revistas}{table.caption.32}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {B.3}{\ignorespaces Ejemplo visual de la estructura del fichero \texttt  {Revistas.csv}.}}{55}{figure.caption.33}\protected@file@percent }
-\newlabel{fig:ejemplo_revistas}{{B.3}{55}{Ejemplo visual de la estructura del fichero \texttt {Revistas.csv}}{figure.caption.33}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.2}Ficheros de relaciones}{55}{section.B.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.2.1}Relación entre investigadores y áreas}{55}{subsection.B.2.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.4}{\ignorespaces Atributos principales de la relación entre investigadores y áreas.}}{55}{table.caption.34}\protected@file@percent }
-\newlabel{tab:atributos_es_parte_de}{{B.4}{55}{Atributos principales de la relación entre investigadores y áreas}{table.caption.34}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {B.4}{\ignorespaces Ejemplo visual de la estructura del fichero \texttt  {es\_parte\_de\_limpio\_listas.csv}.}}{55}{figure.caption.35}\protected@file@percent }
-\newlabel{fig:ejemplo_es_parte_de}{{B.4}{55}{Ejemplo visual de la estructura del fichero \texttt {es\_parte\_de\_limpio\_listas.csv}}{figure.caption.35}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.2.2}Relación entre investigadores y revistas}{55}{subsection.B.2.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.5}{\ignorespaces Atributos principales de los ficheros de la relación entre investigadores y revistas.}}{56}{table.caption.36}\protected@file@percent }
-\newlabel{tab:atributos_ha_publicado_en}{{B.5}{56}{Atributos principales de los ficheros de la relación entre investigadores y revistas}{table.caption.36}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {B.5}{\ignorespaces Ejemplo visual de un fichero de la relación \textit  {ha\_publicado\_en}.}}{56}{figure.caption.37}\protected@file@percent }
-\newlabel{fig:ejemplo_ha_publicado_en}{{B.5}{56}{Ejemplo visual de un fichero de la relación \textit {ha\_publicado\_en}}{figure.caption.37}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.2.3}Relación de coautoría}{56}{subsection.B.2.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.6}{\ignorespaces Atributos principales del fichero de relación de coautoría.}}{56}{table.caption.38}\protected@file@percent }
-\newlabel{tab:atributos_ha_publicado_con}{{B.6}{56}{Atributos principales del fichero de relación de coautoría}{table.caption.38}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {B.6}{\ignorespaces Ejemplo visual abreviado de la estructura de \texttt  {ha\_publicado\_con.csv}.}}{56}{figure.caption.39}\protected@file@percent }
-\newlabel{fig:ejemplo_ha_publicado_con}{{B.6}{56}{Ejemplo visual abreviado de la estructura de \texttt {ha\_publicado\_con.csv}}{figure.caption.39}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.2.4}Relación entre investigadores y proyectos}{56}{subsection.B.2.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.7}{\ignorespaces Atributos principales de los ficheros de la relación entre investigadores y proyectos.}}{57}{table.caption.40}\protected@file@percent }
-\newlabel{tab:atributos_ha_participado_en}{{B.7}{57}{Atributos principales de los ficheros de la relación entre investigadores y proyectos}{table.caption.40}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {B.7}{\ignorespaces Ejemplo visual de la estructura parcial de \textit  {ha\_participado\_en}.}}{57}{figure.caption.41}\protected@file@percent }
-\newlabel{fig:ejemplo_ha_participado_en}{{B.7}{57}{Ejemplo visual de la estructura parcial de \textit {ha\_participado\_en}}{figure.caption.41}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.2.5}Relación de colaboración en proyectos}{57}{subsection.B.2.5}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.8}{\ignorespaces Atributos principales del fichero de colaboración en proyectos.}}{57}{table.caption.42}\protected@file@percent }
-\newlabel{tab:atributos_ha_participado_con}{{B.8}{57}{Atributos principales del fichero de colaboración en proyectos}{table.caption.42}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {B.8}{\ignorespaces Ejemplo visual abreviado de la estructura de \texttt  {ha\_participado\_con.csv}.}}{57}{figure.caption.43}\protected@file@percent }
-\newlabel{fig:ejemplo_ha_participado_con}{{B.8}{57}{Ejemplo visual abreviado de la estructura de \texttt {ha\_participado\_con.csv}}{figure.caption.43}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.3}Estructuras auxiliares para el análisis semántico}{58}{section.B.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.3.1}Matriz de revistas y palabras clave}{58}{subsection.B.3.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.9}{\ignorespaces Estructura principal de la matriz de revistas y palabras clave.}}{58}{table.caption.44}\protected@file@percent }
-\newlabel{tab:atributos_one_hot_revistas}{{B.9}{58}{Estructura principal de la matriz de revistas y palabras clave}{table.caption.44}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {B.9}{\ignorespaces Ejemplo visual parcial de la matriz de revistas y palabras clave.}}{58}{figure.caption.45}\protected@file@percent }
-\newlabel{fig:ejemplo_one_hot_palabras_revistas}{{B.9}{58}{Ejemplo visual parcial de la matriz de revistas y palabras clave}{figure.caption.45}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.3.2}Matriz de investigadores y palabras clave}{58}{subsection.B.3.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.10}{\ignorespaces Estructura principal de la matriz de investigadores y palabras clave.}}{58}{table.caption.46}\protected@file@percent }
-\newlabel{tab:atributos_matriz_investigadores_keywords}{{B.10}{58}{Estructura principal de la matriz de investigadores y palabras clave}{table.caption.46}{}}
+\newlabel{ap:diccionario_datos}{{B}{65}{Diccionario de datos y estructura de ficheros}{chapter.B}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.1}Ficheros de entidades}{65}{section.B.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.1.1}Investigadores internos}{65}{subsection.B.1.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.1}{\ignorespaces Atributos principales del fichero de investigadores internos.}}{65}{table.caption.39}\protected@file@percent }
+\newlabel{tab:atributos_investigadores}{{B.1}{65}{Atributos principales del fichero de investigadores internos}{table.caption.39}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {B.1}{\ignorespaces Ejemplo visual de la estructura parcial de \texttt  {Investigadores\_internos.csv}.}}{66}{figure.caption.40}\protected@file@percent }
+\newlabel{fig:ejemplo_investigadores_internos}{{B.1}{66}{Ejemplo visual de la estructura parcial de \texttt {Investigadores\_internos.csv}}{figure.caption.40}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.1.2}Áreas de trabajo}{66}{subsection.B.1.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.2}{\ignorespaces Atributos principales del fichero de áreas de trabajo.}}{66}{table.caption.41}\protected@file@percent }
+\newlabel{tab:atributos_areas}{{B.2}{66}{Atributos principales del fichero de áreas de trabajo}{table.caption.41}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {B.2}{\ignorespaces Ejemplo visual de la estructura del fichero \texttt  {Areas.csv}.}}{66}{figure.caption.42}\protected@file@percent }
+\newlabel{fig:ejemplo_areas}{{B.2}{66}{Ejemplo visual de la estructura del fichero \texttt {Areas.csv}}{figure.caption.42}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.1.3}Revistas}{66}{subsection.B.1.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.3}{\ignorespaces Atributos principales del fichero de revistas.}}{66}{table.caption.43}\protected@file@percent }
+\newlabel{tab:atributos_revistas}{{B.3}{66}{Atributos principales del fichero de revistas}{table.caption.43}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {B.3}{\ignorespaces Ejemplo visual de la estructura del fichero \texttt  {Revistas.csv}.}}{67}{figure.caption.44}\protected@file@percent }
+\newlabel{fig:ejemplo_revistas}{{B.3}{67}{Ejemplo visual de la estructura del fichero \texttt {Revistas.csv}}{figure.caption.44}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.2}Ficheros de relaciones}{67}{section.B.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.2.1}Relación entre investigadores y áreas}{67}{subsection.B.2.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.4}{\ignorespaces Atributos principales de la relación entre investigadores y áreas.}}{67}{table.caption.45}\protected@file@percent }
+\newlabel{tab:atributos_es_parte_de}{{B.4}{67}{Atributos principales de la relación entre investigadores y áreas}{table.caption.45}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {B.4}{\ignorespaces Ejemplo visual de la estructura del fichero \texttt  {es\_parte\_de\_limpio\_listas.csv}.}}{67}{figure.caption.46}\protected@file@percent }
+\newlabel{fig:ejemplo_es_parte_de}{{B.4}{67}{Ejemplo visual de la estructura del fichero \texttt {es\_parte\_de\_limpio\_listas.csv}}{figure.caption.46}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.2.2}Relación entre investigadores y revistas}{67}{subsection.B.2.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.5}{\ignorespaces Atributos principales de los ficheros de la relación entre investigadores y revistas.}}{68}{table.caption.47}\protected@file@percent }
+\newlabel{tab:atributos_ha_publicado_en}{{B.5}{68}{Atributos principales de los ficheros de la relación entre investigadores y revistas}{table.caption.47}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {B.5}{\ignorespaces Ejemplo visual de un fichero de la relación \textit  {ha\_publicado\_en}.}}{68}{figure.caption.48}\protected@file@percent }
+\newlabel{fig:ejemplo_ha_publicado_en}{{B.5}{68}{Ejemplo visual de un fichero de la relación \textit {ha\_publicado\_en}}{figure.caption.48}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.2.3}Relación de coautoría}{68}{subsection.B.2.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.6}{\ignorespaces Atributos principales del fichero de relación de coautoría.}}{68}{table.caption.49}\protected@file@percent }
+\newlabel{tab:atributos_ha_publicado_con}{{B.6}{68}{Atributos principales del fichero de relación de coautoría}{table.caption.49}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {B.6}{\ignorespaces Ejemplo visual abreviado de la estructura de \texttt  {ha\_publicado\_con.csv}.}}{68}{figure.caption.50}\protected@file@percent }
+\newlabel{fig:ejemplo_ha_publicado_con}{{B.6}{68}{Ejemplo visual abreviado de la estructura de \texttt {ha\_publicado\_con.csv}}{figure.caption.50}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.2.4}Relación entre investigadores y proyectos}{68}{subsection.B.2.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.7}{\ignorespaces Atributos principales de los ficheros de la relación entre investigadores y proyectos.}}{69}{table.caption.51}\protected@file@percent }
+\newlabel{tab:atributos_ha_participado_en}{{B.7}{69}{Atributos principales de los ficheros de la relación entre investigadores y proyectos}{table.caption.51}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {B.7}{\ignorespaces Ejemplo visual de la estructura parcial de \textit  {ha\_participado\_en}.}}{69}{figure.caption.52}\protected@file@percent }
+\newlabel{fig:ejemplo_ha_participado_en}{{B.7}{69}{Ejemplo visual de la estructura parcial de \textit {ha\_participado\_en}}{figure.caption.52}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.2.5}Relación de colaboración en proyectos}{69}{subsection.B.2.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.8}{\ignorespaces Atributos principales del fichero de colaboración en proyectos.}}{69}{table.caption.53}\protected@file@percent }
+\newlabel{tab:atributos_ha_participado_con}{{B.8}{69}{Atributos principales del fichero de colaboración en proyectos}{table.caption.53}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {B.8}{\ignorespaces Ejemplo visual abreviado de la estructura de \texttt  {ha\_participado\_con.csv}.}}{69}{figure.caption.54}\protected@file@percent }
+\newlabel{fig:ejemplo_ha_participado_con}{{B.8}{69}{Ejemplo visual abreviado de la estructura de \texttt {ha\_participado\_con.csv}}{figure.caption.54}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.3}Estructuras auxiliares para el análisis semántico}{70}{section.B.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.3.1}Matriz de revistas y palabras clave}{70}{subsection.B.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.9}{\ignorespaces Estructura principal de la matriz de revistas y palabras clave.}}{70}{table.caption.55}\protected@file@percent }
+\newlabel{tab:atributos_one_hot_revistas}{{B.9}{70}{Estructura principal de la matriz de revistas y palabras clave}{table.caption.55}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {B.9}{\ignorespaces Ejemplo visual parcial de la matriz de revistas y palabras clave.}}{70}{figure.caption.56}\protected@file@percent }
+\newlabel{fig:ejemplo_one_hot_palabras_revistas}{{B.9}{70}{Ejemplo visual parcial de la matriz de revistas y palabras clave}{figure.caption.56}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.3.2}Matriz de investigadores y palabras clave}{70}{subsection.B.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.10}{\ignorespaces Estructura principal de la matriz de investigadores y palabras clave.}}{70}{table.caption.57}\protected@file@percent }
+\newlabel{tab:atributos_matriz_investigadores_keywords}{{B.10}{70}{Estructura principal de la matriz de investigadores y palabras clave}{table.caption.57}{}}
 \setcounter {appendix}{2}
-\@writefile{lof}{\contentsline {figure}{\numberline {B.10}{\ignorespaces Ejemplo visual parcial de la matriz de investigadores y palabras clave.}}{59}{figure.caption.47}\protected@file@percent }
-\newlabel{fig:ejemplo_matriz_investigadores_keywords}{{B.10}{59}{Ejemplo visual parcial de la matriz de investigadores y palabras clave}{figure.caption.47}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.3.3}Trazabilidad entre investigadores, revistas y palabras clave}{59}{subsection.B.3.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.11}{\ignorespaces Atributos principales del fichero de trazabilidad temática.}}{59}{table.caption.48}\protected@file@percent }
-\newlabel{tab:atributos_trazabilidad_keywords}{{B.11}{59}{Atributos principales del fichero de trazabilidad temática}{table.caption.48}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {B.11}{\ignorespaces Ejemplo visual parcial de trazabilidad entre investigadores, revistas y palabras clave.}}{59}{figure.caption.49}\protected@file@percent }
-\newlabel{fig:ejemplo_trazabilidad_keywords}{{B.11}{59}{Ejemplo visual parcial de trazabilidad entre investigadores, revistas y palabras clave}{figure.caption.49}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.3.4}Listado auxiliar de revistas}{59}{subsection.B.3.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.12}{\ignorespaces Atributo principal del listado auxiliar de revistas.}}{59}{table.caption.50}\protected@file@percent }
-\newlabel{tab:atributos_titulos_revistas}{{B.12}{59}{Atributo principal del listado auxiliar de revistas}{table.caption.50}{}}
-\gdef \@abspage@last{67}
+\@writefile{lof}{\contentsline {figure}{\numberline {B.10}{\ignorespaces Ejemplo visual parcial de la matriz de investigadores y palabras clave.}}{71}{figure.caption.58}\protected@file@percent }
+\newlabel{fig:ejemplo_matriz_investigadores_keywords}{{B.10}{71}{Ejemplo visual parcial de la matriz de investigadores y palabras clave}{figure.caption.58}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.3.3}Trazabilidad entre investigadores, revistas y palabras clave}{71}{subsection.B.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.11}{\ignorespaces Atributos principales del fichero de trazabilidad temática.}}{71}{table.caption.59}\protected@file@percent }
+\newlabel{tab:atributos_trazabilidad_keywords}{{B.11}{71}{Atributos principales del fichero de trazabilidad temática}{table.caption.59}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {B.11}{\ignorespaces Ejemplo visual parcial de trazabilidad entre investigadores, revistas y palabras clave.}}{71}{figure.caption.60}\protected@file@percent }
+\newlabel{fig:ejemplo_trazabilidad_keywords}{{B.11}{71}{Ejemplo visual parcial de trazabilidad entre investigadores, revistas y palabras clave}{figure.caption.60}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.3.4}Listado auxiliar de revistas}{71}{subsection.B.3.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.12}{\ignorespaces Atributo principal del listado auxiliar de revistas.}}{71}{table.caption.61}\protected@file@percent }
+\newlabel{tab:atributos_titulos_revistas}{{B.12}{71}{Atributo principal del listado auxiliar de revistas}{table.caption.61}{}}
+\gdef \@abspage@last{79}

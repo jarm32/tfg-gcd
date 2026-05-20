@@ -18,18 +18,24 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {6.1}{\ignorespaces Elementos considerados en el proceso de agrupamiento temático.}}{44}{table.caption.25}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces Resumen de las primeras pruebas realizadas con palabras clave explícitas.}}{45}{table.caption.26}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces Resumen de pruebas realizadas con la matriz ponderada de palabras clave.}}{47}{table.caption.28}%
+\contentsline {table}{\numberline {6.4}{\ignorespaces Resumen de pruebas iniciales realizadas sobre representaciones semánticas mediante embeddings.}}{50}{table.caption.30}%
+\contentsline {table}{\numberline {6.5}{\ignorespaces Resumen de pruebas realizadas tras la depuración del vocabulario.}}{52}{table.caption.32}%
+\contentsline {table}{\numberline {6.6}{\ignorespaces Comparación final de configuraciones tras la depuración del vocabulario.}}{54}{table.caption.33}%
+\contentsline {table}{\numberline {6.7}{\ignorespaces Resumen cualitativo del solapamiento entre configuraciones seleccionadas.}}{56}{table.caption.35}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {B.1}{\ignorespaces Atributos principales del fichero de investigadores internos.}}{53}{table.caption.28}%
-\contentsline {table}{\numberline {B.2}{\ignorespaces Atributos principales del fichero de áreas de trabajo.}}{54}{table.caption.30}%
-\contentsline {table}{\numberline {B.3}{\ignorespaces Atributos principales del fichero de revistas.}}{54}{table.caption.32}%
-\contentsline {table}{\numberline {B.4}{\ignorespaces Atributos principales de la relación entre investigadores y áreas.}}{55}{table.caption.34}%
-\contentsline {table}{\numberline {B.5}{\ignorespaces Atributos principales de los ficheros de la relación entre investigadores y revistas.}}{56}{table.caption.36}%
-\contentsline {table}{\numberline {B.6}{\ignorespaces Atributos principales del fichero de relación de coautoría.}}{56}{table.caption.38}%
-\contentsline {table}{\numberline {B.7}{\ignorespaces Atributos principales de los ficheros de la relación entre investigadores y proyectos.}}{57}{table.caption.40}%
-\contentsline {table}{\numberline {B.8}{\ignorespaces Atributos principales del fichero de colaboración en proyectos.}}{57}{table.caption.42}%
-\contentsline {table}{\numberline {B.9}{\ignorespaces Estructura principal de la matriz de revistas y palabras clave.}}{58}{table.caption.44}%
-\contentsline {table}{\numberline {B.10}{\ignorespaces Estructura principal de la matriz de investigadores y palabras clave.}}{58}{table.caption.46}%
-\contentsline {table}{\numberline {B.11}{\ignorespaces Atributos principales del fichero de trazabilidad temática.}}{59}{table.caption.48}%
-\contentsline {table}{\numberline {B.12}{\ignorespaces Atributo principal del listado auxiliar de revistas.}}{59}{table.caption.50}%
+\contentsline {table}{\numberline {B.1}{\ignorespaces Atributos principales del fichero de investigadores internos.}}{65}{table.caption.39}%
+\contentsline {table}{\numberline {B.2}{\ignorespaces Atributos principales del fichero de áreas de trabajo.}}{66}{table.caption.41}%
+\contentsline {table}{\numberline {B.3}{\ignorespaces Atributos principales del fichero de revistas.}}{66}{table.caption.43}%
+\contentsline {table}{\numberline {B.4}{\ignorespaces Atributos principales de la relación entre investigadores y áreas.}}{67}{table.caption.45}%
+\contentsline {table}{\numberline {B.5}{\ignorespaces Atributos principales de los ficheros de la relación entre investigadores y revistas.}}{68}{table.caption.47}%
+\contentsline {table}{\numberline {B.6}{\ignorespaces Atributos principales del fichero de relación de coautoría.}}{68}{table.caption.49}%
+\contentsline {table}{\numberline {B.7}{\ignorespaces Atributos principales de los ficheros de la relación entre investigadores y proyectos.}}{69}{table.caption.51}%
+\contentsline {table}{\numberline {B.8}{\ignorespaces Atributos principales del fichero de colaboración en proyectos.}}{69}{table.caption.53}%
+\contentsline {table}{\numberline {B.9}{\ignorespaces Estructura principal de la matriz de revistas y palabras clave.}}{70}{table.caption.55}%
+\contentsline {table}{\numberline {B.10}{\ignorespaces Estructura principal de la matriz de investigadores y palabras clave.}}{70}{table.caption.57}%
+\contentsline {table}{\numberline {B.11}{\ignorespaces Atributos principales del fichero de trazabilidad temática.}}{71}{table.caption.59}%
+\contentsline {table}{\numberline {B.12}{\ignorespaces Atributo principal del listado auxiliar de revistas.}}{71}{table.caption.61}%
