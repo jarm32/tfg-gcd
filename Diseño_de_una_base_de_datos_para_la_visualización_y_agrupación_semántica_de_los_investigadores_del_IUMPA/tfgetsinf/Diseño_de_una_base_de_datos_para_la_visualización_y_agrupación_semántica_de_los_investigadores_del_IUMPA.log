@@ -1,9 +1,12 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.18)  20 MAY 2026 02:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.18)  20 MAY 2026 15:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./tfg-gcd.tex
-(tfg-gcd.tex
+**./Diseño_de_una_base_de_datos_para_la_visualización_y_agrupación_semántic
+a_de_los_investigadores_del_IUMPA.tex
+
+(Diseño_de_una_base_de_datos_para_la_visualización_y_agrupación_semántica_d
+e_los_investigadores_del_IUMPA.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
 (tfgetsinf.cls
@@ -718,7 +721,9 @@ File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 tex.def
 File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count351
-) (tfg-gcd.aux
+)
+(Diseño_de_una_base_de_datos_para_la_visualización_y_agrupación_semántica_d
+e_los_investigadores_del_IUMPA.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 Package babel Info: 'spanish' activates 'spanish' shorthands.
@@ -734,7 +739,8 @@ LaTeX Info: Redefining \% on input line 15.
 LaTeX Info: Redefining \. on input line 17.
 LaTeX Info: Redefining \% on input line 17.
 )
-\openout1 = `tfg-gcd.aux'.
+\openout1 = `Diseño_de_una_base_de_datos_para_la_visualización_y_agrupación_
+semántica_de_los_investigadores_del_IUMPA.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 104.
 LaTeX Font Info:    ... okay on input line 104.
@@ -833,9 +839,13 @@ Package newfloat Info: `float' package detected.
 \c@lstlisting=\count358
 Package hyperref Info: Link coloring ON on input line 104.
 
-(tfg-gcd.out) (tfg-gcd.out)
+(Diseño_de_una_base_de_datos_para_la_visualización_y_agrupación_semántica_d
+e_los_investigadores_del_IUMPA.out)
+(Diseño_de_una_base_de_datos_para_la_visualización_y_agrupación_semántica_d
+e_los_investigadores_del_IUMPA.out)
 \@outlinefile=\write3
-\openout3 = `tfg-gcd.out'.
+\openout3 = `Diseño_de_una_base_de_datos_para_la_visualización_y_agrupación_
+semántica_de_los_investigadores_del_IUMPA.out'.
 
  [1
 
@@ -886,7 +896,9 @@ Package spanish Warning: Replacing `T1/lmr/bx/sc' by
 
 [3] [4
 
-] (tfg-gcd.toc
+]
+(Diseño_de_una_base_de_datos_para_la_visualización_y_agrupación_semántica_d
+e_los_investigadores_del_IUMPA.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 3.
@@ -960,9 +972,12 @@ Package spanish Warning: Replacing `T1/lmr/bx/sc' by
 
 [5])
 \tf@toc=\write4
-\openout4 = `tfg-gcd.toc'.
+\openout4 = `Diseño_de_una_base_de_datos_para_la_visualización_y_agrupación_
+semántica_de_los_investigadores_del_IUMPA.toc'.
 
- (tfg-gcd.lof
+
+(Diseño_de_una_base_de_datos_para_la_visualización_y_agrupación_semántica_d
+e_los_investigadores_del_IUMPA.lof
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 3.
@@ -981,10 +996,12 @@ LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 3
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ))
 \tf@lof=\write5
-\openout5 = `tfg-gcd.lof'.
+\openout5 = `Diseño_de_una_base_de_datos_para_la_visualización_y_agrupación_
+semántica_de_los_investigadores_del_IUMPA.lof'.
 
 
-(tfg-gcd.lot
+(Diseño_de_una_base_de_datos_para_la_visualización_y_agrupación_semántica_d
+e_los_investigadores_del_IUMPA.lot
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 3.
@@ -997,7 +1014,8 @@ LaTeX Info: Redefining \. on input line 7.
 LaTeX Info: Redefining \% on input line 7.
  [7])
 \tf@lot=\write6
-\openout6 = `tfg-gcd.lot'.
+\openout6 = `Diseño_de_una_base_de_datos_para_la_visualización_y_agrupación_
+semántica_de_los_investigadores_del_IUMPA.lot'.
 
 
 
@@ -1428,8 +1446,8 @@ LaTeX Info: Redefining \% on input line 1481.
 _jerarquico_depurado.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1517.
-LaTeX Info: Redefining \% on input line 1517.
+LaTeX Info: Redefining \. on input line 1518.
+LaTeX Info: Redefining \% on input line 1518.
  [55]
 <imgs/solapamiento_investigadores_jerCos_vs_jerCosUMAP.png, id=923, 650.43pt x 
 469.755pt>
@@ -1437,143 +1455,165 @@ File: imgs/solapamiento_investigadores_jerCos_vs_jerCosUMAP.png Graphic file (t
 ype png)
 <use imgs/solapamiento_investigadores_jerCos_vs_jerCosUMAP.png>
 Package pdftex.def Info: imgs/solapamiento_investigadores_jerCos_vs_jerCosUMAP.
-png  used on input line 1522.
+png  used on input line 1524.
 (pdftex.def)             Requested size: 332.89673pt x 240.43202pt.
+LaTeX Info: Redefining \. on input line 1533.
+LaTeX Info: Redefining \% on input line 1533.
 
-Underfull \vbox (badness 3930) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 1532.
-LaTeX Info: Redefining \% on input line 1532.
- [56 <./imgs/solapamiento_investigadores_jerCos_vs_jerCosUMAP.png>]
-Underfull \vbox (badness 6493) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 1547.
-LaTeX Info: Redefining \% on input line 1547.
+[56 <./imgs/solapamiento_investigadores_jerCos_vs_jerCosUMAP.png>]
+LaTeX Info: Redefining \. on input line 1548.
+LaTeX Info: Redefining \% on input line 1548.
  [57]
-LaTeX Info: Redefining \. on input line 1565.
-LaTeX Info: Redefining \% on input line 1565.
+LaTeX Info: Redefining \. on input line 1567.
+LaTeX Info: Redefining \% on input line 1567.
 
 [58]
 Cap\'{\i }tulo 7.
 [59
 
 ]
-LaTeX Info: Redefining \. on input line 1595.
-LaTeX Info: Redefining \% on input line 1595.
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 1600.
+LaTeX Info: Redefining \% on input line 1600.
  [60]
-Underfull \hbox (badness 1571) in paragraph at lines 1648--1651
+LaTeX Info: Redefining \. on input line 1615.
+LaTeX Info: Redefining \% on input line 1615.
+
+[61]
+LaTeX Info: Redefining \. on input line 1633.
+LaTeX Info: Redefining \% on input line 1633.
+ [62]
+LaTeX Info: Redefining \. on input line 1654.
+LaTeX Info: Redefining \% on input line 1654.
+ [63]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 1669.
+LaTeX Info: Redefining \% on input line 1669.
+ [64]
+LaTeX Info: Redefining \. on input line 1675.
+LaTeX Info: Redefining \% on input line 1675.
+
+[65] [66
+
+]
+Underfull \hbox (badness 1571) in paragraph at lines 1728--1731
 []\T1/lmr/m/n/10.95 Universitat Po-li-t�c-ni-ca de Va-l�n-cia.  \T1/lmr/m/it/10
 .95 Pa-no-ra-ma UPV: Por-tal de Pro-duc-ci�n
  []
 
-[61
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 1705--1708
+[67]
+Underfull \hbox (badness 10000) in paragraph at lines 1785--1788
 []\T1/lmr/m/n/10.95 Sentence Trans-for-mers.  \T1/lmr/m/it/10.95 paraphrase-mul
 tilingual-MiniLM-L12-v2\T1/lmr/m/n/10.95 .  Dis-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1705--1708
+Underfull \hbox (badness 10000) in paragraph at lines 1785--1788
 \T1/lmr/m/n/10.95 po-ni-ble en: [][]$\T1/lmtt/m/n/10.95 https : / / huggingface
  . co / sentence-[]transformers /
  []
 
-LaTeX Info: Redefining \. on input line 1766.
-LaTeX Info: Redefining \% on input line 1766.
-[62]
+LaTeX Info: Redefining \. on input line 1846.
+LaTeX Info: Redefining \% on input line 1846.
+[68]
 Ap\'{e}ndice A.
-[63
+[69
 
-
-] [64
 
 ]
+LaTeX Info: Redefining \. on input line 1884.
+LaTeX Info: Redefining \% on input line 1884.
+ [70]
 Ap\'{e}ndice B.
-<imgs/Investigadores_internos.png, id=987, 842.39719pt x 167.12437pt>
+<imgs/Investigadores_internos.png, id=1012, 842.39719pt x 167.12437pt>
 File: imgs/Investigadores_internos.png Graphic file (type png)
 <use imgs/Investigadores_internos.png>
 Package pdftex.def Info: imgs/Investigadores_internos.png  used on input line 1
-832.
+929.
 (pdftex.def)             Requested size: 426.79135pt x 84.67126pt.
-[65]
-<imgs/Areas.png, id=993, 197.23688pt x 152.82094pt>
+[71
+
+]
+<imgs/Areas.png, id=1018, 197.23688pt x 152.82094pt>
 File: imgs/Areas.png Graphic file (type png)
 <use imgs/Areas.png>
-Package pdftex.def Info: imgs/Areas.png  used on input line 1863.
+Package pdftex.def Info: imgs/Areas.png  used on input line 1960.
 (pdftex.def)             Requested size: 128.0387pt x 99.2065pt.
-<imgs/Revistas.png, id=994, 791.95876pt x 164.86594pt>
+<imgs/Revistas.png, id=1019, 791.95876pt x 164.86594pt>
 File: imgs/Revistas.png Graphic file (type png)
 <use imgs/Revistas.png>
-Package pdftex.def Info: imgs/Revistas.png  used on input line 1896.
+Package pdftex.def Info: imgs/Revistas.png  used on input line 1993.
 (pdftex.def)             Requested size: 362.77525pt x 75.52226pt.
-LaTeX Info: Redefining \. on input line 1900.
-LaTeX Info: Redefining \% on input line 1900.
- [66 <./imgs/Investigadores_internos.png> <./imgs/Areas.png>]
-<imgs/es_parte_de.png, id=1001, 489.32813pt x 164.86594pt>
+LaTeX Info: Redefining \. on input line 1997.
+LaTeX Info: Redefining \% on input line 1997.
+ [72 <./imgs/Investigadores_internos.png> <./imgs/Areas.png>]
+<imgs/es_parte_de.png, id=1026, 489.32813pt x 164.86594pt>
 File: imgs/es_parte_de.png Graphic file (type png)
 <use imgs/es_parte_de.png>
-Package pdftex.def Info: imgs/es_parte_de.png  used on input line 1931.
+Package pdftex.def Info: imgs/es_parte_de.png  used on input line 2028.
 (pdftex.def)             Requested size: 362.77525pt x 122.2303pt.
-LaTeX Info: Redefining \. on input line 1961.
-LaTeX Info: Redefining \% on input line 1961.
- [67 <./imgs/Revistas.png> <./imgs/es_parte_de.png>]
-<imgs/ha_publicado_en_JMCR.png, id=1008, 926.71219pt x 167.12437pt>
+LaTeX Info: Redefining \. on input line 2058.
+LaTeX Info: Redefining \% on input line 2058.
+ [73 <./imgs/Revistas.png> <./imgs/es_parte_de.png>]
+<imgs/ha_publicado_en_JMCR.png, id=1033, 926.71219pt x 167.12437pt>
 File: imgs/ha_publicado_en_JMCR.png Graphic file (type png)
 <use imgs/ha_publicado_en_JMCR.png>
-Package pdftex.def Info: imgs/ha_publicado_en_JMCR.png  used on input line 1964
+Package pdftex.def Info: imgs/ha_publicado_en_JMCR.png  used on input line 2061
 .
 (pdftex.def)             Requested size: 426.79135pt x 76.96738pt.
-<imgs/ha_publicado_con.png, id=1009, 1056.19594pt x 167.12437pt>
+<imgs/ha_publicado_con.png, id=1034, 1056.19594pt x 167.12437pt>
 File: imgs/ha_publicado_con.png Graphic file (type png)
 <use imgs/ha_publicado_con.png>
-Package pdftex.def Info: imgs/ha_publicado_con.png  used on input line 1995.
+Package pdftex.def Info: imgs/ha_publicado_con.png  used on input line 2092.
 (pdftex.def)             Requested size: 426.79135pt x 67.53198pt.
-LaTeX Info: Redefining \. on input line 2033.
-LaTeX Info: Redefining \% on input line 2033.
- [68 <./imgs/ha_publicado_en_JMCR.png> <./imgs/ha_publicado_con.png>]
-<imgs/ha_participado_en_JMCR.png, id=1016, 1026.83624pt x 166.37157pt>
+LaTeX Info: Redefining \. on input line 2130.
+LaTeX Info: Redefining \% on input line 2130.
+ [74 <./imgs/ha_publicado_en_JMCR.png> <./imgs/ha_publicado_con.png>]
+<imgs/ha_participado_en_JMCR.png, id=1041, 1026.83624pt x 166.37157pt>
 File: imgs/ha_participado_en_JMCR.png Graphic file (type png)
 <use imgs/ha_participado_en_JMCR.png>
-Package pdftex.def Info: imgs/ha_participado_en_JMCR.png  used on input line 20
-36.
+Package pdftex.def Info: imgs/ha_participado_en_JMCR.png  used on input line 21
+33.
 (pdftex.def)             Requested size: 426.79135pt x 69.14952pt.
-<imgs/ha_participado_con.png, id=1017, 775.39688pt x 165.61874pt>
+<imgs/ha_participado_con.png, id=1042, 775.39688pt x 165.61874pt>
 File: imgs/ha_participado_con.png Graphic file (type png)
 <use imgs/ha_participado_con.png>
-Package pdftex.def Info: imgs/ha_participado_con.png  used on input line 2067.
+Package pdftex.def Info: imgs/ha_participado_con.png  used on input line 2164.
 (pdftex.def)             Requested size: 426.79135pt x 91.16135pt.
-LaTeX Info: Redefining \. on input line 2075.
-LaTeX Info: Redefining \% on input line 2075.
- [69 <./imgs/ha_participado_en_JMCR.png> <./imgs/ha_participado_con.png>]
-<imgs/one_hot_palabras_revistas_filtrado.png, id=1024, 500.62032pt x 167.12437p
+LaTeX Info: Redefining \. on input line 2172.
+LaTeX Info: Redefining \% on input line 2172.
+ [75 <./imgs/ha_participado_en_JMCR.png> <./imgs/ha_participado_con.png>]
+<imgs/one_hot_palabras_revistas_filtrado.png, id=1049, 500.62032pt x 167.12437p
 t>
 File: imgs/one_hot_palabras_revistas_filtrado.png Graphic file (type png)
 <use imgs/one_hot_palabras_revistas_filtrado.png>
 Package pdftex.def Info: imgs/one_hot_palabras_revistas_filtrado.png  used on i
-nput line 2104.
+nput line 2201.
 (pdftex.def)             Requested size: 320.0935pt x 106.86232pt.
-<imgs/matriz_investigadores_keywords.png, id=1025, 528.47438pt x 168.63pt>
+<imgs/matriz_investigadores_keywords.png, id=1050, 528.47438pt x 168.63pt>
 File: imgs/matriz_investigadores_keywords.png Graphic file (type png)
 <use imgs/matriz_investigadores_keywords.png>
 Package pdftex.def Info: imgs/matriz_investigadores_keywords.png  used on input
- line 2137.
+ line 2234.
 (pdftex.def)             Requested size: 341.43437pt x 108.9469pt.
-LaTeX Info: Redefining \. on input line 2141.
-LaTeX Info: Redefining \% on input line 2141.
- [70 <./imgs/one_hot_palabras_revistas_filtrado.png>]
-<imgs/trazabilidad_keywords_revistas.png, id=1031, 334.24875pt x 166.37157pt>
+LaTeX Info: Redefining \. on input line 2238.
+LaTeX Info: Redefining \% on input line 2238.
+ [76 <./imgs/one_hot_palabras_revistas_filtrado.png>]
+<imgs/trazabilidad_keywords_revistas.png, id=1056, 334.24875pt x 166.37157pt>
 File: imgs/trazabilidad_keywords_revistas.png Graphic file (type png)
 <use imgs/trazabilidad_keywords_revistas.png>
 Package pdftex.def Info: imgs/trazabilidad_keywords_revistas.png  used on input
- line 2170.
+ line 2267.
 (pdftex.def)             Requested size: 213.39568pt x 106.22102pt.
-LaTeX Info: Redefining \. on input line 2213.
-LaTeX Info: Redefining \% on input line 2213.
+LaTeX Info: Redefining \. on input line 2310.
+LaTeX Info: Redefining \% on input line 2310.
 
-[71 <./imgs/matriz_investigadores_keywords.png> <./imgs/trazabilidad_keywords_r
-evistas.png>] (tfg-gcd.aux
+[77 <./imgs/matriz_investigadores_keywords.png> <./imgs/trazabilidad_keywords_r
+evistas.png>]
+(Diseño_de_una_base_de_datos_para_la_visualización_y_agrupación_semántica_d
+e_los_investigadores_del_IUMPA.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 LaTeX Info: Redefining \. on input line 13.
@@ -1593,17 +1633,19 @@ L3 programming layer <2026-03-20>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package rerunfilecheck Info: File `tfg-gcd.out' has not changed.
-(rerunfilecheck)             Checksum: 06688B0C4A4808E082FFD534A57C6020;17997.
+Package rerunfilecheck Info: File `Diseño_de_una_base_de_datos_para_la_visuali
+zación_y_agrupación_semántica_de_los_investigadores_del_IUMPA.out' has not c
+hanged.
+(rerunfilecheck)             Checksum: C5335AD0BDE2D9D0D2BD70E4F9705F80;18157.
  ) 
 Here is how much of TeX's memory you used:
- 18889 strings out of 467691
- 309449 string characters out of 5414987
- 756857 words of memory out of 5000000
+ 18895 strings out of 467691
+ 313026 string characters out of 5414987
+ 757059 words of memory out of 5000000
  47386 multiletter control sequences out of 15000+600000
  739484 words of font info for 113 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 90i,13n,93p,949b,978s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,13n,93p,1050b,978s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/josep/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmr10.pfb><C:/Users/josep/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
 mbx10.pfb><C:/Users/josep/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
@@ -1624,9 +1666,10 @@ y10.pfb><C:/Users/josep/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lms
 y6.pfb><C:/Users/josep/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy
 8.pfb><C:/Users/josep/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt1
 0.pfb>
-Output written on tfg-gcd.pdf (79 pages, 3803609 bytes).
+Output written on Diseño_de_una_base_de_datos_para_la_visualización_y_agrupac
+ión_semántica_de_los_investigadores_del_IUMPA.pdf (85 pages, 3826089 bytes).
 PDF statistics:
- 1184 PDF objects out of 1200 (max. 8388607)
- 239 named destinations out of 1000 (max. 500000)
+ 1210 PDF objects out of 1440 (max. 8388607)
+ 245 named destinations out of 1000 (max. 500000)
  791 words of extra memory for PDF output out of 10000 (max. 10000000)
 
