@@ -244,3 +244,54 @@ resultado_k5$Investigador = as.numeric(as.character(resultado_k5$Investigador))
 
 n = left_join(resultado_k5, investigadores_lista, by="Investigador")
 
+###############################################
+# PALABRAS CLAVE REPRESENTATIVAS POR CLUSTER
+###############################################
+
+# Cargar tabla investigador-keyword.
+library(readxl)
+library(tidyr)
+library(dplyr)
+
+mat_keywords <- read_excel(
+  "C:/Code/tfg-gcd/_Clusterization/Sin_Locl/Investigadores y keywords/Matriz_Investigadores_Keywords_sinlocl.xlsx"
+)
+
+keywords_inv <- mat_keywords %>%
+  pivot_longer(
+    cols = -Investigador,
+    names_to = "keyword",
+    values_to = "valor"
+  ) %>%
+  filter(valor > 0) %>%
+  rename(Nombre = Investigador)
+
+# Unir clusters con palabras clave
+clusters_keywords <- n %>%
+  select(Nombre, Cluster) %>%
+  inner_join(keywords_inv, by = "Nombre")
+
+# Contar palabras por cluster
+keywords_cluster <- clusters_keywords %>%
+  group_by(Cluster, keyword) %>%
+  summarise(
+    frecuencia = n(),
+    .groups = "drop"
+  ) %>%
+  arrange(Cluster, desc(frecuencia))
+
+# Obtener top N palabras por cluster
+top_n <- 15
+
+top_keywords_cluster <- keywords_cluster %>%
+  group_by(Cluster) %>%
+  slice_max(order_by = frecuencia, n = top_n, with_ties = FALSE) %>%
+  ungroup()
+
+print(top_keywords_cluster)
+
+write.csv(
+  top_keywords_cluster,
+  "UMAP_Resultados/Keywords_representativas_por_cluster.csv",
+  row.names = FALSE
+)

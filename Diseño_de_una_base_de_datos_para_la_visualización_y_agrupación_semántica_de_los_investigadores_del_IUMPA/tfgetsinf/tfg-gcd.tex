@@ -962,8 +962,6 @@ No obstante, la aplicación debe entenderse como una herramienta exploratoria co
 
 \chapter{Agrupación semántica de investigadores}
 
-\textit{BORRAR Este capítulo describirá la ampliación analítica del proyecto, orientada a estudiar afinidades temáticas entre investigadores a partir de las revistas en las que han publicado. Para ello, se explicará el proceso de obtención de palabras clave representativas, la construcción de representaciones temáticas de los investigadores y la aplicación de distintos modelos de clustering y reducción de dimensionalidad. El objetivo será mostrar el proceso metodológico seguido hasta obtener una agrupación semántica interpretable.}
-
 Tras la construcción de la base de datos y el desarrollo de los grafos interactivos, el proyecto ya permitía explorar la actividad investigadora del IUMPA desde una perspectiva relacional. Sobre esta base, se planteó estudiar si los datos recopilados podían revelar afinidades temáticas entre investigadores más allá de las colaboraciones y publicaciones observables. Para ello, se propuso una ampliación analítica basada en las revistas en las que publica cada investigador, partiendo de la idea de que dichas revistas pueden aportar información sobre sus áreas de interés al estar asociadas a diferentes campos.
 
 A partir de esta hipótesis, se utilizaron palabras clave representativas de las revistas para construir perfiles temáticos de los investigadores y aplicar distintos métodos de agrupamiento orientados a identificar posibles grupos con intereses próximos.
@@ -1083,40 +1081,27 @@ De esta forma, cada investigador dejó de estar representado únicamente por una
 
 Esta transformación permitió trabajar con una representación más flexible de los investigadores. Mientras que la matriz binaria resultaba útil como primera aproximación interpretable, los embeddings incorporaban una dimensión semántica que permitía comparar perfiles más allá de la coincidencia exacta de palabras clave, recogiendo afinidades entre términos conceptualmente próximos.
 
-\section{Modelos de clustering}
-
-\textit{BORRAR Este apartado presentará los distintos modelos de agrupación aplicados sobre las representaciones temáticas construidas. Se describirán las pruebas realizadas con diferentes medidas de distancia, métodos de clustering y técnicas de reducción de dimensionalidad, así como los criterios utilizados para comparar sus resultados. El apartado también recogerá las dificultades encontradas durante el proceso experimental y las decisiones metodológicas adoptadas para seleccionar las configuraciones más adecuadas.}
+\section{Clustering y evaluación}
 
 Una vez que cada investigador quedó descrito mediante un perfil temático, el análisis podía avanzar desde la representación individual hacia la búsqueda de patrones compartidos. La cuestión, por tanto, se convirtió en estudiar si esos perfiles permitían reconocer grupos con intereses próximos, no definidos únicamente por las áreas institucionales del IUMPA.
 
-Este planteamiento se abordó como una tarea de aprendizaje no supervisado. No se buscaba entrenar un modelo para reproducir una clasificación conocida, sino explorar la estructura interna de los perfiles construidos a partir de revistas y palabras clave. Aunque el instituto cuenta con áreas de trabajo asignadas a los investigadores, estas no se mantuvieron como variable de entrada en el modelo de clustering. En las pruebas realizadas, su inclusión hacía que la agrupación quedara fuertemente condicionada por dicha clasificación previa, reuniendo a los investigadores principalmente según el área a la que pertenecían. Por este motivo, se decidió excluirlas del análisis y trabajar únicamente con la información derivada de las revistas y del vocabulario temático, permitiendo al agrupamiento explorar posibles afinidades complementarias a las áreas institucionales, en lugar de limitarse a reproducirlas.
+Este planteamiento se abordó como una tarea de aprendizaje no supervisado, ya que no se buscaba entrenar un modelo para reproducir una clasificación conocida, sino explorar la estructura interna de los perfiles construidos a partir de revistas y palabras clave.
 
-El proceso de agrupamiento se desarrolló de forma experimental, comparando distintas configuraciones a partir de las representaciones descritas en el apartado anterior. Esta fase no consistió en aplicar un único modelo, sino en probar varias formas de representar los perfiles, medir la proximidad entre ellos y construir agrupaciones. Para ello se trabajó de manera progresiva, comenzando con representaciones basadas en palabras clave explícitas y avanzando posteriormente hacia representaciones semánticas mediante \textit{word embeddings}.
+Aunque el instituto cuenta con áreas de trabajo asignadas a los investigadores, estas no se mantuvieron como variable de entrada en el modelo de clustering. En las pruebas realizadas, su inclusión hacía que la agrupación quedara fuertemente condicionada por dicha clasificación previa, reuniendo a los investigadores principalmente según el área a la que pertenecían. Por este motivo, se decidió excluirlas del análisis y trabajar únicamente con la información derivada de las revistas y del vocabulario temático, permitiendo al agrupamiento explorar posibles afinidades complementarias a las áreas institucionales, en lugar de limitarse a reproducirlas.
 
-En una primera fase se utilizó la matriz binaria de presencia y ausencia de palabras clave. Esta representación permitía comparar a los investigadores según los términos asociados a las revistas en las que habían publicado, por lo que constituía una aproximación sencilla e interpretable al problema. Sobre esta matriz se probaron medidas de proximidad adecuadas para datos binarios, como Jaccard y Hamming, con el objetivo de comprobar si la coincidencia directa entre palabras clave era suficiente para formar grupos temáticamente coherentes.
+El proceso de agrupamiento se desarrolló de forma experimental, comparando distintas configuraciones a partir de las representaciones descritas previamente. Esta fase no consistió en aplicar un único modelo, sino en probar varias formas de representar los perfiles, medir la proximidad entre ellos y construir agrupaciones. Para ello se trabajó de manera progresiva, comenzando con representaciones basadas en palabras clave explícitas y avanzando posteriormente hacia representaciones semánticas mediante \textit{word embeddings}.
 
-Estas primeras pruebas sirvieron como punto de referencia, pero también mostraron las limitaciones de trabajar únicamente con presencia o ausencia de términos. En particular, dos perfiles conceptualmente próximos podían quedar separados si estaban descritos mediante vocabularios distintos. Por ello, se incorporó una segunda representación basada en una versión ponderada de la matriz inicial.
-
-La matriz ponderada mantenía la misma estructura de investigador y palabra clave, pero los valores dejaban de ser únicamente binarios, ya que cada término incorporaba un peso dependiente de su frecuencia. Esta ponderación, basada en la penalización gaussiana, buscaba dar mayor importancia a los términos de frecuencia intermedia y reducir la influencia de palabras excesivamente comunes o demasiado aisladas. Sobre esta representación se probaron medidas aplicables a vectores numéricos, como la distancia euclídea, Manhattan, coseno y correlación. De este modo, se evaluaba si una representación más equilibrada del vocabulario mejoraba la formación de grupos sin abandonar todavía el enfoque basado en palabras clave explícitas.
-
-No obstante, tanto la matriz binaria como la matriz ponderada seguían dependiendo de coincidencias literales entre términos, lo que daba lugar a resultados poco acertados. Por este motivo, el análisis se trasladó posteriormente a las representaciones semánticas obtenidas mediante \textit{word embeddings}. En este caso, cada investigador quedaba representado mediante un vector continuo que resumía el contenido semántico de sus palabras clave. A partir de estos vectores se probaron nuevas configuraciones de clustering, variando tanto la medida de proximidad utilizada como el número de grupos considerado.
-
-Durante esta fase también se valoraron distintas alternativas para generar los agrupamientos. Una posibilidad contemplada fue utilizar mapas autoorganizados o \textit{Self-Organizing Maps} (SOM), que combinan reducción de dimensionalidad y agrupamiento visual de perfiles similares. Esta opción resultaba interesante como vía exploratoria, pero finalmente el análisis se centró en el clustering jerárquico, al ofrecer una estructura más directa para comparar distancias entre investigadores y estudiar distintas particiones del mismo árbol de agrupamiento.
-
-El método de agrupamiento utilizado fue, por tanto, principalmente el clustering jerárquico. Este enfoque resultaba adecuado para el carácter exploratorio del análisis, ya que permite construir una estructura progresiva de agrupación y estudiar distintas particiones del árbol resultante. De esta forma, no era necesario fijar un único número de grupos desde el inicio, sino que podían compararse distintos cortes del dendrograma y valorar qué particiones ofrecían una separación más clara y una interpretación temática más coherente.
-
-Además de dicho método de agrupamiento, también se estudiaron distintas formas de representar los perfiles antes de aplicar el clustering. En particular, se valoraron técnicas de reducción y proyección de dimensionalidad con el objetivo de simplificar la estructura de los embeddings y facilitar la detección de patrones. Entre las alternativas consideradas se encontraban métodos lineales como PCA y enfoques no lineales orientados a preservar relaciones de proximidad entre observaciones.
-
-Dentro de estas alternativas, la técnica que terminó adquiriendo mayor relevancia fue UMAP~\cite{umap}. Este método permite proyectar datos de alta dimensión en espacios de menor dimensión preservando, en la medida de lo posible, la estructura de vecindades entre observaciones. Su uso permitía comparar agrupamientos obtenidos directamente sobre los embeddings con otros generados tras una representación más compacta de los perfiles, comprobando si esta proyección facilitaba la aparición de estructuras temáticas más claras o si, por el contrario, alteraba en exceso la organización original de los datos.
-
-También se tuvo en cuenta la versión del vocabulario empleada. En una primera fase se trabajó con el vocabulario completo, pero durante la revisión de los resultados se detectó que determinadas palabras clave hacían referencia a localizaciones geográficas u otros elementos contextuales. Estos términos podían introducir similitudes poco relevantes para el objetivo del análisis, ya que relacionaban perfiles por elementos externos al contenido científico de las revistas. Por ello, se repitieron las pruebas principales sobre una versión depurada del vocabulario, eliminando las referencias de localización. Esta comparación permitía estudiar si las agrupaciones respondían realmente a afinidades temáticas o si estaban parcialmente influidas por coincidencias contextuales.
-
-Cada configuración del proceso dependía, por tanto, de varios elementos: la representación de entrada, la versión del vocabulario, la medida de proximidad, el método de agrupamiento, el número de grupos considerado y la posible aplicación de reducción de dimensionalidad. La Tabla~\ref{tab:elementos_clustering} resume los componentes principales considerados durante esta fase experimental.
+Cada configuración del proceso dependía, por tanto, de la representación de entrada, la versión del vocabulario, la medida de proximidad, el método de agrupamiento, el número de grupos considerado y la posible aplicación de reducción de dimensionalidad. La Tabla~\ref{tab:elementos_clustering} resume los componentes principales considerados durante esta fase experimental.
 
 \begin{table}[H]
 \centering
 \small
-\begin{tabular}{p{0.24\textwidth} p{0.36\textwidth} p{0.30\textwidth}}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{
+>{\centering\arraybackslash}m{0.24\textwidth}
+m{0.36\textwidth}
+m{0.30\textwidth}
+}
 \hline
 \textbf{Elemento} & \textbf{Opciones consideradas} & \textbf{Función dentro del análisis} \\
 \hline
@@ -1126,22 +1111,305 @@ Versión del vocabulario & Vocabulario completo y vocabulario depurado sin térm
 \hline
 Medidas de proximidad & Jaccard, Hamming, coseno, correlación, euclídea y Manhattan & Cuantificar la cercanía o diferencia entre perfiles de investigadores \\
 \hline
-Método de agrupamiento & Clustering jerárquico & Construir grupos de investigadores a partir de la proximidad entre perfiles \\
+Métodos de agrupamiento & Clustering jerárquico, K-means, PAM, Fuzzy C-Means, Spectral Clustering, GMM, DBSCAN y HDBSCAN & Comparar distintas formas de construir grupos a partir de los perfiles \\
 \hline
-Número de grupos & Distintas particiones del árbol jerárquico & Comparar cortes alternativos del dendrograma y valorar su coherencia \\
+Número de grupos o parámetros de agrupamiento & Distintos valores de \(k\) en k-means, cortes del dendrograma en jerárquico y variación de parámetros como \(\varepsilon\) en DBSCAN & Estudiar cómo cambia la estructura de grupos según la configuración del modelo \\
 \hline
-Reducción de dimensionalidad & Configuraciones sin reducción y configuraciones con UMAP & Comparar los agrupamientos obtenidos en el espacio original y en una proyección de menor dimensión \\
+Reducción de dimensionalidad & Configuraciones sin reducción, PCA y UMAP & Comparar los agrupamientos obtenidos en el espacio original y en proyecciones de menor dimensión \\
 \hline
-Evaluación & Índice de Silhouette, revisión temática y comparación de solapamientos & Comparar configuraciones y valorar la coherencia de las agrupaciones \\
+Evaluación & Índice de Silhouette, visualizaciones, revisión manual de la coherencia temática y comparación de solapamientos & Comparar configuraciones y valorar la coherencia de las agrupaciones \\
 \hline
 \end{tabular}
 \caption{Elementos considerados en el proceso de agrupamiento temático.}
 \label{tab:elementos_clustering}
 \end{table}
 
-La elección de la medida de proximidad dependía del tipo de representación utilizada. En las matrices binarias, medidas como Jaccard o Hamming permitían comparar perfiles según la coincidencia o diferencia en la presencia de palabras clave. En las representaciones ponderadas y en los embeddings, en cambio, resultaban más adecuadas medidas aplicadas sobre vectores numéricos, como el coseno, la correlación, la distancia euclídea o la distancia Manhattan. Esta variedad de medidas permitía comprobar si la estructura de los grupos dependía de una única definición de cercanía o si aparecían patrones similares bajo distintas formas de medir la proximidad temática.
+\subsection{Primeras pruebas con palabras clave explícitas}
 
-La evaluación de las configuraciones no se basó únicamente en la inspección visual de los grupos. Para disponer de una medida cuantitativa se utilizó el índice de Silhouette~\cite{rousseeuw}, que permite valorar hasta qué punto cada observación está mejor asignada a su propio grupo que a grupos alternativos. Para un investigador \(i\), este índice puede expresarse como:
+La primera aproximación al agrupamiento se realizó utilizando directamente la matriz de presencia y ausencia de palabras clave. En esta representación, cada investigador quedaba descrito por los términos asociados a las revistas en las que había publicado, sin incorporar todavía ponderaciones ni relaciones semánticas entre palabras. El objetivo de esta fase era comprobar si las coincidencias literales entre palabras clave bastaban para identificar grupos de investigadores con perfiles temáticos próximos.
+
+Sobre esta matriz se probaron distintas medidas de proximidad. En primer lugar, se utilizaron medidas especialmente adecuadas para datos binarios, como Jaccard y Hamming, ya que permiten comparar perfiles según la coincidencia o diferencia en la presencia de términos. Además, también se probaron otras medidas como coseno, correlación, distancia euclídea y Manhattan, con el fin de observar si la estructura de los grupos variaba al cambiar la forma de medir la proximidad entre investigadores.
+
+En cuanto a los métodos de clusterización, la variante jerárquica fue una de las primeras alternativas utilizadas en esta fase, ya que permitía analizar diferentes particiones a partir de un mismo árbol de agrupamiento. Para ello, se ensayaron distintos criterios de enlace, como \textit{average}, \textit{complete}, \textit{single} y \textit{ward.D2}, y se compararon varios valores de \(k\). Esta variedad de configuraciones permitía comprobar si los grupos aparecían de forma estable o si dependían en exceso de la métrica y del enlace utilizados.
+
+Junto a las pruebas jerárquicas, también se aplicaron otros métodos de agrupamiento sobre la misma representación, como K-means, PAM, Fuzzy C-Means, Spectral Clustering o GMM. La finalidad de estas pruebas era comprobar si las limitaciones observadas procedían del algoritmo de clustering o de la propia representación basada en coincidencias literales de palabras clave. La Tabla~\ref{tab:primeras_pruebas_keywords} muestra un resumen de las principales configuraciones probadas en esta fase inicial y de la interpretación general obtenida a partir de ellas.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{
+>{\centering\arraybackslash}m{0.30\textwidth}
+>{\centering\arraybackslash}m{0.18\textwidth}
+m{0.42\textwidth}
+}
+\hline
+\textbf{Configuración} & \textbf{Mejor Silhouette} & \textbf{Observación principal} \\
+\hline
+Jerárquico + Jaccard & 0.252 & Solapamiento entre grupos y separación limitada \\
+\hline
+Jerárquico + Euclídea & 0.210 & División general en pocos grupos, con baja cohesión interna \\
+\hline
+Jerárquico + Coseno & 0.273 & Algunas particiones razonables, pero sin estructura suficientemente clara \\
+\hline
+Jerárquico + Correlación & 0.258 & Resultados moderados, con dependencia de la partición elegida \\
+\hline
+Jerárquico + Manhattan & 0.329 & Mejor comportamiento relativo en esta fase, aunque todavía con interpretación limitada \\
+\hline
+K-means + Euclídea & 0.129 & Particiones poco interpretables sin mejora frente al enfoque jerárquico \\
+\hline
+K-means + Euclídea + PCA & 0.198 & Ligera mejora respecto a K-means, pero todavía insuficiente \\
+\hline
+PAM + Jaccard & 0.174 & No ofreció una estructura clara de grupos \\
+\hline
+PAM + Manhattan & 0.220 & Resultado algo mejor que Jaccard, pero sin una separación suficientemente sólida \\
+\hline
+Fuzzy C-Means & 0.161 & Agrupaciones débiles y poco útiles para la interpretación temática \\
+\hline
+Spectral Clustering & 0.098 & Resultado muy bajo, sin estructura aprovechable \\
+\hline
+GMM & -0.066 & Resultado negativo, indicando asignaciones no adecuadas \\
+\hline
+\end{tabular}
+\caption{Resumen de las primeras pruebas realizadas con palabras clave explícitas.}
+\label{tab:primeras_pruebas_keywords}
+\end{table}
+
+Los resultados obtenidos en esta primera fase mostraron una separación limitada entre grupos. La mejor configuración dentro del clustering jerárquico fue la basada en distancia Manhattan, con un valor máximo de Silhouette de 0.329, mientras que el resto de métricas se mantuvieron en valores más bajos. Los métodos alternativos (K-means, PAM, Fuzzy C-Means, Spectral Clustering y GMM) tampoco ofrecieron una mejora clara, produciendo valores reducidos y agrupaciones difíciles de interpretar en general.
+
+Además de los valores numéricos, las visualizaciones generadas durante esta fase permitieron observar solapamientos entre perfiles y particiones poco equilibradas. La Figura~\ref{fig:primeras_pruebas_keywords} muestra una configuración representativa de esta primera etapa, basada en distancia Manhattan y clustering jerárquico con enlace \textit{average}. Su objetivo no es presentar un modelo final, sino ilustrar las limitaciones observadas al trabajar únicamente con coincidencias explícitas de palabras clave. Aunque esta configuración fue la que obtuvo el mejor valor de Silhouette dentro de las pruebas iniciales, la proyección MDS muestra una separación todavía difusa entre perfiles y el gráfico de Silhouette refleja diferencias claras en la cohesión de los grupos obtenidos.
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{imgs/mds_keywords_manhattan.png}
+\caption*{(a) Proyección MDS}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{imgs/silhouette_keywords_manhattan.png}
+\caption*{(b) Gráfico de Silhouette}
+\end{minipage}
+\caption{Visualización representativa de una de las primeras pruebas basadas en palabras clave explícitas.}
+\label{fig:primeras_pruebas_keywords}
+\end{figure}
+
+La lectura conjunta de la tabla y de las visualizaciones muestra que estas primeras agrupaciones no ofrecían una separación suficientemente clara. En algunas configuraciones aparecían grupos parcialmente diferenciados, pero la estructura general seguía siendo débil y cambiaba de forma apreciable según la distancia, el método o el número de grupos elegido. Esto sugería que el problema no estaba únicamente en el algoritmo de clustering, sino también en la forma en que se estaban representando los perfiles.
+
+La matriz binaria permitió comprobar una primera idea, pero también mostró que la comparación entre investigadores seguía siendo demasiado simple. Todos los términos tenían el mismo peso, independientemente de si eran muy frecuentes, muy específicos o realmente útiles para diferenciar perfiles. Por ello, antes de abandonar el enfoque basado en palabras clave explícitas, se planteó una representación intermedia en la que el vocabulario estuviera ponderado, con el objetivo de mejorar los resultados sin renunciar del todo a la simplicidad de la representación. Con esta modificación, la comparación entre investigadores podía depender menos de términos poco informativos y reflejar mejor las diferencias temáticas entre perfiles.
+
+\subsection{Ponderación gaussiana del vocabulario}
+
+Tras las primeras pruebas con la matriz binaria, se introdujo una segunda representación basada en la ponderación del vocabulario. La idea era mantener una estructura sencilla e interpretable, todavía basada en palabras clave explícitas, pero evitando que todos los términos tuvieran la misma importancia dentro de la comparación entre investigadores.
+
+La matriz ponderada mantenía la misma organización que la matriz inicial, con investigadores en las filas y palabras clave en las columnas. Sin embargo, los valores dejaban de indicar únicamente presencia o ausencia, ya que cada palabra incorporaba un peso dependiente de su frecuencia. De este modo, la presencia de una palabra no contribuía siempre de la misma forma, sino según el peso asignado a dicha palabra.
+
+La ponderación aplicada se basó en una penalización simétrica con forma gaussiana. Con este enfoque, las palabras con frecuencias intermedias recibían mayor peso, al considerarse potencialmente más útiles para diferenciar perfiles, mientras que los términos demasiado frecuentes y demasiado aislados quedaban penalizados por aportar poca capacidad discriminativa.
+
+Sobre esta representación ponderada se repitieron varias de las pruebas realizadas en la fase anterior y se incorporaron algunos ajustes específicos. En concreto, se volvieron a comparar distintas medidas de proximidad, como coseno, Jaccard, correlación, distancia euclídea y Manhattan, y se aplicaron métodos de agrupamiento como clustering jerárquico, K-means y PAM. Además, se probaron distintos valores del parámetro \(\sigma\), con el objetivo de observar cómo variaba el efecto de la ponderación al penalizar con mayor o menor intensidad las frecuencias alejadas de la media.
+
+La Tabla~\ref{tab:pruebas_matriz_ponderada} resume algunas de las configuraciones más representativas de esta fase, no con el objetivo de recoger todas las combinaciones posibles, sino de mostrar que la ponderación no tuvo un efecto uniforme sobre todos los modelos, ya que en algunas configuraciones mejoró los valores de Silhouette, mientras que en otras apenas aportó mejora o incluso produjo agrupaciones poco útiles desde el punto de vista interpretativo.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{
+>{\centering\arraybackslash}m{0.34\textwidth}
+>{\centering\arraybackslash}m{0.18\textwidth}
+m{0.38\textwidth}
+}
+\hline
+\textbf{Configuración} & \textbf{Mejor Silhouette} & \textbf{Observación principal} \\
+\hline
+Coseno + Jerárquico & 0.169 & No mejoró de forma clara la separación entre grupos \\
+\hline
+Jaccard + Jerárquico & 0.123 & Resultados bajos y poca estructura interpretable \\
+\hline
+Correlación + Jerárquico & 0.178 & Mejora limitada, sin agrupaciones suficientemente sólidas \\
+\hline
+Manhattan + Jerárquico, \(\sigma=1\) & 0.351 & Mejor comportamiento que la matriz binaria, aunque todavía con interpretación limitada \\
+\hline
+Manhattan + Jerárquico, \(\sigma=0.5\) & 0.445 & Mejor resultado numérico, pero con aparición de un grupo dominante \\
+\hline
+Euclídea + Jerárquico & 0.198 & Separación limitada entre perfiles \\
+\hline
+K-means + Euclídea & 0.304 & Mejora respecto a K-means inicial, pero con clusters poco representativos \\
+\hline
+PAM + Jaccard & 0.120 & No aportó una mejora clara frente a otras configuraciones \\
+\hline
+\end{tabular}
+\caption{Resumen de pruebas realizadas con la matriz ponderada de palabras clave.}
+\label{tab:pruebas_matriz_ponderada}
+\end{table}
+
+Los resultados muestran que la ponderación no produjo una mejora homogénea en todas las configuraciones. Algunas medidas, como coseno, Jaccard o correlación, siguieron ofreciendo valores bajos, mientras que la distancia Manhattan fue la que mostró el mejor comportamiento relativo. Con \(\sigma=1\), esta configuración alcanzó un valor máximo de Silhouette de 0.351, ligeramente superior al obtenido con la matriz binaria. Al reducir \(\sigma\), el valor aumentó hasta 0.445, pero este incremento debía interpretarse con cautela.
+
+El principal problema apareció precisamente en las configuraciones con mejores valores numéricos. Al aplicar una penalización más intensa, el modelo tendía a concentrar a una parte importante de los investigadores en un grupo dominante, dejando el resto en grupos de menor tamaño con perfiles más extremos. Esta estructura elevaba el valor medio de Silhouette, pero no necesariamente producía una agrupación más útil desde el punto de vista temático. Por tanto, la mejora de la métrica no podía interpretarse automáticamente como una mejora real del clustering.
+
+La Figura~\ref{fig:ponderada_manhattan_sigma05} muestra una configuración representativa de esta fase, basada en distancia Manhattan, clustering jerárquico con enlace \textit{average} y \(\sigma=0.5\). Su interés no está en presentar una solución final, sino en ilustrar la diferencia entre mejora numérica y utilidad interpretativa.
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{imgs/mds_ponderada_manhattan_sigma05.png}
+\caption*{(a) Proyección MDS}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{imgs/silhouette_ponderada_manhattan_sigma05.png}
+\caption*{(b) Gráfico de Silhouette}
+\end{minipage}
+\caption{Visualización representativa de una prueba con matriz ponderada.}
+\label{fig:ponderada_manhattan_sigma05}
+\end{figure}
+
+En esta configuración se obtenía un valor de Silhouette superior al de las pruebas iniciales con matriz binaria, pero la estructura resultante no muestra una distribución equilibrada de los perfiles. La agrupación queda dominada por un grupo principal que reúne a la mayor parte de los investigadores, mientras que el resto de grupos quedan formados por pocos perfiles más extremos. Por tanto, la mejora numérica no garantiza una interpretación temática más clara ni una partición más útil para el objetivo del análisis.
+
+En resumen, esta fase permitió comprobar que la ponderación gaussiana refinaba la matriz inicial, pero no resolvía la limitación principal del enfoque. Los términos ya no contribuían todos por igual, pero la comparación entre investigadores seguía dependiendo de la presencia explícita de palabras clave compartidas. Por ello, el análisis avanzó hacia una representación semántica mediante \textit{word embeddings}, capaz de comparar perfiles a partir de la proximidad conceptual entre términos distintos.
+
+\subsection{Representaciones semánticas, métodos de agrupamiento y reducción de dimensionalidad}
+
+Tras las pruebas con la matriz binaria y con la matriz ponderada, el análisis se trasladó a las representaciones semánticas mediante \textit{word embeddings}. Esta decisión se tomó porque, en las fases anteriores, la comparación entre investigadores seguía dependiendo de la coincidencia explícita entre palabras clave. Con los embeddings, cada investigador quedaba descrito mediante un vector continuo que resumía el contenido semántico de sus términos, lo que permitía comparar perfiles no solo por las palabras exactas que compartían, sino también por la proximidad conceptual entre ellas.
+
+Sobre esta nueva representación se abrió una fase más amplia de pruebas. Ya no se trataba únicamente de comparar matrices de palabras clave, sino de estudiar cómo se comportaban los perfiles semánticos bajo distintas medidas de proximidad, métodos de agrupamiento y técnicas de reducción de dimensionalidad. En esta etapa se probaron medidas como coseno, correlación, distancia euclídea y Manhattan, con el objetivo de comprobar si la estructura de grupos dependía de una única forma de medir la cercanía entre perfiles o si aparecían patrones similares bajo distintas métricas.
+
+El clustering jerárquico fue una de las alternativas principales en esta fase. Se utilizó una estrategia aglomerativa, principalmente con enlace promedio (\textit{average}), que permitía construir progresivamente un árbol de agrupamiento y estudiar distintos cortes del dendrograma. Esta característica resultaba adecuada para el carácter exploratorio del análisis, ya que no obligaba a fijar un único número de grupos desde el inicio. En las pruebas realizadas se compararon distintos valores de \(k\), de forma que era posible observar cómo cambiaban las particiones al variar el nivel de corte del árbol.
+
+Las primeras configuraciones jerárquicas sobre embeddings ofrecieron valores de Silhouette superiores a los obtenidos en varias pruebas con palabras clave explícitas. Por ejemplo, las pruebas con distancia Manhattan, correlación o coseno alcanzaron valores en torno a 0.4 en algunas configuraciones. Sin embargo, estos resultados también debían interpretarse con cautela, ya que varias particiones seguían mostrando una estructura dominada por un grupo principal de gran tamaño. Por tanto, aunque la representación semántica mejoraba la capacidad de comparación entre términos, la calidad numérica de una configuración no garantizaba por sí sola una agrupación equilibrada ni directamente interpretable.
+
+Además del clustering jerárquico, se probaron métodos basados en densidad, concretamente DBSCAN~\cite{dbscan} y HDBSCAN~\cite{hdbscan}. Estos métodos resultaban interesantes porque no parten necesariamente de un número fijo de grupos, sino que intentan identificar regiones densas de puntos y separar observaciones que no encajan claramente en ningún grupo. En el caso de DBSCAN se probaron distintos valores del parámetro \(\varepsilon\), comparando configuraciones con y sin reducción de dimensionalidad previa mediante PCA. No obstante, estas pruebas tendieron a generar un único grupo principal junto con un porcentaje elevado de observaciones tratadas como ruido, por lo que no ofrecieron una partición suficientemente útil para el objetivo interpretativo del análisis.
+
+HDBSCAN se probó en la misma línea, como una alternativa más flexible para trabajar con estructuras de densidad variable. Su inclusión respondía al interés por comprobar si los perfiles formaban regiones densas sin necesidad de fijar previamente un número de grupos. Sin embargo, las pruebas realizadas tampoco proporcionaron una estructura suficientemente clara para orientar el análisis final. Por ello, los métodos basados en densidad se mantuvieron como una vía exploratoria, mientras que el análisis posterior se centró principalmente en configuraciones jerárquicas, que permitían estudiar de forma más controlada el efecto de la métrica de distancia, el número de grupos y la reducción dimensional.
+
+También se valoraron técnicas orientadas a representar la estructura global de los perfiles en un espacio de menor dimensión. Entre ellas se consideró PCA~\cite{jolliffe}, utilizada como reducción lineal para conservar una proporción elevada de la varianza antes de aplicar determinados métodos de clustering. Esta opción permitía comprobar si una representación más compacta de los embeddings facilitaba la formación de grupos o reducía parte del ruido presente en el espacio original. En algunas pruebas, la combinación de PCA con clustering jerárquico incrementó el valor de Silhouette, aunque volvió a aparecer el problema de grupos dominantes, por lo que tampoco podía considerarse una solución suficiente por sí misma.
+
+Dentro de las técnicas de reducción no lineal, UMAP adquirió un papel especialmente relevante~\cite{umap}. A diferencia de PCA, que proyecta los datos mediante combinaciones lineales, UMAP busca preservar relaciones de vecindad entre observaciones en un espacio de menor dimensión, lo que lo hacía adecuado para trabajar con embeddings semánticos, ya que permitía comprobar si los perfiles de investigadores presentaban una estructura más clara al proyectarse en dos dimensiones.
+
+En las pruebas iniciales con UMAP, su combinación con clustering jerárquico basado en distancia coseno produjo una separación más clara que otras configuraciones. En concreto, se obtuvo un valor medio de Silhouette de 0.602 y se identificaron tres grupos principales, lo que suponía una mejora respecto a las pruebas jerárquicas realizadas directamente sobre los embeddings, como Manhattan con \(S=0.413\), Manhattan con PCA con \(S=0.445\), o correlación/coseno con \(S=0.409\). Este resultado indicaba que la reducción no lineal podía facilitar la aparición de estructuras más diferenciadas en el espacio semántico y justificaba revisar con más detalle este tipo de configuración en las fases posteriores del análisis.
+
+La Tabla~\ref{tab:pruebas_embeddings_iniciales} recoge una selección de las configuraciones más representativas probadas sobre los perfiles semánticos iniciales. No se pretende recoger todas las combinaciones exploradas, sino resumir los comportamientos principales observados al aplicar distintas medidas de proximidad, métodos de agrupamiento y técnicas de reducción de dimensionalidad sobre los embeddings.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{
+>{\centering\arraybackslash}m{0.34\textwidth}
+>{\centering\arraybackslash}m{0.18\textwidth}
+m{0.38\textwidth}
+}
+\hline
+\textbf{Configuración} & \textbf{Resultado} & \textbf{Observación principal} \\
+\hline
+Manhattan + Jerárquico & \(S=0.413\) & Buen valor numérico, pero con aparición de un grupo dominante \\
+\hline
+Manhattan + PCA + Jerárquico & \(S=0.445\) & Mejora numérica, aunque mantiene el problema de grupo dominante \\
+\hline
+Correlación + Jerárquico & \(S=0.409\) & Resultado alto, pero con estructura dominada por un grupo principal \\
+\hline
+Coseno + Jerárquico & \(S=0.409\) & Comportamiento similar al de correlación, sin resolver la interpretación de grupos \\
+\hline
+Coseno + DBSCAN & 2 clusters y 45.2\% de ruido & Incluso con PCA y \(\varepsilon=0.45\), mantiene mucho ruido \\
+\hline
+Coseno + UMAP + Jerárquico & \(S=0.602\) & Separación inicial más clara, pendiente de revisión posterior \\
+\hline
+\end{tabular}
+\caption{Resumen de pruebas iniciales realizadas sobre representaciones semánticas mediante embeddings.}
+\label{tab:pruebas_embeddings_iniciales}
+\end{table}
+
+En el caso de DBSCAN y HDBSCAN no se recoge un valor de Silhouette comparable al resto de configuraciones, ya que estas pruebas no generaron una partición estable con varios grupos útiles para la evaluación. En particular, DBSCAN tendía a producir un único grupo principal junto con un porcentaje elevado de observaciones clasificadas como ruido, mientras que HDBSCAN tampoco ofreció una estructura suficientemente clara.
+
+En líneas generales, los resultados muestran que las representaciones semánticas aumentaban el potencial de separación respecto a las matrices basadas en coincidencias literales, aunque la calidad de los grupos seguía dependiendo de la configuración utilizada. Algunas combinaciones alcanzaban valores de Silhouette superiores a los enfoques anteriores, pero todavía generaban particiones poco equilibradas, mientras que los métodos basados en densidad no ofrecían una estructura suficientemente clara. En este contexto, la combinación de UMAP, distancia coseno y clustering jerárquico apareció como la alternativa más prometedora dentro de esta fase inicial.
+
+La Figura~\ref{fig:umap_embeddings_inicial} muestra la proyección UMAP obtenida en esta fase inicial con embeddings. Esta visualización permite observar por qué esta configuración resultó prometedora, ya que los perfiles aparecen organizados en tres grupos principales con una separación más clara que en las representaciones anteriores.
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{imgs/umap_embeddings_inicial.png}
+\caption*{(a) Proyección UMAP}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{imgs/silhouette_umap_embeddings.png}
+\caption*{(b) Gráfico de Silhouette}
+\end{minipage}
+\caption{Configuración inicial basada en embeddings, UMAP y clustering jerárquico con distancia coseno.}
+\label{fig:umap_embeddings_inicial}
+\end{figure}
+
+La proyección muestra una separación visual más clara que las obtenidas con las matrices de palabras clave, mientras que el gráfico de Silhouette confirma un valor medio elevado, aunque con diferencias entre grupos. En particular, uno de los clusters aparece mucho más cohesionado que los demás, lo que indicaba que la configuración era prometedora, pero todavía requería una revisión más detallada antes de considerarse una solución definitiva.
+
+Esta fase permitió comprobar que el cambio a embeddings era necesario desde el punto de vista metodológico, pero también que no resolvía por completo el problema de agrupamiento. La representación semántica reducía la dependencia de coincidencias literales entre palabras, aunque la calidad de los clusters seguía condicionada por la métrica utilizada, el método de agrupamiento, la reducción dimensional aplicada y el propio vocabulario de partida. Precisamente, la revisión de estas primeras agrupaciones permitió detectar que algunos términos no estaban contribuyendo a describir afinidades científicas, sino que introducían información contextual que solo aportaba ruido a la división. Esta observación motivó la depuración posterior del vocabulario antes de repetir las pruebas principales.
+
+\subsection{Depuración del vocabulario y repetición del análisis}
+
+La revisión de las primeras agrupaciones obtenidas con embeddings permitió detectar que el vocabulario de partida seguía influyendo de forma importante en los resultados. Aunque la representación semántica reducía la dependencia de coincidencias literales entre palabras clave, algunos términos no describían realmente ámbitos científicos, sino localizaciones geográficas u otros elementos contextuales asociados a determinadas revistas.
+
+La presencia de este tipo de palabras podía afectar a la interpretación de los clusters, ya que introducía relaciones entre investigadores que no estaban necesariamente vinculadas a una afinidad temática real. Dos perfiles podían aparecer más próximos por compartir términos geográficos, por ejemplo, aunque esos términos no aportasen información relevante sobre las líneas de investigación. Por este motivo, se decidió revisar el vocabulario utilizado en la representación semántica y eliminar aquellas palabras que podían desplazar la agrupación hacia coincidencias poco informativas.
+
+Esta depuración no supuso modificar el objetivo del análisis, sino ajustar la base textual para que respondiera mejor a dicho objetivo. La intención no era forzar una estructura de grupos determinada, sino reducir el ruido introducido por términos que no contribuían a describir áreas científicas. De esta forma, la comparación entre investigadores podía centrarse en palabras con mayor capacidad para representar afinidades temáticas.
+
+Tras esta revisión manual, se generó una versión depurada del vocabulario y se repitieron las pruebas principales sobre la nueva base temática. No se repitieron todas las combinaciones exploradas en fases anteriores, sino aquellas que habían mostrado mayor interés metodológico o interpretativo. En particular, se volvieron a evaluar configuraciones basadas en embeddings, distintas medidas de proximidad, clustering jerárquico, métodos basados en densidad y reducciones de dimensionalidad como PCA y UMAP.
+
+La Tabla~\ref{tab:pruebas_embeddings_sin_localizacion} resume algunas de las configuraciones más representativas obtenidas tras eliminar los términos de localización. Su objetivo no es sustituir la comparación final de modelos, sino mostrar cómo se comportaron las principales pruebas al trabajar con un vocabulario más ajustado al objetivo temático del análisis.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{
+>{\centering\arraybackslash}m{0.34\textwidth}
+>{\centering\arraybackslash}m{0.18\textwidth}
+m{0.38\textwidth}
+}
+\hline
+\textbf{Configuración} & \textbf{Resultado} & \textbf{Observación principal} \\
+\hline
+Manhattan + Jerárquico & \(S=0.415\) & Resultado similar al vocabulario completo, manteniendo el problema de grupo dominante \\
+\hline
+Manhattan + PCA + Jerárquico & \(S=0.462\) & Mejora numérica respecto a la versión anterior, aunque persiste el problema de grupo dominante \\
+\hline
+Correlación + PCA + Jerárquico & \(S=0.552\) & Mejora clara tras la depuración, con una separación numérica más alta \\
+\hline
+Coseno + PCA + Jerárquico & \(S=0.551\) & Resultado elevado y comportamiento similar al de correlación \\
+\hline
+Coseno + DBSCAN & 2 clusters y 35.7\% de ruido & La reducción mediante PCA mejora el ruido, pero la estructura sigue siendo poco estable \\
+\hline
+Coseno + UMAP + Jerárquico & \(S=0.627\) & Mejor separación inicial, con estructura más clara tras la depuración \\
+\hline
+Manhattan + UMAP + Jerárquico & \(S=0.484\) & Resultado inferior al de coseno, aunque mantiene cierta separación \\
+\hline
+Euclídea + UMAP + Jerárquico & \(S=0.532\) & Resultado intermedio, con mejora respecto a algunas configuraciones directas \\
+\hline
+\end{tabular}
+\caption{Resumen de pruebas realizadas tras la depuración del vocabulario.}
+\label{tab:pruebas_embeddings_sin_localizacion}
+\end{table}
+
+Los resultados muestran que la depuración del vocabulario mejoró varias configuraciones relevantes, aunque no eliminó por completo los problemas observados en todos los modelos. Las pruebas basadas en distancia Manhattan siguieron presentando el problema de grupos dominantes, incluso cuando se aplicaba PCA, aunque sus valores de Silhouette aumentaron ligeramente. En cambio, las configuraciones con distancia de correlación o coseno tras PCA obtuvieron mejoras más claras respecto a las pruebas con el vocabulario completo, lo que indicaba una separación numérica más definida entre perfiles. También UMAP mantuvo un comportamiento favorable, con un valor de Silhouette superior al obtenido antes de la depuración. En general, la limpieza redujo parte del ruido del vocabulario y permitió obtener resultados más consistentes, pero no hizo que todas las configuraciones fueran igualmente válidas.
+
+Los métodos basados en densidad, por su parte, continuaron mostrando limitaciones. En el caso de DBSCAN, incluso tras aplicar PCA y ajustar el parámetro \(\varepsilon\), seguía apareciendo una proporción importante de observaciones tratadas como ruido. Esto indicaba que los perfiles no formaban regiones densas suficientemente definidas para que este tipo de enfoque resultara adecuado como base principal del análisis.
+
+La configuración con UMAP y clustering jerárquico volvió a destacar tras la depuración. En particular, la combinación con distancia coseno alcanzó un valor de Silhouette de 0.627, superior al obtenido en la fase previa con vocabulario completo. Este resultado reforzaba la idea de que la reducción no lineal podía ayudar a organizar los perfiles semánticos en una estructura más diferenciada, aunque todavía era necesario analizar la estabilidad y la interpretación temática de los grupos antes de seleccionar una configuración final.
+
+Además de los valores de evaluación, también se revisó la composición de los grupos obtenidos tras la depuración, lo que permitió valorar si las palabras más representativas de cada cluster describían mejor ámbitos científicos y si los investigadores agrupados compartían perfiles temáticos coherentes. Por tanto, la evaluación de esta fase no se limitó a comparar métricas, sino que también incorporó una lectura cualitativa de la utilidad de las agrupaciones.
+
+Con el vocabulario depurado, el análisis quedaba preparado para comparar con mayor detalle las configuraciones más relevantes. A partir de este punto, la atención podía centrarse en valorar qué combinaciones de medida de proximidad, reducción dimensional y método de clustering ofrecían agrupaciones más coherentes e interpretables. Esta comparación se desarrolla en el siguiente subapartado.
+
+\subsection{Comparación final de configuraciones}
+
+Una vez depurado el vocabulario y repetidas las pruebas principales, se realizó una comparación final entre las configuraciones más relevantes. El objetivo no era seleccionar automáticamente el modelo con mayor valor de Silhouette, sino evaluar conjuntamente dicho valor, la distribución de los investigadores entre grupos, la estabilidad de las particiones y la coherencia temática de los clusters obtenidos.
+
+Para disponer de una medida cuantitativa común se utilizó el índice de Silhouette~\cite{rousseeuw}, que permite valorar hasta qué punto cada observación está mejor asignada a su propio grupo que a grupos alternativos. Para un investigador \(i\), este índice puede expresarse como:
 
 \[
 s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}}
@@ -1149,17 +1417,142 @@ s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}}
 
 donde \(a(i)\) representa la distancia media entre el investigador \(i\) y el resto de elementos de su mismo grupo, mientras que \(b(i)\) representa la menor distancia media entre \(i\) y los elementos de otro grupo. Valores próximos a 1 indican una asignación bien separada, valores cercanos a 0 reflejan grupos poco diferenciados y valores negativos sugieren que la observación podría estar más próxima a otro grupo.
 
-No obstante, la selección de configuraciones no se realizó de forma automática a partir de una única métrica. Dado que el objetivo era obtener agrupaciones interpretables desde el punto de vista temático, los valores del índice de Silhouette se complementaron con una revisión cualitativa de los grupos generados. Esta revisión consideraba aspectos como el tamaño de los grupos, la coherencia de las palabras clave asociadas a cada uno y la plausibilidad temática de las agrupaciones resultantes.
+No obstante, la interpretación del índice debía realizarse con cautela. En fases anteriores se había observado que algunas configuraciones podían alcanzar valores relativamente altos debido a la aparición de grupos dominantes, sin que ello implicara necesariamente una partición más útil desde el punto de vista temático. Por este motivo, la comparación final combinó la métrica cuantitativa con una revisión de la estructura de los grupos.
 
-Además de comparar el rendimiento individual de cada configuración, se revisó la estabilidad de las particiones obtenidas. Para ello, se analizaron solapamientos entre modelos seleccionados, comparando tanto los investigadores asignados a cada grupo como las palabras clave características de los clusters. Esta revisión permitía valorar si distintos modelos estaban capturando una estructura común en los datos o si, por el contrario, producían segmentaciones muy dependientes de la métrica, de la reducción dimensional o del número de grupos elegido.
+La Tabla~\ref{tab:comparacion_final_configuraciones} resume las configuraciones que resultaron más relevantes tras la depuración del vocabulario. Se incluyen tanto las alternativas con mejores valores numéricos como aquellas que ayudaron a descartar determinadas familias de métodos por problemas de interpretación o estabilidad.
 
-Dentro de esta comparación adquirieron especial importancia las configuraciones jerárquicas basadas en distancia de correlación, distancia coseno y distancia coseno tras aplicar UMAP. Estas configuraciones permitían estudiar si los agrupamientos obtenidos eran relativamente estables o si la estructura temática cambiaba de forma notable al modificar la medida de proximidad o al proyectar los datos a un espacio de menor dimensión. De este modo, la evaluación combinó criterios cuantitativos, revisión temática y análisis de estabilidad entre modelos.
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{
+>{\centering\arraybackslash}m{0.34\textwidth}
+>{\centering\arraybackslash}m{0.18\textwidth}
+m{0.38\textwidth}
+}
+\hline
+\textbf{Configuración} & \textbf{Resultado} & \textbf{Valoración final} \\
+\hline
+Coseno + UMAP + Jerárquico & \(S=0.627\) & Mejor separación numérica y visual, aunque con necesidad de revisar su estabilidad \\
+\hline
+Correlación + PCA + Jerárquico & \(S=0.552\) & Buen resultado numérico y útil como comparación frente a UMAP \\
+\hline
+Coseno + PCA + Jerárquico & \(S=0.551\) & Comportamiento muy similar al de correlación tras PCA \\
+\hline
+Euclídea + UMAP + Jerárquico & \(S=0.532\) & Resultado intermedio, con menor claridad que coseno sobre UMAP \\
+\hline
+Manhattan + UMAP + Jerárquico & \(S=0.484\) & Separación inferior respecto a coseno y euclídea sobre UMAP \\
+\hline
+Manhattan + PCA + Jerárquico & \(S=0.462\) & Mejora numérica, pero mantiene problemas de grupo dominante \\
+\hline
+Coseno + DBSCAN & 2 clusters y 35.7\% de ruido & No resultó adecuado como configuración final por la proporción de ruido \\
+\hline
+\end{tabular}
+\caption{Comparación final de configuraciones tras la depuración del vocabulario.}
+\label{tab:comparacion_final_configuraciones}
+\end{table}
 
-El proceso experimental mostró que la representación de entrada tenía un papel determinante en la calidad de los agrupamientos. Las configuraciones basadas en coincidencias literales permitieron establecer una primera referencia, pero también evidenciaron las limitaciones de trabajar únicamente con presencia o ponderación de palabras clave. Por ello, las configuraciones basadas en embeddings, especialmente al compararlas con y sin reducción de dimensionalidad, adquirieron un papel central en la búsqueda de agrupaciones más coherentes e interpretables.
+Los resultados muestran que las configuraciones basadas en reducción de dimensionalidad adquirieron mayor relevancia en la comparación final. En particular, la combinación de UMAP, distancia coseno y clustering jerárquico obtuvo el valor de Silhouette más alto y ofreció una separación visual más clara entre grupos, convirtiéndose en la configuración más prometedora desde el punto de vista cuantitativo y visual.
 
-\section{Evaluación y discusión de los resultados}
+Las configuraciones basadas en PCA también ofrecieron resultados competitivos, especialmente al combinarse con distancias de correlación y coseno. Sin embargo, su interpretación debía compararse con la obtenida mediante UMAP, ya que una mejora numérica no siempre implicaba una organización más estable o más clara de los perfiles. En cambio, las configuraciones basadas en distancia Manhattan siguieron mostrando el problema de grupos dominantes, lo que reducía su utilidad como solución final pese a obtener valores aceptables de Silhouette.
 
-\textit{Este apartado evaluará los resultados obtenidos en la fase de agrupación semántica de investigadores. Se analizarán las diferencias entre los enfoques probados, la utilidad de las representaciones semánticas frente a las coincidencias literales de palabras clave y la calidad de las agrupaciones obtenidas a partir de métricas cuantitativas y criterios de coherencia temática. También se discutirá hasta qué punto estos resultados complementan la información relacional proporcionada por los grafos y qué limitaciones deben tenerse en cuenta al interpretar los grupos identificados.}
+En la configuración UMAP seleccionada, antes de aplicar la reducción no lineal se utilizó PCA para conservar el 90\% de la varianza, reduciendo previamente la dimensionalidad de los embeddings. Posteriormente, se aplicó UMAP con distancia coseno y clustering jerárquico con enlace \textit{average}.
+
+La Figura~\ref{fig:umap_embeddings_depurado} muestra la configuración más destacada de la comparación final, basada en embeddings depurados, reducción mediante UMAP, distancia coseno y clustering jerárquico. Esta visualización permite observar la separación obtenida entre los grupos y complementa el valor medio de Silhouette mostrado en la Tabla~\ref{tab:comparacion_final_configuraciones}.
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{imgs/umap_coseno_jerarquico_depurado.png}
+\caption*{(a) Proyección UMAP}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{imgs/silhouette_umap_coseno_jerarquico_depurado.png}
+\caption*{(b) Gráfico de Silhouette}
+\end{minipage}
+\caption{Configuración basada en embeddings depurados, UMAP y clustering jerárquico con distancia coseno.}
+\label{fig:umap_embeddings_depurado}
+\end{figure}
+
+Como se puede observar, la buena puntuación global no se distribuye de forma completamente homogénea entre los grupos. Uno de los clusters aparece claramente separado y con valores de Silhouette altos, mientras que otros presentan observaciones más próximas al límite entre grupos. En consecuencia, esta configuración debía interpretarse junto con el análisis de estabilidad entre particiones y no únicamente a partir de su valor medio de Silhouette.
+
+Los métodos basados en densidad no se consolidaron como alternativa final. Aunque DBSCAN permitía identificar observaciones que no encajaban claramente en ningún grupo, las pruebas realizadas seguían generando una proporción elevada de ruido y una estructura poco estable. Por este motivo, estos métodos resultaron útiles como contraste exploratorio, pero no como base principal para interpretar las afinidades temáticas entre investigadores.
+
+La interpretación de los grupos no se limitó a las métricas y a las visualizaciones, sino que también incluyó una revisión de su composición temática. Para ello se analizaron las palabras clave más frecuentes en cada cluster, con el objetivo de comprobar si los grupos podían asociarse a ámbitos científicos diferenciados o si, por el contrario, respondían a términos demasiado generales. Esta revisión mostró que muchas de las palabras más representativas seguían siendo términos amplios, como \textit{research}, \textit{science}, \textit{academic}, \textit{journal} o \textit{education}, que describen el contexto académico de las revistas pero no permiten delimitar con precisión áreas temáticas concretas.
+
+Este resultado ayudó a matizar la interpretación de las agrupaciones obtenidas. Aunque los clusters podían reflejar ciertas proximidades entre perfiles, la presencia de palabras tan generales indicaba que no debían entenderse como áreas científicas cerradas ni como una clasificación estable de los investigadores. Por ello, también se revisó la distribución de investigadores entre grupos, ya que una partición con clusters muy descompensados o definidos por términos poco específicos podía resultar poco útil aunque alcanzara un buen valor numérico.
+
+También se revisó el solapamiento entre particiones obtenidas con distintas configuraciones. Esta comparación permitía comprobar si modelos diferentes agrupaban a los mismos investigadores de forma similar o si las particiones cambiaban de manera importante al modificar la métrica, la reducción dimensional o el número de grupos. Para ello se compararon especialmente tres configuraciones: clustering jerárquico con distancia de correlación, clustering jerárquico con distancia coseno y clustering jerárquico con distancia coseno tras reducción mediante UMAP.
+
+La comparación entre las configuraciones basadas en correlación y coseno mostró cierta correspondencia parcial entre algunos grupos, lo que indicaba la existencia de núcleos temáticos relativamente estables. Sin embargo, esta correspondencia no se mantenía de forma completa para todos los clusters, ya que varios grupos aparecían fragmentados o redistribuidos al cambiar la métrica de distancia.
+
+La introducción de UMAP produjo una separación visual más clara, pero también modificó de forma notable la estructura de agrupamiento. Al comparar las particiones obtenidas con y sin UMAP, varios grupos diferenciados en los modelos jerárquicos originales aparecían concentrados en uno o dos clusters del modelo proyectado. Este comportamiento indicaba que la reducción no lineal influía de forma importante en la organización final de los grupos, por lo que sus resultados debían interpretarse junto con el análisis de solapamiento.
+
+La Tabla~\ref{tab:solapamiento_configuraciones} resume las principales conclusiones obtenidas a partir de estas comparaciones entre particiones. Su objetivo no es recoger todas las matrices de solapamiento, sino sintetizar el comportamiento observado al enfrentar las configuraciones más relevantes.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{
+>{\centering\arraybackslash}m{0.34\textwidth}
+m{0.56\textwidth}
+}
+\hline
+\textbf{Comparación} & \textbf{Conclusión principal} \\
+\hline
+Correlación vs. Coseno & Correspondencia parcial entre algunos clusters, pero sin alineación global completa \\
+\hline
+Correlación vs. Coseno + UMAP & Ausencia de correspondencia directa entre particiones y concentración de coincidencias en clusters dominantes \\
+\hline
+Coseno vs. Coseno + UMAP & UMAP produce una separación visual más clara, pero altera de forma importante la organización previa de los grupos \\
+\hline
+\end{tabular}
+\caption{Resumen cualitativo del solapamiento entre configuraciones seleccionadas.}
+\label{tab:solapamiento_configuraciones}
+\end{table}
+
+La Figura~\ref{fig:solapamiento_umap_coseno} muestra el solapamiento entre la configuración jerárquica basada en distancia coseno y la misma configuración tras aplicar UMAP. Cada celda representa el número de investigadores compartidos entre clusters de ambas particiones.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\textwidth]{imgs/solapamiento_investigadores_jerCos_vs_jerCosUMAP.png}
+\caption{Solapamiento entre clustering jerárquico con distancia coseno y clustering jerárquico tras reducción mediante UMAP.}
+\label{fig:solapamiento_umap_coseno}
+\end{figure}
+
+La comparación muestra que UMAP modifica de forma importante la organización de los grupos. Por ejemplo, el primer cluster del modelo sin UMAP se reparte entre varios clusters tras la proyección, con 11 investigadores en común con el cluster 1 de UMAP, 3 con el cluster 2 y 8 con el cluster 4. Al mismo tiempo, el cluster 3 de UMAP concentra investigadores procedentes de varios clusters del modelo original, incluyendo 4 del cluster 2, 7 del cluster 3, 2 del cluster 4 y 1 del cluster 5. Esto indica que la reducción mediante UMAP no solo cambia la visualización, sino también la estructura final del agrupamiento, por lo que sus resultados deben interpretarse con cautela.
+
+Estos solapamientos mostraron que no existía una correspondencia estable y completa entre las particiones obtenidas por los distintos modelos. La estructura temática detectada era parcial y dependía de decisiones metodológicas como la métrica de distancia o la aplicación de reducción dimensional. Por tanto, aunque algunas configuraciones ofrecían resultados cuantitativamente buenos, no podía afirmarse la existencia de una arquitectura latente fuerte en los datos.
+
+Esta conclusión también ayuda a interpretar el efecto de la depuración del vocabulario. La eliminación de términos de localización no creó por sí sola una estructura latente robusta, pero sí redujo una fuente de similitud no relacionada con el contenido científico. De este modo, las agrupaciones obtenidas tras la depuración resultaban más adecuadas para el objetivo temático del análisis, aunque seguían mostrando una estructura continua y parcialmente solapada.
+
+Por tanto, la configuración basada en UMAP, distancia coseno y clustering jerárquico fue la más destacada desde los puntos de vista cuantitativo y visual, aunque las comparaciones entre modelos mostraron que la estructura temática no era completamente estable frente a cambios de métrica o de reducción dimensional. Por este motivo, sus resultados no deben interpretarse como una clasificación definitiva de los investigadores, sino como una aproximación exploratoria a posibles afinidades temáticas.
+
+Aun así, los resultados obtenidos siguen siendo útiles para el objetivo exploratorio del trabajo. El clustering permite complementar la información relacional proporcionada por los grafos, ofreciendo una perspectiva adicional sobre posibles proximidades temáticas entre investigadores. Su valor principal no reside en definir una clasificación verdadera del IUMPA, sino en proporcionar una herramienta analítica que ayude a identificar agrupamientos plausibles que puedan ser interpretados con apoyo del conocimiento experto.
+
+\section{Valoración del análisis semántico}
+
+El análisis semántico permitió ampliar la explotación de la base de datos más allá de las relaciones explícitas representadas en los grafos. Mientras que los grafos muestran conexiones derivadas de publicaciones, revistas o proyectos compartidos, el clustering trató de explorar posibles afinidades temáticas entre investigadores a partir de las revistas en las que habían publicado y de las palabras clave asociadas a ellas. De este modo, esta parte del trabajo aportó una perspectiva complementaria a la visualización relacional desarrollada anteriormente.
+
+El proceso seguido tuvo un carácter claramente experimental. Las primeras representaciones basadas en palabras clave explícitas resultaron útiles como punto de partida, pero mostraron las limitaciones de comparar perfiles únicamente mediante coincidencias literales. La ponderación del vocabulario permitió refinar esta representación, aunque no resolvió por completo el problema. El paso a embeddings semánticos supuso una mejora metodológica, ya que permitió comparar perfiles considerando la proximidad conceptual entre términos, pero también mostró que la calidad de las agrupaciones seguía dependiendo de la métrica utilizada, de la reducción dimensional y del vocabulario de partida.
+
+Uno de los aspectos más relevantes del análisis fue la necesidad de revisar e interpretar los resultados de forma crítica. La depuración de términos de localización permitió reducir una fuente de similitud poco relacionada con el contenido científico, pero no generó por sí sola una estructura temática completamente estable. Del mismo modo, aunque algunas configuraciones alcanzaron valores de Silhouette relativamente altos, las comparaciones entre particiones mostraron que los grupos podían cambiar de forma apreciable al modificar la métrica o aplicar UMAP. Por ello, los clusters obtenidos deben entenderse como una aproximación exploratoria a posibles afinidades temáticas.
+
+Esta interpretación también está condicionada por la naturaleza de los datos utilizados. Los perfiles se construyeron a partir de palabras clave asociadas a revistas, no a partir del contenido completo de los artículos ni de una validación experta de cada línea de investigación. Además, algunas palabras representativas seguían siendo términos generales del contexto académico, lo que limitaba la capacidad de los grupos para delimitar áreas científicas precisas.
+
+A pesar de estas limitaciones, el análisis desarrollado aporta valor dentro del proyecto por varios motivos:
+
+\begin{itemize}
+    \item Permite justificar de forma razonada qué representaciones y métodos resultaron más adecuados para este tipo de datos.
+    
+    \item Muestra que la información temática disponible puede utilizarse para complementar la exploración visual de los grafos, ofreciendo una dimensión adicional basada en proximidad semántica.
+    
+    \item Deja abierta una base metodológica para futuras mejoras, entre ellas la incorporación de información textual más rica, la revisión del vocabulario con apoyo experto, el uso de medidas de ponderación más elaboradas o la exploración de nuevas técnicas de representación y agrupamiento.
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                               BLOQUE III: cierre                            %
@@ -1317,6 +1710,21 @@ Sentence Transformers.
 McInnes, L., Healy, J. y Melville, J.
 \newblock UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction.
 \newblock \textit{arXiv preprint arXiv:1802.03426}, 2018.
+
+\bibitem{dbscan}
+Ester, M., Kriegel, H.-P., Sander, J. y Xu, X.
+\newblock A density-based algorithm for discovering clusters in large spatial databases with noise.
+\newblock \textit{Proceedings of the Second International Conference on Knowledge Discovery and Data Mining}, 226--231, 1996.
+
+\bibitem{hdbscan}
+Campello, R. J. G. B., Moulavi, D. y Sander, J.
+\newblock Density-based clustering based on hierarchical density estimates.
+\newblock \textit{Advances in Knowledge Discovery and Data Mining}, 160--172, 2013.
+
+\bibitem{jolliffe}
+Jolliffe, I. T.
+\newblock \textit{Principal Component Analysis}.
+\newblock Springer, 2002.
 
 \bibitem{rousseeuw}
 Rousseeuw, P. J.

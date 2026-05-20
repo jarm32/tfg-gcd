@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap
 import re
 
 # --- normalizador de nombres ---
@@ -81,17 +82,46 @@ for c1 in index:
 print("\n=== MATRIZ DE SOLAPAMIENTO ===\n")
 print(overlap)
 
-
 # ---------------------------------------------
-# Dibujar heatmap
+# Dibujar heatmap con paleta personalizada
 # ---------------------------------------------
-plt.figure(figsize=(10, 7))
-plt.imshow(overlap, cmap="viridis", aspect="auto")
+cmap_personalizado = LinearSegmentedColormap.from_list(
+    "azul_rojo_solapamiento",
+    ["#111184", "#EE6666"]
+)
 
-plt.xticks(range(len(columns)), columns, rotation=45)
+plt.figure(figsize=(9, 6.5))
+im = plt.imshow(overlap, cmap=cmap_personalizado, aspect="auto")
+
+plt.xticks(range(len(columns)), columns, rotation=45, ha="right")
 plt.yticks(range(len(index)), index)
 
-plt.colorbar(label="Investigadores en común")
-plt.title("Solapamiento entre Clusters (JerCos8 vs JerCosUMAP)")
+plt.xlabel("Clusters tras aplicar UMAP + coseno + jerárquico")
+plt.ylabel("Clusters sin UMAP (coseno + jerárquico)")
+
+plt.colorbar(im, label="Número de investigadores compartidos")
+
+plt.title(
+    "Solapamiento de investigadores entre modelos\n"
+    "Coseno + jerárquico vs. Coseno + UMAP + jerárquico"
+)
+
+# Añadir valores dentro de cada celda
+for i in range(len(index)):
+    for j in range(len(columns)):
+        valor = overlap.iloc[i, j]
+        plt.text(
+            j, i, str(valor),
+            ha="center",
+            va="center",
+            fontsize=9,
+            color="white"
+        )
+
 plt.tight_layout()
+plt.savefig(
+    "solapamiento_investigadores_jerCos_vs_jerCosUMAP.png",
+    dpi=300,
+    bbox_inches="tight"
+)
 plt.show()
