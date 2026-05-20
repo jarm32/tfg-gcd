@@ -145,6 +145,16 @@ Overall, this work provides a general framework for better understanding the ins
 
 \cleardoublepage
 
+\chapter*{Agradecimientos}
+
+Quiero agradecer, en primer lugar, a mis tutor por su orientación durante el desarrollo de este Trabajo Fin de Grado, por sus revisiones y por la ayuda prestada a la hora de enfocar el proyecto y valorar los resultados obtenidos.
+
+También quiero agradecer al IUMPA la posibilidad de trabajar sobre un caso real relacionado con su actividad investigadora. Este contexto ha permitido que el proyecto no se limitase a un ejercicio académico, sino que abordase un problema aplicado de recopilación, organización, visualización y análisis de información.
+
+Por último, quiero dar las gracias a mi familia y a las personas que me han acompañado durante estos años, por su apoyo, paciencia y confianza a lo largo de la carrera y durante la realización de este trabajo.
+
+\cleardoublepage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                     INDICE                                  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -205,9 +215,19 @@ El trabajo incluye el desarrollo de una aplicación interactiva en R mediante Sh
 
 El sistema desarrollado debe entenderse como una herramienta analítica, pero sobre todo exploratoria, orientada a facilitar la comprensión de la actividad investigadora del instituto. Por tanto, su finalidad no es establecer clasificaciones personales ni métricas comparativas de productividad entre investigadores, sino proporcionar una base estructurada que permita consultar y analizar la información recopilada desde una perspectiva relacional y temática. Asimismo, el alcance del proyecto queda condicionado por la calidad de la información accesible en las fuentes consultadas.
 
+\section{Metodología}
+
+La metodología seguida en este trabajo se planteó como un proceso progresivo e iterativo, condicionado por la disponibilidad y calidad de los datos accesibles. Al tratarse de un proyecto basado en información real procedente de fuentes públicas y heterogéneas, no fue posible aplicar una secuencia completamente lineal, por lo que las fases de diseño, recopilación, depuración, validación, visualización y análisis se fueron ajustando conforme se detectaban nuevas necesidades o limitaciones en los datos.
+
+En primer lugar, se definió un modelo conceptual inicial para identificar las entidades principales del sistema y las relaciones necesarias para representar la actividad investigadora del IUMPA, además de para poder buscar fuentes de información con un criterio claro. Posteriormente, la información recopilada se transformó en estructuras tabulares, combinando procesos automáticos de extracción y tratamiento con revisiones manuales en los casos en los que existían ambigüedades.
+
+Una vez consolidada la base de datos, se realizó un análisis exploratorio para comprobar su cobertura y describir sus principales características. Sobre esta base se desarrolló una aplicación interactiva en R mediante Shiny, en la que las entidades y relaciones construidas se transformaron en grafos explorables. Finalmente, se planteó una ampliación analítica orientada a estudiar afinidades temáticas entre investigadores, para la que se construyeron representaciones basadas en palabras clave asociadas a revistas, se evaluaron distintas estrategias de agrupamiento y se revisaron los resultados obtenidos hasta seleccionar una aproximación semántica suficientemente interpretable.
+
+Esta metodología permitió adaptar el desarrollo del proyecto a las características reales de la información disponible. De este modo, el trabajo no se limitó a aplicar una técnica concreta sobre un conjunto de datos cerrado, sino que integró tareas de modelado, preparación de datos, visualización, análisis exploratorio y evaluación crítica de resultados.
+
 \section{Estructura de la memoria}
 
-La memoria se organiza siguiendo la evolución natural del proyecto, desde la definición del problema hasta la interpretación de los resultados obtenidos. En primer lugar, se introduce el contexto general del trabajo, la motivación, los objetivos perseguidos y el alcance del proyecto. También se presenta la metodología seguida, con el fin de ofrecer una visión global del proceso desarrollado.
+La memoria se organiza siguiendo la evolución natural del proyecto, desde la definición del problema hasta la interpretación de los resultados obtenidos. En primer lugar, se introduce el contexto general del trabajo, la motivación, los objetivos perseguidos, el alcance del proyecto y la metodología seguida.
 
 A continuación, se revisa el contexto tecnológico y metodológico relacionado con la representación de información investigadora, la integración de datos procedentes de fuentes heterogéneas, la visualización mediante grafos y las técnicas de agrupación utilizadas. Posteriormente, se describe el análisis del problema y el diseño conceptual del sistema, incluyendo la evolución del modelo inicial, las entidades y relaciones consideradas, y las principales decisiones adoptadas durante el desarrollo.
 
@@ -363,6 +383,9 @@ Desde el punto de vista de la protección de datos, el trabajo se limita al trat
 
 Durante el diseño del modelo se ha aplicado un criterio de minimización de la información. Esto implica conservar únicamente aquellos datos que resultan necesarios para construir las relaciones del sistema, generar las visualizaciones y realizar el análisis temático posterior. En este sentido, algunas variables planteadas inicialmente fueron descartadas al no poder obtenerse de forma suficientemente fiable, al no aportar valor directo al análisis o al alejarse del alcance definido para el trabajo.
 
+En particular, los correos electrónicos de los investigadores se recopilaron inicialmente a partir de información pública institucional como posible dato de contacto e identificación. Sin embargo, esta información no acabó siendo necesaria para la construcción de los grafos, la visualización de relaciones ni el análisis semántico desarrollado. Por este motivo, aunque pudo utilizarse como información auxiliar durante la fase de recopilación, no se incorporó como elemento mostrado en la aplicación interactiva ni como dato necesario para la versión
+de consulta del sistema, reforzando así el criterio de minimización aplicado al tratamiento de la información personal.
+
 También debe considerarse la procedencia y calidad de los datos. Al trabajar con fuentes heterogéneas, existe el riesgo de que aparezcan errores, duplicidades, variantes en los nombres, información incompleta o diferencias entre la información disponible para unos investigadores y otros. Por este motivo, el tratamiento de los datos ha requerido procesos de limpieza, en muchos casos manual. Desde una perspectiva ética, resulta importante reconocer estas limitaciones, ya que los resultados obtenidos dependen de la cobertura y calidad de las fuentes utilizadas.
 
 En relación con la propiedad intelectual, las fuentes consultadas se han utilizado como base para recopilar y contrastar información, evitando reproducir contenidos externos de forma indebida. Las herramientas, librerías, bases de datos y recursos empleados durante el desarrollo deben citarse adecuadamente en la memoria. Asimismo, las tablas, figuras y visualizaciones generadas deben presentarse como elaboraciones propias, indicando la procedencia de la información cuando corresponda.
@@ -429,7 +452,7 @@ La diversidad de fuentes empleadas hizo necesario combinar distintos procedimien
 
 El primer bloque de información construido correspondió a los investigadores internos del IUMPA. Esta base era necesaria para delimitar el conjunto principal de personas sobre el que se organizaría el resto de la información.
 
-Para obtener esta información se desarrolló un proceso de extracción mediante web scraping sobre la web del IUMPA. A partir del contenido de la página se obtuvo la relación inicial de investigadores internos y parte de su información básica. En el caso de los correos electrónicos, fue necesario tratar distintos patrones de páginas personales, ya que no todos los perfiles seguían exactamente la misma estructura de URL. Por ello, el código contempló diferentes formas de acceder a las páginas asociadas a cada investigador.
+Para obtener esta información se desarrolló un proceso de extracción mediante \textit{web scraping} sobre la web del IUMPA, entendido como la obtención automatizada de información a partir del contenido disponible en páginas web. A partir del contenido de la página se obtuvo la relación inicial de investigadores internos y parte de su información básica. En el caso de los correos electrónicos, fue necesario tratar distintos patrones de páginas personales, ya que no todos los perfiles seguían exactamente la misma estructura de URL. Por ello, el código contempló diferentes formas de acceder a las páginas asociadas a cada investigador.
 
 La tabla inicial de investigadores se fue ampliando durante el desarrollo del proyecto con campos auxiliares necesarios para enlazar los datos procedentes de distintas fuentes. Entre ellos se incorporaron, manualmente, variantes de firma, acrónimos, formas abreviadas del nombre, nombres en formato invertido y el tipo de empleado. Las primeras variables se utilizaron para asociar correctamente los artículos y proyectos con cada investigador, ya que una misma persona podía aparecer escrita de formas distintas según la fuente consultada, por ejemplo mediante iniciales, abreviaturas o con el orden de nombre y apellidos alterado. Por su parte, el tipo de empleado se conservó como atributo descriptivo, diferenciando entre investigadores, becarios y becarios de investigación.
 
@@ -445,7 +468,7 @@ Debido a la naturaleza heterogénea de los datos obtenidos, estos se reorganizar
 
 Google Scholar no proporcionaba información suficiente para todos los investigadores, por lo que se recurrió también a Scopus como fuente complementaria. En este caso, la información se obtuvo mediante ficheros descargados desde la plataforma y se adaptó a un formato compatible con el utilizado para los datos procedentes de Google Scholar. De este modo, los registros obtenidos desde ambas fuentes podían integrarse bajo una misma lógica de trabajo.
 
-ORCID se utilizó como fuente auxiliar de contraste y ampliación puntual. A través de su API pública se realizaron consultas de trabajos asociados a determinados investigadores, lo que permitió revisar la información bibliográfica en algunos casos. No obstante, la construcción principal de esta parte de la base de datos se apoyó fundamentalmente en Google Scholar y Scopus.
+ORCID se utilizó como fuente auxiliar de contraste y ampliación puntual. A través de su API pública, es decir, una interfaz que permite consultar información de forma estructurada desde un programa, se realizaron consultas de trabajos asociados a determinados investigadores, lo que permitió revisar la información bibliográfica en algunos casos. No obstante, la construcción principal de esta parte de la base de datos se apoyó fundamentalmente en Google Scholar y Scopus.
 
 \subsection{Construcción y depuración de la entidad revista}
 
@@ -1177,6 +1200,8 @@ GMM & -0.066 & Resultado negativo, indicando asignaciones no adecuadas \\
 
 Los resultados obtenidos en esta primera fase mostraron una separación limitada entre grupos. La mejor configuración dentro del clustering jerárquico fue la basada en distancia Manhattan, con un valor máximo de Silhouette de 0.329, mientras que el resto de métricas se mantuvieron en valores más bajos. Los métodos alternativos (K-means, PAM, Fuzzy C-Means, Spectral Clustering y GMM) tampoco ofrecieron una mejora clara, produciendo valores reducidos y agrupaciones difíciles de interpretar en general.
 
+Para representar gráficamente estas primeras pruebas se empleó una proyección MDS (\textit{Multidimensional Scaling}), una técnica que permite visualizar en dos dimensiones las distancias calculadas entre perfiles. De este modo, resulta posible observar si los grupos aparecen separados o si, por el contrario, existe solapamiento entre ellos.
+
 Además de los valores numéricos, las visualizaciones generadas durante esta fase permitieron observar solapamientos entre perfiles y particiones poco equilibradas. La Figura~\ref{fig:primeras_pruebas_keywords} muestra una configuración representativa de esta primera etapa, basada en distancia Manhattan y clustering jerárquico con enlace \textit{average}. Su objetivo no es presentar un modelo final, sino ilustrar las limitaciones observadas al trabajar únicamente con coincidencias explícitas de palabras clave. Aunque esta configuración fue la que obtuvo el mejor valor de Silhouette dentro de las pruebas iniciales, la proyección MDS muestra una separación todavía difusa entre perfiles y el gráfico de Silhouette refleja diferencias claras en la cohesión de los grupos obtenidos.
 
 \begin{figure}[H]
@@ -1641,6 +1666,8 @@ El trabajo realizado deja una base aprovechable para futuras consultas, revision
 En primer lugar, la base de datos construida es una de las piezas centrales que quedan tras la finalización del trabajo. Los ficheros generados reúnen la información principal del proyecto y conservan las relaciones necesarias para su consulta, visualización y posible ampliación posterior. Gracias a ello, la información recopilada no queda limitada a los análisis realizados en esta memoria, sino que puede actualizarse posteriormente si se incorporan datos más completos.
 
 En segundo lugar, la aplicación interactiva desarrollada también forma parte del legado del proyecto, ya que permite consultar la base de datos desde una perspectiva visual. Más allá de los grafos concretos incluidos en esta versión, la herramienta muestra cómo transformar las estructuras tabulares en visualizaciones explorables, por lo que podría ampliarse en el futuro con nueva información.
+
+% Esta aplicación interactiva queda disponible como prototipo asociado al proyecto a través del siguiente \url{enlace}. Su acceso y reutilización quedan condicionados por la disponibilidad de los ficheros de datos utilizados y por las consideraciones de protección de  datos descritas en esta memoria. La versión desplegada para consulta utiliza una versión limitada de los datos, excluyendo información de contacto, como los correos electrónicos, al no ser necesaria para la exploración visual. De este modo, se reduce la exposición de datos personales no imprescindibles y se mantiene el carácter exploratorio de la herramienta.
 
 El trabajo también deja como legado una línea metodológica para el análisis temático de los investigadores. El proceso seguido, desde la construcción del vocabulario de palabras clave hasta la evaluación de distintas estrategias de agrupación, proporciona una referencia para continuar explorando afinidades temáticas a partir de la información disponible. Aunque los resultados obtenidos deben interpretarse con cautela, la metodología desarrollada permite identificar qué enfoques resultaron menos adecuados, qué limitaciones aparecieron y qué alternativas ofrecen una base más prometedora para futuras versiones.
 
@@ -2290,8 +2317,6 @@ Título de revista & Denominación de la revista incluida en el listado auxiliar
 \caption{Atributo principal del listado auxiliar de revistas.}
 \label{tab:atributos_titulos_revistas}
 \end{table}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
