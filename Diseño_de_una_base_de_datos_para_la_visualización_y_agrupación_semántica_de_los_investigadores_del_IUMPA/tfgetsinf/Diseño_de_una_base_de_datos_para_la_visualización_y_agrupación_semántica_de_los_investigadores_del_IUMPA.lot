@@ -1,0 +1,41 @@
+\babel@toc {spanish}{}\relax 
+\babel@toc {catalan}{}\relax 
+\babel@toc {spanish}{}\relax 
+\babel@toc {spanish}{}\relax 
+\babel@toc {spanish}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {spanish}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Principales entidades representadas en la base de datos.}}{22}{table.caption.4}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Principales relaciones representadas en la base de datos.}}{23}{table.caption.5}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Estructuras auxiliares generadas para la fase de agrupación semántica.}}{23}{table.caption.6}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Resumen general de la base de datos final construida.}}{24}{table.caption.7}%
+\contentsline {table}{\numberline {4.5}{\ignorespaces Estadísticas descriptivas de las principales distribuciones de la base de datos.}}{25}{table.caption.8}%
+\contentsline {table}{\numberline {4.6}{\ignorespaces Cobertura de las estructuras semánticas generadas.}}{29}{table.caption.16}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces Elementos considerados en el proceso de agrupamiento temático.}}{44}{table.caption.25}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces Resumen de las primeras pruebas realizadas con palabras clave explícitas.}}{45}{table.caption.26}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces Resumen de pruebas realizadas con la matriz ponderada de palabras clave.}}{47}{table.caption.28}%
+\contentsline {table}{\numberline {6.4}{\ignorespaces Resumen de pruebas iniciales realizadas sobre representaciones semánticas mediante embeddings.}}{50}{table.caption.30}%
+\contentsline {table}{\numberline {6.5}{\ignorespaces Resumen de pruebas realizadas tras la depuración del vocabulario.}}{52}{table.caption.32}%
+\contentsline {table}{\numberline {6.6}{\ignorespaces Comparación final de configuraciones tras la depuración del vocabulario.}}{54}{table.caption.33}%
+\contentsline {table}{\numberline {6.7}{\ignorespaces Resumen cualitativo del solapamiento entre configuraciones seleccionadas.}}{56}{table.caption.35}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {B.1}{\ignorespaces Atributos principales del fichero de investigadores internos.}}{71}{table.caption.39}%
+\contentsline {table}{\numberline {B.2}{\ignorespaces Atributos principales del fichero de áreas de trabajo.}}{72}{table.caption.41}%
+\contentsline {table}{\numberline {B.3}{\ignorespaces Atributos principales del fichero de revistas.}}{72}{table.caption.43}%
+\contentsline {table}{\numberline {B.4}{\ignorespaces Atributos principales de la relación entre investigadores y áreas.}}{73}{table.caption.45}%
+\contentsline {table}{\numberline {B.5}{\ignorespaces Atributos principales de los ficheros de la relación entre investigadores y revistas.}}{74}{table.caption.47}%
+\contentsline {table}{\numberline {B.6}{\ignorespaces Atributos principales del fichero de relación de coautoría.}}{74}{table.caption.49}%
+\contentsline {table}{\numberline {B.7}{\ignorespaces Atributos principales de los ficheros de la relación entre investigadores y proyectos.}}{75}{table.caption.51}%
+\contentsline {table}{\numberline {B.8}{\ignorespaces Atributos principales del fichero de colaboración en proyectos.}}{75}{table.caption.53}%
+\contentsline {table}{\numberline {B.9}{\ignorespaces Estructura principal de la matriz de revistas y palabras clave.}}{76}{table.caption.55}%
+\contentsline {table}{\numberline {B.10}{\ignorespaces Estructura principal de la matriz de investigadores y palabras clave.}}{76}{table.caption.57}%
+\contentsline {table}{\numberline {B.11}{\ignorespaces Atributos principales del fichero de trazabilidad temática.}}{77}{table.caption.59}%
+\contentsline {table}{\numberline {B.12}{\ignorespaces Atributo principal del listado auxiliar de revistas.}}{77}{table.caption.61}%
