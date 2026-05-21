@@ -1,0 +1,47 @@
+\babel@toc {spanish}{}\relax 
+\babel@toc {catalan}{}\relax 
+\babel@toc {spanish}{}\relax 
+\babel@toc {spanish}{}\relax 
+\babel@toc {spanish}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {spanish}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Distribución de investigadores por tipo de empleado.}}{26}{figure.caption.10}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Distribución de asociaciones investigador-área por área de trabajo.}}{26}{figure.caption.11}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Relación entre artículos recopilados y revistas distintas asociadas por investigador.}}{27}{figure.caption.12}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Principales editoriales asociadas a las revistas recopiladas.}}{27}{figure.caption.13}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Distribución de artículos, revistas distintas y proyectos asociados por investigador.}}{28}{figure.caption.14}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Distribución agrupada del número de investigadores internos del IUMPA asociados a cada proyecto.}}{28}{figure.caption.15}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Distribución temporal de los proyectos asociados a investigadores del IUMPA.}}{29}{figure.caption.16}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Grafo de relación entre investigadores y revistas.}}{33}{figure.caption.18}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Grafo de relación entre investigadores y proyectos de investigación.}}{33}{figure.caption.19}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Grafo de colaboración entre investigadores a partir de artículos compartidos.}}{34}{figure.caption.20}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Grafo de colaboración entre investigadores a partir de la participación conjunta en proyectos.}}{34}{figure.caption.21}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Ejemplos de filtrado mediante selectores en los grafos interactivos.}}{35}{figure.caption.22}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Ejemplo de filtrado visual mediante la selección de categorías en la leyenda del grafo.}}{36}{figure.caption.23}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Ejemplos de información mostrada al seleccionar distintos tipos de nodo en los grafos de producción académica.}}{37}{figure.caption.24}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Proceso de construcción de perfiles temáticos a partir de las revistas publicadas por los investigadores.}}{41}{figure.caption.25}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Visualización representativa de una de las primeras pruebas basadas en palabras clave explícitas.}}{46}{figure.caption.28}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Visualización representativa de una prueba con matriz ponderada.}}{48}{figure.caption.30}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Configuración inicial basada en embeddings, UMAP y clustering jerárquico con distancia coseno.}}{50}{figure.caption.32}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Configuración basada en embeddings depurados, UMAP y clustering jerárquico con distancia coseno.}}{54}{figure.caption.35}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Solapamiento entre clustering jerárquico con distancia coseno y clustering jerárquico tras reducción mediante UMAP.}}{56}{figure.caption.37}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Ejemplo visual de la estructura parcial de \texttt {Investigadores\_internos.csv}.}}{72}{figure.caption.41}%
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Ejemplo visual de la estructura del fichero \texttt {Areas.csv}.}}{72}{figure.caption.43}%
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Ejemplo visual de la estructura del fichero \texttt {Revistas.csv}.}}{73}{figure.caption.45}%
+\contentsline {figure}{\numberline {B.4}{\ignorespaces Ejemplo visual de la estructura del fichero \texttt {es\_parte\_de\_limpio\_listas.csv}.}}{73}{figure.caption.47}%
+\contentsline {figure}{\numberline {B.5}{\ignorespaces Ejemplo visual de un fichero de la relación \textit {ha\_publicado\_en}.}}{74}{figure.caption.49}%
+\contentsline {figure}{\numberline {B.6}{\ignorespaces Ejemplo visual abreviado de la estructura de \texttt {ha\_publicado\_con.csv}.}}{74}{figure.caption.51}%
+\contentsline {figure}{\numberline {B.7}{\ignorespaces Ejemplo visual de la estructura parcial de \textit {ha\_participado\_en}.}}{75}{figure.caption.53}%
+\contentsline {figure}{\numberline {B.8}{\ignorespaces Ejemplo visual abreviado de la estructura de \texttt {ha\_participado\_con.csv}.}}{75}{figure.caption.55}%
+\contentsline {figure}{\numberline {B.9}{\ignorespaces Ejemplo visual parcial de la matriz de revistas y palabras clave.}}{76}{figure.caption.57}%
+\contentsline {figure}{\numberline {B.10}{\ignorespaces Ejemplo visual parcial de la matriz de investigadores y palabras clave.}}{77}{figure.caption.59}%
+\contentsline {figure}{\numberline {B.11}{\ignorespaces Ejemplo visual parcial de trazabilidad entre investigadores, revistas y palabras clave.}}{77}{figure.caption.61}%
