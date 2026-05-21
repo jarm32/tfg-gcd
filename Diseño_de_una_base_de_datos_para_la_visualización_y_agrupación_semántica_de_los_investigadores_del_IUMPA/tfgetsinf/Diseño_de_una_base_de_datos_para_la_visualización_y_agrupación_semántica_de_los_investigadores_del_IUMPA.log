@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.5.19)  20 MAY 2026 19:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.18)  21 MAY 2026 19:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -8,7 +8,7 @@ a_de_los_investigadores_del_IUMPA.tex
 (Dise帽o_de_una_base_de_datos_para_la_visualizaci贸n_y_agrupaci贸n_sem谩ntica_d
 e_los_investigadores_del_IUMPA.tex
 LaTeX2e <2025-11-01>
-L3 programming layer <2025-12-24>
+L3 programming layer <2026-03-20>
 (tfgetsinf.cls
 Document Class: tfgetsinf 2015/05/04 v1 LaTeX document class
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/base\book.cls
@@ -27,30 +27,30 @@ File: bk11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \c@table=\count283
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
-\bibindent=\dimen148
+\bibindent=\dimen150
 )
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
 Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
 )
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
-Package: babel 2025/12/11 v25.17 The multilingual framework for LuaLaTeX, pdfLa
-TeX and XeLaTeX
+Package: babel 2026/04/15 v26.6 The multilingual framework for LuaLaTeX, pdfLaT
+eX and XeLaTeX
 \babel@savecnt=\count284
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
-ne 2068.
+ne 2078.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
-ne 2070.
+ne 2080.
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
-e 2072.
+e 2082.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
-e 2073.
+e 2083.
 LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
-on input line 2074.
+on input line 2084.
 LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
-on input line 2076.
+on input line 2086.
 LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
-on input line 2101.
-\U@D=\dimen149
+on input line 2111.
+\U@D=\dimen151
 \l@unhyphenated=\language79
 
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
@@ -58,7 +58,7 @@ on input line 2101.
 \bbl@dirlevel=\count285
 Package babel Info: Configuration files are deprecated, as
 (babel)             they can break document portability.
-(babel)             Reported on input line 4196.
+(babel)             Reported on input line 4206.
 
 *************************************
 * Local config file bblopts.cfg used
@@ -76,7 +76,7 @@ File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/es\babel
 -spanish.tex)
 Package babel Info: Importing font and identification data for english
-(babel)             from babel-en.ini. Reported on input line 4320.
+(babel)             from babel-en.ini. Reported on input line 4330.
 
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/babel-english\english.l
 df
@@ -89,18 +89,18 @@ Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
 (babel)             (\language73). Reported on input line 108.
 )
 Package babel Info: Importing font and identification data for catalan
-(babel)             from babel-ca.ini. Reported on input line 4320.
+(babel)             from babel-ca.ini. Reported on input line 4330.
 
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/babel-catalan\catalan.l
 df
 Language: catalan 2005/03/29 v2.2p Catalan support from the babel system
 Package babel Info: Making " an active character on input line 91.
-\leftllkern=\dimen150
-\rightllkern=\dimen151
-\raiselldim=\dimen152
+\leftllkern=\dimen152
+\rightllkern=\dimen153
+\raiselldim=\dimen154
 )
 Package babel Info: Importing font and identification data for spanish
-(babel)             from babel-es.ini. Reported on input line 4320.
+(babel)             from babel-es.ini. Reported on input line 4330.
 
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/babel-spanish\spanish.l
 df
@@ -136,14 +136,14 @@ Package: iftex 2024/12/12 v1.0g TeX engine tests
 \Gm@cnth=\count287
 \Gm@cntv=\count288
 \c@Gm@tempcnt=\count289
-\Gm@bindingoffset=\dimen153
-\Gm@wd@mp=\dimen154
-\Gm@odd@mp=\dimen155
-\Gm@even@mp=\dimen156
-\Gm@layoutwidth=\dimen157
-\Gm@layoutheight=\dimen158
-\Gm@layouthoffset=\dimen159
-\Gm@layoutvoffset=\dimen160
+\Gm@bindingoffset=\dimen155
+\Gm@wd@mp=\dimen156
+\Gm@odd@mp=\dimen157
+\Gm@even@mp=\dimen158
+\Gm@layoutwidth=\dimen159
+\Gm@layoutheight=\dimen160
+\Gm@layouthoffset=\dimen161
+\Gm@layoutvoffset=\dimen162
 \Gm@dimlist=\toks19
 
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
@@ -183,14 +183,14 @@ Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen161
-\captionmargin=\dimen162
-\caption@leftmargin=\dimen163
-\caption@rightmargin=\dimen164
-\caption@width=\dimen165
-\caption@indent=\dimen166
-\caption@parindent=\dimen167
-\caption@hangindent=\dimen168
+\caption@tempdima=\dimen163
+\captionmargin=\dimen164
+\caption@leftmargin=\dimen165
+\caption@rightmargin=\dimen166
+\caption@width=\dimen167
+\caption@indent=\dimen168
+\caption@parindent=\dimen169
+\caption@hangindent=\dimen170
 Package caption Info: Standard document class detected.
 )
 \c@caption@flags=\count290
@@ -233,14 +233,14 @@ Package newfloat Info: \listquadrename is already defined on input line 167.
 \lst@gtempboxa=\box53
 \lst@token=\toks20
 \lst@length=\count300
-\lst@currlwidth=\dimen169
+\lst@currlwidth=\dimen171
 \lst@column=\count301
 \lst@pos=\count302
-\lst@lostspace=\dimen170
-\lst@width=\dimen171
+\lst@lostspace=\dimen172
+\lst@width=\dimen173
 \lst@newlines=\count303
 \lst@lineno=\count304
-\lst@maxwidth=\dimen172
+\lst@maxwidth=\dimen174
 
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstpatch.sty
 File: lstpatch.sty 2025/11/14 1.11b (Carsten Heinz)
@@ -275,12 +275,12 @@ Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \ttl@box=\box55
 \beforetitleunit=\skip53
 \aftertitleunit=\skip54
-\ttl@plus=\dimen173
-\ttl@minus=\dimen174
+\ttl@plus=\dimen175
+\ttl@minus=\dimen176
 \ttl@toksa=\toks21
-\titlewidth=\dimen175
-\titlewidthlast=\dimen176
-\titlewidthfirst=\dimen177
+\titlewidth=\dimen177
+\titlewidthlast=\dimen178
+\titlewidthfirst=\dimen179
 )
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/tocloft\tocloft.sty
 Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
@@ -356,16 +356,16 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 106.
 )
-\Gin@req@height=\dimen178
-\Gin@req@width=\dimen179
+\Gin@req@height=\dimen180
+\Gin@req@width=\dimen181
 )
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/eso-pic\eso-pic.sty
 Package: eso-pic 2025/12/10 v3.0d eso-pic (RN)
-\ESO@tempdima=\dimen180
-\ESO@tempdimb=\dimen181
+\ESO@tempdima=\dimen182
+\ESO@tempdimb=\dimen183
 )
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
-Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
+Package: hyperref 2026-04-24 v7.01q Hypertext links for LaTeX
 
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
@@ -398,7 +398,7 @@ Package pdftexcmds Info: \pdfdraftmode found.
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
-Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
 
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
@@ -421,11 +421,11 @@ ty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
-\@linkdim=\dimen182
+\@linkdim=\dimen184
 \Hy@linkcounter=\count311
 \Hy@pagecounter=\count312
  (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
-File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2026-04-24 v7.01q Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 ) (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
@@ -433,21 +433,21 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count313
  (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
-File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2026-04-24 v7.01q Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 4066.
-Package hyperref Info: Hyper figures OFF on input line 4195.
-Package hyperref Info: Link nesting OFF on input line 4200.
-Package hyperref Info: Hyper index ON on input line 4203.
-Package hyperref Info: Plain pages OFF on input line 4210.
-Package hyperref Info: Backreferencing OFF on input line 4215.
+Package hyperref Info: Option `colorlinks' set `true' on input line 4070.
+Package hyperref Info: Hyper figures OFF on input line 4199.
+Package hyperref Info: Link nesting OFF on input line 4204.
+Package hyperref Info: Hyper index ON on input line 4207.
+Package hyperref Info: Plain pages OFF on input line 4214.
+Package hyperref Info: Backreferencing OFF on input line 4219.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4462.
+Package hyperref Info: Bookmarks ON on input line 4466.
 \c@Hy@tempcnt=\count314
-LaTeX Info: Redefining \url on input line 4801.
-\XeTeXLinkMargin=\dimen183
+LaTeX Info: Redefining \url on input line 4805.
+\XeTeXLinkMargin=\dimen185
 
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -458,15 +458,15 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
 \Fld@menulength=\count315
-\Field@Width=\dimen184
-\Fld@charsize=\dimen185
-Package hyperref Info: Hyper figures OFF on input line 6078.
-Package hyperref Info: Link nesting OFF on input line 6083.
-Package hyperref Info: Hyper index ON on input line 6086.
-Package hyperref Info: backreferencing OFF on input line 6093.
-Package hyperref Info: Link coloring ON on input line 6096.
-Package hyperref Info: Link coloring with OCG OFF on input line 6103.
-Package hyperref Info: PDF/A mode OFF on input line 6108.
+\Field@Width=\dimen186
+\Fld@charsize=\dimen187
+Package hyperref Info: Hyper figures OFF on input line 6091.
+Package hyperref Info: Link nesting OFF on input line 6096.
+Package hyperref Info: Hyper index ON on input line 6099.
+Package hyperref Info: backreferencing OFF on input line 6106.
+Package hyperref Info: Link coloring ON on input line 6109.
+Package hyperref Info: Link coloring with OCG OFF on input line 6116.
+Package hyperref Info: PDF/A mode OFF on input line 6121.
 \Hy@abspage=\count316
 \c@Item=\count317
 \c@Hfootnote=\count318
@@ -474,7 +474,7 @@ Package hyperref Info: PDF/A mode OFF on input line 6108.
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
-File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
+File: hpdftex.def 2026-04-24 v7.01q Hyperref driver for pdfTeX
 \Fld@listcount=\count319
 \c@bookmark@seq@number=\count320
 
@@ -573,11 +573,11 @@ Package: amstext 2024/11/17 v2.01 AMS text
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks26
-\ex@=\dimen186
+\ex@=\dimen188
 ))
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen187
+\pmbraise@=\dimen189
 )
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
@@ -599,7 +599,7 @@ LaTeX Info: Redefining \big on input line 721.
 LaTeX Info: Redefining \Big on input line 722.
 LaTeX Info: Redefining \bigg on input line 723.
 LaTeX Info: Redefining \Bigg on input line 724.
-\big@size=\dimen188
+\big@size=\dimen190
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
 \macc@depth=\count333
@@ -617,12 +617,12 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \column@=\count338
 \maxfields@=\count339
 \andhelp@=\toks28
-\eqnshift@=\dimen189
-\alignsep@=\dimen190
-\tagshift@=\dimen191
-\tagwidth@=\dimen192
-\totwidth@=\dimen193
-\lineht@=\dimen194
+\eqnshift@=\dimen191
+\alignsep@=\dimen192
+\tagshift@=\dimen193
+\tagwidth@=\dimen194
+\totwidth@=\dimen195
+\lineht@=\dimen196
 \@envbody=\toks29
 \multlinegap=\skip105
 \multlinetaggap=\skip106
@@ -643,23 +643,23 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 )) (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.st
 y
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen195
-\lightrulewidth=\dimen196
-\cmidrulewidth=\dimen197
-\belowrulesep=\dimen198
-\belowbottomsep=\dimen199
-\aboverulesep=\dimen256
-\abovetopsep=\dimen257
-\cmidrulesep=\dimen258
-\cmidrulekern=\dimen259
-\defaultaddspace=\dimen260
+\heavyrulewidth=\dimen197
+\lightrulewidth=\dimen198
+\cmidrulewidth=\dimen199
+\belowrulesep=\dimen256
+\belowbottomsep=\dimen257
+\aboverulesep=\dimen258
+\abovetopsep=\dimen259
+\cmidrulesep=\dimen260
+\cmidrulekern=\dimen261
+\defaultaddspace=\dimen262
 \@cmidla=\count340
 \@cmidlb=\count341
-\@aboverulesep=\dimen261
-\@belowrulesep=\dimen262
+\@aboverulesep=\dimen263
+\@belowrulesep=\dimen264
 \@thisruleclass=\count342
 \@lastruleclass=\count343
-\@thisrulewidth=\dimen263
+\@thisrulewidth=\dimen265
 ) (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable.sty
 Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
 \LTleft=\skip107
@@ -667,7 +667,7 @@ Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
 \LTpre=\skip109
 \LTpost=\skip110
 \LTchunksize=\count344
-\LTcapwidth=\dimen264
+\LTcapwidth=\dimen266
 \LT@head=\box58
 \LT@firsthead=\box59
 \LT@foot=\box60
@@ -681,9 +681,9 @@ Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
 )
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
 Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
-\col@sep=\dimen265
+\col@sep=\dimen267
 \ar@mcellbox=\box63
-\extrarowheight=\dimen266
+\extrarowheight=\dimen268
 \NC@list=\toks32
 \extratabsurround=\skip111
 \backup@length=\skip112
@@ -699,11 +699,11 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 )
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/tools\tabularx.sty
 Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
-\TX@col@width=\dimen267
-\TX@old@table=\dimen268
-\TX@old@col=\dimen269
-\TX@target=\dimen270
-\TX@delta=\dimen271
+\TX@col@width=\dimen269
+\TX@old@table=\dimen270
+\TX@old@col=\dimen271
+\TX@target=\dimen272
+\TX@delta=\dimen273
 \TX@cols=\count350
 \TX@ftn=\toks35
 )
@@ -719,7 +719,7 @@ File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 (C:\Users\josep\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
-File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count351
 )
 (Dise帽o_de_una_base_de_datos_para_la_visualizaci贸n_y_agrupaci贸n_sem谩ntica_d
@@ -804,13 +804,13 @@ LaTeX Info: Redefining \L on input line 104.
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count352
-\scratchdimen=\dimen272
+\scratchdimen=\dimen274
 \scratchbox=\box67
 \nofMPsegments=\count353
 \nofMParguments=\count354
 \everyMPshowfont=\toks36
 \MPscratchCnt=\count355
-\MPscratchDim=\dimen273
+\MPscratchDim=\dimen275
 \MPnumerator=\count356
 \makeMPintoPDFobject=\count357
 \everyMPtoPDFconversion=\toks37
@@ -1027,12 +1027,12 @@ sem谩ntica_de_los_investigadores_del_IUMPA.lot'.
 
 
 Package spanish Warning: Replacing `T1/lmr/bx/sc' by 
-(spanish)                faked small caps on input line 166.
+(spanish)                faked small caps on input line 162.
 
-LaTeX Info: Redefining \. on input line 166.
-LaTeX Info: Redefining \% on input line 166.
+LaTeX Info: Redefining \. on input line 162.
+LaTeX Info: Redefining \% on input line 162.
 Package babel Info: 'spanish' activates 'spanish' shorthands.
-(babel)             Reported on input line 166.
+(babel)             Reported on input line 162.
 [10]
 Cap\'{\i }tulo 1.
 [1
@@ -1040,11 +1040,11 @@ Cap\'{\i }tulo 1.
 
 
 ]
-LaTeX Info: Redefining \. on input line 224.
-LaTeX Info: Redefining \% on input line 224.
+LaTeX Info: Redefining \. on input line 220.
+LaTeX Info: Redefining \% on input line 220.
  [2]
-LaTeX Info: Redefining \. on input line 244.
-LaTeX Info: Redefining \% on input line 244.
+LaTeX Info: Redefining \. on input line 240.
+LaTeX Info: Redefining \% on input line 240.
  [3] [4
 
 ]
@@ -1055,47 +1055,47 @@ Underfull \vbox (badness 4120) has occurred while \output is active []
  [5]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 277.
-LaTeX Info: Redefining \% on input line 277.
+LaTeX Info: Redefining \. on input line 273.
+LaTeX Info: Redefining \% on input line 273.
  [6]
-LaTeX Info: Redefining \. on input line 292.
-LaTeX Info: Redefining \% on input line 292.
+LaTeX Info: Redefining \. on input line 288.
+LaTeX Info: Redefining \% on input line 288.
 
 [7] [8
 
 ]
 Cap\'{\i }tulo 3.
 [9]
-LaTeX Info: Redefining \. on input line 339.
-LaTeX Info: Redefining \% on input line 339.
+LaTeX Info: Redefining \. on input line 335.
+LaTeX Info: Redefining \% on input line 335.
  [10]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 353.
-LaTeX Info: Redefining \% on input line 353.
+LaTeX Info: Redefining \. on input line 349.
+LaTeX Info: Redefining \% on input line 349.
  [11]
-Overfull \hbox (32.82094pt too wide) in paragraph at lines 371--372
+Overfull \hbox (32.82094pt too wide) in paragraph at lines 367--368
 []\T1/lmr/bx/sc/10.95 Relaciones por pu-bli-ca-cio-nes\T1/lmr/m/n/10.95 : se re
 -pre-sen-ta-ron me-dian-te las re-la-cio-nes \T1/lmr/m/it/10.95 ha_publicado_en
 
  []
 
-LaTeX Info: Redefining \. on input line 372.
-LaTeX Info: Redefining \% on input line 372.
+LaTeX Info: Redefining \. on input line 368.
+LaTeX Info: Redefining \% on input line 368.
 [12]
-Overfull \hbox (20.48175pt too wide) in paragraph at lines 373--374
+Overfull \hbox (20.48175pt too wide) in paragraph at lines 369--370
 []\T1/lmr/bx/sc/10.95 Relaciones por pro-yec-tos\T1/lmr/m/n/10.95 : se re-pre-s
 en-ta-ron me-dian-te las re-la-cio-nes \T1/lmr/m/it/10.95 ha_participado_en
  []
 
-LaTeX Info: Redefining \. on input line 391.
-LaTeX Info: Redefining \% on input line 391.
+LaTeX Info: Redefining \. on input line 386.
+LaTeX Info: Redefining \% on input line 386.
 [13]
-LaTeX Info: Redefining \. on input line 408.
-LaTeX Info: Redefining \% on input line 408.
+LaTeX Info: Redefining \. on input line 404.
+LaTeX Info: Redefining \% on input line 404.
  [14]
-LaTeX Info: Redefining \. on input line 421.
-LaTeX Info: Redefining \% on input line 421.
+LaTeX Info: Redefining \. on input line 418.
+LaTeX Info: Redefining \% on input line 418.
  [15] [16
 
 ]
@@ -1104,194 +1104,203 @@ Cap\'{\i }tulo 4.
 Underfull \vbox (badness 3029) has occurred while \output is active []
 
  [17]
-LaTeX Info: Redefining \. on input line 457.
-LaTeX Info: Redefining \% on input line 457.
+LaTeX Info: Redefining \. on input line 454.
+LaTeX Info: Redefining \% on input line 454.
 
 [18]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 476.
-LaTeX Info: Redefining \% on input line 476.
+LaTeX Info: Redefining \. on input line 473.
+LaTeX Info: Redefining \% on input line 473.
  [19]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 496.
-LaTeX Info: Redefining \% on input line 496.
+LaTeX Info: Redefining \. on input line 493.
+LaTeX Info: Redefining \% on input line 493.
  [20]
-LaTeX Info: Redefining \. on input line 547.
-LaTeX Info: Redefining \% on input line 547.
+Underfull \vbox (badness 3000) has occurred while \output is active []
 
-[21]
-LaTeX Info: Redefining \. on input line 591.
-LaTeX Info: Redefining \% on input line 591.
+LaTeX Info: Redefining \. on input line 519.
+LaTeX Info: Redefining \% on input line 519.
+ [21]
+Underfull \vbox (badness 5203) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 560.
+LaTeX Info: Redefining \% on input line 560.
  [22]
-LaTeX Info: Redefining \. on input line 628.
-LaTeX Info: Redefining \% on input line 628.
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 625.
+LaTeX Info: Redefining \% on input line 625.
  [23]
-LaTeX Info: Redefining \. on input line 671.
-LaTeX Info: Redefining \% on input line 671.
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 668.
+LaTeX Info: Redefining \% on input line 668.
  [24]
-<imgs/eda_tipo_empleado.png, id=700, 498.1812pt x 280.8894pt>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 696.
+LaTeX Info: Redefining \% on input line 696.
+ [25]
+<imgs/eda_tipo_empleado.png, id=704, 498.1812pt x 280.8894pt>
 File: imgs/eda_tipo_empleado.png Graphic file (type png)
 <use imgs/eda_tipo_empleado.png>
-Package pdftex.def Info: imgs/eda_tipo_empleado.png  used on input line 700.
+Package pdftex.def Info: imgs/eda_tipo_empleado.png  used on input line 699.
 (pdftex.def)             Requested size: 298.75264pt x 168.4535pt.
-
-Underfull \vbox (badness 3260) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 706.
-LaTeX Info: Redefining \% on input line 706.
- [25 <./imgs/eda_tipo_empleado.png>]
-<imgs/eda_areas_trabajo.png, id=708, 567.0786pt x 316.7835pt>
+<imgs/eda_areas_trabajo.png, id=707, 567.0786pt x 316.7835pt>
 File: imgs/eda_areas_trabajo.png Graphic file (type png)
 <use imgs/eda_areas_trabajo.png>
-Package pdftex.def Info: imgs/eda_areas_trabajo.png  used on input line 709.
+Package pdftex.def Info: imgs/eda_areas_trabajo.png  used on input line 708.
 (pdftex.def)             Requested size: 256.07741pt x 143.05396pt.
-<imgs/eda_articulos_vs_revistas.png, id=710, 497.9403pt x 353.4003pt>
+<imgs/eda_articulos_vs_revistas.png, id=709, 497.9403pt x 353.4003pt>
 File: imgs/eda_articulos_vs_revistas.png Graphic file (type png)
 <use imgs/eda_articulos_vs_revistas.png>
 Package pdftex.def Info: imgs/eda_articulos_vs_revistas.png  used on input line
- 720.
+ 719.
 (pdftex.def)             Requested size: 256.07741pt x 181.74164pt.
-<imgs/eda_top_editoriales.png, id=712, 859.2903pt x 426.393pt>
+LaTeX Info: Redefining \. on input line 723.
+LaTeX Info: Redefining \% on input line 723.
+
+[26 <./imgs/eda_tipo_empleado.png> <./imgs/eda_areas_trabajo.png>]
+<imgs/eda_top_editoriales.png, id=717, 859.2903pt x 426.393pt>
 File: imgs/eda_top_editoriales.png Graphic file (type png)
 <use imgs/eda_top_editoriales.png>
-Package pdftex.def Info: imgs/eda_top_editoriales.png  used on input line 729.
+Package pdftex.def Info: imgs/eda_top_editoriales.png  used on input line 728.
 (pdftex.def)             Requested size: 384.1096pt x 190.59985pt.
-LaTeX Info: Redefining \. on input line 733.
-LaTeX Info: Redefining \% on input line 733.
- [26 <./imgs/eda_areas_trabajo.png> <./imgs/eda_articulos_vs_revistas.png>]
-<imgs/eda_distribuciones_por_investigador.png, id=720, 570.2103pt x 317.7471pt>
+LaTeX Info: Redefining \. on input line 738.
+LaTeX Info: Redefining \% on input line 738.
+ [27 <./imgs/eda_articulos_vs_revistas.png> <./imgs/eda_top_editoriales.png>]
+<imgs/eda_distribuciones_por_investigador.png, id=726, 570.2103pt x 317.7471pt>
 
 File: imgs/eda_distribuciones_por_investigador.png Graphic file (type png)
 <use imgs/eda_distribuciones_por_investigador.png>
 Package pdftex.def Info: imgs/eda_distribuciones_por_investigador.png  used on 
-input line 742.
+input line 741.
 (pdftex.def)             Requested size: 298.75264pt x 166.48032pt.
-LaTeX Info: Redefining \. on input line 748.
-LaTeX Info: Redefining \% on input line 748.
- [27 <./imgs/eda_top_editoriales.png> <./imgs/eda_distribuciones_por_investigad
-or.png>]
-<imgs/eda_investigadores_por_proyecto_agrupado.png, id=729, 498.1812pt x 281.13
+<imgs/eda_investigadores_por_proyecto_agrupado.png, id=728, 498.1812pt x 281.13
 03pt>
 File: imgs/eda_investigadores_por_proyecto_agrupado.png Graphic file (type png)
 
 <use imgs/eda_investigadores_por_proyecto_agrupado.png>
 Package pdftex.def Info: imgs/eda_investigadores_por_proyecto_agrupado.png  use
-d on input line 751.
+d on input line 750.
 (pdftex.def)             Requested size: 256.07741pt x 144.51132pt.
-<imgs/distr_temporal_proyectos.png, id=731, 1003.8303pt x 426.393pt>
+<imgs/distr_temporal_proyectos.png, id=730, 1003.8303pt x 426.393pt>
 File: imgs/distr_temporal_proyectos.png Graphic file (type png)
 <use imgs/distr_temporal_proyectos.png>
 Package pdftex.def Info: imgs/distr_temporal_proyectos.png  used on input line 
-760.
+759.
 (pdftex.def)             Requested size: 426.79135pt x 181.28293pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 770.
-LaTeX Info: Redefining \% on input line 770.
- [28 <./imgs/eda_investigadores_por_proyecto_agrupado.png> <./imgs/distr_tempor
-al_proyectos.png>]
-LaTeX Info: Redefining \. on input line 809.
-LaTeX Info: Redefining \% on input line 809.
- [29] [30
+LaTeX Info: Redefining \. on input line 763.
+LaTeX Info: Redefining \% on input line 763.
+ [28 <./imgs/eda_distribuciones_por_investigador.png> <./imgs/eda_investigadore
+s_por_proyecto_agrupado.png>]
+LaTeX Info: Redefining \. on input line 795.
+LaTeX Info: Redefining \% on input line 795.
+ [29 <./imgs/distr_temporal_proyectos.png>]
+LaTeX Info: Redefining \. on input line 808.
+LaTeX Info: Redefining \% on input line 808.
+ [30]
+Cap\'{\i }tulo 5.
+[31
 
 ]
-Cap\'{\i }tulo 5.
-[31]
 <imgs/inv_vs_revistas.png, id=755, 1444.64719pt x 812.28468pt>
 File: imgs/inv_vs_revistas.png Graphic file (type png)
 <use imgs/inv_vs_revistas.png>
-Package pdftex.def Info: imgs/inv_vs_revistas.png  used on input line 849.
+Package pdftex.def Info: imgs/inv_vs_revistas.png  used on input line 848.
 (pdftex.def)             Requested size: 341.43437pt x 191.97763pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 853.
-LaTeX Info: Redefining \% on input line 853.
+LaTeX Info: Redefining \. on input line 852.
+LaTeX Info: Redefining \% on input line 852.
  [32]
 <imgs/inv_vs_proyectos.png, id=761, 1444.64719pt x 812.28468pt>
 File: imgs/inv_vs_proyectos.png Graphic file (type png)
 <use imgs/inv_vs_proyectos.png>
-Package pdftex.def Info: imgs/inv_vs_proyectos.png  used on input line 858.
+Package pdftex.def Info: imgs/inv_vs_proyectos.png  used on input line 857.
 (pdftex.def)             Requested size: 341.43437pt x 191.97763pt.
 <imgs/inv_vs_inv_revistas.png, id=762, 1444.64719pt x 812.28468pt>
 File: imgs/inv_vs_inv_revistas.png Graphic file (type png)
 <use imgs/inv_vs_inv_revistas.png>
-Package pdftex.def Info: imgs/inv_vs_inv_revistas.png  used on input line 867.
+Package pdftex.def Info: imgs/inv_vs_inv_revistas.png  used on input line 866.
 (pdftex.def)             Requested size: 341.43437pt x 191.97763pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 871.
-LaTeX Info: Redefining \% on input line 871.
+LaTeX Info: Redefining \. on input line 870.
+LaTeX Info: Redefining \% on input line 870.
  [33 <./imgs/inv_vs_revistas.png> <./imgs/inv_vs_proyectos.png>]
 <imgs/inv_vs_inv_proyectos.png, id=770, 1444.64719pt x 812.28468pt>
 File: imgs/inv_vs_inv_proyectos.png Graphic file (type png)
 <use imgs/inv_vs_inv_proyectos.png>
-Package pdftex.def Info: imgs/inv_vs_inv_proyectos.png  used on input line 876.
+Package pdftex.def Info: imgs/inv_vs_inv_proyectos.png  used on input line 875.
 
 (pdftex.def)             Requested size: 341.43437pt x 191.97763pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 886.
-LaTeX Info: Redefining \% on input line 886.
+LaTeX Info: Redefining \. on input line 885.
+LaTeX Info: Redefining \% on input line 885.
  [34 <./imgs/inv_vs_inv_revistas.png> <./imgs/inv_vs_inv_proyectos.png>]
 <imgs/filtrado_investigador.png, id=777, 1428.83812pt x 514.92375pt>
 File: imgs/filtrado_investigador.png Graphic file (type png)
 <use imgs/filtrado_investigador.png>
-Package pdftex.def Info: imgs/filtrado_investigador.png  used on input line 898
+Package pdftex.def Info: imgs/filtrado_investigador.png  used on input line 897
 .
 (pdftex.def)             Requested size: 204.85802pt x 73.82524pt.
 <imgs/filtrado_area.png, id=778, 1428.08531pt x 580.41844pt>
 File: imgs/filtrado_area.png Graphic file (type png)
 <use imgs/filtrado_area.png>
-Package pdftex.def Info: imgs/filtrado_area.png  used on input line 900.
+Package pdftex.def Info: imgs/filtrado_area.png  used on input line 899.
 (pdftex.def)             Requested size: 204.85802pt x 83.25958pt.
 <imgs/filtrado_leyenda.png, id=779, 1444.64719pt x 812.28468pt>
 File: imgs/filtrado_leyenda.png Graphic file (type png)
 <use imgs/filtrado_leyenda.png>
-Package pdftex.def Info: imgs/filtrado_leyenda.png  used on input line 909.
+Package pdftex.def Info: imgs/filtrado_leyenda.png  used on input line 908.
 (pdftex.def)             Requested size: 405.45047pt x 227.97112pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 913.
-LaTeX Info: Redefining \% on input line 913.
+LaTeX Info: Redefining \. on input line 912.
+LaTeX Info: Redefining \% on input line 912.
  [35 <./imgs/filtrado_investigador.png> <./imgs/filtrado_area.png>]
-LaTeX Info: Redefining \. on input line 929.
-LaTeX Info: Redefining \% on input line 929.
+LaTeX Info: Redefining \. on input line 928.
+LaTeX Info: Redefining \% on input line 928.
  [36 <./imgs/filtrado_leyenda.png>]
 <imgs/panel_investigador_revistas.png, id=791, 1444.64719pt x 812.28468pt>
 File: imgs/panel_investigador_revistas.png Graphic file (type png)
 <use imgs/panel_investigador_revistas.png>
 Package pdftex.def Info: imgs/panel_investigador_revistas.png  used on input li
-ne 946.
+ne 947.
 (pdftex.def)             Requested size: 204.85802pt x 115.18163pt.
 <imgs/panel_revista.png, id=792, 1444.64719pt x 812.28468pt>
 File: imgs/panel_revista.png Graphic file (type png)
 <use imgs/panel_revista.png>
-Package pdftex.def Info: imgs/panel_revista.png  used on input line 951.
+Package pdftex.def Info: imgs/panel_revista.png  used on input line 952.
 (pdftex.def)             Requested size: 204.85802pt x 115.18163pt.
 <imgs/panel_investigador_proyectos.png, id=793, 1444.64719pt x 812.28468pt>
 File: imgs/panel_investigador_proyectos.png Graphic file (type png)
 <use imgs/panel_investigador_proyectos.png>
 Package pdftex.def Info: imgs/panel_investigador_proyectos.png  used on input l
-ine 958.
+ine 959.
 (pdftex.def)             Requested size: 204.85802pt x 115.18163pt.
 <imgs/panel_proyecto.png, id=794, 1444.64719pt x 812.28468pt>
 File: imgs/panel_proyecto.png Graphic file (type png)
 <use imgs/panel_proyecto.png>
-Package pdftex.def Info: imgs/panel_proyecto.png  used on input line 963.
+Package pdftex.def Info: imgs/panel_proyecto.png  used on input line 964.
 (pdftex.def)             Requested size: 204.85802pt x 115.18163pt.
-LaTeX Info: Redefining \. on input line 975.
-LaTeX Info: Redefining \% on input line 975.
+LaTeX Info: Redefining \. on input line 976.
+LaTeX Info: Redefining \% on input line 976.
  [37 <./imgs/panel_investigador_revistas.png> <./imgs/panel_revista.png> <./img
 s/panel_investigador_proyectos.png> <./imgs/panel_proyecto.png>]
-LaTeX Info: Redefining \. on input line 986.
-LaTeX Info: Redefining \% on input line 986.
+LaTeX Info: Redefining \. on input line 987.
+LaTeX Info: Redefining \% on input line 987.
 
 [38]
 Cap\'{\i }tulo 6.
@@ -1300,89 +1309,89 @@ Cap\'{\i }tulo 6.
 ]
 Underfull \vbox (badness 1303) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1026.
-LaTeX Info: Redefining \% on input line 1026.
+LaTeX Info: Redefining \. on input line 1021.
+LaTeX Info: Redefining \% on input line 1021.
  [40]
-LaTeX Info: Redefining \. on input line 1082.
-LaTeX Info: Redefining \% on input line 1082.
+LaTeX Info: Redefining \. on input line 1083.
+LaTeX Info: Redefining \% on input line 1083.
 
 [41{C:/Users/josep/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.e
 nc}{C:/Users/josep/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.e
 nc}{C:/Users/josep/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{
 C:/Users/josep/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
-LaTeX Info: Redefining \. on input line 1106.
-LaTeX Info: Redefining \% on input line 1106.
+LaTeX Info: Redefining \. on input line 1107.
+LaTeX Info: Redefining \% on input line 1107.
 [42]
-Underfull \hbox (badness 10000) in paragraph at lines 1137--1137
+Underfull \hbox (badness 10000) in paragraph at lines 1140--1140
 []|\T1/lmr/m/n/10 Clustering je-r醨-qui-co, K-means,
  []
 
 
-Underfull \hbox (badness 2970) in paragraph at lines 1137--1137
+Underfull \hbox (badness 2970) in paragraph at lines 1140--1140
 \T1/lmr/m/n/10 PAM, Fuzzy C-Means, Spec-tral
  []
 
 
-Underfull \hbox (badness 5519) in paragraph at lines 1137--1137
+Underfull \hbox (badness 5519) in paragraph at lines 1140--1140
 \T1/lmr/m/n/10 Clus-te-ring, GMM, DBS-CAN y
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1141--1141
+Underfull \hbox (badness 10000) in paragraph at lines 1144--1144
 []|\T1/lmr/m/n/10 Configuraciones sin re-duc-ci髇,
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1149.
-LaTeX Info: Redefining \% on input line 1149.
+LaTeX Info: Redefining \. on input line 1152.
+LaTeX Info: Redefining \% on input line 1152.
  [43]
 Underfull \vbox (badness 1097) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1159.
-LaTeX Info: Redefining \% on input line 1159.
+LaTeX Info: Redefining \. on input line 1162.
+LaTeX Info: Redefining \% on input line 1162.
  [44]
 <imgs/mds_keywords_manhattan.png, id=855, 350.7504pt x 198.9834pt>
 File: imgs/mds_keywords_manhattan.png Graphic file (type png)
 <use imgs/mds_keywords_manhattan.png>
 Package pdftex.def Info: imgs/mds_keywords_manhattan.png  used on input line 12
-11.
+14.
 (pdftex.def)             Requested size: 204.85802pt x 116.22112pt.
 <imgs/silhouette_keywords_manhattan.png, id=856, 350.7504pt x 198.9834pt>
 File: imgs/silhouette_keywords_manhattan.png Graphic file (type png)
 <use imgs/silhouette_keywords_manhattan.png>
 Package pdftex.def Info: imgs/silhouette_keywords_manhattan.png  used on input 
-line 1217.
+line 1220.
 (pdftex.def)             Requested size: 204.85802pt x 116.22112pt.
-LaTeX Info: Redefining \. on input line 1222.
-LaTeX Info: Redefining \% on input line 1222.
+LaTeX Info: Redefining \. on input line 1225.
+LaTeX Info: Redefining \% on input line 1225.
 
 [45]
-LaTeX Info: Redefining \. on input line 1237.
-LaTeX Info: Redefining \% on input line 1237.
+LaTeX Info: Redefining \. on input line 1240.
+LaTeX Info: Redefining \% on input line 1240.
  [46 <./imgs/mds_keywords_manhattan.png> <./imgs/silhouette_keywords_manhattan.
 png>]
 <imgs/mds_ponderada_manhattan_sigma05.png, id=870, 387.849pt x 200.9106pt>
 File: imgs/mds_ponderada_manhattan_sigma05.png Graphic file (type png)
 <use imgs/mds_ponderada_manhattan_sigma05.png>
 Package pdftex.def Info: imgs/mds_ponderada_manhattan_sigma05.png  used on inpu
-t line 1283.
+t line 1286.
 (pdftex.def)             Requested size: 204.85802pt x 106.11728pt.
 <imgs/silhouette_ponderada_manhattan_sigma05.png, id=871, 376.2858pt x 195.129p
 t>
 File: imgs/silhouette_ponderada_manhattan_sigma05.png Graphic file (type png)
 <use imgs/silhouette_ponderada_manhattan_sigma05.png>
 Package pdftex.def Info: imgs/silhouette_ponderada_manhattan_sigma05.png  used 
-on input line 1289.
+on input line 1292.
 (pdftex.def)             Requested size: 204.85802pt x 106.23154pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1295.
-LaTeX Info: Redefining \% on input line 1295.
+LaTeX Info: Redefining \. on input line 1298.
+LaTeX Info: Redefining \% on input line 1298.
  [47]
-Overfull \hbox (8.3762pt too wide) in paragraph at lines 1308--1309
+Overfull \hbox (8.3762pt too wide) in paragraph at lines 1311--1312
 []\T1/lmr/m/n/10.95 Las pri-me-ras con-fi-gu-ra-cio-nes je-r醨-qui-cas so-bre e
 m-bed-dings ofre-cie-ron va-lo-res de Silhouet-
  []
@@ -1390,52 +1399,52 @@ m-bed-dings ofre-cie-ron va-lo-res de Silhouet-
 
 Underfull \vbox (badness 2245) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1309.
-LaTeX Info: Redefining \% on input line 1309.
+LaTeX Info: Redefining \. on input line 1312.
+LaTeX Info: Redefining \% on input line 1312.
  [48 <./imgs/mds_ponderada_manhattan_sigma05.png> <./imgs/silhouette_ponderada_
 manhattan_sigma05.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1321.
-LaTeX Info: Redefining \% on input line 1321.
+LaTeX Info: Redefining \. on input line 1324.
+LaTeX Info: Redefining \% on input line 1324.
  [49]
 <imgs/umap_embeddings_inicial.png, id=896, 376.2858pt x 194.6472pt>
 File: imgs/umap_embeddings_inicial.png Graphic file (type png)
 <use imgs/umap_embeddings_inicial.png>
 Package pdftex.def Info: imgs/umap_embeddings_inicial.png  used on input line 1
-361.
+364.
 (pdftex.def)             Requested size: 204.85802pt x 105.96924pt.
 <imgs/silhouette_umap_embeddings.png, id=897, 348.3414pt x 180.1932pt>
 File: imgs/silhouette_umap_embeddings.png Graphic file (type png)
 <use imgs/silhouette_umap_embeddings.png>
 Package pdftex.def Info: imgs/silhouette_umap_embeddings.png  used on input lin
-e 1367.
+e 1370.
 (pdftex.def)             Requested size: 204.85802pt x 105.9721pt.
-LaTeX Info: Redefining \. on input line 1375.
-LaTeX Info: Redefining \% on input line 1375.
+LaTeX Info: Redefining \. on input line 1378.
+LaTeX Info: Redefining \% on input line 1378.
 
 [50 <./imgs/umap_embeddings_inicial.png> <./imgs/silhouette_umap_embeddings.png
 >]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1422.
-LaTeX Info: Redefining \% on input line 1422.
+LaTeX Info: Redefining \. on input line 1425.
+LaTeX Info: Redefining \% on input line 1425.
  [51]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1431.
-LaTeX Info: Redefining \% on input line 1431.
+LaTeX Info: Redefining \. on input line 1434.
+LaTeX Info: Redefining \% on input line 1434.
  [52]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1479.
-LaTeX Info: Redefining \% on input line 1479.
+LaTeX Info: Redefining \. on input line 1482.
+LaTeX Info: Redefining \% on input line 1482.
  [53]
 <imgs/umap_coseno_jerarquico_depurado.png, id=923, 431.6928pt x 189.8292pt>
 File: imgs/umap_coseno_jerarquico_depurado.png Graphic file (type png)
 <use imgs/umap_coseno_jerarquico_depurado.png>
 Package pdftex.def Info: imgs/umap_coseno_jerarquico_depurado.png  used on inpu
-t line 1492.
+t line 1495.
 (pdftex.def)             Requested size: 204.85802pt x 90.0829pt.
 <imgs/silhouette_umap_coseno_jerarquico_depurado.png, id=924, 436.5108pt x 191.
 7564pt>
@@ -1443,17 +1452,17 @@ File: imgs/silhouette_umap_coseno_jerarquico_depurado.png Graphic file (type pn
 g)
 <use imgs/silhouette_umap_coseno_jerarquico_depurado.png>
 Package pdftex.def Info: imgs/silhouette_umap_coseno_jerarquico_depurado.png  u
-sed on input line 1498.
+sed on input line 1501.
 (pdftex.def)             Requested size: 204.85802pt x 89.99384pt.
-LaTeX Info: Redefining \. on input line 1506.
-LaTeX Info: Redefining \% on input line 1506.
+LaTeX Info: Redefining \. on input line 1509.
+LaTeX Info: Redefining \% on input line 1509.
 
 [54 <./imgs/umap_coseno_jerarquico_depurado.png> <./imgs/silhouette_umap_coseno
 _jerarquico_depurado.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1543.
-LaTeX Info: Redefining \% on input line 1543.
+LaTeX Info: Redefining \. on input line 1546.
+LaTeX Info: Redefining \% on input line 1546.
  [55]
 <imgs/solapamiento_investigadores_jerCos_vs_jerCosUMAP.png, id=937, 650.43pt x 
 469.755pt>
@@ -1461,17 +1470,17 @@ File: imgs/solapamiento_investigadores_jerCos_vs_jerCosUMAP.png Graphic file (t
 ype png)
 <use imgs/solapamiento_investigadores_jerCos_vs_jerCosUMAP.png>
 Package pdftex.def Info: imgs/solapamiento_investigadores_jerCos_vs_jerCosUMAP.
-png  used on input line 1549.
+png  used on input line 1552.
 (pdftex.def)             Requested size: 332.89673pt x 240.43202pt.
-LaTeX Info: Redefining \. on input line 1558.
-LaTeX Info: Redefining \% on input line 1558.
+LaTeX Info: Redefining \. on input line 1561.
+LaTeX Info: Redefining \% on input line 1561.
 
 [56 <./imgs/solapamiento_investigadores_jerCos_vs_jerCosUMAP.png>]
-LaTeX Info: Redefining \. on input line 1573.
-LaTeX Info: Redefining \% on input line 1573.
+LaTeX Info: Redefining \. on input line 1576.
+LaTeX Info: Redefining \% on input line 1576.
  [57]
-LaTeX Info: Redefining \. on input line 1592.
-LaTeX Info: Redefining \% on input line 1592.
+LaTeX Info: Redefining \. on input line 1595.
+LaTeX Info: Redefining \% on input line 1595.
 
 [58]
 Cap\'{\i }tulo 7.
@@ -1480,141 +1489,138 @@ Cap\'{\i }tulo 7.
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1625.
-LaTeX Info: Redefining \% on input line 1625.
+LaTeX Info: Redefining \. on input line 1628.
+LaTeX Info: Redefining \% on input line 1628.
  [60]
-LaTeX Info: Redefining \. on input line 1640.
-LaTeX Info: Redefining \% on input line 1640.
+LaTeX Info: Redefining \. on input line 1643.
+LaTeX Info: Redefining \% on input line 1643.
 
 [61]
-LaTeX Info: Redefining \. on input line 1658.
-LaTeX Info: Redefining \% on input line 1658.
+LaTeX Info: Redefining \. on input line 1661.
+LaTeX Info: Redefining \% on input line 1661.
  [62]
-LaTeX Info: Redefining \. on input line 1681.
-LaTeX Info: Redefining \% on input line 1681.
+LaTeX Info: Redefining \. on input line 1680.
+LaTeX Info: Redefining \% on input line 1680.
  [63]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 1696.
-LaTeX Info: Redefining \% on input line 1696.
+LaTeX Info: Redefining \. on input line 1698.
+LaTeX Info: Redefining \% on input line 1698.
  [64]
-LaTeX Info: Redefining \. on input line 1702.
-LaTeX Info: Redefining \% on input line 1702.
-
-[65] [66
+LaTeX Info: Redefining \. on input line 1707.
+LaTeX Info: Redefining \% on input line 1707.
+ [65] [66
 
 ]
-Underfull \hbox (badness 1571) in paragraph at lines 1755--1758
+Underfull \hbox (badness 1571) in paragraph at lines 1760--1763
 []\T1/lmr/m/n/10.95 Universitat Po-li-t鑓-ni-ca de Va-l鑞-cia.  \T1/lmr/m/it/10
 .95 Pa-no-ra-ma UPV: Por-tal de Pro-duc-ci髇
  []
 
 [67]
-Underfull \hbox (badness 10000) in paragraph at lines 1812--1815
+Underfull \hbox (badness 10000) in paragraph at lines 1817--1820
 []\T1/lmr/m/n/10.95 Sentence Trans-for-mers.  \T1/lmr/m/it/10.95 paraphrase-mul
 tilingual-MiniLM-L12-v2\T1/lmr/m/n/10.95 .  Dis-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1812--1815
+Underfull \hbox (badness 10000) in paragraph at lines 1817--1820
 \T1/lmr/m/n/10.95 po-ni-ble en: [][]$\T1/lmtt/m/n/10.95 https : / / huggingface
  . co / sentence-[]transformers /
  []
 
-LaTeX Info: Redefining \. on input line 1873.
-LaTeX Info: Redefining \% on input line 1873.
+LaTeX Info: Redefining \. on input line 1878.
+LaTeX Info: Redefining \% on input line 1878.
 [68]
 Ap\'{e}ndice A.
 [69
 
 
 ]
-LaTeX Info: Redefining \. on input line 1911.
-LaTeX Info: Redefining \% on input line 1911.
+LaTeX Info: Redefining \. on input line 1916.
+LaTeX Info: Redefining \% on input line 1916.
  [70]
 Ap\'{e}ndice B.
-<imgs/Investigadores_internos.png, id=1027, 842.39719pt x 167.12437pt>
+<imgs/Investigadores_internos.png, id=1028, 842.39719pt x 167.12437pt>
 File: imgs/Investigadores_internos.png Graphic file (type png)
 <use imgs/Investigadores_internos.png>
 Package pdftex.def Info: imgs/Investigadores_internos.png  used on input line 1
-956.
+961.
 (pdftex.def)             Requested size: 426.79135pt x 84.67126pt.
 [71
 
 ]
-<imgs/Areas.png, id=1032, 197.23688pt x 152.82094pt>
+<imgs/Areas.png, id=1033, 197.23688pt x 152.82094pt>
 File: imgs/Areas.png Graphic file (type png)
 <use imgs/Areas.png>
-Package pdftex.def Info: imgs/Areas.png  used on input line 1987.
+Package pdftex.def Info: imgs/Areas.png  used on input line 1992.
 (pdftex.def)             Requested size: 128.0387pt x 99.2065pt.
-<imgs/Revistas.png, id=1033, 791.95876pt x 164.86594pt>
+<imgs/Revistas.png, id=1034, 791.95876pt x 164.86594pt>
 File: imgs/Revistas.png Graphic file (type png)
 <use imgs/Revistas.png>
-Package pdftex.def Info: imgs/Revistas.png  used on input line 2020.
+Package pdftex.def Info: imgs/Revistas.png  used on input line 2025.
 (pdftex.def)             Requested size: 362.77525pt x 75.52226pt.
-LaTeX Info: Redefining \. on input line 2024.
-LaTeX Info: Redefining \% on input line 2024.
+LaTeX Info: Redefining \. on input line 2029.
+LaTeX Info: Redefining \% on input line 2029.
  [72 <./imgs/Investigadores_internos.png> <./imgs/Areas.png>]
-<imgs/es_parte_de.png, id=1040, 489.32813pt x 164.86594pt>
+<imgs/es_parte_de.png, id=1041, 489.32813pt x 164.86594pt>
 File: imgs/es_parte_de.png Graphic file (type png)
 <use imgs/es_parte_de.png>
-Package pdftex.def Info: imgs/es_parte_de.png  used on input line 2055.
+Package pdftex.def Info: imgs/es_parte_de.png  used on input line 2060.
 (pdftex.def)             Requested size: 362.77525pt x 122.2303pt.
-LaTeX Info: Redefining \. on input line 2085.
-LaTeX Info: Redefining \% on input line 2085.
+LaTeX Info: Redefining \. on input line 2090.
+LaTeX Info: Redefining \% on input line 2090.
  [73 <./imgs/Revistas.png> <./imgs/es_parte_de.png>]
-<imgs/ha_publicado_en_JMCR.png, id=1047, 926.71219pt x 167.12437pt>
+<imgs/ha_publicado_en_JMCR.png, id=1048, 926.71219pt x 167.12437pt>
 File: imgs/ha_publicado_en_JMCR.png Graphic file (type png)
 <use imgs/ha_publicado_en_JMCR.png>
-Package pdftex.def Info: imgs/ha_publicado_en_JMCR.png  used on input line 2088
+Package pdftex.def Info: imgs/ha_publicado_en_JMCR.png  used on input line 2093
 .
 (pdftex.def)             Requested size: 426.79135pt x 76.96738pt.
-<imgs/ha_publicado_con.png, id=1048, 1056.19594pt x 167.12437pt>
+<imgs/ha_publicado_con.png, id=1049, 1056.19594pt x 167.12437pt>
 File: imgs/ha_publicado_con.png Graphic file (type png)
 <use imgs/ha_publicado_con.png>
-Package pdftex.def Info: imgs/ha_publicado_con.png  used on input line 2119.
+Package pdftex.def Info: imgs/ha_publicado_con.png  used on input line 2124.
 (pdftex.def)             Requested size: 426.79135pt x 67.53198pt.
-LaTeX Info: Redefining \. on input line 2157.
-LaTeX Info: Redefining \% on input line 2157.
+LaTeX Info: Redefining \. on input line 2162.
+LaTeX Info: Redefining \% on input line 2162.
  [74 <./imgs/ha_publicado_en_JMCR.png> <./imgs/ha_publicado_con.png>]
-<imgs/ha_participado_en_JMCR.png, id=1055, 1026.83624pt x 166.37157pt>
+<imgs/ha_participado_en_JMCR.png, id=1056, 1026.83624pt x 166.37157pt>
 File: imgs/ha_participado_en_JMCR.png Graphic file (type png)
 <use imgs/ha_participado_en_JMCR.png>
 Package pdftex.def Info: imgs/ha_participado_en_JMCR.png  used on input line 21
-60.
+65.
 (pdftex.def)             Requested size: 426.79135pt x 69.14952pt.
-<imgs/ha_participado_con.png, id=1056, 775.39688pt x 165.61874pt>
+<imgs/ha_participado_con.png, id=1057, 775.39688pt x 165.61874pt>
 File: imgs/ha_participado_con.png Graphic file (type png)
 <use imgs/ha_participado_con.png>
-Package pdftex.def Info: imgs/ha_participado_con.png  used on input line 2191.
+Package pdftex.def Info: imgs/ha_participado_con.png  used on input line 2196.
 (pdftex.def)             Requested size: 426.79135pt x 91.16135pt.
-LaTeX Info: Redefining \. on input line 2199.
-LaTeX Info: Redefining \% on input line 2199.
+LaTeX Info: Redefining \. on input line 2204.
+LaTeX Info: Redefining \% on input line 2204.
  [75 <./imgs/ha_participado_en_JMCR.png> <./imgs/ha_participado_con.png>]
-<imgs/one_hot_palabras_revistas_filtrado.png, id=1064, 500.62032pt x 167.12437p
+<imgs/one_hot_palabras_revistas_filtrado.png, id=1065, 500.62032pt x 167.12437p
 t>
 File: imgs/one_hot_palabras_revistas_filtrado.png Graphic file (type png)
 <use imgs/one_hot_palabras_revistas_filtrado.png>
 Package pdftex.def Info: imgs/one_hot_palabras_revistas_filtrado.png  used on i
-nput line 2228.
+nput line 2233.
 (pdftex.def)             Requested size: 320.0935pt x 106.86232pt.
-<imgs/matriz_investigadores_keywords.png, id=1065, 528.47438pt x 168.63pt>
+<imgs/matriz_investigadores_keywords.png, id=1066, 528.47438pt x 168.63pt>
 File: imgs/matriz_investigadores_keywords.png Graphic file (type png)
 <use imgs/matriz_investigadores_keywords.png>
 Package pdftex.def Info: imgs/matriz_investigadores_keywords.png  used on input
- line 2261.
+ line 2266.
 (pdftex.def)             Requested size: 341.43437pt x 108.9469pt.
-LaTeX Info: Redefining \. on input line 2265.
-LaTeX Info: Redefining \% on input line 2265.
+LaTeX Info: Redefining \. on input line 2270.
+LaTeX Info: Redefining \% on input line 2270.
  [76 <./imgs/one_hot_palabras_revistas_filtrado.png>]
-<imgs/trazabilidad_keywords_revistas.png, id=1071, 334.24875pt x 166.37157pt>
+<imgs/trazabilidad_keywords_revistas.png, id=1072, 334.24875pt x 166.37157pt>
 File: imgs/trazabilidad_keywords_revistas.png Graphic file (type png)
 <use imgs/trazabilidad_keywords_revistas.png>
 Package pdftex.def Info: imgs/trazabilidad_keywords_revistas.png  used on input
- line 2294.
+ line 2299.
 (pdftex.def)             Requested size: 213.39568pt x 106.22102pt.
-LaTeX Info: Redefining \. on input line 2335.
-LaTeX Info: Redefining \% on input line 2335.
+LaTeX Info: Redefining \. on input line 2340.
+LaTeX Info: Redefining \% on input line 2340.
 
 [77 <./imgs/matriz_investigadores_keywords.png> <./imgs/trazabilidad_keywords_r
 evistas.png>]
@@ -1633,7 +1639,7 @@ LaTeX Info: Redefining \% on input line 17.
 )
  ***********
 LaTeX2e <2025-11-01>
-L3 programming layer <2025-12-24>
+L3 programming layer <2026-03-20>
  ***********
 
 
@@ -1642,16 +1648,16 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package rerunfilecheck Info: File `Dise帽o_de_una_base_de_datos_para_la_visuali
 zaci贸n_y_agrupaci贸n_sem谩ntica_de_los_investigadores_del_IUMPA.out' has not c
 hanged.
-(rerunfilecheck)             Checksum: 7F6EFF92AF2F0F68AF3FA6B404433766;18403.
+(rerunfilecheck)             Checksum: 11ED6E777DEAF3831CDD92C740FAE56B;18270.
  ) 
 Here is how much of TeX's memory you used:
- 18860 strings out of 467870
- 311482 string characters out of 5418355
- 753585 words of memory out of 5000000
- 47168 multiletter control sequences out of 15000+600000
+ 18900 strings out of 467691
+ 313074 string characters out of 5414987
+ 757060 words of memory out of 5000000
+ 47387 multiletter control sequences out of 15000+600000
  739484 words of font info for 113 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 90i,13n,93p,1050b,939s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,13n,93p,1050b,974s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/josep/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmr10.pfb><C:/Users/josep/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
 mbx10.pfb><C:/Users/josep/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
@@ -1673,9 +1679,9 @@ y6.pfb><C:/Users/josep/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy
 8.pfb><C:/Users/josep/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt1
 0.pfb>
 Output written on Dise帽o_de_una_base_de_datos_para_la_visualizaci贸n_y_agrupac
-i贸n_sem谩ntica_de_los_investigadores_del_IUMPA.pdf (87 pages, 3832412 bytes).
+i贸n_sem谩ntica_de_los_investigadores_del_IUMPA.pdf (87 pages, 3874703 bytes).
 PDF statistics:
- 1225 PDF objects out of 1440 (max. 8388607)
+ 1226 PDF objects out of 1440 (max. 8388607)
  249 named destinations out of 1000 (max. 500000)
  799 words of extra memory for PDF output out of 10000 (max. 10000000)
 

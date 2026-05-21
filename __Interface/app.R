@@ -6,7 +6,7 @@ library(readr)
 library(readxl)
 library(echarts4r)
 
-# 2. Carga y procesamiento de datos (consolidado de los 3 scripts)
+# 2. Carga y procesamiento de datos
 #setwd("C:/Code/tfg-gcd/__Interface")
 
 # --- Formato de los nodos ---
@@ -126,6 +126,22 @@ cleaned_proy <- mapply(split_name_and_areas, areas_proy$Nombre, areas_proy$Areas
 areas_proy <- do.call(rbind, lapply(cleaned_proy, as.data.frame))
 areas_proy$Areas <- gsub('"', '', areas_proy$Areas)
 areas_proy$Lista_areas <- strsplit(gsub("/", ",", areas_proy$Areas), ",\\s*")
+
+obtener_texto_areas <- function(nombre_investigador, tabla_areas) {
+  areas <- tabla_areas %>%
+    filter(Nombre == nombre_investigador) %>%
+    pull(Lista_areas) %>%
+    unlist()
+  
+  areas <- unique(trimws(areas))
+  areas <- areas[!is.na(areas) & areas != ""]
+  
+  if (length(areas) == 0) {
+    return("Áreas:\nNo se han encontrado áreas asociadas.")
+  }
+  
+  paste0("Áreas:\n", paste0("- ", areas, collapse = "\n"))
+}
 
 # --- GRAFO 1: Revistas y Artículos (script 20250627) ---
 investigadores_con_csv <- n_invest_rev %>% filter(!is.na(Acortacion))
@@ -372,7 +388,7 @@ ui <- navbarPage(
                       fluidRow(
                         column(
                           width = 4,
-                          selectInput("investigador_filtro_rev", "Selecciona un investigador:",
+                          selectInput("investigador_filtro_rev", "Selecciona un miembro del IUMPA:",
                                       choices = c("-" = "-", nombres_ordenados_rev),
                                       selected = "-"),
                           selectInput("area_filtro_rev", "Selecciona un área:",
@@ -394,7 +410,7 @@ ui <- navbarPage(
                       fluidRow(
                         column(
                           width = 4,
-                          selectInput("investigador_filtro_proy", "Selecciona un investigador:",
+                          selectInput("investigador_filtro_proy", "Selecciona un miembro del IUMPA:",
                                       choices = c("-" = "-", nombres_ordenados_proy),
                                       selected = "-"),
                           selectInput("area_filtro_proy", "Selecciona un área:",
@@ -422,7 +438,7 @@ ui <- navbarPage(
                       fluidRow(
                         column(
                           width = 4,
-                          selectInput("selected_node_rev", "Selecciona un investigador:",
+                          selectInput("selected_node_rev", "Selecciona un miembro del IUMPA:",
                                       choices = c("-" = "-", sort(nodes_inv_rev$name)), selected = "-"),
                           selectInput("selected_area_rev", "Selecciona un área:",
                                       choices = c("-" = "-", sort(unique(unlist(areas_rev$Lista_areas)))), selected = "-")
@@ -437,7 +453,7 @@ ui <- navbarPage(
                       fluidRow(
                         column(
                           width = 4,
-                          selectInput("selected_node_proy", "Selecciona un investigador:",
+                          selectInput("selected_node_proy", "Selecciona un miembro del IUMPA:",
                                       choices = c("-" = "-", sort(nodes_inv_proy$name)), selected = "-"),
                           selectInput("selected_area_proy", "Selecciona un área:",
                                       choices = c("-" = "-", sort(unique(unlist(areas_proy$Lista_areas)))), selected = "-")
@@ -523,7 +539,7 @@ server <- function(input, output, session) {
                    'Investigadores asociados: ' + (sRev.n_investigadores || 0);
           } else {
             var sInv = statsInvestigadores[nombre] || {};
-            return '<strong>Investigador/a: ' + nombre + '</strong><br/>' +
+            return '<strong>Nombre: ' + nombre + '</strong><br/>' +
                    'Revistas asociadas: ' + (sInv.n_revistas || 0) + '<br/>' +
                    'Artículos publicados: ' + (sInv.n_publicaciones || 0);
           }
@@ -549,9 +565,26 @@ server <- function(input, output, session) {
       tipo_nodo <- tolower(node_data$category)
       
       if (tipo_nodo != "revista") {
-        articulos <- publicaciones_df %>% filter(investigador == node_to_show) %>% pull(title)
-        if (length(articulos) == 0) return(paste0("Investigador/a: ", node_to_show, "\n\nNo se han encontrado publicaciones registradas."))
-        return(paste0("Investigador/a: ", node_to_show, "\n\nArtículos publicados:\n", paste0("- ", articulos, collapse = "\n")))
+        texto_areas <- obtener_texto_areas(node_to_show, areas_rev)
+        
+        articulos <- publicaciones_df %>%
+          filter(investigador == node_to_show) %>%
+          pull(title)
+        
+        if (length(articulos) == 0) {
+          return(paste0(
+            "Nombre: ", node_to_show,
+            "\n\n", texto_areas,
+            "\n\nNo se han encontrado publicaciones registradas."
+          ))
+        }
+        
+        return(paste0(
+          "Nombre: ", node_to_show,
+          "\n\n", texto_areas,
+          "\n\nArtículos publicados:\n",
+          paste0("- ", articulos, collapse = "\n")
+        ))
       } else {
         articulos <- publicaciones_df %>%
           filter(journal == node_to_show) %>%
@@ -656,7 +689,7 @@ server <- function(input, output, session) {
                    'Investigadores asociados: ' + (sProy.n_investigadores || 0);
           } else {
             var sInv = statsInvestigadores[nombre] || {};
-            return '<strong>Investigador/a: ' + nombre + '</strong><br/>' +
+            return '<strong>Nombre: ' + nombre + '</strong><br/>' +
                    'Proyectos asociados: ' + (sInv.n_proyectos || 0);
           }
         }"
@@ -686,6 +719,8 @@ server <- function(input, output, session) {
       
       if (tipo_nodo != "proyecto") {
         
+        texto_areas <- obtener_texto_areas(node_to_show, areas_proy)
+        
         proyectos_investigador <- proyectos_df %>%
           filter(investigador == node_to_show) %>%
           select(Titulo = `TÍTULO`, Es_IP_Principal) %>%
@@ -695,7 +730,8 @@ server <- function(input, output, session) {
         
         if (nrow(proyectos_investigador) == 0) {
           return(paste0(
-            "Investigador/a: ", node_to_show,
+            "Nombre: ", node_to_show,
+            "\n\n", texto_areas,
             "\n\nNo se han encontrado proyectos registrados."
           ))
         }
@@ -727,7 +763,8 @@ server <- function(input, output, session) {
         }
         
         return(paste0(
-          "Investigador/a: ", node_to_show,
+          "Nombre: ", node_to_show,
+          "\n\n", texto_areas,
           "\n\n", texto_principal,
           "\n\n", texto_no_principal
         ))
@@ -814,11 +851,35 @@ server <- function(input, output, session) {
     })
     
     output$node_info_inv_rev <- renderText({
-      node <- if (!is.null(input$clicked_node_inv_rev)) input$clicked_node_inv_rev else if (input$selected_node_rev != "-") input$selected_node_rev else NULL
-      if (is.null(node)) return("Seleccione o clique un nodo para ver su información.")
+      node <- if (!is.null(input$clicked_node_inv_rev)) {
+        input$clicked_node_inv_rev
+      } else if (input$selected_node_rev != "-") {
+        input$selected_node_rev
+      } else {
+        NULL
+      }
+      
+      if (is.null(node)) {
+        return("Seleccione o clique un nodo para ver su información.")
+      }
+      
+      texto_areas <- obtener_texto_areas(node, areas_rev)
       conexiones <- edges_inv_rev[edges_inv_rev$source == node, "target"]
-      if (length(conexiones) == 0) return(paste0("Nodo: ", node, "\n\nNo ha trabajado con nadie del IUMPA"))
-      paste0("Investigador: ", node, "\n\nHa trabajado con:\n", paste0("- ", conexiones, collapse = "\n"))
+      
+      if (length(conexiones) == 0) {
+        return(paste0(
+          "Nombre: ", node,
+          "\n\n", texto_areas,
+          "\n\nNo ha trabajado con nadie del IUMPA."
+        ))
+      }
+      
+      paste0(
+        "Nombre: ", node,
+        "\n\n", texto_areas,
+        "\n\nHa trabajado con:\n",
+        paste0("- ", conexiones, collapse = "\n")
+      )
     })
     
     # Lógica para la pestaña "Colaboración entre Investigadores" - subpestaña Proyectos
@@ -853,11 +914,35 @@ server <- function(input, output, session) {
     })
     
     output$node_info_inv_proy <- renderText({
-      node <- if (!is.null(input$clicked_node_inv_proy)) input$clicked_node_inv_proy else if (input$selected_node_proy != "-") input$selected_node_proy else NULL
-      if (is.null(node)) return("Seleccione o clique un nodo para ver su información.")
+      node <- if (!is.null(input$clicked_node_inv_proy)) {
+        input$clicked_node_inv_proy
+      } else if (input$selected_node_proy != "-") {
+        input$selected_node_proy
+      } else {
+        NULL
+      }
+      
+      if (is.null(node)) {
+        return("Seleccione o clique un nodo para ver su información.")
+      }
+      
+      texto_areas <- obtener_texto_areas(node, areas_proy)
       conexiones <- edges_inv_proy[edges_inv_proy$source == node, "target"]
-      if (length(conexiones) == 0) return(paste0("Nodo: ", node, "\n\nNo ha trabajado con nadie del IUMPA"))
-      paste0("Investigador: ", node, "\n\nHa trabajado con:\n", paste0("- ", conexiones, collapse = "\n"))
+      
+      if (length(conexiones) == 0) {
+        return(paste0(
+          "Nombre: ", node,
+          "\n\n", texto_areas,
+          "\n\nNo ha trabajado con nadie del IUMPA."
+        ))
+      }
+      
+      paste0(
+        "Nombre: ", node,
+        "\n\n", texto_areas,
+        "\n\nHa trabajado con:\n",
+        paste0("- ", conexiones, collapse = "\n")
+      )
     })
   }
 

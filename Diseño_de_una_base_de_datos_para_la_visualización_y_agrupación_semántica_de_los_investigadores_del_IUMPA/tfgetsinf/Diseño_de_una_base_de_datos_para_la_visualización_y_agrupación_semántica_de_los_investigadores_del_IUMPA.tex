@@ -147,11 +147,7 @@ Overall, this work provides a general framework for better understanding the ins
 
 \chapter*{Agradecimientos}
 
-Quiero agradecer, en primer lugar, a mis tutor por su orientación durante el desarrollo de este Trabajo Fin de Grado, por sus revisiones y por la ayuda prestada a la hora de enfocar el proyecto y valorar los resultados obtenidos.
 
-También quiero agradecer al IUMPA la posibilidad de trabajar sobre un caso real relacionado con su actividad investigadora. Este contexto ha permitido que el proyecto no se limitase a un ejercicio académico, sino que abordase un problema aplicado de recopilación, organización, visualización y análisis de información.
-
-Por último, quiero dar las gracias a mi familia y a las personas que me han acompañado durante estos años, por su apoyo, paciencia y confianza a lo largo de la carrera y durante la realización de este trabajo.
 
 \cleardoublepage
 
@@ -383,12 +379,13 @@ Desde el punto de vista de la protección de datos, el trabajo se limita al trat
 
 Durante el diseño del modelo se ha aplicado un criterio de minimización de la información. Esto implica conservar únicamente aquellos datos que resultan necesarios para construir las relaciones del sistema, generar las visualizaciones y realizar el análisis temático posterior. En este sentido, algunas variables planteadas inicialmente fueron descartadas al no poder obtenerse de forma suficientemente fiable, al no aportar valor directo al análisis o al alejarse del alcance definido para el trabajo.
 
-En particular, los correos electrónicos de los investigadores se recopilaron inicialmente a partir de información pública institucional como posible dato de contacto e identificación. Sin embargo, esta información no acabó siendo necesaria para la construcción de los grafos, la visualización de relaciones ni el análisis semántico desarrollado. Por este motivo, aunque pudo utilizarse como información auxiliar durante la fase de recopilación, no se incorporó como elemento mostrado en la aplicación interactiva ni como dato necesario para la versión
-de consulta del sistema, reforzando así el criterio de minimización aplicado al tratamiento de la información personal.
+En particular, los correos electrónicos de los investigadores se recopilaron inicialmente a partir de información pública institucional como posible dato de contacto e identificación. Sin embargo, esta información no acabó siendo necesaria para la construcción de los grafos, la visualización de relaciones ni el análisis semántico desarrollado. Por este motivo, aunque pudo utilizarse como información auxiliar durante la fase de recopilación, no se incorporó como elemento mostrado en la aplicación interactiva ni como dato necesario para la versión de consulta del sistema, reforzando así el criterio de minimización aplicado al tratamiento de la información personal.
 
 También debe considerarse la procedencia y calidad de los datos. Al trabajar con fuentes heterogéneas, existe el riesgo de que aparezcan errores, duplicidades, variantes en los nombres, información incompleta o diferencias entre la información disponible para unos investigadores y otros. Por este motivo, el tratamiento de los datos ha requerido procesos de limpieza, en muchos casos manual. Desde una perspectiva ética, resulta importante reconocer estas limitaciones, ya que los resultados obtenidos dependen de la cobertura y calidad de las fuentes utilizadas.
 
 En relación con la propiedad intelectual, las fuentes consultadas se han utilizado como base para recopilar y contrastar información, evitando reproducir contenidos externos de forma indebida. Las herramientas, librerías, bases de datos y recursos empleados durante el desarrollo deben citarse adecuadamente en la memoria. Asimismo, las tablas, figuras y visualizaciones generadas deben presentarse como elaboraciones propias, indicando la procedencia de la información cuando corresponda.
+
+En este sentido, cuando se utilizaron herramientas de inteligencia artificial generativa como apoyo en la propuesta de términos temáticos, su resultado se trató como material auxiliar sujeto a revisión, evitando incorporarlo directamente sin supervisión ni validación manual.
 
 Desde el punto de vista ético, los grafos y los modelos de agrupamiento desarrollados deben interpretarse con cautela. Las relaciones de colaboración representadas muestran conexiones derivadas de publicaciones o proyectos, pero no reflejan necesariamente la totalidad de la actividad científica ni la intensidad real de todas las relaciones profesionales. Del mismo modo, las agrupaciones semánticas obtenidas mediante técnicas de clustering no deben entenderse como categorías cerradas, sino como una aproximación exploratoria basada en las revistas, palabras clave y datos disponibles.
 
@@ -494,7 +491,9 @@ A partir de los registros de proyectos se construyeron dos tipos de relaciones. 
 
 Además de las estructuras anteriores, centradas en la definición de los grafos, se prepararon ficheros auxiliares destinados a la fase de agrupación semántica. Esta parte tomó como punto de partida los medios de publicación asociados a cada investigador, con el objetivo de caracterizar temáticamente sus perfiles a partir de dichos elementos.
 
-Para ello, se recopiló un conjunto de palabras clave asociadas a cada revista. Estas palabras se obtuvieron consultando fuentes auxiliares centradas en la descripción de revistas, como DOAJ, Scimago y Research.com, y se completaron, cuando fue necesario, mediante revisión manual. El objetivo no era construir todavía el modelo de agrupación, sino disponer de una primera base temática que permitiera relacionar cada revista con términos representativos.
+Para ello, se recopiló un conjunto de palabras clave asociadas a cada revista, consultando fuentes auxiliares centradas en su descripción temática, como DOAJ, Scimago y Research.com. Cuando la información disponible no resultaba suficientemente representativa, este proceso se complementó con una tarea manual de búsqueda y revisión, así como con el uso auxiliar de herramientas de inteligencia artificial generativa para proponer términos candidatos relacionados con la orientación temática de la revista.
+
+En cualquier caso, los términos obtenidos no se incorporaron de forma automática. Antes de formar parte del vocabulario utilizado, fueron depurados para descartar palabras no suficientemente vinculadas con la revista correspondiente, ya que el objetivo no era construir todavía el modelo de agrupación, sino disponer de una primera base temática que permitiera relacionar cada revista con términos representativos.
 
 Una vez recopiladas, las palabras clave se organizaron en una estructura que relacionaba revistas con términos temáticos. Posteriormente, esta información se trasladó al nivel de investigador, asociando a cada persona las palabras clave correspondientes a las revistas en las que había publicado.
 
@@ -571,7 +570,7 @@ Además de las entidades, la base de datos incorporó relaciones destinadas a co
 \textbf{Relación} & \textbf{Información recogida} \\
 \midrule
 \textit{es\_parte\_de} 
-& Relaciona cada investigador con sus áreas de trabajo y permite filtrar las visualizaciones por área. \\
+& Relaciona cada investigador con sus áreas de trabajo, permite filtrar las visualizaciones por ellas y mostrar las áreas asociadas al seleccionar un investigador en la aplicación. \\
 \midrule
 \textit{ha\_publicado\_en} 
 & Recoge, para cada investigador, los artículos recopilados, la revista asociada y el año de publicación. \\
@@ -840,7 +839,7 @@ La construcción de los grafos interactivos consistió en transformar las entida
 
 El proceso seguido para construir cada grafo mantuvo una lógica común. En primer lugar, se seleccionaban los ficheros necesarios para cada visualización. A partir de ellos se identificaban los elementos que debían representarse como nodos y las conexiones que debían convertirse en enlaces. Posteriormente, los datos se adaptaban al formato requerido por la librería de visualización utilizada en la aplicación, Apache ECharts \cite{echarts}, incorporando la información necesaria para mostrar etiquetas, categorías y atributos asociados a cada elemento.
 
-En el caso de los investigadores, también se conservó su asociación con las áreas de trabajo, no como nodos independientes del grafo, sino como atributo utilizado posteriormente para filtrar las visualizaciones.
+En el caso de los investigadores, también se conservó su asociación con las áreas de trabajo, no como nodos independientes del grafo, sino como atributo utilizado posteriormente para filtrar las visualizaciones y para contextualizar la información mostrada al seleccionar un investigador.
 
 Uno de los grafos principales de la aplicación permitió representar la relación entre investigadores y revistas a partir de los artículos recopilados. Esta visualización se construyó a partir de la relación \textit{ha\_publicado\_en}, utilizando como nodos los investigadores y las revistas, y como enlaces las relaciones que conectaban a cada investigador con los medios en los que aparecían sus artículos. En este caso, el grafo permitía observar la distribución de la producción académica recopilada y explorar qué revistas aparecían asociadas a cada investigador.
 
@@ -926,17 +925,19 @@ Además de estos elementos visuales, la exploración de los grafos se apoyó en 
 
 Asimismo, la interacción con los enlaces permitía interpretar qué elementos quedaban conectados en el grafo, reforzando la lectura de las relaciones visualizadas.
 
-Por otro lado, la selección mediante clic permitía pasar de esta identificación rápida a una consulta más detallada. Al seleccionar un nodo, la aplicación mostraba información específica del elemento seleccionado en un panel informativo, adaptada al tipo de entidad consultada. En los grafos de producción académica, este panel ofrecía distinta información según el tipo de nodo:
+Por otro lado, la selección mediante clic permitía pasar de esta identificación rápida a una consulta más detallada. Al seleccionar un nodo, la aplicación mostraba información específica del elemento seleccionado en un panel informativo, adaptada al tipo de entidad consultada. En todos los grafos, cuando el nodo seleccionado correspondía a un investigador, el panel informativo mostraba en primer lugar su nombre y las áreas de trabajo asociadas. Esta información permitía contextualizar al investigador antes de consultar sus publicaciones, proyectos o relaciones de colaboración.
+
+En los grafos de producción académica, este panel ofrecía distinta información adicional según el tipo de nodo:
 
 \begin{itemize}
-    \item \textbf{Investigadores}: se mostraba su nombre y, según el grafo consultado, los artículos publicados o los proyectos en los que había participado.
+    \item \textbf{Investigadores:} se mostraban sus áreas de trabajo y, según el grafo consultado, los artículos publicados o los proyectos en los que había participado.
 
     \item \textbf{Revistas}: se presentaba el nombre de la revista, la editorial asociada cuando estaba disponible y los artículos junto con los investigadores correspondientes.
 
     \item \textbf{Proyectos}: se recogía el nombre del proyecto y los investigadores que habían participado en él, diferenciando entre investigadores principales y no principales cuando dicha información estaba disponible.
 \end{itemize}
 
-En los grafos de colaboración entre investigadores, el panel mostraba la lista de investigadores del IUMPA con los que el nodo seleccionado había trabajado.
+En los grafos de colaboración entre investigadores, el panel mostraba las áreas de trabajo del investigador seleccionado y la lista de investigadores del IUMPA con los que había trabajado.
 
 \begin{figure}[H]
 \centering
@@ -995,7 +996,9 @@ El propósito de este análisis no fue obtener una clasificación cerrada de los
 
 Hasta este punto, las revistas habían servido principalmente para describir la actividad bibliográfica de los investigadores y construir relaciones dentro de la base de datos. En esta fase, esas mismas revistas comenzaron a tener la función adicional de actuar como indicadores temáticos. Para ello, se utilizaron las palabras clave asociadas a cada revista como forma de aproximar los campos con los que estaban relacionadas.
 
-El objetivo no era describir cada revista exhaustivamente, sino disponer de un vocabulario suficientemente representativo para caracterizar su orientación temática. Esta decisión permitía trabajar con la revista como unidad intermedia entre el artículo individual y el investigador. De este modo, las palabras clave no se utilizaron para analizar el contenido detallado de cada publicación, sino para construir una aproximación general al tipo de temas presentes en los medios donde habían publicado los investigadores.
+El objetivo no era describir cada revista exhaustivamente, sino disponer de un vocabulario suficientemente representativo para caracterizar su orientación temática. Esta decisión permitía trabajar con la revista como unidad intermedia entre el artículo individual y el investigador. De este modo, las palabras clave no se utilizaron para analizar el contenido detallado de cada publicación, sino para construir una aproximación general al tipo de temas presentes en los medios de publicación utilizados por los investigadores.
+
+La obtención de este vocabulario combinó la consulta de fuentes especializadas sobre revistas con una fase de apoyo mediante herramientas de inteligencia artificial generativa. Este apoyo se utilizó únicamente para sugerir posibles términos temáticos cuando la información disponible era limitada o inexistente. Por tanto, las palabras generadas se trataron como propuestas iniciales y no como resultados definitivos, siendo revisadas posteriormente antes de incorporarse a las matrices de análisis.
 
 Una vez recopiladas las palabras clave, fue necesario revisar el conjunto global de términos antes de utilizarlo en los modelos de agrupamiento. Algunas palabras aparecían asociadas a un gran número de revistas y, por tanto, aportaban poca capacidad diferenciadora. Otras, en cambio, eran demasiado específicas, lo que dificultaba la identificación de patrones compartidos entre investigadores. Por ello, la selección final buscó un equilibrio entre representatividad y utilidad para comparar perfiles temáticos.
 
@@ -1667,7 +1670,9 @@ En primer lugar, la base de datos construida es una de las piezas centrales que 
 
 En segundo lugar, la aplicación interactiva desarrollada también forma parte del legado del proyecto, ya que permite consultar la base de datos desde una perspectiva visual. Más allá de los grafos concretos incluidos en esta versión, la herramienta muestra cómo transformar las estructuras tabulares en visualizaciones explorables, por lo que podría ampliarse en el futuro con nueva información.
 
-% Esta aplicación interactiva queda disponible como prototipo asociado al proyecto a través del siguiente \url{enlace}. Su acceso y reutilización quedan condicionados por la disponibilidad de los ficheros de datos utilizados y por las consideraciones de protección de  datos descritas en esta memoria. La versión desplegada para consulta utiliza una versión limitada de los datos, excluyendo información de contacto, como los correos electrónicos, al no ser necesaria para la exploración visual. De este modo, se reduce la exposición de datos personales no imprescindibles y se mantiene el carácter exploratorio de la herramienta.
+La aplicación interactiva queda disponible como prototipo asociado al proyecto a través del siguiente siguiente \href{https://cu2y3u-jos0antonio-rodr0guez0moreno.shinyapps.io/iumpa-grafos/}{enlace}. Su acceso y reutilización quedan condicionados por la disponibilidad de los ficheros de datos utilizados y por las consideraciones de protección de datos descritas en esta memoria.
+
+La versión desplegada para consulta utiliza una versión limitada de los datos, excluyendo información de contacto, como los correos electrónicos, al no ser necesaria para la exploración visual. De este modo, se reduce la exposición de datos personales no imprescindibles y se mantiene el carácter exploratorio de la herramienta.
 
 El trabajo también deja como legado una línea metodológica para el análisis temático de los investigadores. El proceso seguido, desde la construcción del vocabulario de palabras clave hasta la evaluación de distintas estrategias de agrupación, proporciona una referencia para continuar explorando afinidades temáticas a partir de la información disponible. Aunque los resultados obtenidos deben interpretarse con cautela, la metodología desarrollada permite identificar qué enfoques resultaron menos adecuados, qué limitaciones aparecieron y qué alternativas ofrecen una base más prometedora para futuras versiones.
 
