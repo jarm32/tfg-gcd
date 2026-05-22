@@ -50,6 +50,7 @@
 \usepackage{array}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{subcaption}
 \usepackage{url}
 \usepackage{tabularx}
 
@@ -118,7 +119,7 @@ Aquest treball presenta el disseny i desenvolupament d’una base de dades estru
 
 Sobre aquesta base, es va desenvolupar una aplicació interactiva en R mitjançant la llibreria Shiny, en la qual s’integren diferents grafs que permeten explorar visualment les relacions entre investigadors, les seues publicacions i els projectes en els quals participen. L'objectiu d'esta plataforma és facilitar la consulta i l’anàlisi de l’estructura investigadora de l’institut d’una manera accessible i intuïtiva.
 
-Com a ampliació analítica, es va abordar l'estudi d'afinitats temàtiques entre investigadors a partir de les revistes en les quals han publicat. Per a això es van extraure paraules clau representatives, es van construir matrius de dades específiques i es van avaluar diferents estratègies d’agrupació. Després de comprovar les limitacions dels enfocaments basats en coincidències literals de paraules, es va adoptar una representació semàntica mitjançant "word embeddings", sobre la qual es van aplicar tècniques de clustering jeràrquic i reducció de dimensionalitat, amb l’objectiu d’identificar perfils investigadors similars que puguen afavorir la col·laboració i el treball en equip entre investigadors amb nuclis temàtics afins. Els resultats obtinguts permeten complementar la visió relacional dels grafs amb una aproximació temàtica a l’activitat investigadora de l’IUMPA.
+Com a ampliació analítica, es va abordar l'estudi d'afinitats temàtiques entre investigadors a partir de les revistes en les quals han publicat. Per a això es van extraure paraules clau representatives, es van construir matrius de dades específiques i es van avaluar diferents estratègies d’agrupació. Després de comprovar les limitacions dels enfocaments basats en coincidències literals de paraules, es va adoptar una representació semàntica mitjançant \textit{word embeddings}, sobre la qual es van aplicar tècniques de \textit{clustering} jeràrquic i reducció de dimensionalitat, amb l’objectiu d’identificar perfils investigadors similars que puguen afavorir la col·laboració i el treball en equip entre investigadors amb nuclis temàtics afins. Els resultats obtinguts permeten complementar la visió relacional dels grafs amb una aproximació temàtica a l’activitat investigadora de l’IUMPA.
 
 Tot plegat, el treball ofereix un marc general per comprendre millor l'estructura investigadora de l'institut, a més d'establir una base per a futures ampliacions d'anàlisi i visualització.
 \end{abstract}
@@ -128,7 +129,7 @@ Este trabajo presenta el diseño y desarrollo de una base de datos estructurada 
 
 Sobre esta base, se desarrolló una aplicación interactiva en R mediante la librería Shiny, en la que se integran diferentes grafos que permiten explorar visualmente las relaciones entre investigadores, sus publicaciones y los proyectos en los que participan. El objetivo de esta plataforma es facilitar la consulta y el análisis de la estructura investigadora del instituto de una forma accesible e intuitiva.
 
-Como ampliación analítica, se abordó el estudio de afinidades temáticas entre investigadores a partir de las revistas en las que han publicado. Para ello se extrajeron palabras clave representativas, se construyeron matrices de datos específicas y se evaluaron distintas estrategias de agrupación. Tras comprobar las limitaciones de los enfoques basados en coincidencias literales de palabras, se adoptó una representación semántica mediante "word embeddings", sobre la que se aplicaron técnicas de clustering jerárquico y reducción de dimensionalidad, con el objetivo de identificar perfiles investigadores similares que puedan facilitar la colaboración y el trabajo en equipo entre investigadores con núcleos temáticos afines. Los resultados obtenidos permiten complementar la visión relacional de los grafos con una aproximación temática a la actividad investigadora del IUMPA.
+Como ampliación analítica, se abordó el estudio de afinidades temáticas entre investigadores a partir de las revistas en las que han publicado. Para ello se extrajeron palabras clave representativas, se construyeron matrices de datos específicas y se evaluaron distintas estrategias de agrupación. Tras comprobar las limitaciones de los enfoques basados en coincidencias literales de palabras, se adoptó una representación semántica mediante \textit{word embeddings}, sobre la que se aplicaron técnicas de \textit{clustering} jerárquico y reducción de dimensionalidad, con el objetivo de identificar perfiles investigadores similares que puedan facilitar la colaboración y el trabajo en equipo entre investigadores con núcleos temáticos afines. Los resultados obtenidos permiten complementar la visión relacional de los grafos con una aproximación temática a la actividad investigadora del IUMPA.
 
 En conjunto, el trabajo ofrece un marco general para comprender mejor la estructura investigadora del instituto, además de establecer una base para futuras ampliaciones de análisis y visualización.
 \end{abstract}
@@ -138,7 +139,7 @@ This thesis presents the design and development of a structured database to desc
 
 Based on this dataset, an interactive application was developed in R using the Shiny library. The application integrates several graphs that allow visual exploration of the relationships between researchers, their publications, and the projects in which they participate. The objective of this platform is to make it possible to consult and analyze the institute's research structure in an accessible and intuitive way.
 
-As an analytical extension, thematic affinities among researchers were studied using the journals in which they had published. To achieve this, representative keywords were extracted, specific data matrices were built, and different clustering strategies were evaluated. After observing the limitations of approaches based on literal keyword matching, a semantic representation based on word embeddings was adopted, and hierarchical clustering and dimensionality reduction techniques were applied, with the aim of identifying similar research profiles that may support collaboration and teamwork among researchers with related thematic areas. The obtained results complement the relational view provided by the graphs with a thematic perspective on IUMPA's research activity.
+As an analytical extension, thematic affinities among researchers were studied using the journals in which they had published. To achieve this, representative keywords were extracted, specific data matrices were built, and different clustering strategies were evaluated. After observing the limitations of approaches based on literal keyword matching, a semantic representation based on \textit{word embeddings} was adopted, and hierarchical clustering and dimensionality reduction techniques were applied, with the aim of identifying similar research profiles that may support collaboration and teamwork among researchers with related thematic areas. The obtained results complement the relational view provided by the graphs with a thematic perspective on IUMPA's research activity.
 
 Overall, this work provides a general framework for better understanding the institute's research structure and establishes a basis for future extensions in both analysis and visualization.
 \end{abstract}
@@ -207,6 +208,8 @@ De forma más específica, los objetivos perseguidos son los siguientes:
 
 El alcance de este trabajo comprende el diseño y desarrollo de una base de datos orientada a representar la actividad investigadora del IUMPA a partir de información procedente de fuentes accesibles públicamente. En concreto, el proyecto se centra en recopilar, tratar y estructurar datos relacionados con los investigadores del instituto, así como de su actividad investigadora (publicaciones, revistas y proyectos) y de sus relaciones de colaboración. Esta base de datos final se explota mediante herramientas de visualización y análisis.
 
+En esta memoria se utiliza el término base de datos en un sentido funcional, para referirse al conjunto estructurado y relacional de ficheros tabulares generado durante el proyecto. Por tanto, no debe entenderse necesariamente como una base de datos implementada en un sistema gestor tradicional, sino como una estructura organizada de datos preparada para su consulta, visualización y análisis posterior.
+
 El trabajo incluye el desarrollo de una aplicación interactiva en R mediante Shiny, destinada a facilitar la exploración visual de la información mediante grafos. Estos grafos permiten representar distintas relaciones entre los elementos del sistema, como colaboraciones entre investigadores, publicaciones en revistas y participación en proyectos. Además, se incorpora una ampliación analítica basada en la extracción de palabras clave y en la aplicación de técnicas de agrupación semántica, buscando poder identificar afinidades temáticas entre investigadores.
 
 El sistema desarrollado debe entenderse como una herramienta analítica, pero sobre todo exploratoria, orientada a facilitar la comprensión de la actividad investigadora del instituto. Por tanto, su finalidad no es establecer clasificaciones personales ni métricas comparativas de productividad entre investigadores, sino proporcionar una base estructurada que permita consultar y analizar la información recopilada desde una perspectiva relacional y temática. Asimismo, el alcance del proyecto queda condicionado por la calidad de la información accesible en las fuentes consultadas.
@@ -217,7 +220,7 @@ La metodología seguida en este trabajo se planteó como un proceso progresivo e
 
 En primer lugar, se definió un modelo conceptual inicial para identificar las entidades principales del sistema y las relaciones necesarias para representar la actividad investigadora del IUMPA, además de para poder buscar fuentes de información con un criterio claro. Posteriormente, la información recopilada se transformó en estructuras tabulares, combinando procesos automáticos de extracción y tratamiento con revisiones manuales en los casos en los que existían ambigüedades.
 
-Una vez consolidada la base de datos, se realizó un análisis exploratorio para comprobar su cobertura y describir sus principales características. Sobre esta base se desarrolló una aplicación interactiva en R mediante Shiny, en la que las entidades y relaciones construidas se transformaron en grafos explorables. Finalmente, se planteó una ampliación analítica orientada a estudiar afinidades temáticas entre investigadores, para la que se construyeron representaciones basadas en palabras clave asociadas a revistas, se evaluaron distintas estrategias de agrupamiento y se revisaron los resultados obtenidos hasta seleccionar una aproximación semántica suficientemente interpretable.
+Una vez consolidada la base de datos, se realizó un análisis exploratorio para comprobar su cobertura y describir sus principales características. Sobre esta base se desarrolló una aplicación interactiva en R mediante Shiny, en la que las entidades y relaciones construidas se transformaron en grafos explorables. Finalmente, se planteó una ampliación analítica orientada a estudiar afinidades temáticas entre investigadores, para la que se construyeron representaciones basadas en palabras clave asociadas a revistas, se evaluaron distintas estrategias de \textit{clustering} y se revisaron los resultados obtenidos hasta seleccionar una aproximación semántica suficientemente interpretable.
 
 Esta metodología permitió adaptar el desarrollo del proyecto a las características reales de la información disponible. De este modo, el trabajo no se limitó a aplicar una técnica concreta sobre un conjunto de datos cerrado, sino que integró tareas de modelado, preparación de datos, visualización, análisis exploratorio y evaluación crítica de resultados.
 
@@ -229,7 +232,7 @@ A continuación, se revisa el contexto tecnológico y metodológico relacionado 
 
 Después, se detalla el proceso de construcción de la base de datos, desde la recopilación y limpieza de la información hasta su homogeneización y estructuración final. Sobre esta base se presenta el desarrollo de la aplicación interactiva en Shiny, así como la construcción de los grafos definidos para explorar visualmente la actividad investigadora del instituto.
 
-Más adelante, se expone la ampliación analítica del trabajo, centrada en el estudio de afinidades temáticas entre investigadores mediante la extracción de palabras clave, la construcción de representaciones temáticas y la aplicación de distintos métodos de clustering y reducción de dimensionalidad. Finalmente, se sintetizan los resultados obtenidos, se valoran las limitaciones del sistema desarrollado y se recogen las conclusiones principales, junto con posibles líneas de trabajo futuro.
+Más adelante, se expone la ampliación analítica del trabajo, centrada en el estudio de afinidades temáticas entre investigadores mediante la extracción de palabras clave, la construcción de representaciones temáticas y la aplicación de distintos métodos de \textit{clustering} y reducción de dimensionalidad. Además, se sintetizan los resultados obtenidos, se valoran las limitaciones del sistema desarrollado y se recogen las conclusiones principales, junto con posibles líneas de trabajo futuro.
 
 Finalmente, la memoria incluye dos apéndices: el primero recoge la relación del trabajo con los Objetivos de Desarrollo Sostenible y el segundo documenta la estructura de los principales ficheros generados durante la construcción de la base de datos.
 
@@ -239,45 +242,74 @@ Finalmente, la memoria incluye dos apéndices: el primero recoge la relación de
 
 \chapter{Contexto del problema y estado del arte}
 
-El análisis de la actividad investigadora requiere organizar información procedente de fuentes diversas y, con frecuencia, heterogéneas. Esta información suele encontrarse dispersa en plataformas bibliográficas, directorios institucionales y otras fuentes externas, lo que dificulta su consulta conjunta y limita la obtención de una visión global de la estructura científica de una institución. Por ello, resulta necesario definir modelos que permitan integrarla, relacionarla y explotarla de forma coherente.
+El análisis de la actividad investigadora requiere organizar información procedente de fuentes diversas y, con frecuencia, heterogéneas. Esta información suele encontrarse dispersa en plataformas bibliográficas, directorios institucionales y otras fuentes externas, lo que dificulta su consulta conjunta y limita la obtención de una visión global de la estructura científica de una institución. Desde esta perspectiva, los enfoques vinculados a la bibliometría y al análisis de la actividad científica proporcionan un marco útil para estudiar publicaciones, revistas, autores, proyectos y relaciones de colaboración. Por ello, resulta necesario definir modelos que permitan integrar, relacionar y explotar esta información de forma coherente.
 
-Una vez estructurados los datos, su utilidad depende en gran medida de la forma en que puedan ser consultados e interpretados. Las tablas permiten almacenar la información de manera ordenada, pero no siempre facilitan la comprensión de las relaciones existentes entre los distintos elementos del sistema. En este sentido, los grafos constituyen una herramienta especialmente adecuada para representar vínculos, como la colaboración o la publicación, mientras que las aplicaciones interactivas permiten explorar dichas relaciones de forma más flexible y comprensible.
+Una vez estructurados los datos, su utilidad depende en gran medida de la forma en que puedan ser consultados e interpretados. Las tablas permiten almacenar la información de manera ordenada, pero no siempre facilitan la comprensión de las relaciones existentes entre los distintos elementos del sistema. En este sentido, los modelos basados en entidades y relaciones, así como su representación mediante grafos, constituyen una herramienta especialmente adecuada para representar vínculos como la colaboración, la publicación o la participación en proyectos, mientras que las aplicaciones interactivas permiten explorar dichas relaciones de forma más flexible y comprensible.
 
-Además de representar relaciones explícitas, como participaciones comunes, también puede resultar útil analizar similitudes menos directas entre perfiles investigadores. Dos investigadores pueden estar próximos no solo porque hayan trabajado juntos, sino también porque desarrollen su actividad en ámbitos temáticos relacionados. Por este motivo, las técnicas de agrupación y las representaciones semánticas ofrecen una perspectiva complementaria, orientada a identificar afinidades temáticas a partir de la información disponible sobre la producción científica.
+Además de representar relaciones explícitas, como participaciones comunes, también puede resultar útil analizar similitudes menos directas entre perfiles investigadores. Dos
+investigadores pueden estar próximos no solo porque hayan trabajado juntos, sino también porque desarrollen su actividad en ámbitos temáticos relacionados. Por este motivo, las técnicas de representación vectorial, los \textit{embeddings}, los métodos de \textit{clustering} y las técnicas de reducción de dimensionalidad ofrecen una perspectiva complementaria, orientada a identificar afinidades temáticas a partir de la información disponible sobre la producción científica.
 
-\section{Información investigadora y análisis de la actividad científica}
+\section{Información investigadora, bibliometría y análisis de la actividad científica}
 
-El análisis de la actividad científica de una institución requiere transformar información dispersa en una representación organizada y comprensible. La actividad investigadora no se refleja únicamente en los resultados finales, sino también en el contexto en el que estos se generan y en las relaciones que se establecen alrededor de ellos.
+El análisis de la actividad científica de una institución requiere transformar información dispersa en una representación organizada y comprensible. La actividad investigadora no se refleja únicamente en los resultados finales, sino también en el contexto en el que estos se generan y en las relaciones que se establecen alrededor de ellos. Por este motivo, el estudio de la producción científica suele apoyarse en información bibliográfica, institucional y documental que permite describir autores, publicaciones, revistas, proyectos, citas y vínculos de colaboración.
 
-Desde esta perspectiva, la información bibliográfica e institucional constituye una base fundamental para estudiar la estructura científica de un centro. Más allá del valor particular de cada registro, su interés aumenta cuando los datos pueden relacionarse entre sí para describir distintas dimensiones de la actividad investigadora, como la producción científica, la colaboración entre miembros de la comunidad académica o la orientación temática de sus trabajos.
+Desde esta perspectiva, la bibliometría y la cienciometría proporcionan un marco de referencia para analizar la actividad científica a partir de datos bibliográficos. Estos enfoques permiten estudiar la producción investigadora mediante publicaciones, revistas, autores, instituciones, citas y patrones de colaboración \cite{price,moed}. Desde los primeros trabajos sobre redes de documentos científicos, la literatura ha mostrado que la ciencia puede analizarse no solo como un conjunto de publicaciones aisladas, sino también como una red de relaciones entre documentos, autores y fuentes de información \cite{price}.
 
-Este análisis se relaciona con enfoques propios de la bibliometría y del estudio de la actividad científica, que utilizan datos académicos para caracterizar la estructura investigadora de instituciones y comunidades. Esta visión conjunta permite identificar conexiones, patrones de colaboración y posibles afinidades temáticas que no serían evidentes a partir de elementos aislados.
+En este tipo de análisis, las publicaciones científicas constituyen una fuente de información especialmente relevante, ya que permiten describir parte de la producción de los investigadores y establecer relaciones entre ellos. La coautoría, por ejemplo, permite representar vínculos derivados de publicaciones compartidas, mientras que otras relaciones bibliométricas clásicas, como el acoplamiento bibliográfico o la co-citación, se han utilizado tradicionalmente para estudiar proximidades entre documentos, autores o áreas de investigación \cite{kessler,small}. Aunque el presente trabajo no realiza un análisis de citas en sentido estricto, sí se apoya en la idea de que la información académica puede transformarse en una estructura relacional capaz de describir conexiones entre investigadores, revistas y proyectos.
 
-Sin embargo, este tipo de información suele presentar dificultades importantes desde el punto de vista del tratamiento de datos. Es habitual que proceda de fuentes distintas, con formatos heterogéneos, criterios de identificación no siempre uniformes y distintos niveles de completitud. Por ello, antes de poder realizar cualquier análisis, resulta necesario recopilar, depurar y homogeneizar los datos, de forma que puedan analizarse de manera coherente.
+La bibliometría moderna no se limita a contar publicaciones o citas, sino que también permite estudiar la estructura intelectual, social y temática de un campo científico. En este sentido, los métodos bibliométricos se han utilizado para identificar comunidades de investigación, patrones de colaboración, tendencias temáticas y relaciones entre fuentes científicas \cite{zupic}. Esta perspectiva resulta especialmente útil en contextos institucionales, donde interesa obtener una visión conjunta de la actividad de un grupo de investigación, más que evaluar únicamente registros aislados.
+
+Sin embargo, este tipo de información suele presentar dificultades importantes desde el punto de vista del tratamiento de datos. Es habitual que proceda de fuentes distintas, con formatos heterogéneos, criterios de identificación no siempre uniformes y distintos niveles de completitud. Además, pueden aparecer duplicidades, variantes en los nombres de autores, cambios de firma, ausencia de perfiles completos o diferencias de cobertura entre plataformas. Estos problemas son habituales en estudios bibliométricos y obligan a incorporar fases de depuración, normalización y validación antes de realizar cualquier análisis posterior \cite{moed,zupic}.
 
 La organización de esta información permite pasar de una colección de registros independientes a un sistema de datos explotable. Esta transformación facilita la consulta, mejora la trazabilidad de las relaciones entre elementos y proporciona una base adecuada para aplicar técnicas posteriores de visualización y análisis. En este sentido, la construcción de una base de datos no debe entenderse únicamente como una fase previa del proyecto, sino como un elemento central para poder representar y analizar de forma coherente la actividad investigadora.
 
-\section{Representación y visualización de relaciones científicas}
+Desde esta perspectiva, la base de datos construida en este trabajo puede entenderse como una infraestructura de información científica a escala institucional. Su finalidad no es establecer clasificaciones ni métricas de productividad individual, sino organizar información dispersa y convertirla en un recurso útil para la consulta, la visualización y el análisis exploratorio. Esta distinción resulta relevante, ya que evita interpretar los datos recopilados como una medida exhaustiva de la actividad investigadora y sitúa el trabajo dentro de un enfoque descriptivo, relacional y exploratorio.
 
-Una vez organizada la información investigadora, una parte importante del análisis consiste en representar los vínculos que estructuran el sistema. En este tipo de contexto, no solo interesa consultar registros individuales, sino también comprender cómo se relacionan entre sí. Las colaboraciones entre investigadores, la participación en proyectos o la relación entre publicaciones y revistas son ejemplos de vínculos que pueden aportar información relevante sobre la estructura científica de una institución.
+\section{Representación de bases de datos, grafos y visualización interactiva}
 
-Los grafos constituyen una forma adecuada de modelar este tipo de relaciones, ya que permiten representar sistemas formados por entidades conectadas entre sí \cite{newmannetworks}. En ellos, los nodos representan las entidades del sistema y las aristas indican los vínculos existentes entre ellas. Esta representación permite pasar de una visión tabular, centrada en registros independientes, a una visión relacional, en la que las conexiones entre elementos ayudan a interpretar la estructura global de los datos. De este modo, los grafos facilitan la identificación de patrones de colaboración, elementos especialmente conectados o agrupaciones de entidades relacionadas.
+Una vez recopilada y organizada la información investigadora, el siguiente problema consiste en representarla de forma que pueda ser consultada e interpretada. En este trabajo, los elementos principales del sistema pueden entenderse como entidades conectadas mediante relaciones. Esta estructura encaja de forma natural con una visión basada en grafos, en la que los nodos se corresponden con las entidades y las aristas con los vínculos entre ellas \cite{newmannetworks}.
 
-Cuando el número de elementos y relaciones aumenta, la representación visual debe complementarse con mecanismos que faciliten la exploración de la información. La interactividad permite seleccionar elementos concretos, aplicar filtros, consultar información asociada y adaptar la visualización a distintas preguntas de análisis. Así, el usuario puede explorar la red de forma progresiva, pasando de una visión general del sistema a detalles específicos sobre determinados nodos o relaciones.
+Los modelos de datos orientados a grafos resultan especialmente adecuados cuando el interés principal no reside únicamente en los atributos individuales de cada elemento, sino en las conexiones que se establecen entre ellos. En una base de datos de grafos, las relaciones tienen un papel central y pueden consultarse directamente como parte de la estructura del sistema. Este tipo de aproximación se ha utilizado en problemas donde existen datos altamente conectados, como redes sociales, sistemas de recomendación, bases de conocimiento o análisis de relaciones científicas \cite{angles,robinson}.
 
-Herramientas como Shiny permiten construir aplicaciones web orientadas a la exploración de datos, mientras que librerías de visualización como ECharts facilitan la creación de grafos dinámicos e interactivos. Su uso permite transformar una representación estática de la información en un entorno de consulta más accesible.
+En el contexto del presente proyecto, esta naturaleza relacional se observa en el hecho de que un investigador puede publicar en varias revistas, participar en varios proyectos, compartir artículos con otros investigadores o pertenecer a distintas áreas. Sin embargo, esto no implica necesariamente que la implementación deba realizarse en un sistema gestor de bases de datos de grafos. También es posible conservar la información en ficheros tabulares estructurados, siempre que las entidades y relaciones queden suficientemente documentadas y puedan transformarse posteriormente en nodos y enlaces para su visualización. Esta decisión resulta razonable cuando el objetivo principal es construir una herramienta exploratoria, mantener control sobre la depuración de los datos y facilitar la revisión de los ficheros generados.
 
-\section{Agrupación temática de perfiles investigadores}
+La visualización mediante grafos permite pasar de una visión tabular a una visión relacional de la información. En lugar de consultar registros de forma aislada, el usuario puede observar conexiones, patrones de colaboración, nodos especialmente conectados o subconjuntos de la red. Este tipo de representación se ha empleado con frecuencia en análisis bibliométricos y mapas de ciencia, donde se visualizan relaciones entre autores, revistas, documentos o palabras clave \cite{eck,cobo}.
 
-Las relaciones explícitas, como las colaboraciones entre autores, permiten describir una parte importante de la actividad investigadora, pero no siempre reflejan todas las proximidades existentes entre perfiles. También pueden existir afinidades temáticas entre investigadores que trabajan en ámbitos relacionados, aunque no hayan colaborado directamente, por lo que resulta útil complementar el análisis relacional con técnicas de agrupación temática.
+Además, cuando la red contiene muchos nodos y enlaces, la interactividad se vuelve fundamental. La visualización exploratoria de datos suele apoyarse en el principio de ofrecer primero una visión general, permitir después el filtrado y finalmente mostrar detalles bajo demanda \cite{shneiderman}. Este enfoque resulta directamente aplicable a la aplicación desarrollada en el trabajo, ya que los selectores, filtros, leyendas interactivas, información emergente y paneles informativos permiten pasar de una vista global de la red a la consulta de elementos concretos.
 
-Esta perspectiva permite comparar perfiles investigadores a partir de los temas asociados a su producción científica. Para ello, pueden emplearse elementos descriptivos relacionados con las publicaciones, las revistas o los términos que caracterizan dichas fuentes, con el fin de construir una representación que recoja los intereses principales de cada investigador. Este planteamiento se relaciona con enfoques habituales de recuperación de información y representación textual, donde los documentos se transforman en estructuras comparables para poder analizar su similitud \cite{manning}. A partir de estas representaciones, es posible estudiar qué perfiles presentan mayor proximidad temática y qué grupos comparten características similares.
+Herramientas como Shiny permiten construir aplicaciones web orientadas a la exploración de datos, mientras que librerías de visualización como ECharts facilitan la creación de grafos dinámicos e interactivos \cite{shiny,echarts}. Su uso permite transformar una representación estática de la información en un entorno de consulta más accesible, en el que el usuario puede navegar por las relaciones y adaptar la visualización a distintas preguntas de análisis.
 
-Las técnicas de agrupación permiten organizar estos perfiles en conjuntos de elementos similares sin necesidad de definir previamente una clasificación cerrada, por lo que se enmarcan dentro de los métodos de aprendizaje no supervisado \cite{hastie}. En este contexto, el clustering resulta útil para explorar si existen patrones latentes en los datos y para identificar posibles grupos de investigadores con afinidades comunes. No obstante, la calidad de estas agrupaciones depende en gran medida de cómo se represente la información de partida, especialmente cuando se trabaja con datos temáticos.
+Por tanto, la visualización interactiva no debe entenderse como un componente meramente estético, sino como una forma de análisis. La aplicación permite consultar relaciones que serían menos evidentes en tablas estáticas y facilita una lectura progresiva de la actividad investigadora del instituto. Aun así, conviene recordar que la posición de los nodos en un grafo interactivo depende del algoritmo de disposición visual utilizado y no debe interpretarse automáticamente como una medida matemática de proximidad temática o científica.
 
-Por este motivo, las representaciones semánticas, como los \textit{word embeddings}, ofrecen una alternativa más rica que la comparación literal de palabras. Estos modelos permiten representar términos en espacios vectoriales continuos, de forma que la proximidad entre vectores puede reflejar relaciones de similitud sintáctica o semántica \cite{mikolov}. Mientras que los enfoques basados únicamente en coincidencias exactas pueden no detectar relaciones entre términos distintos pero conceptualmente próximos, los embeddings permiten incorporar información semántica a la comparación entre perfiles. De esta forma, es posible comparar perfiles investigadores no solo por las palabras concretas asociadas a ellos, sino también por la cercanía conceptual entre sus temas de trabajo.
+\section{Representación temática, \textit{embeddings} y agrupación de perfiles investigadores}
 
-La agrupación temática proporciona así una visión complementaria a la obtenida mediante grafos de colaboración. Mientras que la representación relacional muestra conexiones explícitas, el análisis semántico permite explorar afinidades menos evidentes y enriquecer la comprensión de la estructura científica de una institución.
+Las relaciones explícitas, como las colaboraciones entre autores o la participación conjunta en proyectos, permiten describir una parte importante de la actividad investigadora, pero no siempre reflejan todas las proximidades existentes entre perfiles. También pueden existir afinidades temáticas entre investigadores que trabajan en ámbitos relacionados, aunque no hayan colaborado directamente. Por ello, resulta útil complementar el análisis relacional con técnicas de representación temática y agrupación de perfiles investigadores.
+
+Esta perspectiva requiere transformar información textual en una representación comparable entre perfiles. En recuperación de información, una forma habitual de representar textos consiste en describir documentos a partir de los términos que contienen, dando lugar a representaciones documento-término o entidad-término \cite{manning}. Este tipo de representación permite calcular similitudes entre estos documentos o perfiles, aunque su utilidad depende en gran medida del vocabulario utilizado y de la forma en que se ponderen los términos.
+
+En este contexto, las técnicas de ponderación de términos permiten reducir la influencia de palabras demasiado frecuentes y destacar aquellas con mayor capacidad discriminativa. Métodos clásicos como TF-IDF se han utilizado ampliamente para asignar pesos a los términos en función de su frecuencia en un documento y de su distribución dentro del conjunto analizado \cite{salton,manning}. Aunque este tipo de representación resulta interpretable y sencilla de construir, la similitud entre perfiles depende principalmente de coincidencias explícitas entre palabras.
+
+Esta limitación es especialmente relevante cuando se trabaja con información temática procedente de revistas, áreas científicas o palabras clave heterogéneas. Dos perfiles pueden ser próximos desde un punto de vista conceptual y, sin embargo, aparecer alejados si utilizan términos diferentes para describir contenidos relacionados. Por este motivo, las representaciones semánticas mediante \textit{embeddings} ofrecen una alternativa más flexible que los enfoques basados únicamente en coincidencias literales.
+
+Los \textit{word embeddings} representan palabras o expresiones como vectores en un espacio continuo, de forma que términos relacionados tienden a aparecer próximos en dicho espacio. Los primeros modelos de este tipo mostraron que era posible aprender representaciones distribuidas capaces de capturar regularidades semánticas y sintácticas a partir de grandes corpus textuales \cite{mikolov}. Posteriormente, los modelos basados en arquitecturas Transformer y enfoques como Sentence-BERT permitieron obtener representaciones semánticas de frases, términos o textos más largos, comparables mediante medidas como la similitud coseno \cite{sentencebert}.
+
+En el caso de perfiles investigadores, este enfoque permite representar a cada persona de forma más flexible a partir de los términos asociados a su producción científica. En lugar de comparar únicamente si dos investigadores comparten exactamente las mismas palabras clave, es posible comparar la proximidad semántica entre los términos que caracterizan sus revistas. De este modo, las representaciones vectoriales permiten incorporar relaciones conceptuales entre palabras y reducir la dependencia de coincidencias textuales exactas.
+
+Una vez construida una representación numérica de cada investigador, el problema puede abordarse mediante técnicas de \textit{clustering} no supervisado. El \textit{clustering} busca organizar observaciones en grupos de forma que los elementos de un mismo grupo sean más similares entre sí que respecto a elementos de otros grupos \cite{hastie}. En este contexto, los métodos de \textit{clustering} resultan útiles para explorar si existen patrones latentes en los perfiles temáticos de los investigadores, sin imponer previamente una clasificación cerrada.
+
+No obstante, en un análisis exploratorio como el planteado en este trabajo, el \textit{clustering} no debe interpretarse como una clasificación definitiva. Los resultados dependen de la representación de entrada, de la medida de distancia utilizada, del número de grupos, del algoritmo elegido y de las fases previas de depuración. Por ello, resulta conveniente comparar varias configuraciones y valorar no solo las métricas internas, sino también la coherencia temática de los grupos obtenidos.
+
+Entre las métricas internas más utilizadas se encuentra el índice de Silhouette, que compara la cohesión de cada observación con su propio grupo frente a su separación respecto a otros grupos \cite{rousseeuw}. Valores altos sugieren una mejor separación entre grupos, pero no garantizan por sí solos que los grupos tengan una interpretación científica clara. Por este motivo, en estudios de perfiles investigadores conviene combinar métricas cuantitativas con una revisión cualitativa y contextual de los resultados.
+
+También es habitual emplear técnicas de reducción de dimensionalidad para visualizar o resumir representaciones de alta dimensión. PCA proporciona una reducción lineal basada en la varianza \cite{jolliffe}, mientras que UMAP permite obtener proyecciones no lineales orientadas a preservar relaciones de vecindad en los datos \cite{umap}. Estas técnicas pueden facilitar la visualización de perfiles, pero deben interpretarse con cautela, ya que una proyección en baja dimensión puede modificar la percepción de proximidad entre observaciones.
+
+En general, la agrupación temática de investigadores debe entenderse como una fase exploratoria que complementa la visualización relacional. Mientras que los grafos muestran relaciones explícitas, las representaciones semánticas y el \textit{clustering} permiten estudiar proximidades temáticas menos evidentes. El valor del análisis no reside en producir una clasificación cerrada de los investigadores, sino en ofrecer una herramienta adicional para explorar posibles afinidades y generar hipótesis interpretables sobre la estructura investigadora de una institución.
+
+\section{Síntesis del estado del arte y conexión con el trabajo}
+
+Los apartados anteriores permiten situar el trabajo en la intersección entre el análisis bibliométrico de información científica, la representación relacional mediante grafos y la agrupación temática de perfiles investigadores. Esta combinación justifica el enfoque de construir primero una base de datos estructurada, utilizarla después para generar visualizaciones interactivas de relaciones explícitas y, finalmente, complementarla con un análisis semántico exploratorio orientado a detectar afinidades temáticas menos evidentes.
+
+La aportación del trabajo no consiste en proponer un nuevo algoritmo bibliométrico o de \textit{clustering}, sino en integrar técnicas existentes en un caso aplicado a escala institucional. Por ello, los resultados deben interpretarse como una herramienta de consulta, visualización y exploración de la actividad investigadora del IUMPA, no como una clasificación cerrada ni como una evaluación individual de sus investigadores.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -387,7 +419,7 @@ En relación con la propiedad intelectual, las fuentes consultadas se han utiliz
 
 En este sentido, cuando se utilizaron herramientas de inteligencia artificial generativa como apoyo en la propuesta de términos temáticos, su resultado se trató como material auxiliar sujeto a revisión, evitando incorporarlo directamente sin supervisión ni validación manual.
 
-Desde el punto de vista ético, los grafos y los modelos de agrupamiento desarrollados deben interpretarse con cautela. Las relaciones de colaboración representadas muestran conexiones derivadas de publicaciones o proyectos, pero no reflejan necesariamente la totalidad de la actividad científica ni la intensidad real de todas las relaciones profesionales. Del mismo modo, las agrupaciones semánticas obtenidas mediante técnicas de clustering no deben entenderse como categorías cerradas, sino como una aproximación exploratoria basada en las revistas, palabras clave y datos disponibles.
+Desde el punto de vista ético, los grafos y los modelos de \textit{clustering} desarrollados deben interpretarse con cautela. Las relaciones de colaboración representadas muestran conexiones derivadas de publicaciones o proyectos, pero no reflejan necesariamente la totalidad de la actividad científica ni la intensidad real de todas las relaciones profesionales. Del mismo modo, las agrupaciones semánticas obtenidas mediante técnicas de \textit{clustering} no deben entenderse como categorías cerradas, sino como una aproximación exploratoria basada en las revistas, palabras clave y datos disponibles.
 
 Por tanto, el sistema desarrollado debe utilizarse como una herramienta de apoyo para la exploración y comprensión de la actividad investigadora del instituto, no como un mecanismo de evaluación individual ni de clasificación rígida de los investigadores. Cualquier interpretación de los resultados debe tener en cuenta las limitaciones de los datos, los posibles sesgos derivados de las fuentes utilizadas y la necesidad de complementar el análisis automático con conocimiento experto del contexto del IUMPA.
 
@@ -435,7 +467,7 @@ No obstante, Google Scholar no proporcionaba información suficiente para todos 
 
 La información relativa a proyectos de investigación se obtuvo a partir de Panorama UPV, portal de producción y actividad científica de la Universitat Politècnica de València \cite{panorama_upv}. Esta fuente permitió incorporar al modelo una dimensión distinta a la estrictamente bibliográfica, vinculada a la participación de los investigadores en proyectos.
 
-Por último, para la fase posterior de agrupación semántica se recurrió a fuentes auxiliares centradas en la caracterización de revistas, como DOAJ, Scimago y Research.com \cite{doaj,scimago,research_com}. Estas fuentes se emplearon para obtener términos representativos asociados a las revistas en las que habían publicado los investigadores. Su función no fue definir las relaciones principales de la base de datos, sino proporcionar información temática que sería utilizada posteriormente en el análisis semántico.
+Por último, para la fase posterior de agrupación semántica se recurrió a fuentes auxiliares centradas en la caracterización de revistas, como DOAJ y SCImago \cite{doaj,scimago}. Estas fuentes se emplearon para obtener términos representativos asociados a las revistas en las que habían publicado los investigadores. Su función no fue definir las relaciones principales de la base de datos, sino proporcionar información temática que sería utilizada posteriormente en el análisis semántico.
 
 La utilización conjunta de estas fuentes permitió ampliar la cobertura de la información recopilada y reunir datos que no estaban disponibles de forma centralizada. No obstante, las diferencias de formato, nivel de detalle y completitud entre ellas hicieron necesaria una fase posterior de organización, depuración y validación de los datos.
 
@@ -451,7 +483,7 @@ El primer bloque de información construido correspondió a los investigadores i
 
 Para obtener esta información se desarrolló un proceso de extracción mediante \textit{web scraping} sobre la web del IUMPA, entendido como la obtención automatizada de información a partir del contenido disponible en páginas web. A partir del contenido de la página se obtuvo la relación inicial de investigadores internos y parte de su información básica. En el caso de los correos electrónicos, fue necesario tratar distintos patrones de páginas personales, ya que no todos los perfiles seguían exactamente la misma estructura de URL. Por ello, el código contempló diferentes formas de acceder a las páginas asociadas a cada investigador.
 
-La tabla inicial de investigadores se fue ampliando durante el desarrollo del proyecto con campos auxiliares necesarios para enlazar los datos procedentes de distintas fuentes. Entre ellos se incorporaron, manualmente, variantes de firma, acrónimos, formas abreviadas del nombre, nombres en formato invertido y el tipo de empleado. Las primeras variables se utilizaron para asociar correctamente los artículos y proyectos con cada investigador, ya que una misma persona podía aparecer escrita de formas distintas según la fuente consultada, por ejemplo mediante iniciales, abreviaturas o con el orden de nombre y apellidos alterado. Por su parte, el tipo de empleado se conservó como atributo descriptivo, diferenciando entre investigadores, becarios y becarios de investigación.
+La tabla inicial de investigadores se fue ampliando durante el desarrollo del proyecto con campos auxiliares necesarios para enlazar los datos procedentes de distintas fuentes. Entre ellos se incorporaron, manualmente, variantes de firma, acrónimos, formas abreviadas del nombre, nombres en formato invertido y el tipo de empleado. Las primeras variables se utilizaron para asociar correctamente los artículos y proyectos con cada investigador, ya que una misma persona podía aparecer escrita de formas distintas según la fuente consultada, por ejemplo mediante iniciales, abreviaturas o con el orden de nombre y apellidos alterado. Por su parte, el tipo de empleado se conservó como atributo descriptivo, diferenciando entre investigadores, personal en formación y personal investigador en formación.
 
 La información relativa a las áreas de trabajo se organizó mediante un procedimiento más manual. A partir de la información disponible en la web del IUMPA, se recopilaron las áreas asociadas a los investigadores y se estructuraron inicialmente en hojas de cálculo. Posteriormente, estos ficheros se transformaron a formato tabular para mantener una organización homogénea con el resto de datos del proyecto. Esta estructura permitió construir la relación entre investigadores y áreas, conservando una información auxiliar sobre las líneas de trabajo asociadas a cada investigador.
 
@@ -473,7 +505,7 @@ A partir de los datos de artículos recopilados, se identificaron las revistas e
 
 Para ello, se generó un conjunto inicial de valores únicos a partir de los nombres de revista presentes en los ficheros de artículos. Sin embargo, este conjunto no podía incorporarse directamente a la base de datos, ya que no representaba todavía una entidad homogénea. Las revistas podían aparecer escritas con variantes de mayúsculas, abreviaturas, acrónimos o denominaciones incompletas. Además, en algunos casos el campo correspondiente a la revista contenía valores que no representaban realmente una revista, como editoriales, congresos u otros registros no adecuados para el modelo.
 
-La depuración de esta entidad combinó procedimientos automáticos con una revisión manual especialmente relevante. Por una parte, se utilizaron scripts de apoyo para localizar valores problemáticos y aplicar sustituciones de forma sistemática. Por otra, fue necesario revisar manualmente los casos ambiguos, especialmente cuando había que decidir si dos denominaciones correspondían a la misma revista o si un registro debía corregirse, unificarse o descartarse por no ajustarse al tipo de entidad que se quería representar.
+La depuración de esta entidad combinó procedimientos automáticos con una revisión manual especialmente relevante. Por una parte, se utilizaron \textit{scripts} de apoyo para localizar valores problemáticos y aplicar sustituciones de forma sistemática. Por otra, fue necesario revisar manualmente los casos ambiguos, especialmente cuando había que decidir si dos denominaciones correspondían a la misma revista o si un registro debía corregirse, unificarse o descartarse por no ajustarse al tipo de entidad que se quería representar.
 
 Además, se incorporó información sobre las editoriales asociadas a las revistas, con el objetivo de enriquecer la información disponible. Esta información también requirió revisión, ya que podía presentar variantes de escritura o registros incompletos. El resultado fue una estructura de revistas más coherente, con menor duplicidad y mejor adaptada a las necesidades de la base de datos.
 
@@ -493,7 +525,7 @@ A partir de los registros de proyectos se construyeron dos tipos de relaciones. 
 
 Además de las estructuras anteriores, centradas en la definición de los grafos, se prepararon ficheros auxiliares destinados a la fase de agrupación semántica. Esta parte tomó como punto de partida los medios de publicación asociados a cada investigador, con el objetivo de caracterizar temáticamente sus perfiles a partir de dichos elementos.
 
-Para ello, se recopiló un conjunto de palabras clave asociadas a cada revista, consultando fuentes auxiliares centradas en su descripción temática, como DOAJ, Scimago y Research.com. Cuando la información disponible no resultaba suficientemente representativa, este proceso se complementó con una tarea manual de búsqueda y revisión, así como con el uso auxiliar de herramientas de inteligencia artificial generativa para proponer términos candidatos relacionados con la orientación temática de la revista.
+Para ello, se recopiló un conjunto de palabras clave asociadas a cada revista, consultando fuentes auxiliares centradas en su descripción temática, como DOAJ y SCImago. Cuando la información disponible no resultaba suficientemente representativa, este proceso se complementó con una tarea manual de búsqueda y revisión, así como con el uso auxiliar de herramientas de inteligencia artificial generativa para proponer términos candidatos relacionados con la orientación temática de la revista.
 
 En cualquier caso, los términos obtenidos no se incorporaron de forma automática. Antes de formar parte del vocabulario utilizado, fueron depurados para descartar palabras no suficientemente vinculadas con la revista correspondiente, ya que el objetivo no era construir todavía el modelo de agrupación, sino disponer de una primera base temática que permitiera relacionar cada revista con términos representativos.
 
@@ -679,13 +711,13 @@ La Tabla~\ref{tab:estadisticas_base_datos}, por su parte, recoge estadísticas d
 \small
 \begin{tabular}{lrrrr}
 \toprule
-\textbf{Variable} & \textbf{Media} & \textbf{Mediana} & \textbf{Mínimo} & \textbf{Máximo} \\
+Variable & Media & Mediana & Mínimo & Máximo \\
 \midrule
-Artículos por investigador & 102.81 & 54.5 & 2 & 346 \\
-Revistas distintas por investigador & 33.05 & 25.0 & 1 & 130 \\
-Proyectos por investigador & 12.19 & 9.0 & 1 & 39 \\
-Investigadores internos por proyecto & 1.86 & 1.0 & 1 & 15 \\
-Áreas por investigador & 1.74 & 2.0 & 1 & 4 \\
+Artículos por investigador & 102,81 & 54,5 & 2 & 346 \\
+Revistas distintas por investigador & 33,05 & 25,0 & 1 & 130 \\
+Proyectos por investigador & 12,19 & 9,0 & 1 & 39 \\
+Investigadores internos por proyecto & 1,86 & 1,0 & 1 & 15 \\
+Áreas por investigador & 1,74 & 2,0 & 1 & 4 \\
 \bottomrule
 \end{tabular}
 \caption{Estadísticas descriptivas de las principales distribuciones de la base de datos.}
@@ -694,7 +726,7 @@ Investigadores internos por proyecto & 1.86 & 1.0 & 1 & 15 \\
 
 \subsection{Distribución de investigadores y áreas de trabajo}
 
-Respecto a los investigadores internos, la Figura~\ref{fig:eda_tipo_empleado} muestra la distribución por tipo de empleado. La mayor parte de los registros corresponden a investigadores, mientras que los becarios y becarios de investigación representan una proporción menor dentro del conjunto. Esta información resulta relevante porque esta misma clasificación se utilizó posteriormente en la aplicación interactiva para diferenciar visualmente los nodos de los grafos.
+Respecto a los investigadores internos, la Figura~\ref{fig:eda_tipo_empleado} muestra la distribución por tipo de empleado. La mayor parte de los registros corresponden a investigadores, mientras que el personal en formación y el personal investigador en formación representan una proporción menor dentro del conjunto. Esta información resulta relevante porque esta misma clasificación se utilizó posteriormente en la aplicación interactiva para diferenciar visualmente los nodos de los grafos.
 
 \begin{figure}[H]
 \centering
@@ -831,6 +863,15 @@ De esta forma, la herramienta puede entenderse a partir de tres fases principale
 
 Los ficheros construidos previamente actuaban como entrada del sistema, mientras que la aplicación se encargaba de interpretarlos y convertirlos en representaciones visuales interactivas. De este modo, los cambios en los datos podían incorporarse con mayor facilidad, siempre que se mantuviera la estructura esperada por la herramienta.
 
+La Figura~\ref{fig:app_vista_general} muestra una vista general de la aplicación desarrollada, en la que se observa la disposición de los controles de selección, el área principal de visualización del grafo y el panel destinado a mostrar información asociada a los elementos seleccionados.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{imgs/app_vista_general.png}
+    \caption{Vista general de la aplicación interactiva desarrollada.}
+    \label{fig:app_vista_general}
+\end{figure}
+
 El diseño de la aplicación estuvo condicionado por el objetivo exploratorio del proyecto. No se buscaba construir una plataforma cerrada de consulta estadística, sino una herramienta que permitiera navegar por la información recopilada y observar las relaciones existentes entre investigadores, revistas y proyectos, así como las colaboraciones derivadas de publicaciones y proyectos compartidos. Además, se incorporó la posibilidad de filtrar las visualizaciones por áreas de trabajo, utilizando la relación previamente definida entre investigadores y áreas. Por ello, la organización general de la herramienta se orientó a facilitar una exploración visual progresiva, desde una visión global de las relaciones hasta la consulta de información concreta asociada a cada elemento.
 
 Desde el punto de vista de implementación, la aplicación siguió la estructura habitual de Shiny, separando la definición de la interfaz de usuario de la lógica encargada de procesar los datos y generar las visualizaciones. Esta separación facilitó mantener diferenciadas la parte visual de la aplicación y la lógica encargada de preparar los datos para su representación gráfica.
@@ -914,7 +955,9 @@ Además de estos selectores, la leyenda de los grafos también actuaba como un e
 \label{fig:filtro_leyenda}
 \end{figure}
 
-La aplicación también utilizó recursos de codificación visual para facilitar la interpretación de los grafos. En primer lugar, se emplearon colores fijos para diferenciar los tipos de elementos representados. En todos los grafos, los investigadores se muestran en azul, los becarios en verde y los becarios de investigación en amarillo. Además, en los grafos de producción académica, las revistas y los proyectos se representan en rojo. Esta codificación cromática se mantuvo constante entre vistas para que el usuario pudiera interpretar los nodos de forma homogénea al cambiar de grafo.
+La aplicación también utilizó recursos de codificación visual para facilitar la interpretación de los grafos. En primer lugar, se emplearon colores fijos para diferenciar los tipos de elementos representados. En todos los grafos, los investigadores se muestran en azul, el personal en formación en verde y el personal investigador en formación en amarillo. Además, en los grafos de producción académica, las revistas y los proyectos se representan en rojo. Esta codificación cromática se mantuvo constante entre vistas para que el usuario pudiera interpretar los nodos de forma homogénea al cambiar de grafo.
+
+
 
 Junto con el color, en los grafos de colaboración entre investigadores se incorporó una diferencia de tamaño entre nodos. En estas visualizaciones, el tamaño del nodo representaba el número de conexiones del investigador dentro del grafo correspondiente. Por tanto, los nodos de mayor tamaño indicaban investigadores con más conexiones dentro de la red mostrada en cada caso (colaboraciones derivadas de artículos compartidos en un grafo y colaboraciones derivadas de proyectos comunes en el otro). Esta representación añadía una segunda capa de información visual y permitía identificar nodos con mayor conectividad dentro de la red, sin plantear esta información como una métrica individual de productividad.
 
@@ -941,35 +984,38 @@ En los grafos de producción académica, este panel ofrecía distinta informaci�
     \item \textbf{Proyectos}: se recogía el nombre del proyecto y los investigadores que habían participado en él, diferenciando entre investigadores principales y no principales cuando dicha información estaba disponible.
 \end{itemize}
 
-En los grafos de colaboración entre investigadores, el panel mostraba las áreas de trabajo del investigador seleccionado y la lista de investigadores del IUMPA con los que había trabajado.
+En los grafos de colaboración entre investigadores, el panel mostraba las áreas de trabajo del investigador seleccionado y la lista de investigadores del IUMPA con los que había trabajado. 
+
+La Figura~\ref{fig:info_nodos_grafos} muestra una vista general del panel informativo junto al grafo y varios ejemplos de los bloques de información mostrados al seleccionar distintos tipos de nodo.
 
 \begin{figure}[H]
-\centering
+    \centering
 
-\begin{minipage}{0.48\textwidth}
-\centering
-\includegraphics[width=\textwidth]{imgs/panel_investigador_revistas.png}
-\end{minipage}
-\hfill
-\begin{minipage}{0.48\textwidth}
-\centering
-\includegraphics[width=\textwidth]{imgs/panel_revista.png}
-\end{minipage}
+    \includegraphics[width=\textwidth]{imgs/panel_investigador_revistas.png}
+    \caption*{(a) Vista general al seleccionar un investigador en el grafo de revistas.}
 
-\vspace{0.6em}
+    \vspace{0.25cm}
 
-\begin{minipage}{0.48\textwidth}
-\centering
-\includegraphics[width=\textwidth]{imgs/panel_investigador_proyectos.png}
-\end{minipage}
-\hfill
-\begin{minipage}{0.48\textwidth}
-\centering
-\includegraphics[width=\textwidth]{imgs/panel_proyecto.png}
-\end{minipage}
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{imgs/panel_revista.png}
+        \caption*{(b) Revista}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{imgs/panel_proyecto.png}
+        \caption*{(c) Proyecto}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{imgs/panel_investigador_proyectos.png}
+        \caption*{(d) Investigador en proyectos}
+    \end{subfigure}
 
-\caption{Ejemplos de información mostrada al seleccionar distintos tipos de nodo en los grafos de producción académica.}
-\label{fig:paneles_informativos}
+    \caption{Ejemplos del panel informativo asociado a distintos tipos de nodo en los grafos de producción académica.}
+    \label{fig:info_nodos_grafos}
 \end{figure}
 
 En conclusión, estos elementos permitían complementar la visualización global de los grafos con mecanismos de exploración más detallados. El usuario podía partir de una vista general de las relaciones y, posteriormente, aplicar filtros, ocultar categorías, consultar información emergente o seleccionar nodos concretos para acceder a los datos asociados.
@@ -992,9 +1038,9 @@ No obstante, la aplicación debe entenderse como una herramienta exploratoria co
 
 Tras la construcción de la base de datos y el desarrollo de los grafos interactivos, el proyecto ya permitía explorar la actividad investigadora del IUMPA desde una perspectiva relacional. Sobre esta base, se planteó estudiar si los datos recopilados podían revelar afinidades temáticas entre investigadores más allá de las colaboraciones y publicaciones observables. Para ello, se propuso una ampliación analítica basada en las revistas en las que publica cada investigador, partiendo de la idea de que dichas revistas pueden aportar información sobre sus áreas de interés al estar asociadas a diferentes campos.
 
-A partir de esta hipótesis, se utilizaron palabras clave representativas de las revistas para construir perfiles temáticos de los investigadores y aplicar distintos métodos de agrupamiento orientados a identificar posibles grupos con intereses próximos.
+A partir de esta hipótesis, se utilizaron palabras clave representativas de las revistas para construir perfiles temáticos de los investigadores y aplicar distintos métodos de \textit{clustering} orientados a identificar posibles grupos con intereses próximos.
 
-El propósito de este análisis no fue obtener una clasificación cerrada de los miembros del instituto, sino explorar hasta qué punto la información disponible permitía detectar agrupaciones interpretables desde un punto de vista semántico. Por ello, el proceso combinó varias representaciones de los datos, distintos modelos de clustering y técnicas de reducción de dimensionalidad, valorando los resultados tanto mediante métricas cuantitativas como mediante su coherencia temática.
+El propósito de este análisis no fue obtener una clasificación cerrada de los miembros del instituto, sino explorar hasta qué punto la información disponible permitía detectar agrupaciones interpretables desde un punto de vista semántico. Por ello, el proceso combinó varias representaciones de los datos, distintos modelos de \textit{clustering} y técnicas de reducción de dimensionalidad, valorando los resultados tanto mediante métricas cuantitativas como mediante su coherencia temática.
 
 \section{Preparación del vocabulario temático}
 
@@ -1004,7 +1050,7 @@ El objetivo no era describir cada revista exhaustivamente, sino disponer de un v
 
 La obtención de este vocabulario combinó la consulta de fuentes especializadas sobre revistas con una fase de apoyo mediante herramientas de inteligencia artificial generativa. Este apoyo se utilizó únicamente para sugerir posibles términos temáticos cuando la información disponible era limitada o inexistente. Por tanto, las palabras generadas se trataron como propuestas iniciales y no como resultados definitivos, siendo revisadas posteriormente antes de incorporarse a las matrices de análisis.
 
-Una vez recopiladas las palabras clave, fue necesario revisar el conjunto global de términos antes de utilizarlo en los modelos de agrupamiento. Algunas palabras aparecían asociadas a un gran número de revistas y, por tanto, aportaban poca capacidad diferenciadora. Otras, en cambio, eran demasiado específicas, lo que dificultaba la identificación de patrones compartidos entre investigadores. Por ello, la selección final buscó un equilibrio entre representatividad y utilidad para comparar perfiles temáticos.
+Una vez recopiladas las palabras clave, fue necesario revisar el conjunto global de términos antes de utilizarlo en los modelos de \textit{clustering}. Algunas palabras aparecían asociadas a un gran número de revistas y, por tanto, aportaban poca capacidad diferenciadora. Otras, en cambio, eran demasiado específicas, lo que dificultaba la identificación de patrones compartidos entre investigadores. Por ello, la selección final buscó un equilibrio entre representatividad y utilidad para comparar perfiles temáticos.
 
 Además de esta depuración, se revisó manualmente la coherencia del vocabulario para reducir duplicidades y unificar variantes muy próximas. Con ello se buscó que términos muy relacionados quedaran representados de forma consistente, evitando una fragmentación innecesaria del vocabulario. En consecuencia, las palabras clave no se emplearon como una recopilación directa de términos aislados, sino como un conjunto revisado y preparado para servir de base al análisis semántico.
 
@@ -1032,7 +1078,7 @@ M_{ij} =
 \end{cases}
 \]
 
-Con esta estructura, la información textual quedaba transformada en un formato numérico sencillo, adecuado para calcular distancias entre perfiles y aplicar métodos de agrupamiento. Su interpretación también resultaba directa, ya que cada investigador quedaba descrito por el conjunto de términos asociados a las revistas en las que había publicado.
+Con esta estructura, la información textual quedaba transformada en un formato numérico sencillo, adecuado para calcular distancias entre perfiles y aplicar métodos de \textit{clustering}. Su interpretación también resultaba directa, ya que cada investigador quedaba descrito por el conjunto de términos asociados a las revistas en las que había publicado.
 
 El proceso seguido para transformar las revistas publicadas en perfiles temáticos comparables se resume en la Figura~\ref{fig:flujo_representacion_tematica}.
 
@@ -1072,14 +1118,14 @@ Representación matricial de los perfiles
 $\downarrow$
 
 \vspace{0.2cm}
-Entrada para los modelos de agrupamiento
+Entrada para los modelos de \textit{clustering}
 \end{minipage}
 }
 \caption{Proceso de construcción de perfiles temáticos a partir de las revistas publicadas por los investigadores.}
 \label{fig:flujo_representacion_tematica}
 \end{figure}
 
-La matriz binaria ofrecía una primera representación sencilla e interpretable de los perfiles temáticos. A partir de ella se realizaron distintas pruebas de agrupamiento, aplicando diferentes formas de comparar los perfiles de los investigadores. Sin embargo, los resultados obtenidos no mostraron una separación suficientemente clara entre grupos. Las métricas de evaluación, con valores bajos del índice de Silhouette en las mejores pruebas iniciales, indicaban que las agrupaciones generadas no eran lo bastante consistentes. Por ello, se decidió no forzar una interpretación de estos primeros resultados y revisar la forma en que estaban representados los perfiles temáticos.
+La matriz binaria ofrecía una primera representación sencilla e interpretable de los perfiles temáticos. A partir de ella se realizaron distintas pruebas de \textit{clustering}, aplicando diferentes formas de comparar los perfiles de los investigadores. Sin embargo, los resultados obtenidos no mostraron una separación suficientemente clara entre grupos. Las métricas de evaluación, con valores bajos del índice de Silhouette en las mejores pruebas iniciales, indicaban que las agrupaciones generadas no eran lo bastante consistentes. Por ello, se decidió no forzar una interpretación de estos primeros resultados y revisar la forma en que estaban representados los perfiles temáticos.
 
 El principal problema de este enfoque era que la similitud entre investigadores dependía de coincidencias literales entre términos. Por ello, dos perfiles próximos desde un punto de vista conceptual podían aparecer como poco similares si las revistas asociadas a cada uno estaban descritas mediante vocabularios distintos. Esta situación resultaba especialmente relevante en un contexto como el del IUMPA, donde pueden existir líneas de trabajo cercanas expresadas con términos parcialmente diferentes.
 
@@ -1090,7 +1136,7 @@ La ponderación aplicada consistió en una adaptación propia basada en una pena
 Con este enfoque, las palabras con frecuencias intermedias recibían mayor peso, al considerarse potencialmente más representativas para comparar perfiles, mientras que los términos demasiado frecuentes o demasiado aislados quedaban penalizados. El peso de una palabra clave \(j\) se definió como:
 
 \[
-w_j = e^{-\frac{(f_j - \mu)^2}{2\sigma^2}}
+w_j = e^{-\frac{(f_j - \mu)^2}{2\sigma^2}},
 \]
 
 donde \(f_j\) representa la frecuencia de la palabra clave \(j\), \(\mu\) la frecuencia media de las palabras clave y \(\sigma\) un parámetro que controla el grado de penalización aplicado a los términos situados en los extremos de la distribución de frecuencias.
@@ -1104,24 +1150,24 @@ Esta propiedad resultaba útil para el objetivo del análisis, ya que permitía 
 Para construir el perfil semántico de cada investigador, se obtuvieron los vectores correspondientes a sus palabras clave y se calculó una representación agregada a partir de ellos. Formalmente, si \(K_i\) representa el conjunto de palabras clave asociadas al investigador \(i\), y \(\mathbf{e}(w)\) representa el vector semántico de una palabra \(w\), el perfil del investigador puede expresarse como:
 
 \[
-\mathbf{v}_i = \frac{1}{|K_i|}\sum_{w \in K_i} \mathbf{e}(w)
+\mathbf{v}_i = \frac{1}{|K_i|}\sum_{w \in K_i} \mathbf{e}(w).
 \]
 
 De esta forma, cada investigador dejó de estar representado únicamente por una lista de términos o por una fila de una matriz binaria, y pasó a estar descrito mediante un vector continuo que resumía, de forma aproximada, el contenido semántico de su perfil temático.
 
-Esta transformación permitió trabajar con una representación más flexible de los investigadores. Mientras que la matriz binaria resultaba útil como primera aproximación interpretable, los embeddings incorporaban una dimensión semántica que permitía comparar perfiles más allá de la coincidencia exacta de palabras clave, recogiendo afinidades entre términos conceptualmente próximos.
+Esta transformación permitió trabajar con una representación más flexible de los investigadores. Mientras que la matriz binaria resultaba útil como primera aproximación interpretable, los \textit{embeddings} incorporaban una dimensión semántica que permitía comparar perfiles más allá de la coincidencia exacta de palabras clave, recogiendo afinidades entre términos conceptualmente próximos.
 
-\section{Clustering y evaluación}
+\section{\textit{Clustering} y evaluación}
 
 Una vez que cada investigador quedó descrito mediante un perfil temático, el análisis podía avanzar desde la representación individual hacia la búsqueda de patrones compartidos. La cuestión, por tanto, se convirtió en estudiar si esos perfiles permitían reconocer grupos con intereses próximos, no definidos únicamente por las áreas institucionales del IUMPA.
 
 Este planteamiento se abordó como una tarea de aprendizaje no supervisado, ya que no se buscaba entrenar un modelo para reproducir una clasificación conocida, sino explorar la estructura interna de los perfiles construidos a partir de revistas y palabras clave.
 
-Aunque el instituto cuenta con áreas de trabajo asignadas a los investigadores, estas no se mantuvieron como variable de entrada en el modelo de clustering. En las pruebas realizadas, su inclusión hacía que la agrupación quedara fuertemente condicionada por dicha clasificación previa, reuniendo a los investigadores principalmente según el área a la que pertenecían. Por este motivo, se decidió excluirlas del análisis y trabajar únicamente con la información derivada de las revistas y del vocabulario temático, permitiendo al agrupamiento explorar posibles afinidades complementarias a las áreas institucionales, en lugar de limitarse a reproducirlas.
+Aunque el instituto cuenta con áreas de trabajo asignadas a los investigadores, estas no se mantuvieron como variable de entrada en el modelo de \textit{clustering}. En las pruebas realizadas, su inclusión hacía que la agrupación quedara fuertemente condicionada por dicha clasificación previa, reuniendo a los investigadores principalmente según el área a la que pertenecían. Por este motivo, se decidió excluirlas del análisis y trabajar únicamente con la información derivada de las revistas y del vocabulario temático, permitiendo al \textit{clustering} explorar posibles afinidades complementarias a las áreas institucionales, en lugar de limitarse a reproducirlas.
 
-El proceso de agrupamiento se desarrolló de forma experimental, comparando distintas configuraciones a partir de las representaciones descritas previamente. Esta fase no consistió en aplicar un único modelo, sino en probar varias formas de representar los perfiles, medir la proximidad entre ellos y construir agrupaciones. Para ello se trabajó de manera progresiva, comenzando con representaciones basadas en palabras clave explícitas y avanzando posteriormente hacia representaciones semánticas mediante \textit{word embeddings}.
+El proceso de \textit{clustering} se desarrolló de forma experimental, comparando distintas configuraciones a partir de las representaciones descritas previamente. Esta fase no consistió en aplicar un único modelo, sino en probar varias formas de representar los perfiles, medir la proximidad entre ellos y construir agrupaciones. Para ello se trabajó de manera progresiva, comenzando con representaciones basadas en palabras clave explícitas y avanzando posteriormente hacia representaciones semánticas mediante \textit{word embeddings}.
 
-Cada configuración del proceso dependía, por tanto, de la representación de entrada, la versión del vocabulario, la medida de proximidad, el método de agrupamiento, el número de grupos considerado y la posible aplicación de reducción de dimensionalidad. La Tabla~\ref{tab:elementos_clustering} resume los componentes principales considerados durante esta fase experimental.
+Cada configuración del proceso dependía, por tanto, de la representación de entrada, la versión del vocabulario, la medida de proximidad, el método de \textit{clustering}, el número de grupos considerado y la posible aplicación de reducción de dimensionalidad. La Tabla~\ref{tab:elementos_clustering} resume los componentes principales considerados durante esta fase experimental.
 
 \begin{table}[H]
 \centering
@@ -1135,34 +1181,34 @@ m{0.30\textwidth}
 \hline
 \textbf{Elemento} & \textbf{Opciones consideradas} & \textbf{Función dentro del análisis} \\
 \hline
-Representación de entrada & Matriz binaria, matriz ponderada y embeddings semánticos & Definir cómo se describe temáticamente cada investigador \\
+Representación de entrada & Matriz binaria, matriz ponderada y \textit{embeddings} semánticos & Definir cómo se describe temáticamente cada investigador \\
 \hline
 Versión del vocabulario & Vocabulario completo y vocabulario depurado sin términos de localización & Comprobar si las agrupaciones respondían a afinidades temáticas o a factores contextuales \\
 \hline
 Medidas de proximidad & Jaccard, Hamming, coseno, correlación, euclídea y Manhattan & Cuantificar la cercanía o diferencia entre perfiles de investigadores \\
 \hline
-Métodos de agrupamiento & Clustering jerárquico, K-means, PAM, Fuzzy C-Means, Spectral Clustering, GMM, DBSCAN y HDBSCAN & Comparar distintas formas de construir grupos a partir de los perfiles \\
+Métodos de \textit{clustering} & Jerárquico, K-means, PAM, Fuzzy C-Means, Spectral Clustering, GMM, DBSCAN y HDBSCAN & Comparar distintas formas de construir grupos a partir de los perfiles \\
 \hline
-Número de grupos o parámetros de agrupamiento & Distintos valores de \(k\) en k-means, cortes del dendrograma en jerárquico y variación de parámetros como \(\varepsilon\) en DBSCAN & Estudiar cómo cambia la estructura de grupos según la configuración del modelo \\
+Número de grupos o parámetros del \textit{clustering} & Distintos valores de \(k\) en k-means, cortes del dendrograma en jerárquico y variación de parámetros como \(\varepsilon\) en DBSCAN & Estudiar cómo cambia la estructura de grupos según la configuración del modelo \\
 \hline
-Reducción de dimensionalidad & Configuraciones sin reducción, PCA y UMAP & Comparar los agrupamientos obtenidos en el espacio original y en proyecciones de menor dimensión \\
+Reducción de dimensionalidad & Configuraciones sin reducción, PCA y UMAP & Comparar las agrupaciones obtenidas en el espacio original y en proyecciones de menor dimensión \\
 \hline
 Evaluación & Índice de Silhouette, visualizaciones, revisión manual de la coherencia temática y comparación de solapamientos & Comparar configuraciones y valorar la coherencia de las agrupaciones \\
 \hline
 \end{tabular}
-\caption{Elementos considerados en el proceso de agrupamiento temático.}
+\caption{Elementos considerados en el proceso de \textit{clustering} temático.}
 \label{tab:elementos_clustering}
 \end{table}
 
 \subsection{Primeras pruebas con palabras clave explícitas}
 
-La primera aproximación al agrupamiento se realizó utilizando directamente la matriz de presencia y ausencia de palabras clave. En esta representación, cada investigador quedaba descrito por los términos asociados a las revistas en las que había publicado, sin incorporar todavía ponderaciones ni relaciones semánticas entre palabras. El objetivo de esta fase era comprobar si las coincidencias literales entre palabras clave bastaban para identificar grupos de investigadores con perfiles temáticos próximos.
+La primera aproximación al \textit{clustering} se realizó utilizando directamente la matriz de presencia y ausencia de palabras clave. En esta representación, cada investigador quedaba descrito por los términos asociados a las revistas en las que había publicado, sin incorporar todavía ponderaciones ni relaciones semánticas entre palabras. El objetivo de esta fase era comprobar si las coincidencias literales entre palabras clave bastaban para identificar grupos de investigadores con perfiles temáticos próximos.
 
 Sobre esta matriz se probaron distintas medidas de proximidad. En primer lugar, se utilizaron medidas especialmente adecuadas para datos binarios, como Jaccard y Hamming, ya que permiten comparar perfiles según la coincidencia o diferencia en la presencia de términos. Además, también se probaron otras medidas como coseno, correlación, distancia euclídea y Manhattan, con el fin de observar si la estructura de los grupos variaba al cambiar la forma de medir la proximidad entre investigadores.
 
-En cuanto a los métodos de clusterización, la variante jerárquica fue una de las primeras alternativas utilizadas en esta fase, ya que permitía analizar diferentes particiones a partir de un mismo árbol de agrupamiento. Para ello, se ensayaron distintos criterios de enlace, como \textit{average}, \textit{complete}, \textit{single} y \textit{ward.D2}, y se compararon varios valores de \(k\). Esta variedad de configuraciones permitía comprobar si los grupos aparecían de forma estable o si dependían en exceso de la métrica y del enlace utilizados.
+En cuanto a los métodos de \textit{clustering}, la variante jerárquica fue una de las primeras alternativas utilizadas en esta fase, ya que permitía analizar diferentes particionesa partir de un mismo dendrograma. Para ello, se ensayaron distintos criterios de enlace, como \textit{average}, \textit{complete}, \textit{single} y \textit{ward.D2}, y se compararon varios valores de \(k\). Esta variedad de configuraciones permitía comprobar si los grupos aparecían de forma estable o si dependían en exceso de la métrica y del enlace utilizados.
 
-Junto a las pruebas jerárquicas, también se aplicaron otros métodos de agrupamiento sobre la misma representación, como K-means, PAM, Fuzzy C-Means, Spectral Clustering o GMM. La finalidad de estas pruebas era comprobar si las limitaciones observadas procedían del algoritmo de clustering o de la propia representación basada en coincidencias literales de palabras clave. La Tabla~\ref{tab:primeras_pruebas_keywords} muestra un resumen de las principales configuraciones probadas en esta fase inicial y de la interpretación general obtenida a partir de ellas.
+Junto a las pruebas jerárquicas, también se aplicaron otros métodos de \textit{clustering} sobre la misma representación, como K-means, PAM, Fuzzy C-Means, Spectral Clustering o GMM. La finalidad de estas pruebas era comprobar si las limitaciones observadas procedían del algoritmo de \textit{clustering} o de la propia representación basada en coincidencias literales de palabras clave. La Tabla~\ref{tab:primeras_pruebas_keywords} muestra un resumen de las principales configuraciones probadas en esta fase inicial y de la interpretación general obtenida a partir de ellas.
 
 \begin{table}[H]
 \centering
@@ -1176,40 +1222,40 @@ m{0.42\textwidth}
 \hline
 \textbf{Configuración} & \textbf{Mejor Silhouette} & \textbf{Observación principal} \\
 \hline
-Jerárquico + Jaccard & 0.252 & Solapamiento entre grupos y separación limitada \\
+Jerárquico + Jaccard & 0,252 & Solapamiento entre grupos y separación limitada \\
 \hline
-Jerárquico + Euclídea & 0.210 & División general en pocos grupos, con baja cohesión interna \\
+Jerárquico + Euclídea & 0,210 & División general en pocos grupos, con baja cohesión interna \\
 \hline
-Jerárquico + Coseno & 0.273 & Algunas particiones razonables, pero sin estructura suficientemente clara \\
+Jerárquico + Coseno & 0,273 & Algunas particiones razonables, pero sin estructura suficientemente clara \\
 \hline
-Jerárquico + Correlación & 0.258 & Resultados moderados, con dependencia de la partición elegida \\
+Jerárquico + Correlación & 0,258 & Resultados moderados, con dependencia de la partición elegida \\
 \hline
-Jerárquico + Manhattan & 0.329 & Mejor comportamiento relativo en esta fase, aunque todavía con interpretación limitada \\
+Jerárquico + Manhattan & 0,329 & Mejor comportamiento relativo en esta fase, aunque todavía con interpretación limitada \\
 \hline
-K-means + Euclídea & 0.129 & Particiones poco interpretables sin mejora frente al enfoque jerárquico \\
+K-means + Euclídea & 0,129 & Particiones poco interpretables sin mejora frente al enfoque jerárquico \\
 \hline
-K-means + Euclídea + PCA & 0.198 & Ligera mejora respecto a K-means, pero todavía insuficiente \\
+K-means + Euclídea + PCA & 0,198 & Ligera mejora respecto a K-means, pero todavía insuficiente \\
 \hline
-PAM + Jaccard & 0.174 & No ofreció una estructura clara de grupos \\
+PAM + Jaccard & 0,174 & No ofreció una estructura clara de grupos \\
 \hline
-PAM + Manhattan & 0.220 & Resultado algo mejor que Jaccard, pero sin una separación suficientemente sólida \\
+PAM + Manhattan & 0,220 & Resultado algo mejor que Jaccard, pero sin una separación suficientemente sólida \\
 \hline
-Fuzzy C-Means & 0.161 & Agrupaciones débiles y poco útiles para la interpretación temática \\
+Fuzzy C-Means & 0,161 & Agrupaciones débiles y poco útiles para la interpretación temática \\
 \hline
-Spectral Clustering & 0.098 & Resultado muy bajo, sin estructura aprovechable \\
+Spectral Clustering & 0,098 & Resultado muy bajo, sin estructura aprovechable \\
 \hline
-GMM & -0.066 & Resultado negativo, indicando asignaciones no adecuadas \\
+GMM & -0,066 & Resultado negativo, indicando asignaciones no adecuadas \\
 \hline
 \end{tabular}
 \caption{Resumen de las primeras pruebas realizadas con palabras clave explícitas.}
 \label{tab:primeras_pruebas_keywords}
 \end{table}
 
-Los resultados obtenidos en esta primera fase mostraron una separación limitada entre grupos. La mejor configuración dentro del clustering jerárquico fue la basada en distancia Manhattan, con un valor máximo de Silhouette de 0.329, mientras que el resto de métricas se mantuvieron en valores más bajos. Los métodos alternativos (K-means, PAM, Fuzzy C-Means, Spectral Clustering y GMM) tampoco ofrecieron una mejora clara, produciendo valores reducidos y agrupaciones difíciles de interpretar en general.
+Los resultados obtenidos en esta primera fase mostraron una separación limitada entre grupos. La mejor configuración dentro del \textit{clustering} jerárquico fue la basada en distancia Manhattan, con un valor máximo de Silhouette de 0,329, mientras que el resto de métricas se mantuvieron en valores más bajos. Los métodos alternativos (K-means, PAM, Fuzzy C-Means, Spectral Clustering y GMM) tampoco ofrecieron una mejora clara, produciendo valores reducidos y agrupaciones difíciles de interpretar en general.
 
 Para representar gráficamente estas primeras pruebas se empleó una proyección MDS (\textit{Multidimensional Scaling}), una técnica que permite visualizar en dos dimensiones las distancias calculadas entre perfiles. De este modo, resulta posible observar si los grupos aparecen separados o si, por el contrario, existe solapamiento entre ellos.
 
-Además de los valores numéricos, las visualizaciones generadas durante esta fase permitieron observar solapamientos entre perfiles y particiones poco equilibradas. La Figura~\ref{fig:primeras_pruebas_keywords} muestra una configuración representativa de esta primera etapa, basada en distancia Manhattan y clustering jerárquico con enlace \textit{average}. Su objetivo no es presentar un modelo final, sino ilustrar las limitaciones observadas al trabajar únicamente con coincidencias explícitas de palabras clave. Aunque esta configuración fue la que obtuvo el mejor valor de Silhouette dentro de las pruebas iniciales, la proyección MDS muestra una separación todavía difusa entre perfiles y el gráfico de Silhouette refleja diferencias claras en la cohesión de los grupos obtenidos.
+Además de los valores numéricos, las visualizaciones generadas durante esta fase permitieron observar solapamientos entre perfiles y particiones poco equilibradas. La Figura~\ref{fig:primeras_pruebas_keywords} muestra una configuración representativa de esta primera etapa, basada en distancia Manhattan y \textit{clustering} jerárquico con enlace \textit{average}. Su objetivo no es presentar un modelo final, sino ilustrar las limitaciones observadas al trabajar únicamente con coincidencias explícitas de palabras clave. Aunque esta configuración fue la que obtuvo el mejor valor de Silhouette dentro de las pruebas iniciales, la proyección MDS muestra una separación todavía difusa entre perfiles y el gráfico de Silhouette refleja diferencias claras en la cohesión de los grupos obtenidos.
 
 \begin{figure}[H]
 \centering
@@ -1228,7 +1274,7 @@ Además de los valores numéricos, las visualizaciones generadas durante esta fa
 \label{fig:primeras_pruebas_keywords}
 \end{figure}
 
-La lectura conjunta de la tabla y de las visualizaciones muestra que estas primeras agrupaciones no ofrecían una separación suficientemente clara. En algunas configuraciones aparecían grupos parcialmente diferenciados, pero la estructura general seguía siendo débil y cambiaba de forma apreciable según la distancia, el método o el número de grupos elegido. Esto sugería que el problema no estaba únicamente en el algoritmo de clustering, sino también en la forma en que se estaban representando los perfiles.
+La lectura conjunta de la tabla y de las visualizaciones muestra que estas primeras agrupaciones no ofrecían una separación suficientemente clara. En algunas configuraciones aparecían grupos parcialmente diferenciados, pero la estructura general seguía siendo débil y cambiaba de forma apreciable según la distancia, el método o el número de grupos elegido. Esto sugería que el problema no estaba únicamente en el algoritmo de \textit{clustering}, sino también en la forma en que se estaban representando los perfiles.
 
 La matriz binaria permitió comprobar una primera idea, pero también mostró que la comparación entre investigadores seguía siendo demasiado simple. Todos los términos tenían el mismo peso, independientemente de si eran muy frecuentes, muy específicos o realmente útiles para diferenciar perfiles. Por ello, antes de abandonar el enfoque basado en palabras clave explícitas, se planteó una representación intermedia en la que el vocabulario estuviera ponderado, con el objetivo de mejorar los resultados sin renunciar del todo a la simplicidad de la representación. Con esta modificación, la comparación entre investigadores podía depender menos de términos poco informativos y reflejar mejor las diferencias temáticas entre perfiles.
 
@@ -1240,7 +1286,7 @@ La matriz ponderada mantenía la misma organización que la matriz inicial, con 
 
 La ponderación aplicada se basó en una penalización simétrica con forma gaussiana. Con este enfoque, las palabras con frecuencias intermedias recibían mayor peso, al considerarse potencialmente más útiles para diferenciar perfiles, mientras que los términos demasiado frecuentes y demasiado aislados quedaban penalizados por aportar poca capacidad discriminativa.
 
-Sobre esta representación ponderada se repitieron varias de las pruebas realizadas en la fase anterior y se incorporaron algunos ajustes específicos. En concreto, se volvieron a comparar distintas medidas de proximidad, como coseno, Jaccard, correlación, distancia euclídea y Manhattan, y se aplicaron métodos de agrupamiento como clustering jerárquico, K-means y PAM. Además, se probaron distintos valores del parámetro \(\sigma\), con el objetivo de observar cómo variaba el efecto de la ponderación al penalizar con mayor o menor intensidad las frecuencias alejadas de la media.
+Sobre esta representación ponderada se repitieron varias de las pruebas realizadas en la fase anterior y se incorporaron algunos ajustes específicos. En concreto, se volvieron a comparar distintas medidas de proximidad, como coseno, Jaccard, correlación, distancia euclídea y Manhattan, y se aplicaron métodos de \textit{clustering} como el jerárquico, K-means y PAM. Además, se probaron distintos valores del parámetro \(\sigma\), con el objetivo de observar cómo variaba el efecto de la ponderación al penalizar con mayor o menor intensidad las frecuencias alejadas de la media.
 
 La Tabla~\ref{tab:pruebas_matriz_ponderada} resume algunas de las configuraciones más representativas de esta fase, no con el objetivo de recoger todas las combinaciones posibles, sino de mostrar que la ponderación no tuvo un efecto uniforme sobre todos los modelos, ya que en algunas configuraciones mejoró los valores de Silhouette, mientras que en otras apenas aportó mejora o incluso produjo agrupaciones poco útiles desde el punto de vista interpretativo.
 
@@ -1256,32 +1302,32 @@ m{0.38\textwidth}
 \hline
 \textbf{Configuración} & \textbf{Mejor Silhouette} & \textbf{Observación principal} \\
 \hline
-Coseno + Jerárquico & 0.169 & No mejoró de forma clara la separación entre grupos \\
+Coseno + Jerárquico & 0,169 & No mejoró de forma clara la separación entre grupos \\
 \hline
-Jaccard + Jerárquico & 0.123 & Resultados bajos y poca estructura interpretable \\
+Jaccard + Jerárquico & 0,123 & Resultados bajos y poca estructura interpretable \\
 \hline
-Correlación + Jerárquico & 0.178 & Mejora limitada, sin agrupaciones suficientemente sólidas \\
+Correlación + Jerárquico & 0,178 & Mejora limitada, sin agrupaciones suficientemente sólidas \\
 \hline
-Manhattan + Jerárquico, \(\sigma=1\) & 0.351 & Mejor comportamiento que la matriz binaria, aunque todavía con interpretación limitada \\
+Manhattan + Jerárquico, \(\sigma=1\) & 0,351 & Mejor comportamiento que la matriz binaria, aunque todavía con interpretación limitada \\
 \hline
-Manhattan + Jerárquico, \(\sigma=0.5\) & 0.445 & Mejor resultado numérico, pero con aparición de un grupo dominante \\
+Manhattan + Jerárquico, \(\sigma=0{,}5\) & 0,445 & Mejor resultado numérico, pero con aparición de un grupo dominante \\
 \hline
-Euclídea + Jerárquico & 0.198 & Separación limitada entre perfiles \\
+Euclídea + Jerárquico & 0,198 & Separación limitada entre perfiles \\
 \hline
-K-means + Euclídea & 0.304 & Mejora respecto a K-means inicial, pero con clusters poco representativos \\
+K-means + Euclídea & 0,304 & Mejora respecto a K-means inicial, pero con \textit{clusters} poco representativos \\
 \hline
-PAM + Jaccard & 0.120 & No aportó una mejora clara frente a otras configuraciones \\
+PAM + Jaccard & 0,120 & No aportó una mejora clara frente a otras configuraciones \\
 \hline
 \end{tabular}
 \caption{Resumen de pruebas realizadas con la matriz ponderada de palabras clave.}
 \label{tab:pruebas_matriz_ponderada}
 \end{table}
 
-Los resultados muestran que la ponderación no produjo una mejora homogénea en todas las configuraciones. Algunas medidas, como coseno, Jaccard o correlación, siguieron ofreciendo valores bajos, mientras que la distancia Manhattan fue la que mostró el mejor comportamiento relativo. Con \(\sigma=1\), esta configuración alcanzó un valor máximo de Silhouette de 0.351, ligeramente superior al obtenido con la matriz binaria. Al reducir \(\sigma\), el valor aumentó hasta 0.445, pero este incremento debía interpretarse con cautela.
+Los resultados muestran que la ponderación no produjo una mejora homogénea en todas las configuraciones. Algunas medidas, como coseno, Jaccard o correlación, siguieron ofreciendo valores bajos, mientras que la distancia Manhattan fue la que mostró el mejor comportamiento relativo. Con \(\sigma=1\), esta configuración alcanzó un valor máximo de Silhouette de 0,351, ligeramente superior al obtenido con la matriz binaria. Al reducir \(\sigma\), el valor aumentó hasta 0,445, pero este incremento debía interpretarse con cautela.
 
-El principal problema apareció precisamente en las configuraciones con mejores valores numéricos. Al aplicar una penalización más intensa, el modelo tendía a concentrar a una parte importante de los investigadores en un grupo dominante, dejando el resto en grupos de menor tamaño con perfiles más extremos. Esta estructura elevaba el valor medio de Silhouette, pero no necesariamente producía una agrupación más útil desde el punto de vista temático. Por tanto, la mejora de la métrica no podía interpretarse automáticamente como una mejora real del clustering.
+El principal problema apareció precisamente en las configuraciones con mejores valores numéricos. Al aplicar una penalización más intensa, el modelo tendía a concentrar a una parte importante de los investigadores en un grupo dominante, dejando el resto en grupos de menor tamaño con perfiles más extremos. Esta estructura elevaba el valor medio de Silhouette, pero no necesariamente producía una agrupación más útil desde el punto de vista temático. Por tanto, la mejora de la métrica no podía interpretarse automáticamente como una mejora real del \textit{clustering}.
 
-La Figura~\ref{fig:ponderada_manhattan_sigma05} muestra una configuración representativa de esta fase, basada en distancia Manhattan, clustering jerárquico con enlace \textit{average} y \(\sigma=0.5\). Su interés no está en presentar una solución final, sino en ilustrar la diferencia entre mejora numérica y utilidad interpretativa.
+La Figura~\ref{fig:ponderada_manhattan_sigma05} muestra una configuración representativa de esta fase, basada en distancia Manhattan, \textit{clustering} jerárquico con enlace \textit{average} y \(\sigma=0{,}5\). Su interés no está en presentar una solución final, sino en ilustrar la diferencia entre mejora numérica y utilidad interpretativa.
 
 \begin{figure}[H]
 \centering
@@ -1304,27 +1350,27 @@ En esta configuración se obtenía un valor de Silhouette superior al de las pru
 
 En resumen, esta fase permitió comprobar que la ponderación gaussiana refinaba la matriz inicial, pero no resolvía la limitación principal del enfoque. Los términos ya no contribuían todos por igual, pero la comparación entre investigadores seguía dependiendo de la presencia explícita de palabras clave compartidas. Por ello, el análisis avanzó hacia una representación semántica mediante \textit{word embeddings}, capaz de comparar perfiles a partir de la proximidad conceptual entre términos distintos.
 
-\subsection{Representaciones semánticas, métodos de agrupamiento y reducción de dimensionalidad}
+\subsection{Representaciones semánticas, métodos de \textit{clustering} y reducción de dimensionalidad}
 
-Tras las pruebas con la matriz binaria y con la matriz ponderada, el análisis se trasladó a las representaciones semánticas mediante \textit{word embeddings}. Esta decisión se tomó porque, en las fases anteriores, la comparación entre investigadores seguía dependiendo de la coincidencia explícita entre palabras clave. Con los embeddings, cada investigador quedaba descrito mediante un vector continuo que resumía el contenido semántico de sus términos, lo que permitía comparar perfiles no solo por las palabras exactas que compartían, sino también por la proximidad conceptual entre ellas.
+Tras las pruebas con la matriz binaria y con la matriz ponderada, el análisis se trasladó a las representaciones semánticas mediante \textit{word embeddings}. Esta decisión se tomó porque, en las fases anteriores, la comparación entre investigadores seguía dependiendo de la coincidencia explícita entre palabras clave. Con los \textit{embeddings}, cada investigador quedaba descrito mediante un vector continuo que resumía el contenido semántico de sus términos, lo que permitía comparar perfiles no solo por las palabras exactas que compartían, sino también por la proximidad conceptual entre ellas.
 
-Sobre esta nueva representación se abrió una fase más amplia de pruebas. Ya no se trataba únicamente de comparar matrices de palabras clave, sino de estudiar cómo se comportaban los perfiles semánticos bajo distintas medidas de proximidad, métodos de agrupamiento y técnicas de reducción de dimensionalidad. En esta etapa se probaron medidas como coseno, correlación, distancia euclídea y Manhattan, con el objetivo de comprobar si la estructura de grupos dependía de una única forma de medir la cercanía entre perfiles o si aparecían patrones similares bajo distintas métricas.
+Sobre esta nueva representación se abrió una fase más amplia de pruebas. Ya no se trataba únicamente de comparar matrices de palabras clave, sino de estudiar cómo se comportaban los perfiles semánticos bajo distintas medidas de proximidad, métodos de \textit{clustering} y técnicas de reducción de dimensionalidad. En esta etapa se probaron medidas como coseno, correlación, distancia euclídea y Manhattan, con el objetivo de comprobar si la estructura de grupos dependía de una única forma de medir la cercanía entre perfiles o si aparecían patrones similares bajo distintas métricas.
 
-El clustering jerárquico fue una de las alternativas principales en esta fase. Se utilizó una estrategia aglomerativa, principalmente con enlace promedio (\textit{average}), que permitía construir progresivamente un árbol de agrupamiento y estudiar distintos cortes del dendrograma. Esta característica resultaba adecuada para el carácter exploratorio del análisis, ya que no obligaba a fijar un único número de grupos desde el inicio. En las pruebas realizadas se compararon distintos valores de \(k\), de forma que era posible observar cómo cambiaban las particiones al variar el nivel de corte del árbol.
+El \textit{clustering} jerárquico fue una de las alternativas principales en esta fase. Se utilizó una estrategia aglomerativa, principalmente con enlace promedio (\textit{average}), que permitía construir progresivamente un dendrograma y estudiar distintos cortes.. Esta característica resultaba adecuada para el carácter exploratorio del análisis, ya que no obligaba a fijar un único número de grupos desde el inicio. En las pruebas realizadas se compararon distintos valores de \(k\), de forma que era posible observar cómo cambiaban las particiones al variar el nivel de corte del árbol.
 
-Las primeras configuraciones jerárquicas sobre embeddings ofrecieron valores de Silhouette superiores a los obtenidos en varias pruebas con palabras clave explícitas. Por ejemplo, las pruebas con distancia Manhattan, correlación o coseno alcanzaron valores en torno a 0.4 en algunas configuraciones. Sin embargo, estos resultados también debían interpretarse con cautela, ya que varias particiones seguían mostrando una estructura dominada por un grupo principal de gran tamaño. Por tanto, aunque la representación semántica mejoraba la capacidad de comparación entre términos, la calidad numérica de una configuración no garantizaba por sí sola una agrupación equilibrada ni directamente interpretable.
+Las primeras configuraciones jerárquicas sobre \textit{embeddings} ofrecieron valores de Silhouette superiores a los obtenidos en varias pruebas con palabras clave explícitas. Por ejemplo, las pruebas con distancia Manhattan, correlación o coseno alcanzaron valores en torno a 0,4 en algunas configuraciones. Sin embargo, estos resultados también debían interpretarse con cautela, ya que varias particiones seguían mostrando una estructura dominada por un grupo principal de gran tamaño. Por tanto, aunque la representación semántica mejoraba la capacidad de comparación entre términos, la calidad numérica de una configuración no garantizaba por sí sola una agrupación equilibrada ni directamente interpretable.
 
-Además del clustering jerárquico, se probaron métodos basados en densidad, concretamente DBSCAN~\cite{dbscan} y HDBSCAN~\cite{hdbscan}. Estos métodos resultaban interesantes porque no parten necesariamente de un número fijo de grupos, sino que intentan identificar regiones densas de puntos y separar observaciones que no encajan claramente en ningún grupo. En el caso de DBSCAN se probaron distintos valores del parámetro \(\varepsilon\), comparando configuraciones con y sin reducción de dimensionalidad previa mediante PCA. No obstante, estas pruebas tendieron a generar un único grupo principal junto con un porcentaje elevado de observaciones tratadas como ruido, por lo que no ofrecieron una partición suficientemente útil para el objetivo interpretativo del análisis.
+Además del \textit{clustering} jerárquico, se probaron métodos basados en densidad, concretamente DBSCAN~\cite{dbscan} y HDBSCAN~\cite{hdbscan}. Estos métodos resultaban interesantes porque no parten necesariamente de un número fijo de grupos, sino que intentan identificar regiones densas de puntos y separar observaciones que no encajan claramente en ningún grupo. En el caso de DBSCAN se probaron distintos valores del parámetro \(\varepsilon\), comparando configuraciones con y sin reducción de dimensionalidad previa mediante PCA. No obstante, estas pruebas tendieron a generar un único grupo principal junto con un porcentaje elevado de observaciones tratadas como ruido, por lo que no ofrecieron una partición suficientemente útil para el objetivo interpretativo del análisis.
 
 HDBSCAN se probó en la misma línea, como una alternativa más flexible para trabajar con estructuras de densidad variable. Su inclusión respondía al interés por comprobar si los perfiles formaban regiones densas sin necesidad de fijar previamente un número de grupos. Sin embargo, las pruebas realizadas tampoco proporcionaron una estructura suficientemente clara para orientar el análisis final. Por ello, los métodos basados en densidad se mantuvieron como una vía exploratoria, mientras que el análisis posterior se centró principalmente en configuraciones jerárquicas, que permitían estudiar de forma más controlada el efecto de la métrica de distancia, el número de grupos y la reducción dimensional.
 
-También se valoraron técnicas orientadas a representar la estructura global de los perfiles en un espacio de menor dimensión. Entre ellas se consideró PCA~\cite{jolliffe}, utilizada como reducción lineal para conservar una proporción elevada de la varianza antes de aplicar determinados métodos de clustering. Esta opción permitía comprobar si una representación más compacta de los embeddings facilitaba la formación de grupos o reducía parte del ruido presente en el espacio original. En algunas pruebas, la combinación de PCA con clustering jerárquico incrementó el valor de Silhouette, aunque volvió a aparecer el problema de grupos dominantes, por lo que tampoco podía considerarse una solución suficiente por sí misma.
+También se valoraron técnicas orientadas a representar la estructura global de los perfiles en un espacio de menor dimensión. Entre ellas se consideró PCA~\cite{jolliffe}, utilizada como reducción lineal para conservar una proporción elevada de la varianza antes de aplicar determinados métodos de \textit{clustering}. Esta opción permitía comprobar si una representación más compacta de los \textit{embeddings} facilitaba la formación de grupos o reducía parte del ruido presente en el espacio original. En algunas pruebas, la combinación de PCA con \textit{clustering} jerárquico incrementó el valor de Silhouette, aunque volvió a aparecer el problema de grupos dominantes, por lo que tampoco podía considerarse una solución suficiente por sí misma.
 
-Dentro de las técnicas de reducción no lineal, UMAP adquirió un papel especialmente relevante~\cite{umap}. A diferencia de PCA, que proyecta los datos mediante combinaciones lineales, UMAP busca preservar relaciones de vecindad entre observaciones en un espacio de menor dimensión, lo que lo hacía adecuado para trabajar con embeddings semánticos, ya que permitía comprobar si los perfiles de investigadores presentaban una estructura más clara al proyectarse en dos dimensiones.
+Dentro de las técnicas de reducción no lineal, UMAP adquirió un papel especialmente relevante~\cite{umap}. A diferencia de PCA, que proyecta los datos mediante combinaciones lineales, UMAP busca preservar relaciones de vecindad entre observaciones en un espacio de menor dimensión, lo que lo hacía adecuado para trabajar con \textit{embeddings} semánticos, ya que permitía comprobar si los perfiles de investigadores presentaban una estructura más clara al proyectarse en dos dimensiones.
 
-En las pruebas iniciales con UMAP, su combinación con clustering jerárquico basado en distancia coseno produjo una separación más clara que otras configuraciones. En concreto, se obtuvo un valor medio de Silhouette de 0.602 y se identificaron tres grupos principales, lo que suponía una mejora respecto a las pruebas jerárquicas realizadas directamente sobre los embeddings, como Manhattan con \(S=0.413\), Manhattan con PCA con \(S=0.445\), o correlación/coseno con \(S=0.409\). Este resultado indicaba que la reducción no lineal podía facilitar la aparición de estructuras más diferenciadas en el espacio semántico y justificaba revisar con más detalle este tipo de configuración en las fases posteriores del análisis.
+En las pruebas iniciales con UMAP, su combinación con \textit{clustering} jerárquico basado en distancia coseno produjo una separación más clara que otras configuraciones. En concreto, se obtuvo un valor medio de Silhouette de 0,602 y se identificaron tres grupos principales, lo que suponía una mejora respecto a las pruebas jerárquicas realizadas directamente sobre los \textit{embeddings}, como Manhattan con \(S=0,413\), Manhattan con PCA con \(S=0,445\), o correlación/coseno con \(S=0,409\). Este resultado indicaba que la reducción no lineal podía facilitar la aparición de estructuras más diferenciadas en el espacio semántico y justificaba revisar con más detalle este tipo de configuración en las fases posteriores del análisis.
 
-La Tabla~\ref{tab:pruebas_embeddings_iniciales} recoge una selección de las configuraciones más representativas probadas sobre los perfiles semánticos iniciales. No se pretende recoger todas las combinaciones exploradas, sino resumir los comportamientos principales observados al aplicar distintas medidas de proximidad, métodos de agrupamiento y técnicas de reducción de dimensionalidad sobre los embeddings.
+La Tabla~\ref{tab:pruebas_embeddings_iniciales} recoge una selección de las configuraciones más representativas probadas sobre los perfiles semánticos iniciales. No se pretende recoger todas las combinaciones exploradas, sino resumir los comportamientos principales observados al aplicar distintas medidas de proximidad, métodos de \textit{clustering} y técnicas de reducción de dimensionalidad sobre los \textit{embeddings}.
 
 \begin{table}[H]
 \centering
@@ -1338,28 +1384,28 @@ m{0.38\textwidth}
 \hline
 \textbf{Configuración} & \textbf{Resultado} & \textbf{Observación principal} \\
 \hline
-Manhattan + Jerárquico & \(S=0.413\) & Buen valor numérico, pero con aparición de un grupo dominante \\
+Manhattan + Jerárquico & \(S=0,413\) & Buen valor numérico, pero con aparición de un grupo dominante \\
 \hline
-Manhattan + PCA + Jerárquico & \(S=0.445\) & Mejora numérica, aunque mantiene el problema de grupo dominante \\
+Manhattan + PCA + Jerárquico & \(S=0,445\) & Mejora numérica, aunque mantiene el problema de grupo dominante \\
 \hline
-Correlación + Jerárquico & \(S=0.409\) & Resultado alto, pero con estructura dominada por un grupo principal \\
+Correlación + Jerárquico & \(S=0,409\) & Resultado alto, pero con estructura dominada por un grupo principal \\
 \hline
-Coseno + Jerárquico & \(S=0.409\) & Comportamiento similar al de correlación, sin resolver la interpretación de grupos \\
+Coseno + Jerárquico & \(S=0,409\) & Comportamiento similar al de correlación, sin resolver la interpretación de grupos \\
 \hline
-Coseno + DBSCAN & 2 clusters y 45.2\% de ruido & Incluso con PCA y \(\varepsilon=0.45\), mantiene mucho ruido \\
+Coseno + DBSCAN & 2 \textit{clusters} y 45,2\% de ruido & Incluso con PCA y \(\varepsilon=0,45\), mantiene mucho ruido \\
 \hline
-Coseno + UMAP + Jerárquico & \(S=0.602\) & Separación inicial más clara, pendiente de revisión posterior \\
+Coseno + UMAP + Jerárquico & \(S=0,602\) & Separación inicial más clara, pendiente de revisión posterior \\
 \hline
 \end{tabular}
-\caption{Resumen de pruebas iniciales realizadas sobre representaciones semánticas mediante embeddings.}
+\caption{Resumen de pruebas iniciales realizadas sobre representaciones semánticas mediante \textit{embeddings}.}
 \label{tab:pruebas_embeddings_iniciales}
 \end{table}
 
 En el caso de DBSCAN y HDBSCAN no se recoge un valor de Silhouette comparable al resto de configuraciones, ya que estas pruebas no generaron una partición estable con varios grupos útiles para la evaluación. En particular, DBSCAN tendía a producir un único grupo principal junto con un porcentaje elevado de observaciones clasificadas como ruido, mientras que HDBSCAN tampoco ofreció una estructura suficientemente clara.
 
-En líneas generales, los resultados muestran que las representaciones semánticas aumentaban el potencial de separación respecto a las matrices basadas en coincidencias literales, aunque la calidad de los grupos seguía dependiendo de la configuración utilizada. Algunas combinaciones alcanzaban valores de Silhouette superiores a los enfoques anteriores, pero todavía generaban particiones poco equilibradas, mientras que los métodos basados en densidad no ofrecían una estructura suficientemente clara. En este contexto, la combinación de UMAP, distancia coseno y clustering jerárquico apareció como la alternativa más prometedora dentro de esta fase inicial.
+En líneas generales, los resultados muestran que las representaciones semánticas aumentaban el potencial de separación respecto a las matrices basadas en coincidencias literales, aunque la calidad de los grupos seguía dependiendo de la configuración utilizada. Algunas combinaciones alcanzaban valores de Silhouette superiores a los enfoques anteriores, pero todavía generaban particiones poco equilibradas, mientras que los métodos basados en densidad no ofrecían una estructura suficientemente clara. En este contexto, la combinación de UMAP, distancia coseno y \textit{clustering} jerárquico apareció como la alternativa más prometedora dentro de esta fase inicial.
 
-La Figura~\ref{fig:umap_embeddings_inicial} muestra la proyección UMAP obtenida en esta fase inicial con embeddings. Esta visualización permite observar por qué esta configuración resultó prometedora, ya que los perfiles aparecen organizados en tres grupos principales con una separación más clara que en las representaciones anteriores.
+La Figura~\ref{fig:umap_embeddings_inicial} muestra la proyección UMAP obtenida en esta fase inicial con \textit{embeddings}. Esta visualización permite observar por qué esta configuración resultó prometedora, ya que los perfiles aparecen organizados en tres grupos principales con una separación más clara que en las representaciones anteriores.
 
 \begin{figure}[H]
 \centering
@@ -1374,23 +1420,23 @@ La Figura~\ref{fig:umap_embeddings_inicial} muestra la proyección UMAP obtenida
 \includegraphics[width=\textwidth]{imgs/silhouette_umap_embeddings.png}
 \caption*{(b) Gráfico de Silhouette}
 \end{minipage}
-\caption{Configuración inicial basada en embeddings, UMAP y clustering jerárquico con distancia coseno.}
+\caption{Configuración inicial basada en \textit{embeddings}, UMAP y \textit{clustering} jerárquico con distancia coseno.}
 \label{fig:umap_embeddings_inicial}
 \end{figure}
 
-La proyección muestra una separación visual más clara que las obtenidas con las matrices de palabras clave, mientras que el gráfico de Silhouette confirma un valor medio elevado, aunque con diferencias entre grupos. En particular, uno de los clusters aparece mucho más cohesionado que los demás, lo que indicaba que la configuración era prometedora, pero todavía requería una revisión más detallada antes de considerarse una solución definitiva.
+La proyección muestra una separación visual más clara que las obtenidas con las matrices de palabras clave, mientras que el gráfico de Silhouette confirma un valor medio elevado, aunque con diferencias entre grupos. En particular, uno de los \textit{clusters} aparece mucho más cohesionado que los demás, lo que indicaba que la configuración era prometedora, pero todavía requería una revisión más detallada antes de considerarse una solución definitiva.
 
-Esta fase permitió comprobar que el cambio a embeddings era necesario desde el punto de vista metodológico, pero también que no resolvía por completo el problema de agrupamiento. La representación semántica reducía la dependencia de coincidencias literales entre palabras, aunque la calidad de los clusters seguía condicionada por la métrica utilizada, el método de agrupamiento, la reducción dimensional aplicada y el propio vocabulario de partida. Precisamente, la revisión de estas primeras agrupaciones permitió detectar que algunos términos no estaban contribuyendo a describir afinidades científicas, sino que introducían información contextual que solo aportaba ruido a la división. Esta observación motivó la depuración posterior del vocabulario antes de repetir las pruebas principales.
+Esta fase permitió comprobar que el cambio a \textit{embeddings} era necesario desde el punto de vista metodológico, pero también que no resolvía por completo el problema de \textit{clustering}. La representación semántica reducía la dependencia de coincidencias literales entre palabras, aunque la calidad de los \textit{clusters} seguía condicionada por la métrica utilizada, el método de \textit{clustering}, la reducción dimensional aplicada y el propio vocabulario de partida. Precisamente, la revisión de estas primeras agrupaciones permitió detectar que algunos términos no estaban contribuyendo a describir afinidades científicas, sino que introducían información contextual que solo aportaba ruido a la división. Esta observación motivó la depuración posterior del vocabulario antes de repetir las pruebas principales.
 
 \subsection{Depuración del vocabulario y repetición del análisis}
 
-La revisión de las primeras agrupaciones obtenidas con embeddings permitió detectar que el vocabulario de partida seguía influyendo de forma importante en los resultados. Aunque la representación semántica reducía la dependencia de coincidencias literales entre palabras clave, algunos términos no describían realmente ámbitos científicos, sino localizaciones geográficas u otros elementos contextuales asociados a determinadas revistas.
+La revisión de las primeras agrupaciones obtenidas con \textit{embeddings} permitió detectar que el vocabulario de partida seguía influyendo de forma importante en los resultados. Aunque la representación semántica reducía la dependencia de coincidencias literales entre palabras clave, algunos términos no describían realmente ámbitos científicos, sino localizaciones geográficas u otros elementos contextuales asociados a determinadas revistas.
 
-La presencia de este tipo de palabras podía afectar a la interpretación de los clusters, ya que introducía relaciones entre investigadores que no estaban necesariamente vinculadas a una afinidad temática real. Dos perfiles podían aparecer más próximos por compartir términos geográficos, por ejemplo, aunque esos términos no aportasen información relevante sobre las líneas de investigación. Por este motivo, se decidió revisar el vocabulario utilizado en la representación semántica y eliminar aquellas palabras que podían desplazar la agrupación hacia coincidencias poco informativas.
+La presencia de este tipo de palabras podía afectar a la interpretación de los \textit{clusters}, ya que introducía relaciones entre investigadores que no estaban necesariamente vinculadas a una afinidad temática real. Dos perfiles podían aparecer más próximos por compartir términos geográficos, por ejemplo, aunque esos términos no aportasen información relevante sobre las líneas de investigación. Por este motivo, se decidió revisar el vocabulario utilizado en la representación semántica y eliminar aquellas palabras que podían desplazar la agrupación hacia coincidencias poco informativas.
 
 Esta depuración no supuso modificar el objetivo del análisis, sino ajustar la base textual para que respondiera mejor a dicho objetivo. La intención no era forzar una estructura de grupos determinada, sino reducir el ruido introducido por términos que no contribuían a describir áreas científicas. De esta forma, la comparación entre investigadores podía centrarse en palabras con mayor capacidad para representar afinidades temáticas.
 
-Tras esta revisión manual, se generó una versión depurada del vocabulario y se repitieron las pruebas principales sobre la nueva base temática. No se repitieron todas las combinaciones exploradas en fases anteriores, sino aquellas que habían mostrado mayor interés metodológico o interpretativo. En particular, se volvieron a evaluar configuraciones basadas en embeddings, distintas medidas de proximidad, clustering jerárquico, métodos basados en densidad y reducciones de dimensionalidad como PCA y UMAP.
+Tras esta revisión manual, se generó una versión depurada del vocabulario y se repitieron las pruebas principales sobre la nueva base temática. No se repitieron todas las combinaciones exploradas en fases anteriores, sino aquellas que habían mostrado mayor interés metodológico o interpretativo. En particular, se volvieron a evaluar configuraciones basadas en \textit{embeddings}, distintas medidas de proximidad, \textit{clustering} jerárquico, métodos basados en densidad y reducciones de dimensionalidad como PCA y UMAP.
 
 La Tabla~\ref{tab:pruebas_embeddings_sin_localizacion} resume algunas de las configuraciones más representativas obtenidas tras eliminar los términos de localización. Su objetivo no es sustituir la comparación final de modelos, sino mostrar cómo se comportaron las principales pruebas al trabajar con un vocabulario más ajustado al objetivo temático del análisis.
 
@@ -1406,21 +1452,21 @@ m{0.38\textwidth}
 \hline
 \textbf{Configuración} & \textbf{Resultado} & \textbf{Observación principal} \\
 \hline
-Manhattan + Jerárquico & \(S=0.415\) & Resultado similar al vocabulario completo, manteniendo el problema de grupo dominante \\
+Manhattan + Jerárquico & \(S=0,415\) & Resultado similar al vocabulario completo, manteniendo el problema de grupo dominante \\
 \hline
-Manhattan + PCA + Jerárquico & \(S=0.462\) & Mejora numérica respecto a la versión anterior, aunque persiste el problema de grupo dominante \\
+Manhattan + PCA + Jerárquico & \(S=0,462\) & Mejora numérica respecto a la versión anterior, aunque persiste el problema de grupo dominante \\
 \hline
-Correlación + PCA + Jerárquico & \(S=0.552\) & Mejora clara tras la depuración, con una separación numérica más alta \\
+Correlación + PCA + Jerárquico & \(S=0,552\) & Mejora clara tras la depuración, con una separación numérica más alta \\
 \hline
-Coseno + PCA + Jerárquico & \(S=0.551\) & Resultado elevado y comportamiento similar al de correlación \\
+Coseno + PCA + Jerárquico & \(S=0,551\) & Resultado elevado y comportamiento similar al de correlación \\
 \hline
-Coseno + DBSCAN & 2 clusters y 35.7\% de ruido & La reducción mediante PCA mejora el ruido, pero la estructura sigue siendo poco estable \\
+Coseno + DBSCAN & 2 \textit{clusters} y 35,7\% de ruido & La reducción mediante PCA mejora el ruido, pero la estructura sigue siendo poco estable \\
 \hline
-Coseno + UMAP + Jerárquico & \(S=0.627\) & Mejor separación inicial, con estructura más clara tras la depuración \\
+Coseno + UMAP + Jerárquico & \(S=0,627\) & Mejor separación inicial, con estructura más clara tras la depuración \\
 \hline
-Manhattan + UMAP + Jerárquico & \(S=0.484\) & Resultado inferior al de coseno, aunque mantiene cierta separación \\
+Manhattan + UMAP + Jerárquico & \(S=0,484\) & Resultado inferior al de coseno, aunque mantiene cierta separación \\
 \hline
-Euclídea + UMAP + Jerárquico & \(S=0.532\) & Resultado intermedio, con mejora respecto a algunas configuraciones directas \\
+Euclídea + UMAP + Jerárquico & \(S=0,532\) & Resultado intermedio, con mejora respecto a algunas configuraciones directas \\
 \hline
 \end{tabular}
 \caption{Resumen de pruebas realizadas tras la depuración del vocabulario.}
@@ -1431,20 +1477,20 @@ Los resultados muestran que la depuración del vocabulario mejoró varias config
 
 Los métodos basados en densidad, por su parte, continuaron mostrando limitaciones. En el caso de DBSCAN, incluso tras aplicar PCA y ajustar el parámetro \(\varepsilon\), seguía apareciendo una proporción importante de observaciones tratadas como ruido. Esto indicaba que los perfiles no formaban regiones densas suficientemente definidas para que este tipo de enfoque resultara adecuado como base principal del análisis.
 
-La configuración con UMAP y clustering jerárquico volvió a destacar tras la depuración. En particular, la combinación con distancia coseno alcanzó un valor de Silhouette de 0.627, superior al obtenido en la fase previa con vocabulario completo. Este resultado reforzaba la idea de que la reducción no lineal podía ayudar a organizar los perfiles semánticos en una estructura más diferenciada, aunque todavía era necesario analizar la estabilidad y la interpretación temática de los grupos antes de seleccionar una configuración final.
+La configuración con UMAP y \textit{clustering} jerárquico volvió a destacar tras la depuración. En particular, la combinación con distancia coseno alcanzó un valor de Silhouette de 0,627, superior al obtenido en la fase previa con vocabulario completo. Este resultado reforzaba la idea de que la reducción no lineal podía ayudar a organizar los perfiles semánticos en una estructura más diferenciada, aunque todavía era necesario analizar la estabilidad y la interpretación temática de los grupos antes de seleccionar una configuración final.
 
-Además de los valores de evaluación, también se revisó la composición de los grupos obtenidos tras la depuración, lo que permitió valorar si las palabras más representativas de cada cluster describían mejor ámbitos científicos y si los investigadores agrupados compartían perfiles temáticos coherentes. Por tanto, la evaluación de esta fase no se limitó a comparar métricas, sino que también incorporó una lectura cualitativa de la utilidad de las agrupaciones.
+Además de los valores de evaluación, también se revisó la composición de los grupos obtenidos tras la depuración, lo que permitió valorar si las palabras más representativas de cada \textit{cluster} describían mejor ámbitos científicos y si los investigadores agrupados compartían perfiles temáticos coherentes. Por tanto, la evaluación de esta fase no se limitó a comparar métricas, sino que también incorporó una lectura cualitativa de la utilidad de las agrupaciones.
 
-Con el vocabulario depurado, el análisis quedaba preparado para comparar con mayor detalle las configuraciones más relevantes. A partir de este punto, la atención podía centrarse en valorar qué combinaciones de medida de proximidad, reducción dimensional y método de clustering ofrecían agrupaciones más coherentes e interpretables. Esta comparación se desarrolla en el siguiente subapartado.
+Con el vocabulario depurado, el análisis quedaba preparado para comparar con mayor detalle las configuraciones más relevantes. A partir de este punto, la atención podía centrarse en valorar qué combinaciones de medida de proximidad, reducción dimensional y método de \textit{clustering} ofrecían agrupaciones más coherentes e interpretables. Esta comparación se desarrolla en el siguiente subapartado.
 
 \subsection{Comparación final de configuraciones}
 
-Una vez depurado el vocabulario y repetidas las pruebas principales, se realizó una comparación final entre las configuraciones más relevantes. El objetivo no era seleccionar automáticamente el modelo con mayor valor de Silhouette, sino evaluar conjuntamente dicho valor, la distribución de los investigadores entre grupos, la estabilidad de las particiones y la coherencia temática de los clusters obtenidos.
+Una vez depurado el vocabulario y repetidas las pruebas principales, se realizó una comparación final entre las configuraciones más relevantes. El objetivo no era seleccionar automáticamente el modelo con mayor valor de Silhouette, sino evaluar conjuntamente dicho valor, la distribución de los investigadores entre grupos, la estabilidad de las particiones y la coherencia temática de los \textit{clusters} obtenidos.
 
 Para disponer de una medida cuantitativa común se utilizó el índice de Silhouette~\cite{rousseeuw}, que permite valorar hasta qué punto cada observación está mejor asignada a su propio grupo que a grupos alternativos. Para un investigador \(i\), este índice puede expresarse como:
 
 \[
-s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}}
+s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}},
 \]
 
 donde \(a(i)\) representa la distancia media entre el investigador \(i\) y el resto de elementos de su mismo grupo, mientras que \(b(i)\) representa la menor distancia media entre \(i\) y los elementos de otro grupo. Valores próximos a 1 indican una asignación bien separada, valores cercanos a 0 reflejan grupos poco diferenciados y valores negativos sugieren que la observación podría estar más próxima a otro grupo.
@@ -1465,32 +1511,32 @@ m{0.38\textwidth}
 \hline
 \textbf{Configuración} & \textbf{Resultado} & \textbf{Valoración final} \\
 \hline
-Coseno + UMAP + Jerárquico & \(S=0.627\) & Mejor separación numérica y visual, aunque con necesidad de revisar su estabilidad \\
+Coseno + UMAP + Jerárquico & \(S=0,627\) & Mejor separación numérica y visual, aunque con necesidad de revisar su estabilidad \\
 \hline
-Correlación + PCA + Jerárquico & \(S=0.552\) & Buen resultado numérico y útil como comparación frente a UMAP \\
+Correlación + PCA + Jerárquico & \(S=0,552\) & Buen resultado numérico y útil como comparación frente a UMAP \\
 \hline
-Coseno + PCA + Jerárquico & \(S=0.551\) & Comportamiento muy similar al de correlación tras PCA \\
+Coseno + PCA + Jerárquico & \(S=0,551\) & Comportamiento muy similar al de correlación tras PCA \\
 \hline
-Euclídea + UMAP + Jerárquico & \(S=0.532\) & Resultado intermedio, con menor claridad que coseno sobre UMAP \\
+Euclídea + UMAP + Jerárquico & \(S=0,532\) & Resultado intermedio, con menor claridad que coseno sobre UMAP \\
 \hline
-Manhattan + UMAP + Jerárquico & \(S=0.484\) & Separación inferior respecto a coseno y euclídea sobre UMAP \\
+Manhattan + UMAP + Jerárquico & \(S=0,484\) & Separación inferior respecto a coseno y euclídea sobre UMAP \\
 \hline
-Manhattan + PCA + Jerárquico & \(S=0.462\) & Mejora numérica, pero mantiene problemas de grupo dominante \\
+Manhattan + PCA + Jerárquico & \(S=0,462\) & Mejora numérica, pero mantiene problemas de grupo dominante \\
 \hline
-Coseno + DBSCAN & 2 clusters y 35.7\% de ruido & No resultó adecuado como configuración final por la proporción de ruido \\
+Coseno + DBSCAN & 2 \textit{clusters} y 35,7\% de ruido & No resultó adecuado como configuración final por la proporción de ruido \\
 \hline
 \end{tabular}
 \caption{Comparación final de configuraciones tras la depuración del vocabulario.}
 \label{tab:comparacion_final_configuraciones}
 \end{table}
 
-Los resultados muestran que las configuraciones basadas en reducción de dimensionalidad adquirieron mayor relevancia en la comparación final. En particular, la combinación de UMAP, distancia coseno y clustering jerárquico obtuvo el valor de Silhouette más alto y ofreció una separación visual más clara entre grupos, convirtiéndose en la configuración más prometedora desde el punto de vista cuantitativo y visual.
+Los resultados muestran que las configuraciones basadas en reducción de dimensionalidad adquirieron mayor relevancia en la comparación final. En particular, la combinación de UMAP, distancia coseno y \textit{clustering} jerárquico obtuvo el valor de Silhouette más alto y ofreció una separación visual más clara entre grupos, convirtiéndose en la configuración más prometedora desde el punto de vista cuantitativo y visual.
 
 Las configuraciones basadas en PCA también ofrecieron resultados competitivos, especialmente al combinarse con distancias de correlación y coseno. Sin embargo, su interpretación debía compararse con la obtenida mediante UMAP, ya que una mejora numérica no siempre implicaba una organización más estable o más clara de los perfiles. En cambio, las configuraciones basadas en distancia Manhattan siguieron mostrando el problema de grupos dominantes, lo que reducía su utilidad como solución final pese a obtener valores aceptables de Silhouette.
 
-En la configuración UMAP seleccionada, antes de aplicar la reducción no lineal se utilizó PCA para conservar el 90\% de la varianza, reduciendo previamente la dimensionalidad de los embeddings. Posteriormente, se aplicó UMAP con distancia coseno y clustering jerárquico con enlace \textit{average}.
+En la configuración UMAP seleccionada, antes de aplicar la reducción no lineal se utilizó PCA para conservar el 90\% de la varianza, reduciendo previamente la dimensionalidad de los \textit{embeddings}. Posteriormente, se aplicó UMAP con distancia coseno y \textit{clustering} jerárquico con enlace \textit{average}.
 
-La Figura~\ref{fig:umap_embeddings_depurado} muestra la configuración más destacada de la comparación final, basada en embeddings depurados, reducción mediante UMAP, distancia coseno y clustering jerárquico. Esta visualización permite observar la separación obtenida entre los grupos y complementa el valor medio de Silhouette mostrado en la Tabla~\ref{tab:comparacion_final_configuraciones}.
+La Figura~\ref{fig:umap_embeddings_depurado} muestra la configuración más destacada de la comparación final, basada en \textit{embeddings} depurados, reducción mediante UMAP, distancia coseno y \textit{clustering} jerárquico. Esta visualización permite observar la separación obtenida entre los grupos y complementa el valor medio de Silhouette mostrado en la Tabla~\ref{tab:comparacion_final_configuraciones}.
 
 \begin{figure}[H]
 \centering
@@ -1505,25 +1551,25 @@ La Figura~\ref{fig:umap_embeddings_depurado} muestra la configuración más dest
 \includegraphics[width=\textwidth]{imgs/silhouette_umap_coseno_jerarquico_depurado.png}
 \caption*{(b) Gráfico de Silhouette}
 \end{minipage}
-\caption{Configuración basada en embeddings depurados, UMAP y clustering jerárquico con distancia coseno.}
+\caption{Configuración basada en \textit{embeddings} depurados, UMAP y \textit{clustering} jerárquico con distancia coseno.}
 \label{fig:umap_embeddings_depurado}
 \end{figure}
 
-Como se puede observar, la buena puntuación global no se distribuye de forma completamente homogénea entre los grupos. Uno de los clusters aparece claramente separado y con valores de Silhouette altos, mientras que otros presentan observaciones más próximas al límite entre grupos. En consecuencia, esta configuración debía interpretarse junto con el análisis de estabilidad entre particiones y no únicamente a partir de su valor medio de Silhouette.
+Como se puede observar, la buena puntuación global no se distribuye de forma completamente homogénea entre los grupos. Uno de los \textit{clusters} aparece claramente separado y con valores de Silhouette altos, mientras que otros presentan observaciones más próximas al límite entre grupos. En consecuencia, esta configuración debía interpretarse junto con el análisis de estabilidad entre particiones y no únicamente a partir de su valor medio de Silhouette.
 
 Los métodos basados en densidad no se consolidaron como alternativa final. Aunque DBSCAN permitía identificar observaciones que no encajaban claramente en ningún grupo, las pruebas realizadas seguían generando una proporción elevada de ruido y una estructura poco estable. Por este motivo, estos métodos resultaron útiles como contraste exploratorio, pero no como base principal para interpretar las afinidades temáticas entre investigadores.
 
-La interpretación de los grupos no se limitó a las métricas y a las visualizaciones, sino que también incluyó una revisión de su composición temática. Para ello se analizaron las palabras clave más frecuentes en cada cluster, con el objetivo de comprobar si los grupos podían asociarse a ámbitos científicos diferenciados o si, por el contrario, respondían a términos demasiado generales. Esta revisión mostró que muchas de las palabras más representativas seguían siendo términos amplios, como \textit{research}, \textit{science}, \textit{academic}, \textit{journal} o \textit{education}, que describen el contexto académico de las revistas pero no permiten delimitar con precisión áreas temáticas concretas.
+La interpretación de los grupos no se limitó a las métricas y a las visualizaciones, sino que también incluyó una revisión de su composición temática. Para ello se analizaron las palabras clave más frecuentes en cada \textit{cluster}, con el objetivo de comprobar si los grupos podían asociarse a ámbitos científicos diferenciados o si, por el contrario, respondían a términos demasiado generales. Esta revisión mostró que muchas de las palabras más representativas seguían siendo términos amplios, como \textit{research}, \textit{science}, \textit{academic}, \textit{journal} o \textit{education}, que describen el contexto académico de las revistas pero no permiten delimitar con precisión áreas temáticas concretas.
 
 Además, la interpretación de las asociaciones semánticas se contrastó de forma cualitativa con el tutor del trabajo, conocedor del contexto investigador del IUMPA. Esta revisión permitió comprobar si algunas de las proximidades observadas resultaban razonables desde el punto de vista del dominio, aunque sin interpretar este contraste como una validación cerrada ni los grupos como una clasificación definitiva de los investigadores.
 
-Esta revisión ayudó a matizar la interpretación de las agrupaciones obtenidas. Aunque los clusters podían reflejar ciertas proximidades entre perfiles, la presencia de palabras tan generales indicaba que no debían entenderse como áreas científicas cerradas ni como una clasificación estable de los investigadores. Por ello, también se revisó la distribución de investigadores entre grupos, ya que una partición con clusters muy descompensados o definidos por términos poco específicos podía resultar poco útil aunque alcanzara un buen valor numérico.
+Esta revisión ayudó a matizar la interpretación de las agrupaciones obtenidas. Aunque los \textit{clusters} podían reflejar ciertas proximidades entre perfiles, la presencia de palabras tan generales indicaba que no debían entenderse como áreas científicas cerradas ni como una clasificación estable de los investigadores. Por ello, también se revisó la distribución de investigadores entre grupos, ya que una partición con \textit{clusters} muy descompensados o definidos por términos poco específicos podía resultar poco útil aunque alcanzara un buen valor numérico.
 
-También se revisó el solapamiento entre particiones obtenidas con distintas configuraciones. Esta comparación permitía comprobar si modelos diferentes agrupaban a los mismos investigadores de forma similar o si las particiones cambiaban de manera importante al modificar la métrica, la reducción dimensional o el número de grupos. Para ello se compararon especialmente tres configuraciones: clustering jerárquico con distancia de correlación, clustering jerárquico con distancia coseno y clustering jerárquico con distancia coseno tras reducción mediante UMAP.
+También se revisó el solapamiento entre particiones obtenidas con distintas configuraciones. Esta comparación permitía comprobar si modelos diferentes agrupaban a los mismos investigadores de forma similar o si las particiones cambiaban de manera importante al modificar la métrica, la reducción dimensional o el número de grupos. Para ello se compararon especialmente tres configuraciones: \textit{clustering} jerárquico con distancia de correlación, \textit{clustering} jerárquico con distancia coseno y \textit{clustering} jerárquico con distancia coseno tras reducción mediante UMAP.
 
-La comparación entre las configuraciones basadas en correlación y coseno mostró cierta correspondencia parcial entre algunos grupos, lo que indicaba la existencia de núcleos temáticos relativamente estables. Sin embargo, esta correspondencia no se mantenía de forma completa para todos los clusters, ya que varios grupos aparecían fragmentados o redistribuidos al cambiar la métrica de distancia.
+La comparación entre las configuraciones basadas en correlación y coseno mostró cierta correspondencia parcial entre algunos grupos, lo que indicaba la existencia de núcleos temáticos relativamente estables. Sin embargo, esta correspondencia no se mantenía de forma completa para todos los \textit{clusters}, ya que varios grupos aparecían fragmentados o redistribuidos al cambiar la métrica de distancia.
 
-La introducción de UMAP produjo una separación visual más clara, pero también modificó de forma notable la estructura de agrupamiento. Al comparar las particiones obtenidas con y sin UMAP, varios grupos diferenciados en los modelos jerárquicos originales aparecían concentrados en uno o dos clusters del modelo proyectado. Este comportamiento indicaba que la reducción no lineal influía de forma importante en la organización final de los grupos, por lo que sus resultados debían interpretarse junto con el análisis de solapamiento.
+La introducción de UMAP produjo una separación visual más clara, pero también modificó de forma notable la estructura de grupos. Al comparar las particiones obtenidas con y sin UMAP, varios grupos diferenciados en los modelos jerárquicos originales aparecían concentrados en uno o dos \textit{clusters} del modelo proyectado. Este comportamiento indicaba que la reducción no lineal influía de forma importante en la organización final de los grupos, por lo que sus resultados debían interpretarse junto con el análisis de solapamiento.
 
 La Tabla~\ref{tab:solapamiento_configuraciones} resume las principales conclusiones obtenidas a partir de estas comparaciones entre particiones. Su objetivo no es recoger todas las matrices de solapamiento, sino sintetizar el comportamiento observado al enfrentar las configuraciones más relevantes.
 
@@ -1538,9 +1584,9 @@ m{0.56\textwidth}
 \hline
 \textbf{Comparación} & \textbf{Conclusión principal} \\
 \hline
-Correlación vs. Coseno & Correspondencia parcial entre algunos clusters, pero sin alineación global completa \\
+Correlación vs. Coseno & Correspondencia parcial entre algunos \textit{clusters}, pero sin alineación global completa \\
 \hline
-Correlación vs. Coseno + UMAP & Ausencia de correspondencia directa entre particiones y concentración de coincidencias en clusters dominantes \\
+Correlación vs. Coseno + UMAP & Ausencia de correspondencia directa entre particiones y concentración de coincidencias en \textit{clusters} dominantes \\
 \hline
 Coseno vs. Coseno + UMAP & UMAP produce una separación visual más clara, pero altera de forma importante la organización previa de los grupos \\
 \hline
@@ -1549,32 +1595,32 @@ Coseno vs. Coseno + UMAP & UMAP produce una separación visual más clara, pero 
 \label{tab:solapamiento_configuraciones}
 \end{table}
 
-La Figura~\ref{fig:solapamiento_umap_coseno} muestra el solapamiento entre la configuración jerárquica basada en distancia coseno y la misma configuración tras aplicar UMAP. Cada celda representa el número de investigadores compartidos entre clusters de ambas particiones.
+La Figura~\ref{fig:solapamiento_umap_coseno} muestra el solapamiento entre la configuración jerárquica basada en distancia coseno y la misma configuración tras aplicar UMAP. Cada celda representa el número de investigadores compartidos entre \textit{clusters} de ambas particiones.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.78\textwidth]{imgs/solapamiento_investigadores_jerCos_vs_jerCosUMAP.png}
-\caption{Solapamiento entre clustering jerárquico con distancia coseno y clustering jerárquico tras reducción mediante UMAP.}
+\caption{Solapamiento entre \textit{clustering} jerárquico con distancia coseno y \textit{clustering} jerárquico tras reducción mediante UMAP.}
 \label{fig:solapamiento_umap_coseno}
 \end{figure}
 
-La comparación muestra que UMAP modifica de forma importante la organización de los grupos. Por ejemplo, el primer cluster del modelo sin UMAP se reparte entre varios clusters tras la proyección, con 11 investigadores en común con el cluster 1 de UMAP, 3 con el cluster 2 y 8 con el cluster 4. Al mismo tiempo, el cluster 3 de UMAP concentra investigadores procedentes de varios clusters del modelo original, incluyendo 4 del cluster 2, 7 del cluster 3, 2 del cluster 4 y 1 del cluster 5. Esto indica que la reducción mediante UMAP no solo cambia la visualización, sino también la estructura final del agrupamiento, por lo que sus resultados deben interpretarse con cautela.
+La comparación muestra que UMAP modifica de forma importante la organización de los grupos. Por ejemplo, el primer \textit{cluster} del modelo sin UMAP se reparte entre varios \textit{clusters} tras la proyección, con 11 investigadores en común con el \textit{cluster} 1 de UMAP, 3 con el \textit{cluster} 2 y 8 con el \textit{cluster} 4. Al mismo tiempo, el \textit{cluster} 3 de UMAP concentra investigadores procedentes de varios \textit{clusters} del modelo original, incluyendo 4 del \textit{cluster} 2, 7 del \textit{cluster} 3, 2 del \textit{cluster} 4 y 1 del \textit{cluster} 5. Esto indica que la reducción mediante UMAP no solo cambia la visualización, sino también la estructura final de los grupos, por lo que sus resultados deben interpretarse con cautela.
 
 Estos solapamientos mostraron que no existía una correspondencia estable y completa entre las particiones obtenidas por los distintos modelos. La estructura temática detectada era parcial y dependía de decisiones metodológicas como la métrica de distancia o la aplicación de reducción dimensional. Por tanto, aunque algunas configuraciones ofrecían resultados cuantitativamente buenos, no podía afirmarse la existencia de una arquitectura latente fuerte en los datos.
 
 Esta conclusión también ayuda a interpretar el efecto de la depuración del vocabulario. La eliminación de términos de localización no creó por sí sola una estructura latente robusta, pero sí redujo una fuente de similitud no relacionada con el contenido científico. De este modo, las agrupaciones obtenidas tras la depuración resultaban más adecuadas para el objetivo temático del análisis, aunque seguían mostrando una estructura continua y parcialmente solapada.
 
-Por tanto, la configuración basada en UMAP, distancia coseno y clustering jerárquico fue la más destacada desde los puntos de vista cuantitativo y visual, aunque las comparaciones entre modelos mostraron que la estructura temática no era completamente estable frente a cambios de métrica o de reducción dimensional. Por este motivo, sus resultados no deben interpretarse como una clasificación definitiva de los investigadores, sino como una aproximación exploratoria a posibles afinidades temáticas.
+Por tanto, la configuración basada en UMAP, distancia coseno y \textit{clustering} jerárquico fue la más destacada desde los puntos de vista cuantitativo y visual, aunque las comparaciones entre modelos mostraron que la estructura temática no era completamente estable frente a cambios de métrica o de reducción dimensional. Por este motivo, sus resultados no deben interpretarse como una clasificación inalterable de los investigadores, sino como una aproximación exploratoria a posibles afinidades temáticas.
 
-Aun así, los resultados obtenidos siguen siendo útiles para el objetivo exploratorio del trabajo. El clustering permite complementar la información relacional proporcionada por los grafos, ofreciendo una perspectiva adicional sobre posibles proximidades temáticas entre investigadores. Su valor principal no reside en definir una clasificación verdadera del IUMPA, sino en proporcionar una herramienta analítica que ayude a identificar agrupamientos plausibles que puedan ser interpretados con apoyo del conocimiento experto.
+Aun así, los resultados obtenidos siguen siendo útiles para el objetivo exploratorio del trabajo. El \textit{clustering} permite complementar la información relacional proporcionada por los grafos, ofreciendo una perspectiva adicional sobre posibles proximidades temáticas entre investigadores. Su valor principal no reside en definir una clasificación definitiva del IUMPA, sino en proporcionar una herramienta analítica que ayude a identificar grupos plausibles que puedan ser interpretados con apoyo del conocimiento experto.
 
 \section{Valoración del análisis semántico}
 
-El análisis semántico permitió ampliar la explotación de la base de datos más allá de las relaciones explícitas representadas en los grafos. Mientras que los grafos muestran conexiones derivadas de publicaciones, revistas o proyectos compartidos, el clustering trató de explorar posibles afinidades temáticas entre investigadores a partir de las revistas en las que habían publicado y de las palabras clave asociadas a ellas. De este modo, esta parte del trabajo aportó una perspectiva complementaria a la visualización relacional desarrollada anteriormente.
+El análisis semántico permitió ampliar la explotación de la base de datos más allá de las relaciones explícitas representadas en los grafos. Mientras que los grafos muestran conexiones derivadas de publicaciones, revistas o proyectos compartidos, el \textit{clustering} trató de explorar posibles afinidades temáticas entre investigadores a partir de las revistas en las que habían publicado y de las palabras clave asociadas a ellas. De este modo, esta parte del trabajo aportó una perspectiva complementaria a la visualización relacional desarrollada anteriormente.
 
-El proceso seguido tuvo un carácter claramente experimental. Las primeras representaciones basadas en palabras clave explícitas resultaron útiles como punto de partida, pero mostraron las limitaciones de comparar perfiles únicamente mediante coincidencias literales. La ponderación del vocabulario permitió refinar esta representación, aunque no resolvió por completo el problema. El paso a embeddings semánticos supuso una mejora metodológica, ya que permitió comparar perfiles considerando la proximidad conceptual entre términos, pero también mostró que la calidad de las agrupaciones seguía dependiendo de la métrica utilizada, de la reducción dimensional y del vocabulario de partida.
+El proceso seguido tuvo un carácter claramente experimental. Las primeras representaciones basadas en palabras clave explícitas resultaron útiles como punto de partida, pero mostraron las limitaciones de comparar perfiles únicamente mediante coincidencias literales. La ponderación del vocabulario permitió refinar esta representación, aunque no resolvió por completo el problema. El paso a \textit{embeddings} semánticos supuso una mejora metodológica, ya que permitió comparar perfiles considerando la proximidad conceptual entre términos, pero también mostró que la calidad de las agrupaciones seguía dependiendo de la métrica utilizada, de la reducción dimensional y del vocabulario de partida.
 
-Uno de los aspectos más relevantes del análisis fue la necesidad de revisar e interpretar los resultados de forma crítica. La depuración de términos de localización permitió reducir una fuente de similitud poco relacionada con el contenido científico, pero no generó por sí sola una estructura temática completamente estable. Del mismo modo, aunque algunas configuraciones alcanzaron valores de Silhouette relativamente altos, las comparaciones entre particiones mostraron que los grupos podían cambiar de forma apreciable al modificar la métrica o aplicar UMAP. Por ello, los clusters obtenidos deben entenderse como una aproximación exploratoria a posibles afinidades temáticas.
+Uno de los aspectos más relevantes del análisis fue la necesidad de revisar e interpretar los resultados de forma crítica. La depuración de términos de localización permitió reducir una fuente de similitud poco relacionada con el contenido científico, pero no generó por sí sola una estructura temática completamente estable. Del mismo modo, aunque algunas configuraciones alcanzaron valores de Silhouette relativamente altos, las comparaciones entre particiones mostraron que los grupos podían cambiar de forma apreciable al modificar la métrica o aplicar UMAP. Por ello, los \textit{clusters} obtenidos deben entenderse como una aproximación exploratoria a posibles afinidades temáticas.
 
 Esta interpretación también está condicionada por la naturaleza de los datos utilizados. Los perfiles se construyeron a partir de palabras clave asociadas a revistas, no a partir del contenido completo de los artículos ni de una validación experta exhaustiva de cada línea de investigación. Aunque algunas asociaciones se revisaron cualitativamente con el apoyo del tutor del trabajo, esta revisión debe entenderse como un apoyo interpretativo, no como una certificación formal de los grupos obtenidos.
 
@@ -1585,7 +1631,7 @@ A pesar de estas limitaciones, el análisis desarrollado aporta valor dentro del
     
     \item Muestra que la información temática disponible puede utilizarse para complementar la exploración visual de los grafos, ofreciendo una dimensión adicional basada en proximidad semántica.
     
-    \item Deja abierta una base metodológica para futuras mejoras, entre ellas la incorporación de información textual más rica, una revisión más amplia del vocabulario con participación de otros especialistas, el uso de medidas de ponderación más elaboradas o la exploración de nuevas técnicas de representación y agrupamiento.
+    \item Deja abierta una base metodológica para futuras mejoras, entre ellas la incorporación de información textual más rica, una revisión más amplia del vocabulario con participación de otros especialistas, el uso de medidas de ponderación más elaboradas o la exploración de nuevas técnicas de representación y \textit{clustering}.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1620,7 +1666,7 @@ La aplicación aporta valor porque transforma una base de datos estática en una
 
 Otra aportación relevante del trabajo procede del análisis semántico de investigadores. Mientras que los grafos muestran relaciones explícitas, la agrupación semántica permitió explorar afinidades temáticas menos directas. Para ello, se partió de las revistas en las que habían publicado los investigadores y de las palabras clave asociadas a dichas revistas, construyendo representaciones temáticas que permitieran comparar perfiles investigadores desde una perspectiva distinta a la puramente relacional.
 
-El proceso seguido en esta parte también muestra la importancia de no quedarse con la primera aproximación disponible. Las pruebas iniciales, basadas en coincidencias literales de palabras clave, no ofrecieron una separación suficientemente clara entre investigadores, por lo que se decidió revisar el enfoque y avanzar hacia representaciones semánticas mediante embeddings, capaces de incorporar relaciones conceptuales entre términos y de proporcionar una base más adecuada para el agrupamiento posterior.
+El proceso seguido en esta parte también muestra la importancia de no quedarse con la primera aproximación disponible. Las pruebas iniciales, basadas en coincidencias literales de palabras clave, no ofrecieron una separación suficientemente clara entre investigadores, por lo que se decidió revisar el enfoque y avanzar hacia representaciones semánticas mediante \textit{embeddings}, capaces de incorporar relaciones conceptuales entre términos y de proporcionar una base más adecuada para el \textit{clustering} posterior.
 
 Por ello, el interés de las agrupaciones obtenidas está en servir como apoyo para interpretar posibles afinidades temáticas entre investigadores, más que en fijar categorías definitivas entre ellos. Esta aportación complementa la información relacional proporcionada por los grafos, ya que permite observar cercanías entre perfiles que no siempre aparecen reflejadas mediante colaboraciones explícitas. Así, el análisis semántico añade una dimensión temática adicional que enriquece la comprensión de la estructura investigadora del IUMPA y deja abierta la posibilidad de seguir ampliando esta línea de trabajo.
 
@@ -1643,7 +1689,7 @@ A partir de este objetivo general, el trabajo planteaba una serie de objetivos e
 
     \item \textbf{Analizar afinidades temáticas entre investigadores a partir de sus publicaciones y de las revistas en las que publican.} Este objetivo se alcanzó tomando como punto de partida las revistas asociadas a los artículos recopilados para cada investigador. A partir de estas revistas se construyó un vocabulario de palabras clave y se generaron representaciones temáticas de los perfiles investigadores. De este modo, fue posible estudiar similitudes entre investigadores desde una perspectiva diferente a la de las relaciones explícitas mostradas en los grafos.
 
-    \item \textbf{Evaluar distintas estrategias de agrupación hasta obtener una representación temática suficientemente interpretable.} Este objetivo se ha cumplido con un carácter exploratorio. Durante el análisis se probaron distintas representaciones de los perfiles investigadores, pero también diferentes estrategias de agrupación, medidas de distancia y configuraciones de reducción de dimensionalidad. Las primeras pruebas con palabras clave explícitas, tanto en matrices binarias como ponderadas, no ofrecieron una separación suficientemente clara, por lo que se avanzó hacia representaciones semánticas mediante embeddings y clustering jerárquico. El resultado final no debe entenderse como una agrupación definitiva, sino como una representación temática suficientemente interpretable para apoyar el estudio de posibles afinidades entre investigadores.
+    \item \textbf{Evaluar distintas estrategias de agrupación hasta obtener una representación temática suficientemente interpretable.} Este objetivo se ha cumplido con un carácter exploratorio. Durante el análisis se probaron distintas representaciones de los perfiles investigadores, pero también diferentes estrategias de agrupación, medidas de distancia y configuraciones de reducción de dimensionalidad. Las primeras pruebas con palabras clave explícitas, tanto en matrices binarias como ponderadas, no ofrecieron una separación suficientemente clara, por lo que se avanzó hacia representaciones semánticas mediante \textit{embeddings} y \textit{clustering} jerárquico. El resultado final no debe entenderse como una agrupación definitiva, sino como una representación temática suficientemente interpretable para apoyar el estudio de posibles afinidades entre investigadores.
 \end{itemize}
 
 En vista del recorrido realizado, los objetivos planteados al inicio de la memoria pueden considerarse alcanzados dentro del alcance definido para el trabajo. No obstante, el desarrollo también ha puesto de manifiesto las limitaciones derivadas de la disponibilidad y calidad de las fuentes, por lo que los resultados deben entenderse como una base útil y ampliable para seguir analizando la actividad investigadora del instituto.
@@ -1659,9 +1705,9 @@ Entre las principales líneas de trabajo futuro se pueden destacar las siguiente
 
     \item \textbf{Consolidación de la información de proyectos.} En la versión actual, la información de proyectos queda asociada principalmente a los ficheros de participación de cada investigador. Como mejora futura, podría construirse un fichero específico de proyectos, con una fila por proyecto único y atributos normalizados, lo que facilitaría su actualización, reutilización y consulta independiente.
 
-    \item \textbf{Mejora de la aplicación interactiva.} La aplicación podría ampliarse con nuevas funcionalidades de búsqueda, comparación, exportación de resultados o consulta resumida de determinados subconjuntos de información. También podrían incorporarse mejoras para navegar grafos densos o añadir métricas descriptivas de red que ayuden a interpretar mejor las relaciones visualizadas, manteniendo siempre el carácter exploratorio de la herramienta.
+   \item \textbf{Mejora de la aplicación interactiva.} La aplicación podría ampliarse con nuevas funcionalidades de búsqueda, comparación, exportación de resultados o consulta resumida de determinados subconjuntos de información. En particular, podrían incorporarse buscadores específicos de revistas o proyectos, así como la posibilidad de mostrar de forma explícita qué revista o proyecto concreto justifica una conexión entre dos investigadores en los grafos de colaboración. También podrían añadirse mejoras para navegar grafos densos o métricas descriptivas de red que ayuden a interpretar mejor las relaciones visualizadas, manteniendo siempre el carácter exploratorio de la herramienta.
 
-    \item \textbf{Exploración de nuevas técnicas de análisis semántico.} Futuras versiones podrían probar otras formas de representación y agrupamiento, como mapas autoorganizados (\textit{Self-Organizing Maps}, SOM) o nuevos modelos de embeddings más adaptados al dominio científico. También podrían incorporarse nuevas métricas de evaluación o criterios de comparación entre agrupaciones. Estas técnicas permitirían valorar si otros enfoques ofrecen representaciones temáticas más estables que las obtenidas en este trabajo.
+    \item \textbf{Exploración de nuevas técnicas de análisis semántico.} Futuras versiones podrían probar otras formas de representación y \textit{clustering}, como mapas autoorganizados (\textit{Self-Organizing Maps}, SOM) o nuevos modelos de \textit{embeddings} más adaptados al dominio científico. También podrían incorporarse nuevas métricas de evaluación de agrupaciones, las cuales permitirían valorar si otros enfoques ofrecen representaciones temáticas más estables que las obtenidas en este trabajo. Además, podría estudiarse una representación temática más rica que tuviera en cuenta no solo si un investigador ha publicado en una revista, sino también la frecuencia con la que aparece asociado a ella, de forma que las revistas más recurrentes pudieran tener mayor influencia en la construcción del perfil temático. En esta misma línea, podrían evaluarse esquemas de ponderación como TF-IDF, con el fin de ajustar la importancia de las palabras clave según su capacidad para diferenciar perfiles investigadores.
 
     \item \textbf{Ampliación de la validación experta.} Aunque durante el trabajo se realizó una revisión cualitativa de algunas asociaciones semánticas con el apoyo del tutor del trabajo, una posible ampliación futura sería llevar a cabo una validación más sistemática con varios investigadores del IUMPA. Esto permitiría contrastar con mayor detalle la interpretación de los grupos y valorar si las proximidades observadas se corresponden con líneas de investigación reconocibles dentro del instituto.
 \end{itemize}
@@ -1694,7 +1740,7 @@ También se han aplicado competencias vinculadas al modelado y diseño de estruc
 
 La visualización de datos permitió dar una forma más accesible a la información construida. A través de la aplicación desarrollada en R y Shiny, las relaciones almacenadas en ficheros tabulares se transformaron en grafos interactivos que facilitaban su exploración, conectando el proyecto con la capacidad de presentar información compleja de manera comprensible.
 
-Además, el análisis semántico de investigadores permitió aplicar conceptos propios de la recuperación de información (\textit{Information Retrieval}), el aprendizaje automático no supervisado y la representación vectorial de texto. Durante esta fase se construyeron perfiles temáticos y se compararon distintas formas de representar la información antes de evaluar varias estrategias de agrupación, lo que permitió comprobar que el resultado no dependía únicamente del algoritmo de clustering aplicado. También era necesario valorar cómo se construían los perfiles, qué información contenía el vocabulario, cómo se medía la similitud entre investigadores y hasta qué punto los grupos obtenidos resultaban interpretables.
+Además, el análisis semántico de investigadores permitió aplicar conceptos propios de la recuperación de información (\textit{Information Retrieval}), el aprendizaje automático no supervisado y la representación vectorial de texto. Durante esta fase se construyeron perfiles temáticos y se compararon distintas formas de representar la información antes de evaluar varias estrategias de agrupación, lo que permitió comprobar que el resultado no dependía únicamente del algoritmo de \textit{clustering} aplicado. También era necesario valorar cómo se construían los perfiles, qué información contenía el vocabulario, cómo se medía la similitud entre investigadores y hasta qué punto los grupos obtenidos resultaban interpretables.
 
 El proyecto también ha requerido integrar conocimientos de programación y herramientas tecnológicas. Durante el desarrollo se emplearon lenguajes y entornos como R y Python, librerías específicas para gestionar los datos, así como fuentes externas que exigían adaptar los procedimientos a distintos formatos de información. Esta integración de herramientas refleja la necesidad de combinar conocimientos técnicos diversos para resolver problemas reales de datos.
 
@@ -1709,6 +1755,56 @@ En conclusión, este Trabajo Fin de Grado ha permitido aplicar una visión compl
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{thebibliography}{99}
+
+\bibitem{price}
+Price, D. J. de Solla.
+\newblock Networks of scientific papers.
+\newblock \textit{Science}, 149(3683), 510--515, 1965.
+
+\bibitem{moed}
+Moed, H. F.
+\newblock \textit{Citation Analysis in Research Evaluation}.
+\newblock Springer, 2005.
+
+\bibitem{kessler}
+Kessler, M. M.
+\newblock Bibliographic coupling between scientific papers.
+\newblock \textit{American Documentation}, 14(1), 10--25, 1963.
+
+\bibitem{small}
+Small, H.
+\newblock Co-citation in the scientific literature: A new measure of the relationship between two documents.
+\newblock \textit{Journal of the American Society for Information Science}, 24(4), 265--269, 1973.
+
+\bibitem{zupic}
+Zupic, I. y Cater, T.
+\newblock Bibliometric methods in management and organization.
+\newblock \textit{Organizational Research Methods}, 18(3), 429--472, 2015.
+
+\bibitem{angles}
+Angles, R. y Gutierrez, C.
+\newblock Survey of graph database models.
+\newblock \textit{ACM Computing Surveys}, 40(1), 1--39, 2008.
+
+\bibitem{robinson}
+Robinson, I., Webber, J. y Eifrem, E.
+\newblock \textit{Graph Databases}.
+\newblock O'Reilly Media, 2015.
+
+\bibitem{eck}
+Van Eck, N. J. y Waltman, L.
+\newblock Software survey: VOSviewer, a computer program for bibliometric mapping.
+\newblock \textit{Scientometrics}, 84(2), 523--538, 2010.
+
+\bibitem{cobo}
+Cobo, M. J., López-Herrera, A. G., Herrera-Viedma, E. y Herrera, F.
+\newblock SciMAT: A new science mapping analysis software tool.
+\newblock \textit{Journal of the American Society for Information Science and Technology}, 63(8), 1609--1630, 2012.
+
+\bibitem{shneiderman}
+Shneiderman, B.
+\newblock The eyes have it: A task by data type taxonomy for information visualizations.
+\newblock \textit{Proceedings 1996 IEEE Symposium on Visual Languages}, 336--343, 1996.
 
 \bibitem{newmannetworks}
 Newman, M. E. J.
@@ -1774,11 +1870,6 @@ Directory of Open Access Journals.
 SCImago.
 \newblock \textit{SCImago Journal \& Country Rank}.
 \newblock Disponible en: \url{https://www.scimagojr.com/}
-
-\bibitem{research_com}
-Research.com.
-\newblock \textit{Research.com}.
-\newblock Disponible en: \url{https://research.com/}
 
 \bibitem{r_scholar}
 Yu, G., Keirstead, J. y Jefferis, G.
@@ -1947,7 +2038,7 @@ El fichero \texttt{Investigadores\_internos.csv} contiene la información básic
 \midrule
 \texttt{Acronimo} & Variantes de firma o formas alternativas del nombre utilizadas para localizar y asociar registros procedentes de distintas fuentes. \\
 \midrule
-\texttt{Tipo de empleado} & Variable descriptiva que diferencia entre investigadores, becarios y becarios de investigación. \\
+\texttt{Tipo de empleado} & Variable descriptiva que diferencia entre investigadores, personal en formación y personal investigador en formación. \\
 \midrule
 \texttt{Girado} & Nombre en formato invertido, utilizado cuando alguna fuente presentaba el orden de nombre y apellidos de forma diferente. \\
 \midrule
