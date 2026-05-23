@@ -18,8 +18,8 @@ normalizar_categoria <- function(x) {
   dplyr::case_when(
     is.na(x) | x == "" ~ "Desconocido",
     x_simple == "investigador" ~ "Investigador",
-    x_simple == "becario" ~ "Becario",
-    x_simple == "becario de investigacion" ~ "Becario de investigación",
+    x_simple %in% c("becario", "personal en formacion") ~ "Personal en formación",
+    x_simple %in% c("becario de investigacion", "personal investigador en formacion") ~ "Personal investigador en formación",
     x_simple == "revista" ~ "Revista",
     x_simple == "proyecto" ~ "Proyecto",
     TRUE ~ x
@@ -36,8 +36,8 @@ function(el, x) {
 
   var ordenCategorias = [
     'Investigador',
-    'Becario',
-    'Becario de investigación',
+    'Personal en formación',
+    'Personal investigador en formación',
     'Revista',
     'Proyecto'
   ];
@@ -49,8 +49,8 @@ function(el, x) {
     var simple = cat.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase();
 
     if (simple === 'investigador') return 'Investigador';
-    if (simple === 'becario') return 'Becario';
-    if (simple === 'becario de investigacion') return 'Becario de investigación';
+    if (simple === 'becario' || simple === 'personal en formacion') return 'Personal en formación';
+    if (simple === 'becario de investigacion' || simple === 'personal investigador en formacion') return 'Personal investigador en formación';
     if (simple === 'revista') return 'Revista';
     if (simple === 'proyecto') return 'Proyecto';
 
@@ -64,10 +64,10 @@ function(el, x) {
     if (cat === 'Revista' || cat === 'Proyecto') {
       return { color: '#EE6666' };
     }
-    if (cat === 'Becario de investigación') {
+    if (cat === 'Personal investigador en formación') {
       return { color: '#FAC858' };
     }
-    if (cat === 'Becario') {
+    if (cat === 'Personal en formación') {
       return { color: '#91CC75' };
     }
     return { color: '#AAAAAA' };
@@ -116,16 +116,46 @@ split_name_and_areas <- function(nombre, areas) {
   list(Nombre = nombre, Areas = areas)
 }
 
+normalizar_area <- function(x) {
+  x <- trimws(as.character(x))
+  x_simple <- tolower(iconv(x, to = "ASCII//TRANSLIT"))
+  
+  dplyr::case_when(
+    is.na(x) | x == "" ~ x,
+    x_simple %in% c("becario", "becarios", "personal en formacion") ~ "Personal en formación",
+    x_simple %in% c("becario de investigacion", "becarios de investigacion", "personal investigador en formacion") ~ "Personal investigador en formación",
+    TRUE ~ x
+  )
+}
+
 # --- Limpieza de áreas (revistas y proyectos) ---
 cleaned_rev <- mapply(split_name_and_areas, areas_rev$Nombre, areas_rev$Areas, SIMPLIFY = FALSE)
 areas_rev <- do.call(rbind, lapply(cleaned_rev, as.data.frame))
 areas_rev$Areas <- gsub('"', '', areas_rev$Areas)
 areas_rev$Lista_areas <- strsplit(gsub("/", ",", areas_rev$Areas), ",\\s*")
+areas_rev$Lista_areas <- lapply(areas_rev$Lista_areas, normalizar_area)
 
 cleaned_proy <- mapply(split_name_and_areas, areas_proy$Nombre, areas_proy$Areas, SIMPLIFY = FALSE)
 areas_proy <- do.call(rbind, lapply(cleaned_proy, as.data.frame))
 areas_proy$Areas <- gsub('"', '', areas_proy$Areas)
 areas_proy$Lista_areas <- strsplit(gsub("/", ",", areas_proy$Areas), ",\\s*")
+areas_proy$Lista_areas <- lapply(areas_proy$Lista_areas, normalizar_area)
+
+obtener_texto_areas <- function(nombre_investigador, tabla_areas) {
+  areas <- tabla_areas %>%
+    filter(Nombre == nombre_investigador) %>%
+    pull(Lista_areas) %>%
+    unlist()
+  
+  areas <- unique(trimws(areas))
+  areas <- areas[!is.na(areas) & areas != ""]
+  
+  if (length(areas) == 0) {
+    return("Áreas:\nNo se han encontrado áreas asociadas.")
+  }
+  
+  paste0("Áreas:\n", paste0("- ", areas, collapse = "\n"))
+}
 
 obtener_texto_areas <- function(nombre_investigador, tabla_areas) {
   areas <- tabla_areas %>%
