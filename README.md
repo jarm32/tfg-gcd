@@ -1,8 +1,6 @@
-# TFG-GCD: Visualización y agrupación semántica de investigadores del IUMPA
+# Diseño de una base de datos para la visualización y agrupación semántica de los investigadores del Instituto Universitario de Matemática Pura y Aplicada (IUMPA)
 
-Repositorio asociado al Trabajo Fin de Grado **Diseño de una base de datos para la visualización y agrupación semántica de los investigadores del Instituto Universitario de Matemática Pura y Aplicada**.
-
-El proyecto tiene como objetivo construir una base de datos sobre la actividad investigadora del IUMPA, desarrollar una aplicación interactiva en Shiny para visualizar relaciones mediante grafos y aplicar técnicas de agrupación semántica para explorar afinidades temáticas entre investigadores.
+Repositorio de datos y código asociado a este proyecto. El trabajo tiene como objetivo construir una base de datos sobre la actividad investigadora del IUMPA, desarrollar una aplicación interactiva en Shiny para visualizar relaciones mediante grafos y aplicar técnicas de agrupación semántica para explorar afinidades temáticas entre investigadores.
 
 ## Estructura del repositorio
 
