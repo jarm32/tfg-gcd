@@ -1,55 +1,55 @@
-"Nombre";"Acortacion";"Acronimo";"Girado";"Tipo.de.empleado"
-"Carmen Alegre Gil";"AlegreGC";"MC Alegre Gil, C Alegre";"Alegre Gil, Maria Carmen";"Investigador"
-"Andrés Roger Arnau Notari";"ArnauNAR";"R Arnau, AR Arnau Notari, AR Arnau-Notari";"Arnau Notari, Andres Roger";"Investigador"
-"Milagros Arroyo Jordá";"ArroyoJM";"M Arroyo Jorda, Milagros Arroyo Jorda";"Arroyo Jorda, Milagros";"Investigador"
-"Paz Arroyo Jordá";"ArroyoJP";"P Arroyo Jorda, Paz Arroyo Jorda";"Arroyo Jorda, Paz";"Investigador"
-"Vicent Asensio López";"AsensioLV";"";"Asensio Lopez, Vicent";"Investigador"
-"Minerva Báguena Añó";"BaguenaAM";"";"Baguena Ano, M Minerva";"Becario"
-"Carles Bivià Ausina";"BiviaC";"C Bivia Ausina, C Bivia-Ausina";"Bivia Ausina, Carles";"Investigador"
-"José Bonet Solves";"BonetSJ";"J Bonet, JA Bonet Solves";"Bonet Solves, Jose Antonio";"Investigador"
-"Jose Manuel Calabuig Rodríguez";"CalabuigRJM";"JM Calabuig, JMC Rodriguez";"Calabuig Rodriguez, Jose Manuel";"Investigador"
-"Christian Cobollo Gómez";"CobolloGC";"C Cobollo, C Cobollos, C Cobollo Gomez, CC Gomez";"Cobollo Gomez, Christian";"Becario de investigacion"
-"J Alberto Conejero";"ConejeroJA";"JA Conejero, JA Conejero Casares, JA Conejero-Casares, AJ Conejero";"Conejero Casares, José Alberto";"Investigador"
-"María José Felipe Román";"FelipeRMJ";"MJ Felipe";"Felipe Román, María Josefa";"Investigador"
-"Pedro José Fernández de Córdoba Castellá";"FernandezCCPJ";"P Fernandez, P Fernandez de Cordoba, PF de Cordoba Castella, PF de Cordoba";"Fernández De Córdoba Castellá, Pedro José";"Investigador"
-"Antonia Ferrer Sapena";"FerrerSA";"A Ferrer Sapena, A Ferrer-Sapena, AF Sapena, A Sapena";"Ferrer Sapena, Antonia";"Investigador"
-"Lluís Miquel Garcia Raffi";"GarciaRLM";"LM Garcia Raffi, L Garcia-Raffi, LM Garcia, LMG Raffi, L Garcia-Raffi";"Garcia Raffi, Luis Miguel";"Investigador"
-"Iris Gilabert Manzanares";"Gilabert_";"";"Gilabert Manzanares, Iris ";"Becario de investigacion"
-"Francisco Guijarro Martínez";"Guijarro_";"F Guijarro Martinez, F Guijarro, FJM Guijarro";"Guijarro Martinez, Francisco ";"Investigador"
-"Antonio José Guirao Sánchez";"GuiraoSAJ";"AJ Guirao, AJ Guirao Sanchez";"Guirao Sanchez, Antonio Jose";"Investigador"
-"Sergio Hoyas Calvo";"HoyasCS";"S Hoyas,  S Hoyas Calvo";"Hoyas Calvo, Sergio";"Investigador"
-"José María Isidro San Juan";"IsidroSJJM";"JM Isidro, J Isidro";"Isidro San Juan, Jose Maria";"Investigador"
-"Enrique Jordá Mora";"JordaME";"E Jorda, E Jorda Mora";"Jorda Mora, Enrique";"Investigador"
-"David Jornet Casanova";"JornetCD";"D Jornet";"Jornet Casanova, David";"Investigador"
-"Mario Lázaro Navarro";"LazaroNM";"M Lazaro";"Lazaro Navarro, Mario";"Investigador"
-"Manuel López Pellicer";"Lopez_";"ML Pellicer, M Lopez Pellicer";"Lopez Pellicer, Manuel ";"Investigador"
-"Antoni López Martínez";"LopezMA";"A Lopez Martinez";"Lopez Martinez, Antoni";"Investigador"
-"Félix Martínez Jiménez";"MartinezJF";"F Martinez Gimenez";"Martinez Jimenez, Felix";"Investigador"
-"Ana Martínez Pastor";"MartinezPA";"A Martinez Pastor";"Martinez Pastor, Ana";"Investigador"
-"María José Martínez Usó";"MartinezUMJ";"MJ Martinez Uso, MJ Martinez";"Martinez Uso, Maria Jose";"Investigador"
-"Carlos Mas Arabi";"MasAC";"";"Mas Arabi, Carlos";"Becario de investigacion"
-"Carles Milián Enrique";"MilianEC";"C Milian";"Milian Enrique, Carles";"Investigador"
-"Francisco José Monserrat Delpalillo";"Monserrat_";"F Monserrat";"Monserrat Delpalillo, Francisco Jose ";"Investigador"
-"Vicente Montesinos Santalucía";"Montesinos_";"V Montesinos Santalucia, VM Santalucia";"Montesinos Santalucia, Vicente ";"Investigador"
-"Samuel Morillas Gómez";"MorillasGS";"S Morillas";"Morillas Gomez, Samuel";"Investigador"
-"Nuria Ortigosa Araque";"OrtigosaAN";"";"Ortigosa Araque, Nuria";"Investigador"
-"Víctor Manuel Ortiz Sotomayor";"OrtizSVM";"VM Ortiz Sotomayor, V Sotomayor, VMO Sotomayor";"Ortiz Sotomayor, Victor Manuel";"Investigador"
-"Mari Carmen Pedraza Aguilera";"PedrazaAMC";"MC Pedraza Aguilera";"Pedraza Aguilera, Maria Carmen";"Investigador"
-"Tatiana Pedraza Aguilera";"PedrazaAT";"";"Pedraza Aguilera, Tatiana";"Investigador"
-"Alfred Peris Manguillot";"PerisMA";"A Peris, A Peris Manguillot";"Peris Manguillot, Alfredo";"Investigador"
-"Fernanda Peset Mancebo";"PesetMF";"F Peset, MF Peset Mancebo, F Peset Mancebo";"Peset Mancebo, María Fernanda";"Investigador"
-"Luiza Petrosyan";"PetrosyanL";"L Petrosyan";"Petrosyan, Luiza";"Becario de investigacion"
-"Andrés Quilis Sandemetrio";"Quilis_";"A Quilis Sandemetrio";"Quilis Sandemetrio, Andres ";"Investigador"
-"Francisco Rodenas Escribá";"RodenasEF";"F Rodenas";"Rodenas Escriba, Francisco De Asis";"Investigador"
-"Jesús Rodríguez López";"RodriguezLJ";"J Rodriguez Lopez";"Rodriguez Lopez, Jesus";"Investigador"
-"Jose Antonio Rodríguez Moreno";"Rodriguez_";"";"Rodriguez Moreno, Jose Antonio ";"Becario"
-"Salvador Romaguera Bonilla";"Romaguera_";"";"Romaguera Bonilla, Salvador ";"Investigador"
-"Vicent Romero García";"RomeroGV";"V Romero Garcia";"Romero Garcia, Vicente";"Investigador"
-"Sergi San Juan Silvestre";"San Juan_";"";"San Juan Silvestre, Sergi ";"Becario de investigacion"
-"Isabel Sánchez del Toro";"Sanchez_";"";"Sanchez del Toro, Isabel ";"Becario"
-"Enrique A. Sánchez Pérez";"SanchezPEA";"EAS Perez, EA Sanchez-Perez, EA Sanchez Perez, E Sanchez-Perez, PEA Sanchez";"Sánchez Pérez, Enrique Alfonso";"Investigador"
-"José María Sanchis Llopis";"SanchisLJM";"JM Sanchis";"Sanchis Llopis, Jose Maria";"Investigador"
-"Eduardo Sena Galera";"Sena_";"";"Sena Galera, Eduardo ";"Becario de investigacion"
-"Pablo Sevilla Peris";"SevillaPP";"P Sevilla Peris";"Sevilla Peris, Pablo";"Investigador"
-"Pedro Tirado Peláez";"TiradoPP";"P Tirado";"Tirado Pelaez, Pedro";"Investigador"
-"Álvaro Vargas Moreno";"VargasMA";"";"Vargas Moreno, Álvaro";"Becario de investigacion"
+Nombre;Acortacion;Acronimo;Girado;Tipo.de.empleado
+Carmen Alegre Gil;AlegreGC;MC Alegre Gil, C Alegre;Alegre Gil, Maria Carmen;Investigador
+Andrés Roger Arnau Notari;ArnauNAR;R Arnau, AR Arnau Notari, AR Arnau-Notari;Arnau Notari, Andres Roger;Investigador
+Milagros Arroyo Jordá;ArroyoJM;M Arroyo Jorda, Milagros Arroyo Jorda;Arroyo Jorda, Milagros;Investigador
+Paz Arroyo Jordá;ArroyoJP;P Arroyo Jorda, Paz Arroyo Jorda;Arroyo Jorda, Paz;Investigador
+Vicent Asensio López;AsensioLV;;Asensio Lopez, Vicent;Investigador
+Minerva Báguena Añó;BaguenaAM;;Baguena Ano, M Minerva;Personal en formacion
+Carles Bivià Ausina;BiviaC;C Bivia Ausina, C Bivia-Ausina;Bivia Ausina, Carles;Investigador
+José Bonet Solves;BonetSJ;J Bonet, JA Bonet Solves;Bonet Solves, Jose Antonio;Investigador
+Jose Manuel Calabuig Rodríguez;CalabuigRJM;JM Calabuig, JMC Rodriguez;Calabuig Rodriguez, Jose Manuel;Investigador
+Christian Cobollo Gómez;CobolloGC;C Cobollo, C Cobollos, C Cobollo Gomez, CC Gomez;Cobollo Gomez, Christian;Personal investigador en formacion
+J Alberto Conejero;ConejeroJA;JA Conejero, JA Conejero Casares, JA Conejero-Casares, AJ Conejero;Conejero Casares, José Alberto;Investigador
+María José Felipe Román;FelipeRMJ;MJ Felipe;Felipe Román, María Josefa;Investigador
+Pedro José Fernández de Córdoba Castellá;FernandezCCPJ;P Fernandez, P Fernandez de Cordoba, PF de Cordoba Castella, PF de Cordoba;Fernández De Córdoba Castellá, Pedro José;Investigador
+Antonia Ferrer Sapena;FerrerSA;A Ferrer Sapena, A Ferrer-Sapena, AF Sapena, A Sapena;Ferrer Sapena, Antonia;Investigador
+Lluís Miquel Garcia Raffi;GarciaRLM;LM Garcia Raffi, L Garcia-Raffi, LM Garcia, LMG Raffi, L Garcia-Raffi;Garcia Raffi, Luis Miguel;Investigador
+Iris Gilabert Manzanares;Gilabert_;;Gilabert Manzanares, Iris ;Personal investigador en formacion
+Francisco Guijarro Martínez;GuijarroMF;F Guijarro Martinez, F Guijarro, FJM Guijarro;Guijarro Martinez, Francisco ;Investigador
+Antonio José Guirao Sánchez;GuiraoSAJ;AJ Guirao, AJ Guirao Sanchez;Guirao Sanchez, Antonio Jose;Investigador
+Sergio Hoyas Calvo;HoyasCS;S Hoyas,  S Hoyas Calvo;Hoyas Calvo, Sergio;Investigador
+José María Isidro San Juan;IsidroSJJM;JM Isidro, J Isidro;Isidro San Juan, Jose Maria;Investigador
+Enrique Jordá Mora;JordaME;E Jorda, E Jorda Mora;Jorda Mora, Enrique;Investigador
+David Jornet Casanova;JornetCD;D Jornet;Jornet Casanova, David;Investigador
+Mario Lázaro Navarro;LazaroNM;M Lazaro;Lazaro Navarro, Mario;Investigador
+Manuel López Pellicer;LopezPM;ML Pellicer, M Lopez Pellicer;Lopez Pellicer, Manuel ;Investigador
+Antoni López Martínez;LopezMA;A Lopez Martinez;Lopez Martinez, Antoni;Investigador
+Félix Martínez Jiménez;MartinezJF;F Martinez Gimenez;Martinez Jimenez, Felix;Investigador
+Ana Martínez Pastor;MartinezPA;A Martinez Pastor;Martinez Pastor, Ana;Investigador
+María José Martínez Usó;MartinezUMJ;MJ Martinez Uso, MJ Martinez;Martinez Uso, Maria Jose;Investigador
+Carlos Mas Arabi;MasAC;;Mas Arabi, Carlos;Personal investigador en formacion
+Carles Milián Enrique;MilianEC;C Milian;Milian Enrique, Carles;Investigador
+Francisco José Monserrat Delpalillo;MonserratDFJ;F Monserrat;Monserrat Delpalillo, Francisco Jose ;Investigador
+Vicente Montesinos Santalucía;MontesinosSV;V Montesinos Santalucia, VM Santalucia;Montesinos Santalucia, Vicente ;Investigador
+Samuel Morillas Gómez;MorillasGS;S Morillas;Morillas Gomez, Samuel;Investigador
+Nuria Ortigosa Araque;OrtigosaAN;;Ortigosa Araque, Nuria;Investigador
+Víctor Manuel Ortiz Sotomayor;OrtizSVM;VM Ortiz Sotomayor, V Sotomayor, VMO Sotomayor;Ortiz Sotomayor, Victor Manuel;Investigador
+Mari Carmen Pedraza Aguilera;PedrazaAMC;MC Pedraza Aguilera;Pedraza Aguilera, Maria Carmen;Investigador
+Tatiana Pedraza Aguilera;PedrazaAT;;Pedraza Aguilera, Tatiana;Investigador
+Alfred Peris Manguillot;PerisMA;A Peris, A Peris Manguillot;Peris Manguillot, Alfredo;Investigador
+Fernanda Peset Mancebo;PesetMF;F Peset, MF Peset Mancebo, F Peset Mancebo;Peset Mancebo, María Fernanda;Investigador
+Luiza Petrosyan;PetrosyanL;L Petrosyan;Petrosyan, Luiza;Personal investigador en formacion
+Andrés Quilis Sandemetrio;QuilisSA;A Quilis Sandemetrio;Quilis Sandemetrio, Andres ;Investigador
+Francisco Rodenas Escribá;RodenasEF;F Rodenas;Rodenas Escriba, Francisco De Asis;Investigador
+Jesús Rodríguez López;RodriguezLJ;J Rodriguez Lopez;Rodriguez Lopez, Jesus;Investigador
+Jose Antonio Rodríguez Moreno;Rodriguez_;;Rodriguez Moreno, Jose Antonio ;Personal en formacion
+Salvador Romaguera Bonilla;Romaguera_;;Romaguera Bonilla, Salvador ;Investigador
+Vicent Romero García;RomeroGV;V Romero Garcia;Romero Garcia, Vicente;Investigador
+Sergi San Juan Silvestre;San Juan_;;San Juan Silvestre, Sergi ;Personal investigador en formacion
+Isabel Sánchez del Toro;Sanchez_;;Sanchez del Toro, Isabel ;Personal en formacion
+Enrique A. Sánchez Pérez;SanchezPEA;EAS Perez, EA Sanchez-Perez, EA Sanchez Perez, E Sanchez-Perez, PEA Sanchez;Sánchez Pérez, Enrique Alfonso;Investigador
+José María Sanchis Llopis;SanchisLJM;JM Sanchis;Sanchis Llopis, Jose Maria;Investigador
+Eduardo Sena Galera;Sena_;;Sena Galera, Eduardo ;Personal investigador en formacion
+Pablo Sevilla Peris;SevillaPP;P Sevilla Peris;Sevilla Peris, Pablo;Investigador
+Pedro Tirado Peláez;TiradoPP;P Tirado;Tirado Pelaez, Pedro;Investigador
+Álvaro Vargas Moreno;VargasMA;;Vargas Moreno, Álvaro;Personal investigador en formacion

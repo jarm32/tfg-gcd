@@ -18,8 +18,8 @@ normalizar_categoria <- function(x) {
   dplyr::case_when(
     is.na(x) | x == "" ~ "Desconocido",
     x_simple == "investigador" ~ "Investigador",
-    x_simple %in% c("becario", "personal en formacion") ~ "Personal en formación",
-    x_simple %in% c("becario de investigacion", "personal investigador en formacion") ~ "Personal investigador en formación",
+    x_simple %in% c("personal en formacion") ~ "Personal en formación",
+    x_simple %in% c("personal investigador en formacion") ~ "Personal investigador en formación",
     x_simple == "revista" ~ "Revista",
     x_simple == "proyecto" ~ "Proyecto",
     TRUE ~ x
@@ -49,8 +49,8 @@ function(el, x) {
     var simple = cat.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase();
 
     if (simple === 'investigador') return 'Investigador';
-    if (simple === 'becario' || simple === 'personal en formacion') return 'Personal en formación';
-    if (simple === 'becario de investigacion' || simple === 'personal investigador en formacion') return 'Personal investigador en formación';
+    if (simple === 'personal en formacion') return 'Personal en formación';
+    if (simple === 'personal investigador en formacion') return 'Personal investigador en formación';
     if (simple === 'revista') return 'Revista';
     if (simple === 'proyecto') return 'Proyecto';
 
@@ -122,8 +122,9 @@ normalizar_area <- function(x) {
   
   dplyr::case_when(
     is.na(x) | x == "" ~ x,
-    x_simple %in% c("becario", "becarios", "personal en formacion") ~ "Personal en formación",
-    x_simple %in% c("becario de investigacion", "becarios de investigacion", "personal investigador en formacion") ~ "Personal investigador en formación",
+    x_simple %in% c("becario", "becarios") ~ "Becario",
+    x_simple %in% c("personal en formacion") ~ "Personal en formación",
+    x_simple %in% c("personal investigador en formacion") ~ "Personal investigador en formación",
     TRUE ~ x
   )
 }
@@ -140,22 +141,6 @@ areas_proy <- do.call(rbind, lapply(cleaned_proy, as.data.frame))
 areas_proy$Areas <- gsub('"', '', areas_proy$Areas)
 areas_proy$Lista_areas <- strsplit(gsub("/", ",", areas_proy$Areas), ",\\s*")
 areas_proy$Lista_areas <- lapply(areas_proy$Lista_areas, normalizar_area)
-
-obtener_texto_areas <- function(nombre_investigador, tabla_areas) {
-  areas <- tabla_areas %>%
-    filter(Nombre == nombre_investigador) %>%
-    pull(Lista_areas) %>%
-    unlist()
-  
-  areas <- unique(trimws(areas))
-  areas <- areas[!is.na(areas) & areas != ""]
-  
-  if (length(areas) == 0) {
-    return("Áreas:\nNo se han encontrado áreas asociadas.")
-  }
-  
-  paste0("Áreas:\n", paste0("- ", areas, collapse = "\n"))
-}
 
 obtener_texto_areas <- function(nombre_investigador, tabla_areas) {
   areas <- tabla_areas %>%
@@ -571,7 +556,7 @@ server <- function(input, output, session) {
             var sInv = statsInvestigadores[nombre] || {};
             return '<strong>Nombre: ' + nombre + '</strong><br/>' +
                    'Revistas asociadas: ' + (sInv.n_revistas || 0) + '<br/>' +
-                   'Artículos publicados: ' + (sInv.n_publicaciones || 0);
+                   'Artículos registrados: ' + (sInv.n_publicaciones || 0);
           }
         }"
               )
@@ -612,7 +597,7 @@ server <- function(input, output, session) {
         return(paste0(
           "Nombre: ", node_to_show,
           "\n\n", texto_areas,
-          "\n\nArtículos publicados:\n",
+          "\n\nArtículos registrados:\n",
           paste0("- ", articulos, collapse = "\n")
         ))
       } else {
@@ -900,14 +885,14 @@ server <- function(input, output, session) {
         return(paste0(
           "Nombre: ", node,
           "\n\n", texto_areas,
-          "\n\nNo ha trabajado con nadie del IUMPA."
+          "\n\nNo se han registrado colaboraciones con otros miembros del IUMPA en la base de datos."
         ))
       }
       
       paste0(
         "Nombre: ", node,
         "\n\n", texto_areas,
-        "\n\nHa trabajado con:\n",
+        "\n\nColaboraciones registradas con:\n",
         paste0("- ", conexiones, collapse = "\n")
       )
     })
@@ -963,14 +948,14 @@ server <- function(input, output, session) {
         return(paste0(
           "Nombre: ", node,
           "\n\n", texto_areas,
-          "\n\nNo ha trabajado con nadie del IUMPA."
+          "\n\nNo se han registrado colaboraciones con otros miembros del IUMPA en la base de datos."
         ))
       }
       
       paste0(
         "Nombre: ", node,
         "\n\n", texto_areas,
-        "\n\nHa trabajado con:\n",
+        "\n\nColaboraciones registradas con:\n",
         paste0("- ", conexiones, collapse = "\n")
       )
     })
