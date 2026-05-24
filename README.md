@@ -21,7 +21,7 @@ El proyecto tiene como objetivo construir una base de datos sobre la actividad i
 - `__Interface/`: contiene la aplicación Shiny final y los ficheros mínimos necesarios para ejecutarla. El archivo `Investigadores_internos.csv` incluido en esta carpeta es una versión reducida, con solo las columnas necesarias para la interfaz. La aplicación se ejecuta mediante `app.R`.
 - `__Clusterización/`: contiene el código, datos y resultados de la fase de agrupación semántica de investigadores. Incluye scripts del flujo principal y una carpeta `experiments/` con pruebas exploratorias.
 - `Datasets/`: contiene la base de datos final organizada en nodos, relaciones y resultados de análisis exploratorio. En esta carpeta, `Nodos/Investigadores_internos.csv` conserva la versión completa del nodo de investigadores.
-- `General_scripts/`: contiene scripts generales utilizados durante la construcción, limpieza y preparación de la base de datos, así como versiones separadas de los grafos antes de su integración en la aplicación final.
+- `General_scripts/` contiene scripts auxiliares utilizados durante la construcción, limpieza y preparación de los datos. Algunos de estos scripts conservan rutas o configuraciones propias del entorno original de desarrollo, por lo que pueden requerir pequeños ajustes para su ejecución en otros equipos.
 
 ## Aplicación Shiny
 
